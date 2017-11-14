@@ -23,6 +23,7 @@
     "@angular/router": "^5.0.0",
     "core-js": "^2.4.1",
     "rxjs": "^5.5.2",
+    "sweetalert2": "^6.11.5",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
@@ -41,6 +42,7 @@
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "mdbootstrap": "^4.4.3",
     "protractor": "~5.1.2",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",

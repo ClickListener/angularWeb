@@ -1,0 +1,131 @@
+
+
+<div class="container">
+
+
+
+    <div class="row justify-content-center">
+
+        <h1>Create a new license.</h1>
+        <div class="col-10">
+
+            <div class="card">
+                <div class="card-header">
+                    <h4>Expired Date</h4>
+                </div>
+                <div class="card-body">
+
+                    <input placeholder="Set Expired Date" type="number" id="installedPhoneNumber" required="required" class="datapicker"
+                           #installedPhoneNumber readonly>
+
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <h4 class="">Selected Devices</h4>
+                        <!-- Button trigger modal-->
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#modalQuickView">Add</button>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <div class="wrap" *ngIf="selectedDevices.length !== 0">
+                        <div *ngFor="let device of selectedDevices let i = index">
+
+                            <div class="customBlock">
+                                <img src="/../../../../assets/images/device_{{device.deviceName}}.png"/>
+
+                                <div>
+                                    <p>DeviceModule: {{device.deviceName}}</p>
+                                    <div>
+                                        <p>DeviceNumber:</p>
+                                        <input class="form-control" id="device_number" type="number"
+                                               [(ngModel)]="device.deviceNumber">
+                                    </div>
+                                </div>
+                                <input type="button" class="cancel" (click)="deleteDevice(i)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="selectedDevices.length === 0">
+                        <div class="d-flex justify-content-lg-center" >
+                            <p>You do not select any devices</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <button class="btn btn-primary" (click)="createNewLicense(installedPhoneNumber.value, selectedDevices)">提交</button>
+        </div>
+
+
+    </div>
+
+    <!-- Modal: modalQuickView -->
+    <div class="modal fade" id="modalQuickView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="offset-md-3 col-md-6">
+
+                                <div class="md-form">
+                                    <input required="required" class="form-control" id="deviceNumber" type="text"
+                                           #deviceNumber>
+                                    <label for="deviceNumber">deviceNumber</label>
+                                </div>
+                                <P class="text-lg-center">已经选择的设备</P>
+                                <div class="row">
+                                    <div *ngFor="let key of devices;let i = index;">
+                                        <div class="device" *ngIf="key.selected && !key.out_select"
+                                             (click)="cancelSelectDevice(i)">
+                                            <!--<img src="/src/assets/images/device_{{key.deviceName}}.png" width="75">-->
+                                            <img src="/../../../../assets/images/device_{{key.deviceName}}.png" width="75">
+                                        </div>
+                                    </div>
+                                    <div *ngIf="selectedDeviceNumber === 0" class="align-content-lg-center">
+                                        <b>You have not select a device!</b>
+                                    </div>
+                                </div>
+
+                                <p class="text-lg-center">未选择的设备</p>
+                                <div class="row">
+                                    <div *ngFor="let key of devices;let i = index">
+                                        <div class="device" *ngIf="!key.selected && !key.out_selected"
+                                             (click)="selectDevice(i)">
+                                            <!--<img src="/src/assets/images/device_{{key.deviceName}}.png" width="75">-->
+                                            <img src="/../../../../assets/images/device_{{key.deviceName}}.png" width="75">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <button class="btn btn-primary" (click)="confirmDevices(deviceNumber.value)">确定
+                                    </button>
+                                    <button class="btn btn-blue-grey" data-dismiss="modal">取消</button>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal: modalQuickView -->
+
+</div>
+

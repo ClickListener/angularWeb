@@ -1,0 +1,27 @@
+.table-wrapper {
+    display: block;
+    max-height: 300px;
+    overflow-y: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.accordion .card .card-header a:not(.collapsed) .rotate-icon {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg)
+}
+.fa-angle-down.rotate-icon {
+    position: absolute;
+    right: 0;
+    margin-right: 20px
+}
+.collapsible .active .rotate-icon {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+    -webkit-transition: all 150ms ease-in 0s;
+    transition: all 150ms ease-in 0s
+}
+.fa-angle-down.rotate-icon {
+    top: 12px
+}

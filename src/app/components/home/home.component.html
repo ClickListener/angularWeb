@@ -1,0 +1,190 @@
+<h1 id="h1">Home</h1>
+<h2 *ngIf="user">User's email is {{user.email}}</h2>
+<button (click)="managerLicense()">Manager</button>
+<a routerLink="/manager-license" routerLinkActive="active">管理</a>
+
+
+<!--Accordion wrapper-->
+<div class="accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-4 text-center">
+                ExpiredDate
+            </div>
+            <div class="col-2 text-center">
+                Devices
+            </div>
+            <div class="col-2 text-center">
+                InstallPhoneNumber
+            </div>
+            <div class="col-4 text-center">
+                Operation
+            </div>
+        </div>
+
+
+        <hr>
+
+
+        <!-- Accordion card -->
+        <div class="card" *ngFor="let license of licenses; let i = index">
+
+            <!-- Card header -->
+            <div class="card-header" role="tab">
+                <a class="collapsed" data-toggle data-toggle="collapse" data-parent="#accordionEx" [attr.data-target]="'#'+ i"
+                     arrt.aria-expanded="false">
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            {{license.ExpiredDate}}
+                        </div>
+                        <div class="col-2 text-center">
+                            {{license.DeviceInfo.length}}
+                        </div>
+                        <div class="col-2 text-center">
+                            {{license.InstalledPhoneNumber}}
+                        </div>
+                        <div class="col-4 text-center">
+                            <button>删除</button>
+                        </div>
+                        <i class="fa fa-angle-down rotate-icon" ></i>
+                    </div>
+
+                </a>
+            </div>
+
+            <!-- Card body -->
+            <div [attr.id]="i" class="collapse" role="tabpanel">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <b>DeviceModel</b>
+                        </div>
+                        <div class="col-4 text-center">
+                            <b>TotalNumber</b>
+                        </div>
+                        <div class="col-4 text-center">
+                            <b>UsedNumber</b>
+                        </div>
+                    </div>
+
+                    <div class="row" *ngFor="let device of license.DeviceInfo">
+                        <div class="col-4 text-center">
+                            <b>{{device.DeviceModel}}</b>
+                        </div>
+                        <div class="col-4 text-center">
+                            <b>{{device.DeviceTotalNumber}}</b>
+                        </div>
+                        <div class="col-4 text-center">
+                            <b>{{device.DeviceUsedNumber}}</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <!-- Accordion card -->
+
+</div>
+<!--/.Accordion wrapper-->
+
+<!-- Button trigger modal-->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalQuickView">Launch modal</button>
+
+<!-- Modal: modalQuickView -->
+<div class="modal fade" id="modalQuickView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <div class="md-form">
+                    <input required="required" class="form-control" id="deviceNumber" type="text" #deviceNumber>
+                    <label for="deviceNumber">deviceNumber</label>
+                </div>
+                <P>已经选择的设备</P>
+                <div class="row">
+                    <div *ngFor="let key of devices;let i = index;">
+                        <div class="device" *ngIf="key.selected && !key.out_select" (click)="cancelSelectDevice(i)">
+                            <!--<img src="/src/assets/images/device_{{key.deviceName}}.png" width="75">-->
+                            <img src="/../../../assets/images/device_ {{key.deviceName}}.png" width="75">
+                            <!--<img src="../../../assets/images/close.png" width="75">-->
+                        </div>
+
+                    </div>
+                    <div *ngIf="selectedDeviceNumber === 0"  class="align-content-lg-center">
+                        <b>You have not select a device!</b>
+                    </div>
+                </div>
+
+                <p>未选择的设备</p>
+                <div class="row">
+                    <div *ngFor="let key of devices;let i = index">
+                        <div class="device" *ngIf="!key.selected && !key.out_selected" (click)="selectDevice(i)">
+                            <!--<img src="/src/assets/images/device_{{key.deviceName}}.png" width="75">-->
+                            <img src="/../../../assets/images/device_{{key.deviceName}}.png" width="75">
+                            <!--<img [src]="'../../../assets/images/device_'+ key.deviceName + '.png'" width="75">-->
+                            <!--<img src="../../../assets/images/close.png" width="75">-->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <button class="btn btn-primary" (click)="confirmDevices(deviceNumber.value)">确定</button>
+                    <button class="btn btn-blue-grey" data-dismiss="modal">取消</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal: modalQuickView -->
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="offset-md-3 col-md-6">
+
+
+            <div class="md-form">
+                <input required="required" class="form-control datepicker" id="BundleIdOrPackageName" type="text" #BundleIdOrPackageName>
+                <label for="BundleIdOrPackageName">BundleIdOrPackageName</label>
+            </div>
+
+
+            <div class="wrap">
+                <div *ngFor="let device of selectedDevices let i = index">
+
+                    <div class="customBlock">
+                        <img src="/src/assets/images/device_{{device.deviceName}}.png"/>
+
+                        <div>
+                            <p>DeviceModule: {{device.deviceName}}</p>
+                            <div>
+                                <p>DeviceNumber:</p>
+                                <input class="form-control" id="device_number" type="number" [(ngModel)]="device.deviceNumber">
+                            </div>
+
+                        </div>
+                        <input type="button" class="cancel" (click)="aa()">
+                    </div>
+                </div>
+            </div>
+
+
+            <button (click)="createNewLicense(totalUserNumber.value, BundleIdOrPackageName.value)">提交</button>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+
