@@ -73,7 +73,7 @@ export class HomeComponent implements OnInit, DoCheck, AfterViewInit {
                     'DeviceUsedNumber': 1,
                 }
             ],
-            'InstalledPhoneNumber': 100
+            'InstalledPhoneNumber': 1000
         },
         {
             'ExpiredDate': '2017-10-10',
