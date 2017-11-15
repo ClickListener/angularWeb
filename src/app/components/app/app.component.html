@@ -1,42 +1,40 @@
-<header class="navbar navbar-toggleable-md navbar-dark bg-primary deep-orange navbar-fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark deep-orange">
 
-    <div class="container">
+  <!--如果导航栏在小屏幕上，则收起右边的内容-->
 
-        <!--如果导航栏在小屏幕上，则收起右边的内容-->
-
-        <a class="navbar-brand waves-effect" routerLink="./">iHealth</a>
+  <a class="navbar-brand waves-effect" routerLink="./">iHealth</a>
 
 
-        <button id="collapse" class="navbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse"
-                data-target="#nav-content" aria-controls="nav-content" aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+          data-target="#nav-content" aria-controls="nav-content" aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="nav-content">
 
 
+    <ul class="navbar-nav ml-auto"  *ngIf="!user">
+      <li class="nav-item waves-effect">
+        <a class="nav-link" routerLink="/sign-up" routerLinkActive="active">Sign Up</a>
+      </li>
+      <li class="nav-item waves-effect">
+        <a class="nav-link" routerLink="/sign-in" routerLinkActive="active">Sign In</a>
+      </li>
+    </ul>
 
-        <!--导航栏右边的内容-->
-        <div id="nav-content" class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto"  *ngIf="!user">
-                <li class="nav-item waves-effect">
-                    <a class="nav-link" routerLink="/sign-up" routerLinkActive="active">Sign Up</a>
-                </li>
-                <li class="nav-item waves-effect">
-                    <a class="nav-link" routerLink="/sign-in" routerLinkActive="active">Sign In</a>
-                </li>
-            </ul>
+    <ul class="navbar-nav ml-auto"  *ngIf="user">
+      <li class="nav-item waves-effect">
+        <a class="nav-link" (click)="signOut()"  routerLinkActive="active">Sign out</a>
+      </li>
+    </ul>
 
-            <ul class="navbar-nav ml-auto"  *ngIf="user">
-                <li class="nav-item waves-effect">
-                    <a class="nav-link" (click)="signOut()"  routerLinkActive="active">Sign out</a>
-                </li>
-            </ul>
-        </div>
+  </div>
+  <!-- Collapsible content -->
 
-
-    </div>
-
-</header>
+</nav>
+<!--/.Navbar-->
 
 <router-outlet></router-outlet>
 

@@ -1,23 +1,3 @@
-.accordion .card .card-header a:not(.collapsed) .rotate-icon {
-    -webkit-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    transform: rotate(180deg)
-}
-.fa-angle-down.rotate-icon {
-    position: absolute;
-    right: 0;
-    margin-right: 20px
-}
-.collapsible .active .rotate-icon {
-    -webkit-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    transform: rotate(180deg);
-    -webkit-transition: all 150ms ease-in 0s;
-    transition: all 150ms ease-in 0s
-}
-.fa-angle-down.rotate-icon {
-    top: 12px
-}
 
 .device {
     margin: 10px 20px 10px 20px;
@@ -89,4 +69,10 @@ position: relative;
     width:100%;
     display: flex;
     flex-wrap:wrap;
+}
+
+.row div {
+  height: 30px;
+  line-height: 30px;
+
 }
