@@ -59,6 +59,7 @@
                                 {{license.InstalledPhoneNumber}}
                             </div>
                             <div class="col-4 text-center">
+                              <button class="btn btn-primary" (click)="downloadLicense(license._id)">下载</button>
                                 <button class="btn btn-primary" (click)="modifyLicense(license._id)">更新</button>
                                 <button class="btn badge-danger" (click)="deleteLicense(license._id)">删除</button>
                             </div>

@@ -29,7 +29,7 @@ export class AppComponent implements OnInit, OnChanges, DoCheck {
         console.log('ngOnChanges()');
     }
 
-    signOut():void {
+    signOut(): void {
         console.log('signOut');
         this.userService.signOut()
             .then(() => {
@@ -44,9 +44,6 @@ export class AppComponent implements OnInit, OnChanges, DoCheck {
         console.log('ngDoCheck()');
 
         this.user = this.userService.user;
-
-        console.log('this.user = ' + this.user);
-        console.log('this.userService.user = ' + this.userService.user);
     }
 
 

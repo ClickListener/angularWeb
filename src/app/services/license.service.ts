@@ -21,33 +21,45 @@ export class LicenseService {
         headers: new Headers({'Content-Type': 'application/json'})
     };
 
-    licenses:License[];
+    licenses: License[];
 
-    url = '/license';
+    url = '/api/license';
 
+    getAllLicense(userId: string): void {
+
+      console.log('getAllLicense()');
+      const url = this.url + '/all/' + userId;
+      this.http.get(url, this.header)
+        .toPromise()
+        .then(res => {
+          console.log('res = ' + JSON.stringify(res));
+          if (res.json().success) {
+            this.licenses = res.json().data;
+
+          }
+        })
+        .catch(LicenseService.handleError);
+    }
 
     /**
      * 创建 新的 License
      * @param licenseInfo
      * @returns {Promise<License[]>}
      */
-    createNewLicense(licenseInfo:any) : Promise<License[]> {
+    createNewLicense(licenseInfo: any): Promise<any> {
 
-        console.info("licenseInfo = " + JSON.stringify(licenseInfo));
+        console.log('licenseInfo = ' + JSON.stringify(licenseInfo));
 
 
         // const url = '/api/auth/createNewLicense';
-        return this.http.put(this.url, JSON.stringify(licenseInfo), this.header)
+        return this.http.post(this.url, JSON.stringify(licenseInfo), this.header)
             .toPromise()
             .then( res => {
-                this.licenses = res.json().licenses as License[];
-
-                //将licenses存到本地
-                sessionStorage.setItem('licenses' , JSON.stringify(this.licenses));
-                console.info('res = ' + JSON.stringify(this.licenses));
+                // 将licenses存到本地
+                // sessionStorage.setItem('licenses' , JSON.stringify(this.licenses));
                 return res.json();
             })
-            .catch(LicenseService.handleError)
+            .catch(LicenseService.handleError);
 
     }
 
@@ -56,19 +68,19 @@ export class LicenseService {
      * @param message
      * @returns {Promise<License[]>}
      */
-    updateLicense(message:any) : Promise<License[]> {
-        console.info("message = " + JSON.stringify(message));
+    updateLicense(message: any): Promise<any> {
+        console.log('message = ' + JSON.stringify(message));
 
-        let url = this.url + '/' + message.licenseId;
+        const url = this.url + '/' + message.licenseId;
 
         return this.http.post(url, JSON.stringify(message.licenseInfo), this.header)
             .toPromise()
             .then(res => {
                 this.licenses = res.json().licenses as License[];
 
-                //将licenses存到本地
+                // 将licenses存到本地
                 sessionStorage.setItem('licenses' , JSON.stringify(this.licenses));
-                console.info('res = ' + JSON.stringify(this.licenses));
+                console.log('res = ' + JSON.stringify(this.licenses));
                 return res.json();
             })
             .catch(LicenseService.handleError);
@@ -79,28 +91,37 @@ export class LicenseService {
      * @param {string} licenseID
      * @returns {Promise<License[]>}
      */
-    deleteLicense(licenseID:string) : Promise<License[]> {
-        console.info("licenseID = " + licenseID);
+    deleteLicense(licenseID: string): Promise<any> {
+        console.log('licenseID = ' + licenseID);
 
-        return this.http.delete(this.url, new RequestOptions({
-            headers: this.header.headers,
-            body: {licenseId: licenseID}
-        }))
+        const url = this.url + '/' + licenseID;
+        return this.http.delete(url, this.header)
             .toPromise()
-            .then(res=> {
-                this.licenses = res.json().licenses as License[];
+            .then(res => {
+                // this.licenses = res.json().licenses as License[];
 
-                //将licenses存到本地
-                sessionStorage.setItem('licenses' , JSON.stringify(this.licenses));
-                console.info('res = ' + JSON.stringify(this.licenses));
+                // 将licenses存到本地
+                // sessionStorage.setItem('licenses' , JSON.stringify(this.licenses));
+                // console.log('res = ' + JSON.stringify(this.licenses));
                 return res.json();
             })
-            .catch(LicenseService.handleError)
+            .catch(LicenseService.handleError);
     }
 
+  downloadLicense(licenseId: string): void {
+      console.log('licenseId = ' + licenseId);
+      const url = this.url + '/' + licenseId;
+      this.http.get(url, this.header)
+        .toPromise()
+        .then(res => {
+          console.log('res = ' + JSON.stringify(res));
+        })
+        .catch(LicenseService.handleError);
+  }
 
-    private static handleError(error:any) : Promise<any> {
-        console.log('An error occurred', JSON.stringify(error));//for demo purposes only
+
+    private static handleError(error: any): Promise<any> {
+        console.log('An error occurred', JSON.stringify(error)); // for demo purposes only
         return Promise.reject(error.message || error);
     }
 
