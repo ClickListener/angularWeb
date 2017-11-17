@@ -25,16 +25,18 @@ export class LicenseService {
 
     url = '/api/license';
 
-    getAllLicense(userId: string): void {
+  getAllLicense(userId: string): Promise<License[]> {
 
-      console.log('getAllLicense()');
       const url = this.url + '/all/' + userId;
-      this.http.get(url, this.header)
+
+      return this.http.get(url, this.header)
         .toPromise()
         .then(res => {
-          console.log('res = ' + JSON.stringify(res));
           if (res.json().success) {
-            this.licenses = res.json().data;
+
+            this.licenses = res.json().data as License[];
+
+            return this.licenses;
 
           }
         })
@@ -48,10 +50,6 @@ export class LicenseService {
      */
     createNewLicense(licenseInfo: any): Promise<any> {
 
-        console.log('licenseInfo = ' + JSON.stringify(licenseInfo));
-
-
-        // const url = '/api/auth/createNewLicense';
         return this.http.post(this.url, JSON.stringify(licenseInfo), this.header)
             .toPromise()
             .then( res => {
@@ -78,8 +76,6 @@ export class LicenseService {
             .then(res => {
                 this.licenses = res.json().licenses as License[];
 
-                // 将licenses存到本地
-                sessionStorage.setItem('licenses' , JSON.stringify(this.licenses));
                 console.log('res = ' + JSON.stringify(this.licenses));
                 return res.json();
             })
@@ -98,12 +94,8 @@ export class LicenseService {
         return this.http.delete(url, this.header)
             .toPromise()
             .then(res => {
-                // this.licenses = res.json().licenses as License[];
-
-                // 将licenses存到本地
-                // sessionStorage.setItem('licenses' , JSON.stringify(this.licenses));
-                // console.log('res = ' + JSON.stringify(this.licenses));
-                return res.json();
+              console.log('res = ' + JSON.stringify(res));
+              return res.json();
             })
             .catch(LicenseService.handleError);
     }
@@ -111,7 +103,7 @@ export class LicenseService {
   downloadLicense(licenseId: string): void {
       console.log('licenseId = ' + licenseId);
       const url = this.url + '/' + licenseId;
-      this.http.get(url, this.header)
+      this.http.get(url)
         .toPromise()
         .then(res => {
           console.log('res = ' + JSON.stringify(res));

@@ -21,7 +21,7 @@ declare let jQuery: any;
     styleUrls: ['createNew.component.css']
 })
 
-export class CreateNewComponent implements OnInit, OnDestroy{
+export class CreateNewComponent implements OnInit, OnDestroy {
 
 
     // 总的devices
@@ -92,7 +92,8 @@ export class CreateNewComponent implements OnInit, OnDestroy{
                 device.selected = false;
                 const selectedDevice = {
                     deviceName: device.deviceName,
-                    deviceNumber: deviceNumber
+                    totalNumber: deviceNumber,
+                    deviceUsedNumber: 0
                 };
                 this.selectedDevices.push(selectedDevice);
             }

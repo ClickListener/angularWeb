@@ -18,15 +18,24 @@ declare let jQuery: any;
 })
 
 export class ModifyComponent implements OnInit, OnDestroy{
-    ngOnDestroy(): void {
-        console.log('ngOnDestroy()');
-        this.devicesService.revertDevice();
-    }
+
 
 
     license: License;
 
     devices: Array<any> = [];
+
+
+    // 主界面存放Devices的数组
+    selectedDevices: Array<Device> = [];
+
+    // 次级界面已选择设备的个数，为了显示未选择设备
+    selectedDeviceNumber = 0;
+
+    ngOnDestroy(): void {
+      console.log('ngOnDestroy()');
+      this.devicesService.revertDevice();
+    }
 
 
     ngOnInit(): void {
@@ -39,7 +48,7 @@ export class ModifyComponent implements OnInit, OnDestroy{
             selectYears: true,
             min: +1,
             max: [2018, 0, 1]
-        })
+        });
     }
 
     constructor(private licenseService: LicenseService, private userService: UserService,
@@ -55,7 +64,7 @@ export class ModifyComponent implements OnInit, OnDestroy{
             return license._id === licenseId;
         });
 
-        for (let device of this.license.devices) {
+        for (const device of this.license.devices) {
             for (const device_module of this.devices) {
                 if (device.deviceName === device_module.deviceName) {
                     device_module.selected = false;
@@ -74,9 +83,9 @@ export class ModifyComponent implements OnInit, OnDestroy{
         console.log('expired_ts = ' + this.license.expired_ts);
 
         const licenseInfo = {
-            userId : this.userService.user._id,
+            userId : this.license.userId,
             license : {
-                licenseType: this.userService.user.licenseType,
+                licenseType: this.license.licenseType,
                 expired_ts: new Date(this.license.expired_ts).getTime(),
                 devices: this.selectedDevices
             }
@@ -94,12 +103,6 @@ export class ModifyComponent implements OnInit, OnDestroy{
                 console.log('error = ' + JSON.stringify(error));
             });
     }
-
-    // 主界面存放Devices的数组
-    selectedDevices: Array<Device> = [];
-
-    // 次级界面已选择设备的个数，为了显示未选择设备
-    selectedDeviceNumber = 0;
 
     selectDevice(index: number): void {
 
@@ -130,8 +133,9 @@ export class ModifyComponent implements OnInit, OnDestroy{
                 device.selected = false;
                 const selectedDevice = {
                     deviceName: device.deviceName,
-                    deviceNumber: deviceNumber
-                }
+                    totalNumber: deviceNumber,
+                    deviceUsedNumber: 0
+                };
                 this.selectedDevices.push(selectedDevice);
             }
         }

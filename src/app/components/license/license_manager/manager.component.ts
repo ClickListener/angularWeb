@@ -1,7 +1,7 @@
 /**
  * Created by zhangxu on 2017/9/19.
  */
-import {Component, DoCheck, OnChanges, OnInit} from '@angular/core';
+import {Component, DoCheck, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {UserService} from '../../../services/user.service';
 import {Router} from '@angular/router';
 import {User} from '../../../model/User';
@@ -16,85 +16,35 @@ import swal from 'sweetalert2';
   styleUrls: ['manager.component.css']
 })
 
-export class ManagerComponent implements OnInit, DoCheck {
+export class ManagerComponent implements OnInit, OnChanges {
+
 
 
   user: User;
-  licenses: Array<License> = [];
+  licenses: License[];
 
-  licenses_fake = [
-    {
-      'ExpiredDate': '2017-10-10',
-      'DeviceInfo': [
-        {
-          'DeviceModel': 'BP5',
-          'DeviceTotalNumber': 100,
-          'DeviceUsedNumber': 1,
-        },
-        {
-          'DeviceModel': 'AM4',
-          'DeviceTotalNumber': 200,
-          'DeviceUsedNumber': 1,
-        }
-      ],
-      'InstalledPhoneNumber': 1000
-    },
-    {
-      'ExpiredDate': '2017-10-10',
-      'DeviceInfo': [
-        {
-          'DeviceModel': 'BP5',
-          'DeviceTotalNumber': 100,
-          'DeviceUsedNumber': 1,
-        },
-        {
-          'DeviceModel': 'AM4',
-          'DeviceTotalNumber': 200,
-          'DeviceUsedNumber': 1,
-        }
-      ],
-      'InstalledPhoneNumber': 1000
-    },
-    {
-      'ExpiredDate': '2017-10-10',
-      'DeviceInfo': [
-        {
-          'DeviceModel': 'BP5',
-          'DeviceTotalNumber': 100,
-          'DeviceUsedNumber': 1,
-        },
-        {
-          'DeviceModel': 'AM4',
-          'DeviceTotalNumber': 200,
-          'DeviceUsedNumber': 1,
-        }
-      ],
-      'InstalledPhoneNumber': 1000
-    }
-  ];
+  ngOnChanges(): void {
+    console.log('ngOnChanges()');
+  }
 
   constructor(private userService: UserService, private router: Router, private licenseService: LicenseService) {
+    console.log('this.license = ' + JSON.stringify(this.licenses));
   }
 
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.licenseService.getAllLicense('5a0269747ac9d897d0f57b60')
+      .then(licenses => {
+        this.licenses = licenses;
+      })
+      .catch(error => {
+        console.log('error = ' + JSON.stringify(error));
+      });
+
     this.user = this.userService.user;
-    this.licenseService.getAllLicense('5a0269747ac9d897d0f57b60');
 
   }
 
-
-  ngDoCheck(): void {
-
-    this.licenses = this.licenseService.licenses;
-
-    console.log('this.licenses = ' + JSON.stringify(this.licenses));
-    if (this.licenses !== null) {
-
-      console.log('this.licenses.length = ' + this.licenses.length);
-    }
-
-  }
 
   createNewLicense(): void {
     this.router.navigate(['./create-newLicense']);
@@ -130,7 +80,16 @@ export class ManagerComponent implements OnInit, DoCheck {
     }).then(function () {
       self.licenseService.deleteLicense(licenseId)
         .then(res => {
+          console.log('res = ' + JSON.stringify(res));
           if (res.success) {
+            self.licenseService.getAllLicense('5a0269747ac9d897d0f57b60')
+              .then(licenses => {
+                self.licenses = licenses;
+                console.log('aa = ' + JSON.stringify(licenses));
+              })
+              .catch(error => {
+                console.log('error => ' + JSON.stringify(error));
+              });
             swal(
               'Deleted!',
               'Your file has been deleted.',

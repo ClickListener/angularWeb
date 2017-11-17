@@ -5,5 +5,6 @@
 export class Device {
 
     deviceName: string;
-    deviceNumber: number;
+    totalNumber: number;
+    deviceUsedNumber: number;
 }

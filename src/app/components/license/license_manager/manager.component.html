@@ -3,6 +3,8 @@
 <h1>Manager license</h1>
 
 <button (click)="createNewLicense()">创建新的License</button>
+<button (click)="downloadLicense('5a0c0330216af70e1f41b0d3')" >下载</button>
+<a href="/api/license/5a0c0330216af70e1f41b0d3">下载</a>
 
 
 <div class="card card-cascade narrower mt-5">
@@ -19,7 +21,7 @@
     <div class="accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
 
 
-    <div *ngIf="licenses !== null && licenses.length !== 0">
+    <div *ngIf="licenses !== undefined && licenses.length !== 0">
 
         <div class="container">
             <div class="row">
@@ -89,10 +91,10 @@
                                 <b>{{device.deviceName}}</b>
                             </div>
                             <div class="col-4 text-center">
-                                <b>{{device.deviceNumber}}</b>
+                                <b>{{device.totalNumber}}</b>
                             </div>
                             <div class="col-4 text-center">
-                                <b>{{device.DeviceUsedNumber}}</b>
+                                <b>{{device.deviceUsedNumber}}</b>
                             </div>
                         </div>
                     </div>

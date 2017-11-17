@@ -3,7 +3,7 @@
  */
 
 export class DevicesService {
-    //总的Devices
+    // 总的Devices
     devices = [
         {
             deviceName: 'bp3m',
@@ -29,7 +29,7 @@ export class DevicesService {
     ];
 
     revertDevice(): void {
-        for (let device of this.devices) {
+        for (const device of this.devices) {
             device.selected = false;
             device.out_selected = false;
         }
