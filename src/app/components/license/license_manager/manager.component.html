@@ -60,8 +60,9 @@
                             <div class="col-2 text-center">
                                 {{license.InstalledPhoneNumber}}
                             </div>
-                            <div class="col-4 text-center">
-                                <a class="btn btn-primary" href="api/license/5a0e70c0f4756808358c5811" (click)="stop_Propagation(event)">下载</a>
+                            <div class="col-4 text-center" (click)="stop_Propagation(event)">
+                                <!--<a class="btn btn-primary" href="http://localhost:3001/api/license/{{license._id}}">下载</a>-->
+                                <button class="btn btn-primary" (click)="downloadLicense(license._id)">下载</button>
                                 <button class="btn btn-primary" (click)="modifyLicense(license._id)">更新</button>
                                 <button class="btn badge-danger" (click)="deleteLicense(license._id)">删除</button>
                             </div>

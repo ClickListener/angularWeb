@@ -63,7 +63,29 @@ export class ManagerComponent implements OnInit, OnChanges {
 
   // 下载License
   downloadLicense(licenseId: string): void {
-    this.licenseService.downloadLicense(licenseId);
+    this.licenseService.downloadLicense(licenseId)
+      .then(res => {
+        console.log('res = ' + res);
+        if (res.success) {
+          swal({
+            position: 'bottom-right',
+            type: 'success',
+            title: 'Download successfully',
+            showConfirmButton: false,
+            timer: 2000
+          }).catch(swal.noop);
+        } else {
+          swal(
+            'Fail!',
+            res.message,
+            'error'
+          ).catch(swal.noop);
+        }
+
+      })
+      .catch(error => {
+        console.log('error = ' + error);
+      });
   }
 
   // 修改License，跳转到修改界面
