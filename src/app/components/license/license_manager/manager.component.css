@@ -1,1 +1,30 @@
 
+.tag {
+  border: 5px solid #09F;
+  position: relative;
+  background-color: #FFF;
+}
+
+.tag em {
+  display: block;
+  border-width: 20px;
+  position: absolute;
+  top: -40px;
+  left: 400px;
+  border-style: solid dashed dashed;
+  border-color: transparent transparent #09F transparent ;
+  font-size: 0;
+  line-height: 0;
+}
+
+.tag span {
+  display: block;
+  border-width: 20px;
+  position: absolute;
+  top: -33px;
+  left: 400px;
+  border-style: solid dashed dashed;
+  border-color: transparent transparent #FFF transparent;
+  font-size: 0;
+  line-height: 0;
+}

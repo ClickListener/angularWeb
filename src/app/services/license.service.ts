@@ -1,11 +1,9 @@
 
 
-import {Injectable} from "@angular/core";
-import {Http, Headers, RequestOptions} from "@angular/http";
-import {License} from "../model/License";
+import {Injectable} from '@angular/core';
+import {Http, Headers, RequestOptions} from '@angular/http';
+import {License} from '../model/License';
 
-import {Observable} from "rxjs";
-import {UserService} from "./user.service";
 
 @Injectable()
 export class LicenseService {
@@ -71,7 +69,7 @@ export class LicenseService {
 
         const url = this.url + '/' + message.licenseId;
 
-        return this.http.post(url, JSON.stringify(message.licenseInfo), this.header)
+        return this.http.put(url, JSON.stringify(message.licenseInfo), this.header)
             .toPromise()
             .then(res => {
                 this.licenses = res.json().licenses as License[];
@@ -100,7 +98,7 @@ export class LicenseService {
             .catch(LicenseService.handleError);
     }
 
-  downloadLicense(licenseId: string): void {
+    downloadLicense(licenseId: string): void {
       console.log('licenseId = ' + licenseId);
       const url = this.url + '/' + licenseId;
       this.http.get(url)

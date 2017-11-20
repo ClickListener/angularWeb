@@ -1,6 +1,6 @@
 
 
-import {Device} from "./Device";
+import {Device} from './Device';
 
 export class License {
 
@@ -8,6 +8,6 @@ export class License {
     userId: string;
     installedPhoneNumber: number;
     licenseType: string;
-    expired_ts: number;
+    expireTime: number;
     devices: Device[];
 }

@@ -27,6 +27,17 @@ export class ManagerComponent implements OnInit, OnChanges {
     console.log('ngOnChanges()');
   }
 
+  // 防止向上冒泡
+  stop_Propagation(event): void {
+
+    if (event && event.stopPropagation) {
+      event.stopPropagation();
+    } else {
+      window.event.cancelBubble=true;
+    }
+
+  }
+
   constructor(private userService: UserService, private router: Router, private licenseService: LicenseService) {
     console.log('this.license = ' + JSON.stringify(this.licenses));
   }

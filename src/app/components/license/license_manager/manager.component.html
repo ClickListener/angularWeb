@@ -18,7 +18,7 @@
     <!--/Card image-->
 
     <!--Accordion wrapper-->
-    <div class="accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+    <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
 
 
     <div *ngIf="licenses !== undefined && licenses.length !== 0">
@@ -48,11 +48,11 @@
 
                 <!-- Card header -->
                 <div class="card-header" role="tab" id="headingOne">
-                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" [attr.data-target]="'#'+ i"
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" [attr.data-target]="'#'+ i"
                        arrt.aria-expanded="false">
                         <div class="row">
                             <div class="col-4 text-center">
-                                {{license.expired_ts | date:"MM/dd/yyyy"}}
+                                {{license.expireTime | date:"MM/dd/yyyy"}}
                             </div>
                             <div class="col-2 text-center">
                                 {{license.devices.length}}
@@ -61,7 +61,7 @@
                                 {{license.InstalledPhoneNumber}}
                             </div>
                             <div class="col-4 text-center">
-                              <button class="btn btn-primary" (click)="downloadLicense(license._id)">下载</button>
+                                <a class="btn btn-primary" href="api/license/5a0e70c0f4756808358c5811" (click)="stop_Propagation(event)">下载</a>
                                 <button class="btn btn-primary" (click)="modifyLicense(license._id)">更新</button>
                                 <button class="btn badge-danger" (click)="deleteLicense(license._id)">删除</button>
                             </div>
@@ -74,6 +74,9 @@
                 <!-- Card body -->
                 <div [attr.id]="i" class="collapse" role="tabpanel">
                     <div class="card-body">
+                      <div class="tag">
+                        <em></em>
+                        <span></span>
                         <div class="row">
                             <div class="col-4 text-center">
                                 <b>DeviceModel</b>
@@ -88,6 +91,7 @@
 
                         <div class="row" *ngFor="let device of license.devices">
                             <div class="col-4 text-center">
+                                <img src="/../../../../assets/images/device_{{device.deviceName}}.png" width="40">
                                 <b>{{device.deviceName}}</b>
                             </div>
                             <div class="col-4 text-center">
@@ -97,6 +101,7 @@
                                 <b>{{device.deviceUsedNumber}}</b>
                             </div>
                         </div>
+                      </div>
                     </div>
                 </div>
 

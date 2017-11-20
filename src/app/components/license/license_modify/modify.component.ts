@@ -1,13 +1,15 @@
 /**
  * Created by zhangxu on 2017/9/19.
  */
-import {Component, OnDestroy, OnInit} from "@angular/core";
-import {ActivatedRoute, Router} from "@angular/router";
-import {License} from "../../../model/License";
-import {LicenseService} from "../../../services/license.service";
-import {UserService} from "../../../services/user.service";
-import {Device} from "../../../model/Device";
-import {DevicesService} from "../../../services/devices.service";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import { DatePipe } from '@angular/common';
+import {License} from '../../../model/License';
+import {LicenseService} from '../../../services/license.service';
+import {UserService} from '../../../services/user.service';
+import {Device} from '../../../model/Device';
+import {DevicesService} from '../../../services/devices.service';
+
 
 declare let jQuery: any;
 
@@ -22,6 +24,7 @@ export class ModifyComponent implements OnInit, OnDestroy{
 
 
     license: License;
+    licesneExpiredTime: string;
 
     devices: Array<any> = [];
 
@@ -47,12 +50,14 @@ export class ModifyComponent implements OnInit, OnDestroy{
             selectMonths: true,
             selectYears: true,
             min: +1,
-            max: [2018, 0, 1]
+            max: [2018, 0, 1],
+            formatSubmit: 'yyyy/mm/dd'
         });
     }
 
     constructor(private licenseService: LicenseService, private userService: UserService,
-                private router: Router, private activateRoute: ActivatedRoute, private devicesService: DevicesService) {
+                private router: Router, private activateRoute: ActivatedRoute, private devicesService: DevicesService,
+                private datePipe: DatePipe) {
 
         const licenseId = this.activateRoute.snapshot.params['licenseId'];
 
@@ -74,19 +79,25 @@ export class ModifyComponent implements OnInit, OnDestroy{
             this.selectedDevices.push(device);
         }
 
+        this.licesneExpiredTime = datePipe.transform(this.license.expireTime, 'yyyy/MM/dd');
+
+        console.log('licesneExpiredTime = ' + this.licesneExpiredTime);
+
     }
 
 
     // 更新License
     updateLicense() {
 
-        console.log('expired_ts = ' + this.license.expired_ts);
+        console.log('expireTime = ' + this.license.expireTime);
+
+        this.license.expireTime = new Date(this.licesneExpiredTime).getTime();
 
         const licenseInfo = {
             userId : this.license.userId,
             license : {
                 licenseType: this.license.licenseType,
-                expired_ts: new Date(this.license.expired_ts).getTime(),
+                expiredTime: this.license.expireTime,
                 devices: this.selectedDevices
             }
         };

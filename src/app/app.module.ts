@@ -15,7 +15,7 @@ import {CreateNewComponent} from "./components/license/license_createNew/createN
 import {ManagerComponent} from "./components/license/license_manager/manager.component";
 import {ModifyComponent} from "./components/license/license_modify/modify.component";
 import {LicenseService} from "./services/license.service";
-import {HashLocationStrategy, LocationStrategy} from "@angular/common";
+import {DatePipe} from "@angular/common";
 import {DevicesService} from "./services/devices.service";
 
 @NgModule({
@@ -40,7 +40,7 @@ import {DevicesService} from "./services/devices.service";
 
     bootstrap:[AppComponent],
 
-    providers:[UserService, LicenseService, DevicesService]
+    providers:[UserService, LicenseService, DevicesService, DatePipe]
 })
 
 export class AppModule {}

@@ -132,7 +132,7 @@ export class CreateNewComponent implements OnInit, OnDestroy {
             userId : '5a0269747ac9d897d0f57b60',
             license : {
                 licenseType: '3',
-                expired_ts: new Date(expiredDate).getTime(),
+                expireTime: new Date(expiredDate).getTime(),
                 devices: selectedDevices
             }
         };
