@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import {License} from '../model/License';
-import {writeFile} from "fs";
 
 
 @Injectable()
@@ -111,9 +110,9 @@ export class LicenseService {
         console.log('res = ' + JSON.stringify(res));
 
         if (res.headers.get('success') === '0') {
-          return JSON.parse(res._body);
+          return JSON.parse(res['_body']);
         } else {
-          this.writeFile(JSON.stringify(res._body), 'text/latex', 'license.txt');
+          this.writeFile(JSON.stringify(res['_body']), 'text/latex', 'license.txt');
           return {success: true};
         }
 
@@ -133,13 +132,9 @@ export class LicenseService {
     let blob;
     if (typeof window.Blob === 'function') {
       blob = new Blob([value], {type: type});
-    } else {
-      const BlobBuilder = window.BlobBuilder || window.MozBlobBuilder || window.WebKitBlobBuilder || window.MSBlobBuilder;
-      const bb = new BlobBuilder();
-      bb.append(value);
-      blob = bb.getBlob(type);
     }
-    const URL = window.URL || window.webkitURL;
+
+    const URL = window.URL;
     const bloburl = URL.createObjectURL(blob);
     const anchor = document.createElement('a');
     if ('download' in anchor) {
