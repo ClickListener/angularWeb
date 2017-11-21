@@ -23,7 +23,7 @@ export class LicenseService {
 
   // url = '/api/license'; // 本地的url
 
-  url = 'http://localhost:3001/api/license'; // 跨域访问的url
+  url = 'http://192.168.69.111:3001/api/license'; // 跨域访问的url
 
   getAllLicense(userId: string): Promise<License[]> {
 
@@ -141,15 +141,12 @@ export class LicenseService {
       anchor.style.visibility = 'hidden';
       anchor.href = bloburl;
       anchor.download = name;
-      document.body.appendChild(anchor);
-      const evt = document.createEvent('MouseEvents');
-      evt.initEvent('click', true, true);
-      anchor.dispatchEvent(evt);
+      anchor.click();
+      // document.body.appendChild(anchor);
+      // const evt = document.createEvent('MouseEvents');
+      // evt.initEvent('click', true, true);
+      // anchor.dispatchEvent(evt);
       document.body.removeChild(anchor);
-    } else if (navigator.msSaveBlob) {
-      navigator.msSaveBlob(blob, name);
-    } else {
-      location.href = bloburl;
     }
   }
 

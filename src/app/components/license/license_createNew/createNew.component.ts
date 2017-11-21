@@ -47,7 +47,8 @@ export class CreateNewComponent implements OnInit, OnDestroy {
             selectMonths: true,
             selectYears: true,
             min: +1,
-            max: [2018, 0, 1]
+            max: [2018, 0, 1],
+            formatSubmit: 'yyyy/MM/dd'
         });
     }
 
@@ -103,7 +104,7 @@ export class CreateNewComponent implements OnInit, OnDestroy {
         console.log('selectedDevice = ' + JSON.stringify(this.selectedDevices));
 
         // 使modal隐藏
-        jQuery('#modalQuickView').modal('hide');
+        jQuery('#modalContactForm').modal('hide');
     }
 
     // 外部 删除某一device

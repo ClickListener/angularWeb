@@ -1,6 +1,6 @@
 .customBlock {
     height: 60px;
-    width: 210px;
+    width: 245px;
     background-color: #ffa726;
     display: inline-flex;
     border-radius: 30px;
@@ -24,37 +24,10 @@
 .customBlock input {
     display: inline;
     font-size: 12px;
-    width: 30px;
+    width: 40px;
     margin: 0px;
     padding: 0px;
 
-}
-
-
-.cancel {
-    width: 0;
-    height: 0;
-    border: 0;
-    margin: 0;
-    padding: 0;
-
-
-}
-
-.customBlock:hover{
-    width: 265px;
-    /*transform: rotate(360deg);*/
-}
-.customBlock:hover .cancel{
-    transition: 0.5s;
-position: relative;
-    width: 50px;
-    height: 50px;
-    margin-left: 6px;
-    margin-top: 5px;
-    border-radius: 20px;
-    background-color:#afafaf;
-    background-image: url(../../../../assets/images/close.png);
 }
 
 .wrap {
@@ -68,12 +41,39 @@ position: relative;
 }
 
 /*让文本上下居中*/
-.card-header div h4 {
+.card-header h4 {
     padding: 10px;
     margin: 0px;
 }
 
 /*设置总标题的外边距*/
-.container div h1 {
-    margin: 100px 0px 50px 0px;
+.container .card {
+    margin: 80px 0px 10px 0px;
+}
+
+
+/*当未选择设备时，显示区域的大小*/
+.not-selected {
+  height: 100px;
+}
+
+/*使✘居中*/
+i {
+  margin-top: 5px;
+}
+
+/*标题圆角*/
+.card-header-tabs {
+  border-radius: 5px;
+  height: 70px;
+}
+
+/*h4标题上下居中*/
+.card-header-tabs h4 {
+  margin-top: 20px;
+}
+
+/*按钮的宽度*/
+.button-width {
+  width: 300px;
 }
