@@ -8,6 +8,6 @@ export class License {
     userId: string;
     installedPhoneNumber: number;
     licenseType: string;
-    expireTime: number;
+    expireTime: string;
     devices: Device[];
 }
