@@ -17,6 +17,7 @@ import {ModifyComponent} from "./components/license/license_modify/modify.compon
 import {LicenseService} from "./services/license.service";
 import {DatePipe} from "@angular/common";
 import {DevicesService} from "./services/devices.service";
+import {PaginationService} from "./services/pagination.service";
 
 @NgModule({
 
@@ -40,7 +41,7 @@ import {DevicesService} from "./services/devices.service";
 
     bootstrap:[AppComponent],
 
-    providers:[UserService, LicenseService, DevicesService, DatePipe]
+    providers:[UserService, LicenseService, DevicesService, DatePipe, PaginationService]
 })
 
 export class AppModule {}

@@ -1,7 +1,7 @@
 /**
  * Created by zhangxu on 2017/9/19.
  */
-import {Component, DoCheck, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {AfterViewInit, Component, DoCheck, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {UserService} from '../../../services/user.service';
 import {Router} from '@angular/router';
 import {User} from '../../../model/User';
@@ -9,6 +9,9 @@ import {LicenseService} from '../../../services/license.service';
 import {License} from '../../../model/License';
 
 import swal from 'sweetalert2';
+import {PaginationService} from '../../../services/pagination.service';
+
+declare let jQuery:any;
 
 @Component({
   selector: 'manager-license',
@@ -22,6 +25,9 @@ export class ManagerComponent implements OnInit, OnChanges {
 
   user: User;
   licenses: License[];
+  paginationNum = 0; // 分页数
+  curPage = 1; // 当前页数
+  paginationArr:Array<any>;
 
   ngOnChanges(): void {
     console.log('ngOnChanges()');
@@ -38,23 +44,58 @@ export class ManagerComponent implements OnInit, OnChanges {
 
   }
 
-  constructor(private userService: UserService, private router: Router, private licenseService: LicenseService) {
+  constructor(private userService: UserService, private router: Router, private licenseService: LicenseService,
+              private paginationService: PaginationService) {
     console.log('this.license = ' + JSON.stringify(this.licenses));
+  }
+
+
+  // 根据点击显示数据
+  changePagination(page:number) {
+
+    if (this.curPage !== page) {
+      this.curPage = page;
+
+
+      const id = page -1;
+
+      // 分页数量激活
+      for (let i = 0; i < this.paginationNum; i++) {
+        if (i === id) {
+          jQuery('#li' + i).addClass('active');
+        } else {
+          jQuery('#li' + i).removeClass('active');
+        }
+      }
+      console.log(jQuery('#li1'));
+
+      this.licenses = this.paginationService.paginationChange(page, null);
+    }
+
   }
 
 
   ngOnInit() {
     this.licenseService.getAllLicense('5a0269747ac9d897d0f57b60')
       .then(licenses => {
-        this.licenses = licenses;
+        console.log('licenses = ' + JSON.stringify(licenses));
+        console.log('licenses.length = ' + licenses.length);
+        this.paginationNum = Math.ceil(licenses.length/2);
+        console.log('this.paginationNum = ' + this.paginationNum);
+        this.paginationArr = Array(this.paginationNum).fill(0);
+
+        this.licenses = this.paginationService.paginationChange(1, licenses);
+
       })
       .catch(error => {
-        console.log('error = ' + JSON.stringify(error));
+        console.log('error = ' + error.toString());
       });
 
     this.user = this.userService.user;
 
   }
+
+
 
 
   createNewLicense(): void {
@@ -117,7 +158,7 @@ export class ManagerComponent implements OnInit, OnChanges {
           if (res.success) {
             self.licenseService.getAllLicense('5a0269747ac9d897d0f57b60')
               .then(licenses => {
-                self.licenses = licenses;
+                self.licenses = self.paginationService.paginationChange(0, licenses);
                 console.log('aa = ' + JSON.stringify(licenses));
               })
               .catch(error => {

@@ -35,7 +35,7 @@ export class LicenseService {
       .then(res => {
         if (res.json().success) {
 
-          this.licenses = res.json().data as License[];
+          this.licenses = this.sortLicenses(res.json().data as License[]);
 
           return this.licenses;
 
@@ -54,8 +54,6 @@ export class LicenseService {
     return this.http.post(this.url, JSON.stringify(licenseInfo), this.header)
       .toPromise()
       .then(res => {
-        // 将licenses存到本地
-        // sessionStorage.setItem('licenses' , JSON.stringify(this.licenses));
         return res.json();
       })
       .catch(LicenseService.handleError);
@@ -75,9 +73,6 @@ export class LicenseService {
     return this.http.put(url, JSON.stringify(message.licenseInfo), this.header)
       .toPromise()
       .then(res => {
-        this.licenses = res.json().licenses as License[];
-
-        console.log('res = ' + JSON.stringify(this.licenses));
         return res.json();
       })
       .catch(LicenseService.handleError);
@@ -149,6 +144,12 @@ export class LicenseService {
       // anchor.dispatchEvent(evt);
       document.body.removeChild(anchor);
     }
+  }
+
+
+  private sortLicenses(licenses): License[] {
+
+    return licenses.reverse();
   }
 
 }

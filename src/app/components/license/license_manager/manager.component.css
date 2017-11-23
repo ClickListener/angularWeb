@@ -1,6 +1,6 @@
 
 .tag {
-  border: 5px solid #09F;
+  border: 3px solid #09F;
   position: relative;
   background-color: #FFF;
 }
@@ -10,7 +10,7 @@
   border-width: 20px;
   position: absolute;
   top: -40px;
-  left: 400px;
+  left: 31%;
   border-style: solid dashed dashed;
   border-color: transparent transparent #09F transparent ;
   font-size: 0;
@@ -21,10 +21,16 @@
   display: block;
   border-width: 20px;
   position: absolute;
-  top: -33px;
-  left: 400px;
+  top: -36px;
+  left: 31%;
   border-style: solid dashed dashed;
   border-color: transparent transparent #FFF transparent;
   font-size: 0;
   line-height: 0;
+}
+
+.textCenter {
+  line-height: 46px;
+  height: 46px;
+  overflow: hidden;
 }
