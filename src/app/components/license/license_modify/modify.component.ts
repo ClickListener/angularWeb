@@ -27,8 +27,6 @@ export class ModifyComponent implements OnInit, OnDestroy {
 
   devices: Array<any> = [];
 
-  aaa: String = 'zhangxu';
-
 
   // 主界面存放Devices的数组
   selectedDevices: Array<Device> = [];
