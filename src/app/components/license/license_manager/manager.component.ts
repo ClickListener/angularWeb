@@ -80,11 +80,17 @@ export class ManagerComponent implements OnInit, OnChanges {
       .then(licenses => {
         console.log('licenses = ' + JSON.stringify(licenses));
         console.log('licenses.length = ' + licenses.length);
-        this.paginationNum = Math.ceil(licenses.length/2);
+        this.paginationNum = Math.ceil(licenses.length/2); // 向上取整
         console.log('this.paginationNum = ' + this.paginationNum);
         this.paginationArr = Array(this.paginationNum).fill(0);
 
         this.licenses = this.paginationService.paginationChange(1, licenses);
+
+        // 当页面加载完毕时， 将第一个pagination置为active
+        jQuery('document').ready(function () {
+          jQuery('#li0').addClass('active');
+          console.log('ready()');
+        });
 
       })
       .catch(error => {
@@ -92,6 +98,7 @@ export class ManagerComponent implements OnInit, OnChanges {
       });
 
     this.user = this.userService.user;
+
 
   }
 
