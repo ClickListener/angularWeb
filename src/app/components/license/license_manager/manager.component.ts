@@ -138,8 +138,6 @@ export class ManagerComponent implements OnInit, OnChanges {
   }
 
 
-
-
   createNewLicense(): void {
     this.router.navigate(['./create-newLicense']);
   }
