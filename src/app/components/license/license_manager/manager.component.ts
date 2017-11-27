@@ -72,7 +72,7 @@ export class ManagerComponent implements OnInit, OnChanges {
 
       const id = this.curPage -1;
 
-      // 分页数量激活
+      // 分页当前页激活，移除其他激活项
       for (let i = 0; i < this.paginationNum; i++) {
         if (i === id) {
           jQuery('#li' + i).addClass('active');
@@ -108,10 +108,9 @@ export class ManagerComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.licenseService.getAllLicense('5a0269747ac9d897d0f57b60')
       .then(licenses => {
-        console.log('licenses = ' + JSON.stringify(licenses));
-        console.log('licenses.length = ' + licenses.length);
+
+        // 计算总页面数，新建一个Array,以便使用ngFor, 因为这玩意不支持类似于for(i; i<10; i++)
         this.paginationNum = Math.ceil(licenses.length/5); // 向上取整
-        console.log('this.paginationNum = ' + this.paginationNum);
         this.paginationArr = Array(this.paginationNum).fill(0);
 
         this.licenses = this.paginationService.paginationChange(1, licenses);
@@ -194,11 +193,19 @@ export class ManagerComponent implements OnInit, OnChanges {
           if (res.success) {
             self.licenseService.getAllLicense('5a0269747ac9d897d0f57b60')
               .then(licenses => {
+
+                // 处理如果删除License导致减少页数
+                self.paginationNum = Math.ceil(licenses.length/5); // 向上取整
+
+                if (self.curPage > self.paginationNum) {
+                  self.paginationArr = Array(self.paginationNum).fill(0);
+                }
                 self.licenses = self.paginationService.paginationChange(0, licenses);
-                console.log('aa = ' + JSON.stringify(licenses));
+
+                self.changePagination(self.curPage -1);
               })
               .catch(error => {
-                console.log('error => ' + JSON.stringify(error));
+                console.log('error => ' + error.toString());
               });
             swal(
               'Deleted!',

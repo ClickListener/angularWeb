@@ -45,3 +45,10 @@
   pointer-events:none;
 }
 
+.blue-gradient {
+  background: -webkit-linear-gradient(50deg,#45cafc,#303f9f);
+  background: linear-gradient(100deg,#45cafc,#303f9f);
+  margin-left: 15px;
+  margin-right: 15px;
+}
+

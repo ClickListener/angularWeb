@@ -11,6 +11,7 @@ export class PaginationService {
 
   pageSize = 5;// 每页数据条数
   curPage = 1;// 当前页码
+  paginationNum = 0; // 总页面码数
   constructor(private licenseService: LicenseService) {}
 
   paginationChange(page: number, licenses: License[]): any {
@@ -23,6 +24,13 @@ export class PaginationService {
     }
 
     if (page === 0) {
+
+      // 当删除License时，如果页数减少的时候
+      this.paginationNum = Math.ceil(licensesAll/this.pageSize);
+
+      if (this.curPage > this.paginationNum) {
+        this.curPage--;
+      }
 
       const start = this.pageSize * (this.curPage - 1);
       const end = this.pageSize * this.curPage;

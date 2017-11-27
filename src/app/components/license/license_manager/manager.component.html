@@ -5,27 +5,32 @@
 <a href="/api/license/5a0c0330216af70e1f41b0d3">下载</a>
 
 
-<div class="card card-cascade narrower mt-5">
 
-  <div class="row">
-    <div class="col-3 textCenter text-center">
-      ExpiredDate
+<div class="container">
+
+  <div class="card blue-gradient">
+    <div class="card-header">
+      <div class="row">
+
+        <div class="col-3 textCenter text-center">
+          ExpiredDate
+        </div>
+        <div class="col-2 textCenter text-center">
+          Devices
+        </div>
+        <div class="col-2 textCenter text-center">
+          InstallPhoneNum
+        </div>
+        <div class="col-4 textCenter text-center">
+          Operation
+        </div>
+      </div>
     </div>
-    <div class="col-2 textCenter text-center">
-      Devices
-    </div>
-    <div class="col-2 textCenter text-center">
-      InstallPhoneNum
-    </div>
-    <div class="col-4 textCenter text-center">
-      Operation
-    </div>
+
   </div>
 
-
-  <hr>
   <!--Accordion wrapper-->
-  <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true"
+  <div class="accordion container" id="accordion" role="tablist" aria-multiselectable="true"
        *ngIf="licenses !== undefined && licenses.length !== 0">
 
 
