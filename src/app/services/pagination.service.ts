@@ -9,13 +9,11 @@ import {License} from '../model/License';
 export class PaginationService {
 
 
-  pageSize = 2;// 每页数据条数
+  pageSize = 5;// 每页数据条数
   curPage = 1;// 当前页码
   constructor(private licenseService: LicenseService) {}
 
   paginationChange(page: number, licenses: License[]): any {
-    console.log('page = ' + page);
-    console.log('licenses = ' + licenses);
 
     let licensesAll;
     if (licenses === null) {
@@ -24,7 +22,6 @@ export class PaginationService {
       licensesAll = licenses;
     }
 
-    console.log('licenseAll = ' + JSON.stringify(licensesAll));
     if (page === 0) {
 
       const start = this.pageSize * (this.curPage - 1);

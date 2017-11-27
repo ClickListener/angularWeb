@@ -34,3 +34,7 @@
   height: 46px;
   overflow: hidden;
 }
+
+.disabled{
+  pointer-events:none;
+}

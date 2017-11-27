@@ -50,14 +50,27 @@ export class ManagerComponent implements OnInit, OnChanges {
   }
 
 
+
+
   // 根据点击显示数据
   changePagination(page:number) {
 
+
     if (this.curPage !== page) {
-      this.curPage = page;
 
+      if (page === -3 && this.curPage !== 1) {
+        this.curPage--;
+      } else if ( page === -4) {
+        this.curPage = 1;
+      } else if (page === -2 && this.curPage !== this.paginationNum) {
+        this.curPage++;
+      } else if (page === -1) {
+        this.curPage = this.paginationNum;
+      } else {
+        this.curPage = page;
+      }
 
-      const id = page -1;
+      const id = this.curPage -1;
 
       // 分页数量激活
       for (let i = 0; i < this.paginationNum; i++) {
@@ -67,9 +80,26 @@ export class ManagerComponent implements OnInit, OnChanges {
           jQuery('#li' + i).removeClass('active');
         }
       }
-      console.log(jQuery('#li1'));
+      this.licenses = this.paginationService.paginationChange(this.curPage, null);
 
-      this.licenses = this.paginationService.paginationChange(page, null);
+
+    }
+
+
+    if (this.curPage === 1 ) {
+      jQuery('#first').addClass('disabled');
+      jQuery('#previous').addClass('disabled');
+    } else {
+      jQuery('#first').removeClass('disabled');
+      jQuery('#previous').removeClass('disabled');
+    }
+
+    if (this.curPage === this.paginationNum) {
+      jQuery('#last').addClass('disabled');
+      jQuery('#next').addClass('disabled');
+    } else {
+      jQuery('#last').removeClass('disabled');
+      jQuery('#next').removeClass('disabled');
     }
 
   }
@@ -80,7 +110,7 @@ export class ManagerComponent implements OnInit, OnChanges {
       .then(licenses => {
         console.log('licenses = ' + JSON.stringify(licenses));
         console.log('licenses.length = ' + licenses.length);
-        this.paginationNum = Math.ceil(licenses.length/2); // 向上取整
+        this.paginationNum = Math.ceil(licenses.length/5); // 向上取整
         console.log('this.paginationNum = ' + this.paginationNum);
         this.paginationArr = Array(this.paginationNum).fill(0);
 
@@ -89,7 +119,6 @@ export class ManagerComponent implements OnInit, OnChanges {
         // 当页面加载完毕时， 将第一个pagination置为active
         jQuery('document').ready(function () {
           jQuery('#li0').addClass('active');
-          console.log('ready()');
         });
 
       })
