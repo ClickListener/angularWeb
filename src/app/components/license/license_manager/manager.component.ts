@@ -85,6 +85,12 @@ export class ManagerComponent implements OnInit, OnChanges {
 
     }
 
+    this.judgeIsDisabled();
+
+  }
+
+  // 根据curPage 和paginationNum判断分页上的属性disabled
+  private judgeIsDisabled() {
 
     if (this.curPage === 1 ) {
       jQuery('#first').addClass('disabled');
@@ -101,7 +107,6 @@ export class ManagerComponent implements OnInit, OnChanges {
       jQuery('#last').removeClass('disabled');
       jQuery('#next').removeClass('disabled');
     }
-
   }
 
 
@@ -114,6 +119,8 @@ export class ManagerComponent implements OnInit, OnChanges {
         this.paginationArr = Array(this.paginationNum).fill(0);
 
         this.licenses = this.paginationService.paginationChange(1, licenses);
+
+        this.judgeIsDisabled();
 
         // 当页面加载完毕时， 将第一个pagination置为active
         jQuery('document').ready(function () {
@@ -199,10 +206,10 @@ export class ManagerComponent implements OnInit, OnChanges {
 
                 if (self.curPage > self.paginationNum) {
                   self.paginationArr = Array(self.paginationNum).fill(0);
+                  self.changePagination(self.curPage - 1);
                 }
                 self.licenses = self.paginationService.paginationChange(0, licenses);
 
-                self.changePagination(self.curPage -1);
               })
               .catch(error => {
                 console.log('error => ' + error.toString());
