@@ -1,6 +1,12 @@
 
+.table-wrapper-2 {
+  max-height: 300px;
+  overflow-y: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
 .tag {
-  border: 3px solid #09F;
+  border: 3px solid #cfd8dc;
   position: relative;
   background-color: #FFF;
 }
@@ -12,7 +18,7 @@
   top: -40px;
   left: 31%;
   border-style: solid dashed dashed;
-  border-color: transparent transparent #09F transparent ;
+  border-color: transparent transparent #cfd8dc transparent ;
   font-size: 0;
   line-height: 0;
 }
@@ -38,3 +44,4 @@
 .disabled{
   pointer-events:none;
 }
+

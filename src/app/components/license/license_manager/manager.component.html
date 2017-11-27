@@ -67,25 +67,28 @@
                 <em></em>
                 <span></span>
 
-                <table class="table">
-                  <thead>
-                  <tr>
-                    <th>DeviceModel</th>
-                    <th>TotalNumber</th>
-                    <th>UsedNumber</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr *ngFor="let device of license.devices">
-                    <td>
-                      <img src="/../../../../assets/images/device_{{device.deviceName}}.png" width="40">
-                      <b>{{device.deviceName}}</b>
-                    </td>
-                    <td>{{device.totalNumber}}</td>
-                    <td>{{device.deviceUsedNumber}}</td>
-                  </tr>
-                  </tbody>
-                </table>
+                <div class="table-wrapper-2">
+
+                  <table class="table">
+                    <thead>
+                    <tr>
+                      <th>DeviceModel</th>
+                      <th>TotalNumber</th>
+                      <th>UsedNumber</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let device of license.devices">
+                      <td>
+                        <img src="/../../../../assets/images/device_{{device.deviceName}}.png" width="40">
+                        <b>{{device.deviceName}}</b>
+                      </td>
+                      <td>{{device.totalNumber}}</td>
+                      <td>{{device.deviceUsedNumber}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
