@@ -151,9 +151,10 @@ export class ManagerComponent implements OnInit, OnChanges {
           swal({
             position: 'bottom-right',
             type: 'success',
-            title: 'Download successfully',
+            titleText: 'Download successfully',
             showConfirmButton: false,
-            timer: 2000
+            timer: 2000,
+            padding: 0
           }).catch(swal.noop);
         } else {
           swal(

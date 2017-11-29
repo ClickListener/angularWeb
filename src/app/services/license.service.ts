@@ -118,7 +118,7 @@ export class LicenseService {
 
 
   private static handleError(error: any): Promise<any> {
-    console.log('An error occurred', JSON.stringify(error)); // for demo purposes only
+    console.log('An error occurred', error.toString()); // for demo purposes only
     return Promise.reject(error.message || error);
   }
 
@@ -137,11 +137,10 @@ export class LicenseService {
       anchor.style.visibility = 'hidden';
       anchor.href = bloburl;
       anchor.download = name;
-      anchor.click();
-      // document.body.appendChild(anchor);
-      // const evt = document.createEvent('MouseEvents');
-      // evt.initEvent('click', true, true);
-      // anchor.dispatchEvent(evt);
+      document.body.appendChild(anchor);
+      const evt = document.createEvent('MouseEvents');
+      evt.initEvent('click', true, true);
+      anchor.dispatchEvent(evt);
       document.body.removeChild(anchor);
     }
   }
