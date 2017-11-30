@@ -47,9 +47,9 @@
                 </div>
                 <div class="col-4 text-center" (click)="stop_Propagation(event)">
                   <!--<a class="btn btn-primary" href="http://localhost:3001/api/license/{{license._id}}">下载</a>-->
-                  <button class="btn btn-primary btn-sm" (click)="downloadLicense(license._id)">下载</button>
-                  <button class="btn btn-primary btn-sm" (click)="modifyLicense(license._id)">更新</button>
-                  <button class="btn badge-danger btn-sm" (click)="deleteLicense(license._id)">删除</button>
+                  <i class="fa fa-arrow-circle-down fa-2x hoverable" (click)="downloadLicense(license._id)"></i>
+                  <i class="fa fa-arrow-circle-up fa-2x" (click)="modifyLicense(license._id)"></i>
+                  <i class="fa fa-times-circle fa-2x" (click)="deleteLicense(license._id)"></i>
                 </div>
 
                 <a class="fa fa-angle-down fa-2x rotate-icon prefix"></a>

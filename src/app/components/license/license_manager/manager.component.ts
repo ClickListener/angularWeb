@@ -203,8 +203,8 @@ export class ManagerComponent implements OnInit, OnChanges {
                 // 处理如果删除License导致减少页数
                 self.paginationNum = Math.ceil(licenses.length/5); // 向上取整
 
+                self.paginationArr = Array(self.paginationNum).fill(0);
                 if (self.curPage > self.paginationNum) {
-                  self.paginationArr = Array(self.paginationNum).fill(0);
                   self.changePagination(self.curPage - 1);
                 }
                 self.licenses = self.paginationService.paginationChange(0, licenses);
