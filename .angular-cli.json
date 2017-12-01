@@ -23,10 +23,10 @@
         "../node_modules/mdbootstrap/css/bootstrap.css",
         "../node_modules/mdbootstrap/css/mdb.css",
         "../node_modules/mdbootstrap/css/style.css",
-        "../node_modules/mdbootstrap/css/font-awesome.css",
-        "../node_modules/mdbootstrap/css/classic.css",
-        "../node_modules/mdbootstrap/css/classic.date.css",
-        "../node_modules/mdbootstrap/css/classic.time.css",
+        "../src/assets/css/font-awesome.css",
+        "../src/assets/css/classic.css",
+        "../src/assets/css/classic.date.css",
+        "../src/assets/css/classic.time.css",
         "../node_modules/sweetalert2/dist/sweetalert2.css"
       ],
       "scripts": [
@@ -35,8 +35,8 @@
         "../node_modules/mdbootstrap/js/popper.min.js",
         "../node_modules/mdbootstrap/js/bootstrap.js",
         "../node_modules/mdbootstrap/js/mdb.js",
-        "../node_modules/mdbootstrap/js/picker.js",
-        "../node_modules/mdbootstrap/js/datepicker.js"
+        "../src/assets/js/picker.js",
+        "../src/assets/js/datepicker.js"
 
       ],
       "environmentSource": "environments/environment.ts",
