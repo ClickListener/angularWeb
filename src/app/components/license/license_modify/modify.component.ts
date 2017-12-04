@@ -34,6 +34,9 @@ export class ModifyComponent implements OnInit, OnDestroy {
   // 次级界面已选择设备的个数，为了显示未选择设备
   selectedDeviceNumber = 0;
 
+  // 设备数量
+  deviceNumber:number;
+
   ngOnDestroy(): void {
     console.log('ngOnDestroy()');
     this.devicesService.revertDevice();
@@ -96,6 +99,17 @@ export class ModifyComponent implements OnInit, OnDestroy {
     console.log(this.license.expireTime);
     console.log('expireTime = ' + this.licenseExpiredTime);
 
+    // 添加输入验证，如果未输入值，则提示错误
+    if (this.license.expireTime === undefined || this.license.expireTime === '') {
+      jQuery('#expiredDateAlert').addClass('alert alert-danger').text('You must set expired date!');
+      return;
+    }
+
+    if (this.selectedDevices.length === 0) {
+      jQuery('#selectedDevicesAlert').addClass('alert alert-danger').text('You must select device!');
+      return;
+    }
+
     // this.license.expireTime = new Date(this.licenseExpiredTime).getTime();
 
     const licenseInfo = {
@@ -138,7 +152,18 @@ export class ModifyComponent implements OnInit, OnDestroy {
 
 
   // 选择device界面的 确定 按钮事件
-  confirmDevices(deviceNumber: number): void {
+  confirmDevices(): void {
+
+    // 添加输入验证，如果未输入值，则提示错误
+    if (this.deviceNumber === undefined || this.deviceNumber <= 0 ) {
+      jQuery('#deviceNumberAlert').addClass('alert alert-danger').text('You must input valid number.');
+      return;
+    }
+
+    if (this.selectedDeviceNumber === 0) {
+      jQuery('#selectedDeviceAlert').addClass('alert alert-danger').text('You must select at least one device.');
+      return;
+    }
 
     // 点击确定后，已选择设备数量清空
     this.selectedDeviceNumber = 0;
@@ -149,7 +174,7 @@ export class ModifyComponent implements OnInit, OnDestroy {
         device.selected = false;
         const selectedDevice = {
           deviceName: device.deviceName,
-          totalNumber: deviceNumber,
+          totalNumber: this.deviceNumber,
           deviceUsedNumber: 0
         };
         this.selectedDevices.push(selectedDevice);

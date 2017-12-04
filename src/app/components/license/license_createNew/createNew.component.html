@@ -21,6 +21,7 @@
                    class="datapicker"
                    #expiredDate readonly>
           </div>
+          <div id="expiredDateAlert" *ngIf="expiredDate.value === ''"></div>
 
         </div>
 
@@ -60,6 +61,7 @@
           </div>
 
         </div>
+        <div id="selectedDevicesAlert" *ngIf="selectedDevices.length === 0"></div>
 
         <hr class="m-2">
 
@@ -95,10 +97,11 @@
         <div class="modal-body mb-0">
 
           <div class="md-form">
-            <input required="required" class="form-control" id="deviceNumber" type="text"
-                   #deviceNumber>
+            <input required="required" class="form-control" id="deviceNumber" type="number"
+                    [(ngModel)]="deviceNumber">
             <label for="deviceNumber">deviceNumber</label>
           </div>
+          <div id="deviceNumberAlert" *ngIf="deviceNumber ===undefined || deviceNumber <= 0"></div>
 
           <div class="card">
             <div class="card-body">
@@ -129,9 +132,11 @@
             </div>
           </div>
 
+          <div id="selectedDeviceAlert" *ngIf="selectedDeviceNumber === 0"></div>
+
 
           <div class="d-flex justify-content-around">
-            <button class="btn btn-primary" (click)="confirmDevices(deviceNumber.value)">确定</button>
+            <button class="btn btn-primary" (click)="confirmDevices()">确定</button>
             <button class="btn btn-blue-grey" data-dismiss="modal">取消</button>
 
           </div>

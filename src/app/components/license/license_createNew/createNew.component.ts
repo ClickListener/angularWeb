@@ -33,6 +33,10 @@ export class CreateNewComponent implements OnInit, OnDestroy {
     // 次级界面已选择设备的个数，为了显示未选择设备
     selectedDeviceNumber = 0;
 
+    // 设备数量
+    deviceNumber:number;
+
+
     ngOnDestroy(): void {
         this.devicesService.revertDevice();
     }
@@ -82,8 +86,20 @@ export class CreateNewComponent implements OnInit, OnDestroy {
 
 
     // 选择device界面的 确定 按钮事件
-    confirmDevices(deviceNumber: number): void {
-        console.log('deviceNumber = ' + deviceNumber);
+    confirmDevices(): void {
+        console.log('deviceNumber = ' + this.deviceNumber);
+
+        // 添加输入验证，如果未输入值，则提示错误
+        if (this.deviceNumber === undefined || this.deviceNumber <= 0 ) {
+          console.log('<=0');
+          jQuery('#deviceNumberAlert').addClass('alert alert-danger').text('You must input valid number.');
+          return;
+        }
+
+        if (this.selectedDeviceNumber === 0) {
+          jQuery('#selectedDeviceAlert').addClass('alert alert-danger').text('You must select at least one device.');
+          return;
+        }
         // 点击确定后，已选择设备数量清空
         this.selectedDeviceNumber = 0;
         for (const device of this.devices) {
@@ -93,7 +109,7 @@ export class CreateNewComponent implements OnInit, OnDestroy {
                 device.selected = false;
                 const selectedDevice = {
                     deviceName: device.deviceName,
-                    totalNumber: deviceNumber,
+                    totalNumber: this.deviceNumber,
                     deviceUsedNumber: 0
                 };
                 this.selectedDevices.push(selectedDevice);
@@ -125,9 +141,20 @@ export class CreateNewComponent implements OnInit, OnDestroy {
 
     createNewLicense(expiredDate: string, selectedDevices: Device[]): void {
         console.log('createNewLicense()');
-        console.log('totalUserNumber = ' + new Date(expiredDate).getTime());
-        console.log('BundleIdOrPackageName = ' + JSON.stringify(selectedDevices));
+        console.log('expiredDate = ' + new Date(expiredDate).getTime());
+        console.log('selectedDevices = ' + JSON.stringify(selectedDevices));
 
+
+        // 添加输入验证，如果未输入值，则提示错误
+        if (expiredDate === '') {
+          jQuery('#expiredDateAlert').addClass('alert alert-danger').text('You must set expired date!');
+          return;
+        }
+
+        if (selectedDevices.length === 0) {
+          jQuery('#selectedDevicesAlert').addClass('alert alert-danger').text('You must select device!');
+          return;
+        }
 
         const licenseInfo = {
             userId : '5a0269747ac9d897d0f57b60',
