@@ -17,9 +17,9 @@
 
           <div class="md-form">
             <i class="fa fa-calendar prefix"></i>
-            <input placeholder="Set Expired Date" type="number" id="installedPhoneNumber" required="required"
+            <input placeholder="Set Expired Date" type="number" id="expiredDate" required
                    class="datapicker"
-                   #installedPhoneNumber readonly>
+                   #expiredDate readonly>
           </div>
 
         </div>
@@ -64,7 +64,7 @@
         <hr class="m-2">
 
         <div class="d-flex justify-content-around">
-          <button class="btn btn-primary button-width" (click)="createNewLicense(installedPhoneNumber.value, selectedDevices)">Submit</button>
+          <button class="btn btn-primary button-width" (click)="createNewLicense(expiredDate.value, selectedDevices)">Submit</button>
           <button class="btn btn-blue-grey button-width" routerLink="/manager-license">Cancel</button>
         </div>
 
@@ -106,7 +106,7 @@
               <h5 class="card-title">Selected Devices</h5>
               <div class="row">
                 <div *ngFor="let key of devices;let i = index;">
-                  <div class="device" *ngIf="key.selected && !key.out_select" (click)="cancelSelectDevice(i)">
+                  <div class="device" *ngIf="key.selected && !key.out_selected" (click)="cancelSelectDevice(i)">
                     <img src="/../../../../assets/images/device_{{key.deviceName}}.png" width="75">
                   </div>
                 </div>

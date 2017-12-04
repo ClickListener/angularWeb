@@ -1,4 +1,3 @@
-
 <div class="container ">
 
   <div class="card blue-gradient">
@@ -28,79 +27,84 @@
        *ngIf="licenses !== undefined && licenses.length !== 0">
 
 
-        <!-- Accordion card -->
-        <div class="card" *ngFor="let license of licenses; let i = index">
+    <!-- Accordion card -->
+    <div class="card" *ngFor="let license of licenses; let i = index">
 
-          <!-- Card header -->
-          <div class="card-header" role="tab" [attr.id]="i + 1000">
-            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" [attr.data-target]="'#'+ i"
-               [attr.aria-expanded]="false">
-              <div class="row">
-                <div class="col-3 textCenter text-center">
-                  {{license.expireTime | date:"MM/dd/yyyy"}}
-                </div>
-                <div class="col-2 textCenter text-center">
-                  {{license.devices.length}}
-                </div>
-                <div class="col-2 textCenter text-center">
-                  {{license.InstalledPhoneNumber}}
-                </div>
-                <div class="col-4 text-center" (click)="stop_Propagation(event)">
-                  <!--<a class="btn btn-primary" href="http://localhost:3001/api/license/{{license._id}}">下载</a>-->
-                  <i class="fa fa-arrow-circle-down fa-2x hoverable" (click)="downloadLicense(license._id)"></i>
-                  <i class="fa fa-arrow-circle-up fa-2x" (click)="modifyLicense(license._id)"></i>
-                  <i class="fa fa-times-circle fa-2x" (click)="deleteLicense(license._id)"></i>
-                </div>
+      <!-- Card header -->
+      <div class="card-header" role="tab" [attr.id]="i + 1000">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" [attr.data-target]="'#'+ i"
+           [attr.aria-expanded]="false">
+          <div class="row">
+            <div class="col-3 textCenter text-center">
+              {{license.expireTime | date:"MM/dd/yyyy"}}
+            </div>
+            <div class="col-2 textCenter text-center">
+              {{license.devices.length}}
+            </div>
+            <div class="col-2 textCenter text-center">
+              {{license.installedPhoneNumber}}
+            </div>
+            <div class="col-4 text-center" (click)="stop_Propagation(event)">
+              <!--<a class="btn btn-primary" href="http://localhost:3001/api/license/{{license._id}}">下载</a>-->
+              <span class="fa-stack">
+              <i class="fa fa-arrow-circle-down fa-2x hoverable" (click)="downloadLicense(license._id)"></i>
+              </span>
+              <span class="fa-stack">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pencil fa-stack-1x fa-inverse" (click)="modifyLicense(license._id)"></i>
+              </span>
+              <span class="fa-stack">
+              <i class="fa fa-times-circle fa-2x" (click)="deleteLicense(license._id)"></i>
+              </span>
+            </div>
 
-                <a class="fa fa-angle-down fa-2x rotate-icon prefix"></a>
-              </div>
-
-
-            </a>
+            <a class="fa fa-angle-down fa-2x rotate-icon prefix"></a>
           </div>
 
-          <!-- Card body -->
-          <div [attr.id]="i" class="collapse" role="tabpanel" [attr.aria-labelledby]="i + 1000">
-            <div class="card-body">
-              <div class="tag">
-                <em></em>
-                <span></span>
 
-                <div class="table-wrapper-2">
+        </a>
+      </div>
 
-                  <table class="table">
-                    <thead>
-                    <tr>
-                      <th>DeviceModel</th>
-                      <th>TotalNumber</th>
-                      <th>UsedNumber</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr *ngFor="let device of license.devices">
-                      <td>
-                        <img src="/../../../../assets/images/device_{{device.deviceName}}.png" width="40">
-                        <b>{{device.deviceName}}</b>
-                      </td>
-                      <td>{{device.totalNumber}}</td>
-                      <td>{{device.deviceUsedNumber}}</td>
-                    </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+      <!-- Card body -->
+      <div [attr.id]="i" class="collapse" role="tabpanel" [attr.aria-labelledby]="i + 1000">
+        <div class="card-body">
+          <div class="tag">
+            <em></em>
+            <span></span>
+
+            <div class="table-wrapper-2">
+
+              <table class="table">
+                <thead>
+                <tr>
+                  <th>DeviceModel</th>
+                  <th>TotalNumber</th>
+                  <th>UsedNumber</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let device of license.devices">
+                  <td>
+                    <img src="/../../../../assets/images/device_{{device.deviceName}}.png" width="40">
+                    <b>{{device.deviceName}}</b>
+                  </td>
+                  <td>{{device.totalNumber}}</td>
+                  <td>{{device.deviceUsedNumber}}</td>
+                </tr>
+                </tbody>
+              </table>
             </div>
           </div>
-
-
         </div>
+      </div>
 
-      <!-- Accordion card -->
+
+    </div>
+
+    <!-- Accordion card -->
 
   </div>
   <!--/.Accordion wrapper-->
-
-
 
 
 </div>
@@ -113,7 +117,8 @@
     <ul class="pagination pagination-circle pg-purple mb-0">
 
       <!--First-->
-      <li id="first" class="page-item disabled clearfix d-none d-md-block" (click)="changePagination(-4)"><a class="page-link">First</a></li>
+      <li id="first" class="page-item disabled clearfix d-none d-md-block" (click)="changePagination(-4)"><a
+        class="page-link">First</a></li>
 
       <!--Arrow left-->
       <li id="previous" class="page-item disabled" (click)="changePagination(-3)">
@@ -124,8 +129,9 @@
       </li>
 
       <!--Numbers-->
-      <li [attr.id]="'li' + i" class="page-item" *ngFor="let pagination of paginationArr let i = index"><a class="page-link"
-                                                                                                           (click)="changePagination(i + 1)">{{i + 1}}</a></li>
+      <li [attr.id]="'li' + i" class="page-item" *ngFor="let pagination of paginationArr let i = index"><a
+        class="page-link"
+        (click)="changePagination(i + 1)">{{i + 1}}</a></li>
 
 
       <!--Arrow right-->
@@ -137,7 +143,8 @@
       </li>
 
       <!--First-->
-      <li id="last" class="page-item clearfix d-none d-md-block" (click)="changePagination(-1)"><a class="page-link">Last</a></li>
+      <li id="last" class="page-item clearfix d-none d-md-block" (click)="changePagination(-1)"><a class="page-link">Last</a>
+      </li>
 
     </ul>
   </nav>
