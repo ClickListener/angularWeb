@@ -4,17 +4,18 @@
 
 
 import {Injectable} from "@angular/core";
-import {Http, Headers} from "@angular/http";
+// import {Http, Headers} from "@angular/http";
 import {User} from "../model/User";
 import {License} from "../model/License";
 import {LicenseService} from "./license.service";
 import {CookieService} from "ngx-cookie";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 
 @Injectable()
 export class UserService {
 
-    constructor(private http: Http, private licenseService:LicenseService, private _cookieService:CookieService) {
+    constructor(private http: HttpClient, private licenseService:LicenseService, private _cookieService:CookieService) {
         console.log('UserService--------constructor');
         this.user = JSON.parse(sessionStorage.getItem('user'));
         console.log('UserService--------user = ' + this.user);
@@ -27,8 +28,8 @@ export class UserService {
 
     user: User;
 
-    private header = {
-        headers: new Headers({'Content-Type': 'application/json'})
+    private options = {
+        headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
 
 
@@ -40,23 +41,23 @@ export class UserService {
         const url = '/user/signin';
         console.log(JSON.stringify(userInfo));
 
-        return this.http.post(url, JSON.stringify(userInfo), this.header)
+        return this.http.post(url, JSON.stringify(userInfo), this.options)
             .toPromise()
             .then(res => {
-                console.log("user = " + JSON.stringify(res.json().user));
-                console.log("As user = " + JSON.stringify(res.json().user as User));
-                this.user = res.json().user as User;
-                this.licenseService.licenses = res.json().licenses;
-
-                sessionStorage.setItem('user', JSON.stringify(this.user));
-                sessionStorage.setItem('licenses', JSON.stringify(this.licenseService.licenses));
-
-                console.log("this.licenseService.licenses = " + JSON.stringify(this.licenseService.licenses));
-                console.log("res.json().licenses = " + JSON.stringify(res.json().licenses));
-                console.log("res.json().licenses as License[] = " + JSON.stringify(res.json().licenses as License[]));
-                // this.licenseService.licenses = res.json().licenses as License[];
-
-                return res.json().user as User;
+                // console.log("user = " + JSON.stringify(res.json().user));
+                // console.log("As user = " + JSON.stringify(res.json().user as User));
+                // this.user = res.json().user as User;
+                // this.licenseService.licenses = res.json().licenses;
+                //
+                // sessionStorage.setItem('user', JSON.stringify(this.user));
+                // sessionStorage.setItem('licenses', JSON.stringify(this.licenseService.licenses));
+                //
+                // console.log("this.licenseService.licenses = " + JSON.stringify(this.licenseService.licenses));
+                // console.log("res.json().licenses = " + JSON.stringify(res.json().licenses));
+                // console.log("res.json().licenses as License[] = " + JSON.stringify(res.json().licenses as License[]));
+                // // this.licenseService.licenses = res.json().licenses as License[];
+                //
+                // return res.json().user as User;
             })
             .catch(UserService.handleError);
 
@@ -72,19 +73,19 @@ export class UserService {
 
         console.log(JSON.stringify(userInfo));
 
-        return this.http.post(url, JSON.stringify(userInfo), this.header)
+        return this.http.post(url, JSON.stringify(userInfo), this.options)
             .toPromise()
             .then(res => {
-                console.log("res.json = " + JSON.stringify(res.json()));
-                this.user = res.json().user as User;
-                this.licenseService.licenses = res.json().licenses;
-
-
-                sessionStorage.setItem('user', JSON.stringify(this.user));
-                sessionStorage.setItem('licenses', JSON.stringify(this.licenseService.licenses));
-
-
-                return res.json().user as User;
+                // console.log("res.json = " + JSON.stringify(res.json()));
+                // this.user = res.json().user as User;
+                // this.licenseService.licenses = res.json().licenses;
+                //
+                //
+                // sessionStorage.setItem('user', JSON.stringify(this.user));
+                // sessionStorage.setItem('licenses', JSON.stringify(this.licenseService.licenses));
+                //
+                //
+                // return res.json().user as User;
 
             })
             .catch(UserService.handleError);

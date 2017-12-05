@@ -1,21 +1,22 @@
 import {Injectable} from '@angular/core';
-import {Http, Headers, RequestOptions} from '@angular/http';
 import {License} from '../model/License';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 
 @Injectable()
 export class LicenseService {
 
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
     console.log('LicenseService--------constructor');
     this.licenses = JSON.parse(sessionStorage.getItem('licenses'));
     console.log('LicenseService--------licenses = ' + this.licenses);
   }
 
   private header = {
-    headers: new Headers({
-      'Content-Type': 'application/json'
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
     })
   };
 
@@ -32,10 +33,10 @@ export class LicenseService {
 
     return this.http.get(url, this.header)
       .toPromise()
-      .then(res => {
-        if (res.json().success) {
+      .then((res) => {
+        if (res['success']) {
 
-          this.licenses = this.sortLicenses(res.json().data as License[]);
+          this.licenses = this.sortLicenses(res['data'] as License[]);
 
           return this.licenses;
 
@@ -54,7 +55,7 @@ export class LicenseService {
     return this.http.post(this.url, JSON.stringify(licenseInfo), this.header)
       .toPromise()
       .then(res => {
-        return res.json();
+        return res;
       })
       .catch(LicenseService.handleError);
 
@@ -73,7 +74,7 @@ export class LicenseService {
     return this.http.put(url, JSON.stringify(message.licenseInfo), this.header)
       .toPromise()
       .then(res => {
-        return res.json();
+        return res;
       })
       .catch(LicenseService.handleError);
   }
@@ -91,7 +92,7 @@ export class LicenseService {
       .toPromise()
       .then(res => {
         console.log('res = ' + JSON.stringify(res));
-        return res.json();
+        return res;
       })
       .catch(LicenseService.handleError);
   }
@@ -100,15 +101,20 @@ export class LicenseService {
 
 
     const url = this.url + '/' + licenseId;
-    return this.http.get(url)
+    return this.http.get(url, {
+      observe: 'response', // 默认返回的是response的body，设置这个key,能获得全部的response，包括headers
+      responseType: 'text', // HttpClient默认返回的是json,如果想接受其他类型，指定一下这个key就行了。
+    })
+
       .toPromise()
       .then(res => {
+        console.log('res = ' + res.headers.get('success'));
         console.log('res = ' + JSON.stringify(res));
 
         if (res.headers.get('success') === '0') {
-          return JSON.parse(res['_body']);
+          return JSON.parse(res.body);
         } else {
-          this.writeFile(JSON.stringify(res['_body']), 'text/latex', 'license.txt');
+          this.writeFile(JSON.stringify(res.body), 'text/latex', 'license.txt');
           return {success: true};
         }
 
@@ -118,7 +124,7 @@ export class LicenseService {
 
 
   private static handleError(error: any): Promise<any> {
-    console.log('An error occurred', error.toString()); // for demo purposes only
+    console.log('An error occurred', JSON.stringify(error)); // for demo purposes only
     return Promise.reject(error.message || error);
   }
 
