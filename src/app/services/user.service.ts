@@ -6,18 +6,23 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers} from "@angular/http";
 import {User} from "../model/User";
-import {Observable} from "rxjs";
 import {License} from "../model/License";
 import {LicenseService} from "./license.service";
+import {CookieService} from "ngx-cookie";
 
 
 @Injectable()
 export class UserService {
 
-    constructor(private http : Http, private licenseService:LicenseService) {
+    constructor(private http: Http, private licenseService:LicenseService, private _cookieService:CookieService) {
         console.log('UserService--------constructor');
         this.user = JSON.parse(sessionStorage.getItem('user'));
         console.log('UserService--------user = ' + this.user);
+
+        // _cookieService.put('name', 'nanme', {
+        //   expires: new Date(2017, 11 , 5)
+        // });
+      console.log('name = ' + _cookieService.get('name'));
     }
 
     user: User;
@@ -31,7 +36,7 @@ export class UserService {
      * 登录服务3
      * @param userInfo
      */
-    signIn(userInfo : any) : Promise<User> {
+    signIn(userInfo: any): Promise<User> {
         const url = '/user/signin';
         console.log(JSON.stringify(userInfo));
 
@@ -53,7 +58,7 @@ export class UserService {
 
                 return res.json().user as User;
             })
-            .catch(UserService.handleError)
+            .catch(UserService.handleError);
 
     }
 
@@ -62,7 +67,7 @@ export class UserService {
      * @param userInfo
      *
      */
-    signUp(userInfo : any) : Promise<User> {
+    signUp(userInfo: any): Promise<User> {
         const url = '/user/signup';
 
         console.log(JSON.stringify(userInfo));
@@ -82,7 +87,7 @@ export class UserService {
                 return res.json().user as User;
 
             })
-            .catch(UserService.handleError)
+            .catch(UserService.handleError);
 
     }
 
@@ -90,7 +95,7 @@ export class UserService {
      * 登出服务
      * @returns {Promise<TResult|T>}
      */
-    signOut() : Promise<void> {
+    signOut(): Promise<string> {
 
         console.log("signOut()");
         const url = '/user/signout';
@@ -103,15 +108,15 @@ export class UserService {
                 this.licenseService.licenses = undefined;
                 sessionStorage.removeItem('user');
                 sessionStorage.removeItem('licenses');
-                console.info('user = ' + this.user);
+                console.log('user = ' + this.user);
 
             })
             .catch(UserService.handleError);
 
     }
 
-    private static handleError(error:any) : Promise<any> {
-        console.log('An error occurred', JSON.stringify(error));//for demo purposes only
+    private static handleError(error:any): Promise<any> {
+        console.log('An error occurred', JSON.stringify(error));// for demo purposes only
         return Promise.reject(error.message || error);
     }
 }
