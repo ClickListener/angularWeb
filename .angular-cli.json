@@ -36,7 +36,8 @@
         "../node_modules/mdbootstrap/js/bootstrap.js",
         "../node_modules/mdbootstrap/js/mdb.js",
         "../src/assets/js/picker.js",
-        "../src/assets/js/datepicker.js"
+        "../src/assets/js/datepicker.js",
+        "../src/assets/js/materialize.js"
 
       ],
       "environmentSource": "environments/environment.ts",
