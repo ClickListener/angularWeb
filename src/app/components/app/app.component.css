@@ -3,12 +3,13 @@
 }
 
 
-#slide-out {
+/*阴影*/
+.slide-out {
   -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
-#slide-out {
+.slide-out {
   z-index: 1000;
   position: fixed;
   left: 300px;
@@ -18,9 +19,62 @@
   overflow-y: auto;
   background: #fff;
 }
+.slide-out > ul {
+  list-style: none;
+  padding: 0;
+}
 
+/*边栏内容样式 li*/
+.slide-out li {
+  padding-top: 5px;
+  text-indent: 20px;
+  line-height: 40px;
+}
 
-#slide-out, #wrapper-container {
+.slide-out li a {
+  display: block;
+  text-decoration: none;
+  color: black;
+}
+
+.slide-out li a:hover {
+  text-decoration: none;
+  color: #fff;
+  background: darkgray;
+}
+
+.slide-out li a:active, .slide-out li a:focus {
+  text-decoration: none;
+  color: #0059bc;
+  background: darkgray;
+}
+
+/*边栏的头部*/
+.slide-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 56px;
+}
+.slide-header img {
+  padding-right: 32%;
+  text-decoration: none;
+}
+
+.slide-header i {
+  padding-right: 3%;
+}
+
+/*分割线*/
+.divider {
+  border: 0;
+  height: 1px;
+  background: #333;
+  background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
+/*过渡时间*/
+.slide-out, .wrapper-container {
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
@@ -28,50 +82,57 @@
 }
 
 
-#wrapper.toggled #slide-out {
+.wrapper.toggled .slide-out {
   width: 300px;
 }
 
-#wrapper-container {
+.wrapper-container {
   width: 100%;
   height: 100%;
   position: absolute;
 }
 
-#wrapper.toggled #wrapper-container {
+.wrapper.toggled .wrapper-container {
   position: absolute;
   margin-left: 300px;
 }
 
-#appear {
+
+/*返回按钮的样式*/
+.appear {
   display: none;
 }
 
+/*侧边栏li > ul样式*/
+li ul {
+  padding-left: 20px;
+  list-style: none;
+}
 
 
+/*当屏幕小于992时，显示显示样式*/
 @media screen and (max-width: 992px) {
-  #wrapper {
+  .wrapper {
     padding-left: 0;
   }
-  #wrapper.toggled {
-    padding-left: 0px;
+  .wrapper.toggled {
+    padding-left: 0;
   }
-  #slide-out {
+  .slide-out {
     width: 0;
   }
-  #appear{
+  .appear{
     display: inline;
   }
-  #wrapper.toggled #slide-out {
+  .wrapper.toggled .slide-out {
     width: 300px;
   }
-  #wrapper-container {
-  }
-  #wrapper.toggled #wrapper-container {
+
+  .wrapper.toggled .wrapper-container {
     margin-left: 0;
   }
 
-  #wrapper.toggled #mask {
+  .wrapper.toggled .mask {
     background: black;
     opacity: 0.5;
     z-index: 100;
@@ -82,6 +143,10 @@
     right: 0;
     width: 100%;
     height: 100%;
+  }
+
+  .slide-header img {
+    padding-right: 18%;
   }
 }
 

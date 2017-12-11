@@ -26,9 +26,9 @@ export class AppComponent implements OnInit, OnChanges, DoCheck {
     ngOnInit(): void {
       console.log('ngOnInit()');
 
-      $("#menu-toggle, #appear").click(function(e) {
+      $("#menu-toggle, .appear, .mask").click(function(e) {
         e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
+        $(".wrapper").toggleClass("toggled");
       });
 
 

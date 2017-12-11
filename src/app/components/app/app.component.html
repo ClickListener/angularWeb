@@ -1,7 +1,7 @@
 <!--/.Navbar-->
-<div id="wrapper">
+<div class="wrapper">
 
-  <div id="wrapper-container">
+  <div class="wrapper-container">
 
     <nav class="navbar navbar-expand-lg">
 
@@ -9,7 +9,7 @@
 
       <div class="container">
 
-        <a class="navbar-brand waves-effect" routerLink="./">iHealth</a>
+        <a><i class="fa fa-reorder fa-2x" id="menu-toggle"></i></a>
 
 
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -22,7 +22,7 @@
         <div class="collapse navbar-collapse " id="nav-content">
 
 
-          <ul class="navbar-nav ml-auto"  *ngIf="!user">
+          <ul class="navbar-nav ml-auto" *ngIf="!user">
             <li class="nav-item waves-effect">
               <a class="nav-link" routerLink="/sign-up" routerLinkActive="active">Sign Up</a>
             </li>
@@ -31,9 +31,9 @@
             </li>
           </ul>
 
-          <ul class="navbar-nav ml-auto"  *ngIf="user">
+          <ul class="navbar-nav ml-auto" *ngIf="user">
             <li class="nav-item waves-effect">
-              <a class="nav-link" (click)="signOut()"  routerLinkActive="active">Sign out</a>
+              <a class="nav-link" (click)="signOut()" routerLinkActive="active">Sign out</a>
             </li>
           </ul>
 
@@ -43,21 +43,36 @@
 
     </nav>
     <router-outlet></router-outlet>
-    <a id="menu-toggle"><i class="material-icons">menu</i></a>
-    <div id="mask"></div>
+    <!--当屏幕小于992时，打开侧边栏时的阴影-->
+    <div class="mask"></div>
   </div>
 
-  <div id="slide-out">
+  <div class="slide-out">
 
-    <ul>
-      <li><div>
-        <a><img src="../../../assets/images/ihealth-logo.png"></a>
-        <button id="appear">返回</button>
-      </div></li>
-      <li><div></div></li>
-      <li><a href="#!"><i >cloud</i>First Link With Icon</a></li>
-      <li><a href="#!">Second Link</a></li>
-      <li><div class="divider"></div></li>
+    <ul class="accordion" id="accordionId">
+      <li>
+        <div class="slide-header">
+          <img src="../../../assets/images/ihealth-logo.png">
+          <i class="fa fa-2x fa-reply appear"></i>
+        </div>
+      </li>
+      <li>
+        <div class="divider"></div>
+      </li>
+      <li>
+        <a>Manager admin</a>
+      </li>
+      <li>
+        <a data-toggle="collapse" data-parent="#accordionId" aria-expanded="false" data-target="#collapseOne">Manager program</a>
+        <ul id="collapseOne" class="collapse">
+          <li>Upload</li>
+          <li>Download</li>
+          <li>Open</li>
+        </ul>
+      </li>
+      <li>
+        <div class="divider"></div>
+      </li>
       <li><a class="subheader">Subheader</a></li>
       <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
     </ul>
