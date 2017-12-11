@@ -8,7 +8,6 @@ import {UserService} from "../../services/user.service";
 import {Router} from "@angular/router";
 import {isUndefined} from "util";
 declare const $: any;
-declare const M: any;
 @Component({
     selector: 'my-app',
 
@@ -25,9 +24,14 @@ export class AppComponent implements OnInit, OnChanges, DoCheck {
     constructor(private userService:UserService, private router:Router) {}
 
     ngOnInit(): void {
-        console.log('ngOnInit()');
-      const elem = document.querySelector('.sidenav');
-      this.sideNav = new M.Sidenav(elem);
+      console.log('ngOnInit()');
+
+      $("#menu-toggle, #appear").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+      });
+
+
 
     }
 
@@ -43,20 +47,11 @@ export class AppComponent implements OnInit, OnChanges, DoCheck {
             })
             .catch((error:any) => {
                 console.log('managerComponent---error = ' + error);
-            })
+            });
     }
 
-    closeNav(): void {
-      this.sideNav.close();
-      $('#container').css({"padding-left": "0px"});
-    }
 
-    openNav(): void {
-      this.sideNav.open();
-      if ($(window).width() > 922) {
-        $('#container').css({"padding-left": "300px"});
-      }
-    }
+
 
     ngDoCheck(): void {
         this.user = this.userService.user;
