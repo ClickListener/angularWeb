@@ -17,12 +17,12 @@
         <div class="user">
 
           <div *ngIf="!user">
-              <a class="waves-effect" routerLink="/sign-up" routerLinkActive="active">Sign Up</a>
-              <a class="waves-effect" routerLink="/sign-in" routerLinkActive="active">Sign In</a>
+            <a class="waves-effect" routerLink="/sign-up" routerLinkActive="active">Sign Up</a>
+            <a class="waves-effect" routerLink="/sign-in" routerLinkActive="active">Sign In</a>
           </div>
 
           <div *ngIf="user">
-              <a class="waves-effect" (click)="signOut()" routerLinkActive="active">Sign out</a>
+            <a class="waves-effect" (click)="signOut()" routerLinkActive="active">Sign out</a>
           </div>
 
         </div>
@@ -30,6 +30,10 @@
 
     </nav>
     <router-outlet></router-outlet>
+    <div>
+
+      <i class="fa fa-angle-down rotate-icon prefix"></i>
+    </div>
 
     <!--当屏幕小于992时，打开侧边栏时的阴影-->
     <div class="mask"></div>
@@ -57,21 +61,30 @@
         </ul>
       </li>
       <li>
-        <a routerLink="/sign-in" routerLinkActive="active" data-toggle="collapse" data-parent="#accordionId"
-           aria-expanded="false" data-target="#collapseOne">Manager program</a>
+        <a class="collapsed" routerLink="/sign-in" routerLinkActive="active" data-toggle="collapse" data-parent="#accordionId"
+           aria-expanded="false" data-target="#collapseOne">
+          <b>Scheme</b>
+          <i class="fa fa-angle-down rotate-icon fa-position"></i>
+        </a>
+
         <ul id="collapseOne" class="collapse">
-          <li><a>Upload</a></li>
-          <li><a>Download</a></li>
-          <li><a>Open</a></li>
+          <li><a>SDK scheme</a></li>
+          <li><a>LayerApp scheme</a></li>
+          <li><a>Library scheme</a></li>
         </ul>
       </li>
-      <li><a routerLink="/sign-up"routerLinkActive="active">Subheader</a></li>
+      <li><a routerLink="/sign-up" routerLinkActive="active">Subheader</a></li>
       <li><a routerLink="/sign-in" routerLinkActive="active">Third Link With Waves</a></li>
       <li>
         <div class="divider"></div>
       </li>
+
     </ul>
+
+
   </div>
 </div>
+
+
 
 
