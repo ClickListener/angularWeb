@@ -1,8 +1,8 @@
 /**
  * Created by zhangxu on 2017/6/30.
  */
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './components/app/app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {SignInComponent} from './components/user/user_signIn/sign-in.component';
@@ -19,30 +19,38 @@ import {DevicesService} from './services/devices.service';
 import {PaginationService} from './services/pagination.service';
 import {CookieModule} from 'ngx-cookie';
 import {HttpClientJsonpModule, HttpClientModule} from "@angular/common/http";
+import {SchemeCreateComponent} from "./components/scheme/scheme_create/scheme-create.component";
+import {SchemeManagerComponent} from "./components/scheme/scheme_manager/scheme-manager.component";
+import {SchemeModifyComponent} from "./components/scheme/scheme_modify/scheme-modify.component";
 
 @NgModule({
 
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        HttpClientJsonpModule,
-        FormsModule,
-        CookieModule.forRoot()
-    ],
-    declarations:[
-        AppComponent,
-        SignInComponent,
-        SignUpComponent,
-        HomeComponent,
-        CreateNewComponent,
-        ManagerComponent,
-        ModifyComponent
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    HttpClientJsonpModule,
+    FormsModule,
+    CookieModule.forRoot()
+  ],
+  declarations: [
+    AppComponent,
+    SignInComponent,
+    SignUpComponent,
+    HomeComponent,
+    CreateNewComponent,
+    ManagerComponent,
+    ModifyComponent,
 
-    bootstrap:[AppComponent],
+    SchemeCreateComponent,
+    SchemeManagerComponent,
+    SchemeModifyComponent
+  ],
 
-    providers:[UserService, LicenseService, DevicesService, DatePipe, PaginationService]
+  bootstrap: [AppComponent],
+
+  providers: [UserService, LicenseService, DevicesService, DatePipe, PaginationService]
 })
 
-export class AppModule {}
+export class AppModule {
+}

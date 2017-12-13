@@ -9,42 +9,60 @@ import {HomeComponent} from "./components/home/home.component";
 import {ManagerComponent} from "./components/license/license_manager/manager.component";
 import {CreateNewComponent} from "./components/license/license_createNew/createNew.component";
 import {ModifyComponent} from "./components/license/license_modify/modify.component";
+import {SchemeCreateComponent} from "./components/scheme/scheme_create/scheme-create.component";
+import {SchemeManagerComponent} from "./components/scheme/scheme_manager/scheme-manager.component";
+import {SchemeModifyComponent} from "./components/scheme/scheme_modify/scheme-modify.component";
+
 /**
  * 路由模块
  */
 
 
-const routes : Routes = [
-    {
-        path: '',
-        component: HomeComponent
-    },
+const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent
+  },
 
-    {
-        path: 'sign-in',
-        component: SignInComponent
-    },
-    {
-        path: 'sign-up',
-        component: SignUpComponent
-    },
-    {
-        path: 'manager-license',
-        component: ManagerComponent
-    },
-    {
-        path: 'create-newLicense',
-        component: CreateNewComponent
-    },
-    {
-        path: 'modify-license/:licenseId',
-        component: ModifyComponent
-    }
+  {
+    path: 'sign-in',
+    component: SignInComponent
+  },
+  {
+    path: 'sign-up',
+    component: SignUpComponent
+  },
+  {
+    path: 'manager-license',
+    component: ManagerComponent
+  },
+  {
+    path: 'create-newLicense',
+    component: CreateNewComponent
+  },
+  {
+    path: 'modify-license/:licenseId',
+    component: ModifyComponent
+  },
+  {
+    path: 'scheme-create',
+    component: SchemeCreateComponent
+  },
+  {
+    path: 'scheme-manager/:param',
+    component: SchemeManagerComponent
+  },
+  {
+    path: 'scheme-modify',
+    component: SchemeModifyComponent
+  }
+
 ];
 
 @NgModule({
-    imports : [RouterModule.forRoot(routes)],
-    exports : [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

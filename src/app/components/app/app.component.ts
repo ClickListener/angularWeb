@@ -15,7 +15,7 @@ declare const $: any;
     styleUrls: ['./app.component.css']
 
 })
-export class AppComponent implements OnInit, OnChanges, DoCheck {
+export class AppComponent implements OnInit {
 
 
     user: User;
@@ -31,12 +31,6 @@ export class AppComponent implements OnInit, OnChanges, DoCheck {
         $(".wrapper").toggleClass("toggled");
       });
 
-
-
-    }
-
-    ngOnChanges(changes: SimpleChanges): void {
-        console.log('ngOnChanges()');
     }
 
     signOut(): void {
@@ -48,13 +42,6 @@ export class AppComponent implements OnInit, OnChanges, DoCheck {
             .catch((error:any) => {
                 console.log('managerComponent---error = ' + error);
             });
-    }
-
-
-
-
-    ngDoCheck(): void {
-        this.user = this.userService.user;
     }
 
 
