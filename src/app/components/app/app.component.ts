@@ -24,9 +24,6 @@ export class AppComponent implements OnInit {
     constructor(private userService:UserService, private router:Router) {}
 
     ngOnInit(): void {
-      console.log('ngOnInit()');
-
-      console.log('width = ' + ($(window).width() < 992));
 
       $("#menu-toggle, .mask").click(function(e) {
         e.preventDefault();
@@ -49,13 +46,11 @@ export class AppComponent implements OnInit {
       if ($(window).width() < 992) {
         // 当页面大小变化的时候，会给标签绑定多次点击事件。
         $("li>ul>li").unbind('click').click(function (e) {
-          console.log('li>ul>li');
           e.preventDefault();
           $(".wrapper").toggleClass("toggled");
         });
 
         $("li.class-li").unbind('click').click(function (e) {
-          console.log('li.class-li');
           e.preventDefault();
           $(".wrapper").toggleClass("toggled");
         });

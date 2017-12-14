@@ -51,7 +51,6 @@ export class SchemeManagerComponent implements OnInit {
 
     // 官方建议使用paramMap 替代 params
     this.activatedRoute.paramMap.subscribe(paramMap => {
-      console.log("paramMap = " + JSON.stringify(paramMap));
       this.param = paramMap['params'].param;
     });
 
