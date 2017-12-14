@@ -10,7 +10,7 @@ import {License} from '../../../model/License';
 
 
 import swal from 'sweetalert2';
-import {PaginationComponent} from "../../tools/pagination.component";
+import {PaginationComponent} from "../../tools/pagination/pagination.component";
 
 declare let jQuery:any;
 

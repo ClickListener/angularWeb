@@ -22,7 +22,7 @@ import {SchemeCreateComponent} from "./components/scheme/scheme_create/scheme-cr
 import {SchemeManagerComponent} from "./components/scheme/scheme_manager/scheme-manager.component";
 import {SchemeModifyComponent} from "./components/scheme/scheme_modify/scheme-modify.component";
 import {SchemeDetailsComponent} from "./components/scheme/scheme_details/scheme-details-component";
-import {PaginationComponent} from "./components/tools/pagination.component";
+import {PaginationComponent} from "./components/tools/pagination/pagination.component";
 
 @NgModule({
 
