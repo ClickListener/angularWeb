@@ -17,7 +17,7 @@ export class PaginationComponent {
 
 
   @Output()
-  licenseChange:EventEmitter<any> = new EventEmitter<any>();
+  dataChange:EventEmitter<any> = new EventEmitter<any>();
 
   singlePage: Array<any>;
   paginationNum = 0; // 分页数
@@ -49,7 +49,7 @@ export class PaginationComponent {
     this.singlePage = this.paginationChange(1, data);
 
     // 向父组件发送当页要显示的数据
-    this.licenseChange.emit(this.singlePage);
+    this.dataChange.emit(this.singlePage);
 
     this.judgeIsDisabled();
 
@@ -74,7 +74,7 @@ export class PaginationComponent {
     this.singlePage = this.paginationChange(0, data);
 
     // 向父组件发送当页要显示的数据
-    this.licenseChange.emit(this.singlePage);
+    this.dataChange.emit(this.singlePage);
 
     this.judgeIsDisabled();
   }
@@ -100,7 +100,7 @@ export class PaginationComponent {
 
       this.singlePage = this.paginationChange(this.curPage, null);
 
-      this.licenseChange.emit(this.singlePage);
+      this.dataChange.emit(this.singlePage);
 
     }
 

@@ -22,15 +22,8 @@ declare let jQuery:any;
 
 export class ManagerComponent implements OnInit {
 
-
-  data = 10;
-
-
   user: User;
   licenses: License[];
-  paginationNum = 0; // 分页数
-  curPage = 1; // 当前页数
-  paginationArr:Array<any>;
 
   @ViewChild(PaginationComponent)
   private paginationComponent: PaginationComponent;
@@ -72,10 +65,6 @@ export class ManagerComponent implements OnInit {
 
   }
 
-
-  createNewLicense(): void {
-    this.router.navigate(['./create-newLicense']);
-  }
 
   // 下载License
   downloadLicense(licenseId: string): void {

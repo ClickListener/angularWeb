@@ -1,8 +1,9 @@
 /**
  * Created by zhangxu on 2017/12/13.
  */
-import {Component, OnChanges, OnInit, SimpleChanges} from "@angular/core";
+import {Component, OnChanges, OnInit, SimpleChanges, ViewChild} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
+import {PaginationComponent} from "../../tools/pagination/pagination.component";
 
 @Component({
   selector: 'scheme-manager',
@@ -35,7 +36,12 @@ export class SchemeManagerComponent implements OnInit {
       "version": "4.0.0",
       "CreateTime": "2017-12-12"
     }
-  ]
+  ];
+
+  singlePage: Array<any>;
+
+  @ViewChild(PaginationComponent)
+  private paginationComponent: PaginationComponent;
 
   ngOnInit(): void {
 
@@ -49,12 +55,17 @@ export class SchemeManagerComponent implements OnInit {
       this.param = paramMap['params'].param;
     });
 
+    this.paginationComponent.init(2, this.schemes);
+
   }
 
 
   constructor(private activatedRoute: ActivatedRoute) {}
 
 
+  licensesChange($event) {
+    this.singlePage = $event;
+  }
 
 
 
