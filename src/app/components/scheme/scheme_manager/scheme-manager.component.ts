@@ -5,7 +5,7 @@ import {Component, OnChanges, OnInit, SimpleChanges} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
-  selector: 'manager-scheme',
+  selector: 'scheme-manager',
   templateUrl: './scheme-manager.component.html',
   styleUrls: ['./scheme-manager.component.css']
 })
@@ -13,6 +13,29 @@ import {ActivatedRoute} from "@angular/router";
 export class SchemeManagerComponent implements OnInit {
 
   param: string;
+
+  schemes = [
+    {
+      "project": "SDK",
+      "version": "1.0.0",
+      "CreateTime": "2017-12-12"
+    },
+    {
+      "project": "SDK",
+      "version": "2.0.0",
+      "CreateTime": "2017-12-12"
+    },
+    {
+      "project": "SDK",
+      "version": "3.0.0",
+      "CreateTime": "2017-12-12"
+    },
+    {
+      "project": "SDK",
+      "version": "4.0.0",
+      "CreateTime": "2017-12-12"
+    }
+  ]
 
   ngOnInit(): void {
 
@@ -27,7 +50,10 @@ export class SchemeManagerComponent implements OnInit {
   }
 
 
-  constructor(private activatedRoute: ActivatedRoute) {
-  }
+  constructor(private activatedRoute: ActivatedRoute) {}
+
+
+
+
 
 }

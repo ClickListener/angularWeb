@@ -5,7 +5,7 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
-  selector: 'create-scheme',
+  selector: 'scheme-create',
   templateUrl: './scheme-create.component.html',
   styleUrls: ['./scheme-create.component.css']
 })

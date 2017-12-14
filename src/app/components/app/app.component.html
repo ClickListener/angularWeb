@@ -41,23 +41,25 @@
       <li class="waves-effect" routerLink="/">
         <div class="slide-header">
           <a><img src="../../../assets/images/ihealth-logo.png"></a>
-          <i class="fa fa-2x fa-reply appear"></i>
         </div>
       </li>
       <li>
         <div class="divider"></div>
       </li>
-      <li>
-        <a routerLink="/sign-up" routerLinkActive="active" data-toggle="collapse" data-parent="#accordionId"
-           aria-expanded="false" data-target="#collapseTwo">Manager admin</a>
+      <li class="class-li">
+        <a data-toggle="collapse" data-parent="#accordionId"
+           aria-expanded="false" data-target="#collapseTwo" class="collapsed">
+          <b>Manager admin</b>
+          <i class="fa fa-angle-down rotate-icon fa-position"></i>
+        </a>
         <ul id="collapseTwo" class="collapse">
-          <li><a>Upload</a></li>
-          <li><a>Download</a></li>
-          <li><a>Open</a></li>
+          <li><a routerLinkActive="active">Admin</a></li>
+          <li><a routerLinkActive="active">Main developer</a></li>
+          <li><a routerLinkActive="active">Developer</a></li>
         </ul>
       </li>
       <li>
-        <a class="collapsed" routerLink="/sign-in" routerLinkActive="active" data-toggle="collapse" data-parent="#accordionId"
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordionId"
            aria-expanded="false" data-target="#collapseOne">
           <b>Scheme</b>
           <i class="fa fa-angle-down rotate-icon fa-position"></i>
@@ -69,8 +71,8 @@
           <li><a routerLinkActive="active" routerLink='/scheme-manager/Library'>Library scheme</a></li>
         </ul>
       </li>
-      <li><a routerLink="/sign-up" routerLinkActive="active">Subheader</a></li>
-      <li><a routerLink="/sign-in" routerLinkActive="active">Third Link With Waves</a></li>
+      <li class="class-li"><a routerLink="/sign-up" routerLinkActive="active">Subheader</a></li>
+      <li class="class-li"><a routerLink="/sign-in" routerLinkActive="active">Third Link With Waves</a></li>
       <li>
         <div class="divider"></div>
       </li>

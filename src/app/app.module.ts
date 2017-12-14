@@ -22,6 +22,7 @@ import {HttpClientJsonpModule, HttpClientModule} from "@angular/common/http";
 import {SchemeCreateComponent} from "./components/scheme/scheme_create/scheme-create.component";
 import {SchemeManagerComponent} from "./components/scheme/scheme_manager/scheme-manager.component";
 import {SchemeModifyComponent} from "./components/scheme/scheme_modify/scheme-modify.component";
+import {SchemeDetailsComponent} from "./components/scheme/scheme_details/scheme-details-component";
 
 @NgModule({
 
@@ -44,7 +45,8 @@ import {SchemeModifyComponent} from "./components/scheme/scheme_modify/scheme-mo
 
     SchemeCreateComponent,
     SchemeManagerComponent,
-    SchemeModifyComponent
+    SchemeModifyComponent,
+    SchemeDetailsComponent
   ],
 
   bootstrap: [AppComponent],

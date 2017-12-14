@@ -151,11 +151,6 @@
 }
 
 
-/*返回按钮的样式*/
-.appear {
-  display: none;
-}
-
 /*侧边栏li > ul样式*/
 li ul {
   list-style: none;
@@ -191,9 +186,7 @@ li ul li > a.active {
     width: 300px;
     transform: translateX(-100%);
   }
-  .appear{
-    display: inline;
-  }
+
   .wrapper.toggled .slide-out {
     transform: translateX(0%);
   }
@@ -216,7 +209,7 @@ li ul li > a.active {
   }
 
   .slide-header a {
-    padding-right: 18%;
+    padding-right: 32%;
   }
 }
 
@@ -232,9 +225,7 @@ li ul li > a.active {
     width: 250px;
     transform: translateX(-100%);
   }
-  .appear{
-    display: inline;
-  }
+
   .wrapper.toggled .slide-out {
     transform: translateX(0%);
   }
@@ -257,6 +248,6 @@ li ul li > a.active {
   }
 
   .slide-header a {
-    padding-right: 18%;
+    padding-right: 32%;
   }
 }

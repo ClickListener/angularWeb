@@ -26,12 +26,55 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {
       console.log('ngOnInit()');
 
-      $("#menu-toggle, .appear, .mask").click(function(e) {
+      console.log('width = ' + ($(window).width() < 992));
+
+      $("#menu-toggle, .mask").click(function(e) {
         e.preventDefault();
         $(".wrapper").toggleClass("toggled");
       });
 
+
+      // 初始化的时候
+      this.clickActionForSideNav();
+      // 当屏幕变化的时候
+      const self = this;
+      $(window).resize(function () {
+        self.clickActionForSideNav();
+      });
+
     }
+
+    // 当屏幕小于992时，点击侧边栏选项，侧边栏自动隐藏
+    private clickActionForSideNav(): void {
+      if ($(window).width() < 992) {
+        // 当页面大小变化的时候，会给标签绑定多次点击事件。
+        $("li>ul>li").unbind('click').click(function (e) {
+          console.log('li>ul>li');
+          e.preventDefault();
+          $(".wrapper").toggleClass("toggled");
+        });
+
+        $("li.class-li").unbind('click').click(function (e) {
+          console.log('li.class-li');
+          e.preventDefault();
+          $(".wrapper").toggleClass("toggled");
+        });
+      } else {
+        $("li>ul>li").unbind('click');
+        $("li.class-li").unbind('click');
+      }
+    }
+
+  // 防止向上冒泡
+  stop_Propagation(event): void {
+
+    if (event && event.stopPropagation) {
+      event.stopPropagation();
+    } else {
+      window.event.cancelBubble=true;
+    }
+
+  }
 
     signOut(): void {
         console.log('signOut');

@@ -4,7 +4,7 @@
 import {Component} from "@angular/core";
 
 @Component({
-  selector: 'modify-scheme',
+  selector: 'scheme-modify',
   templateUrl: './scheme-modify.component.html',
   styleUrls: ['./scheme-modify.component.css']
 })

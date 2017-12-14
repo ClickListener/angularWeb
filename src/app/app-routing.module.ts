@@ -12,6 +12,7 @@ import {ModifyComponent} from "./components/license/license_modify/modify.compon
 import {SchemeCreateComponent} from "./components/scheme/scheme_create/scheme-create.component";
 import {SchemeManagerComponent} from "./components/scheme/scheme_manager/scheme-manager.component";
 import {SchemeModifyComponent} from "./components/scheme/scheme_modify/scheme-modify.component";
+import {SchemeDetailsComponent} from "./components/scheme/scheme_details/scheme-details-component";
 
 /**
  * 路由模块
@@ -55,6 +56,10 @@ const routes: Routes = [
   {
     path: 'scheme-modify',
     component: SchemeModifyComponent
+  },
+  {
+    path: 'scheme-details',
+    component: SchemeDetailsComponent
   }
 
 ];
