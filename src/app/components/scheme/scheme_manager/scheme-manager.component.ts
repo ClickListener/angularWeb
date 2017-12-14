@@ -43,8 +43,10 @@ export class SchemeManagerComponent implements OnInit {
     // stackoverflow 中问题：
     // https://stackoverflow.com/questions/39533291/angular2-router-2-0-0-not-reloading-components-when-same-url-loaded-with-differe
 
-    this.activatedRoute.params.subscribe(params => {
-      this.param = params['param'];
+    // 官方建议使用paramMap 替代 params
+    this.activatedRoute.paramMap.subscribe(paramMap => {
+      console.log("paramMap = " + JSON.stringify(paramMap));
+      this.param = paramMap['params'].param;
     });
 
   }

@@ -1,0 +1,38 @@
+
+<!--Pagination -->
+<nav class="my-4 pt-2">
+  <ul class="pagination pagination-circle pg-purple mb-0">
+
+    <!--First-->
+    <li id="first" class="page-item disabled clearfix d-none d-md-block" (click)="changePagination(-4)"><a
+      class="page-link">First</a></li>
+
+    <!--Arrow left-->
+    <li id="previous" class="page-item disabled" (click)="changePagination(-3)">
+      <a class="page-link" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+
+    <!--Numbers-->
+    <li [attr.id]="'li' + i" class="page-item" *ngFor="let pagination of paginationArr let i = index"><a
+      class="page-link"
+      (click)="changePagination(i + 1)">{{i + 1}}</a></li>
+
+
+    <!--Arrow right-->
+    <li id="next" class="page-item" (click)="changePagination(-2)">
+      <a class="page-link" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+
+    <!--First-->
+    <li id="last" class="page-item clearfix d-none d-md-block" (click)="changePagination(-1)"><a class="page-link">Last</a>
+    </li>
+
+  </ul>
+</nav>
+<!--/Pagination -->

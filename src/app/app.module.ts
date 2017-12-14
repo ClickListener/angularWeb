@@ -16,13 +16,13 @@ import {ModifyComponent} from './components/license/license_modify/modify.compon
 import {LicenseService} from './services/license.service';
 import {DatePipe} from '@angular/common';
 import {DevicesService} from './services/devices.service';
-import {PaginationService} from './services/pagination.service';
 import {CookieModule} from 'ngx-cookie';
 import {HttpClientJsonpModule, HttpClientModule} from "@angular/common/http";
 import {SchemeCreateComponent} from "./components/scheme/scheme_create/scheme-create.component";
 import {SchemeManagerComponent} from "./components/scheme/scheme_manager/scheme-manager.component";
 import {SchemeModifyComponent} from "./components/scheme/scheme_modify/scheme-modify.component";
 import {SchemeDetailsComponent} from "./components/scheme/scheme_details/scheme-details-component";
+import {PaginationComponent} from "./components/tools/pagination.component";
 
 @NgModule({
 
@@ -46,12 +46,14 @@ import {SchemeDetailsComponent} from "./components/scheme/scheme_details/scheme-
     SchemeCreateComponent,
     SchemeManagerComponent,
     SchemeModifyComponent,
-    SchemeDetailsComponent
+    SchemeDetailsComponent,
+
+    PaginationComponent
   ],
 
   bootstrap: [AppComponent],
 
-  providers: [UserService, LicenseService, DevicesService, DatePipe, PaginationService]
+  providers: [UserService, LicenseService, DevicesService, DatePipe]
 })
 
 export class AppModule {
