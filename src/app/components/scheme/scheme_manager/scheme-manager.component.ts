@@ -35,6 +35,36 @@ export class SchemeManagerComponent implements OnInit {
       "project": "SDK",
       "version": "4.0.0",
       "CreateTime": "2017-12-12"
+    },
+    {
+      "project": "SDK",
+      "version": "2.0.0",
+      "CreateTime": "2017-12-12"
+    },
+    {
+      "project": "SDK",
+      "version": "3.0.0",
+      "CreateTime": "2017-12-12"
+    },
+    {
+      "project": "SDK",
+      "version": "4.0.0",
+      "CreateTime": "2017-12-12"
+    },
+    {
+      "project": "SDK",
+      "version": "2.0.0",
+      "CreateTime": "2017-12-12"
+    },
+    {
+      "project": "SDK",
+      "version": "3.0.0",
+      "CreateTime": "2017-12-12"
+    },
+    {
+      "project": "SDK",
+      "version": "4.0.0",
+      "CreateTime": "2017-12-12"
     }
   ];
 
@@ -54,10 +84,9 @@ export class SchemeManagerComponent implements OnInit {
       this.param = paramMap['params'].param;
     });
 
-    this.paginationComponent.init(2, this.schemes);
+    this.paginationComponent.init(4, this.schemes);
 
   }
-
 
   constructor(private activatedRoute: ActivatedRoute) {}
 
@@ -65,6 +94,8 @@ export class SchemeManagerComponent implements OnInit {
   licensesChange($event) {
     this.singlePage = $event;
   }
+
+
 
 
 

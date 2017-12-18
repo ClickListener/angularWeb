@@ -23,6 +23,8 @@ import {SchemeManagerComponent} from "./components/scheme/scheme_manager/scheme-
 import {SchemeModifyComponent} from "./components/scheme/scheme_modify/scheme-modify.component";
 import {SchemeDetailsComponent} from "./components/scheme/scheme_details/scheme-details-component";
 import {PaginationComponent} from "./components/tools/pagination/pagination.component";
+import {SchemeMainComponent} from "./components/scheme/scheme_main/scheme-main.component";
+import {FileUploadModule} from "ng2-file-upload";
 
 @NgModule({
 
@@ -32,7 +34,8 @@ import {PaginationComponent} from "./components/tools/pagination/pagination.comp
     HttpClientModule,
     HttpClientJsonpModule,
     FormsModule,
-    CookieModule.forRoot()
+    CookieModule.forRoot(),
+    FileUploadModule
   ],
   declarations: [
     AppComponent,
@@ -42,6 +45,8 @@ import {PaginationComponent} from "./components/tools/pagination/pagination.comp
     CreateNewComponent,
     ManagerComponent,
     ModifyComponent,
+
+    SchemeMainComponent,
 
     SchemeCreateComponent,
     SchemeManagerComponent,

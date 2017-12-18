@@ -13,6 +13,7 @@ import {SchemeCreateComponent} from "./components/scheme/scheme_create/scheme-cr
 import {SchemeManagerComponent} from "./components/scheme/scheme_manager/scheme-manager.component";
 import {SchemeModifyComponent} from "./components/scheme/scheme_modify/scheme-modify.component";
 import {SchemeDetailsComponent} from "./components/scheme/scheme_details/scheme-details-component";
+import {SchemeMainComponent} from "./components/scheme/scheme_main/scheme-main.component";
 
 /**
  * 路由模块
@@ -46,21 +47,29 @@ const routes: Routes = [
     component: ModifyComponent
   },
   {
-    path: 'scheme-create',
-    component: SchemeCreateComponent
-  },
-  {
-    path: 'scheme-manager/:param',
-    component: SchemeManagerComponent
-  },
-  {
-    path: 'scheme-modify',
-    component: SchemeModifyComponent
-  },
-  {
-    path: 'scheme-details',
-    component: SchemeDetailsComponent
+    path: 'scheme-main/:param',
+    component: SchemeMainComponent,
+    children: [
+      {
+        path: '',
+        component: SchemeManagerComponent
+      },
+      {
+        path: 'scheme-create',
+        component: SchemeCreateComponent
+      },
+
+      {
+        path: 'scheme-modify',
+        component: SchemeModifyComponent
+      },
+      {
+        path: 'scheme-details/:schemeID',
+        component: SchemeDetailsComponent
+      }
+    ]
   }
+
 
 ];
 
