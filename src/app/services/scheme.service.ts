@@ -7,6 +7,8 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 @Injectable()
 export class SchemeService {
 
+  schemeAll: Array<any>;
+
   constructor(private http: HttpClient) {}
 
 
@@ -33,6 +35,7 @@ export class SchemeService {
       .toPromise()
       .then(res => {
         console.log(res);
+        this.schemeAll = res['data'];
         return res;
     })
       .catch(error => {

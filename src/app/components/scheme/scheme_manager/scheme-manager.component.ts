@@ -1,11 +1,12 @@
 /**
  * Created by zhangxu on 2017/12/13.
  */
-import {Component, OnChanges, OnInit, SimpleChanges, ViewChild} from "@angular/core";
+import {Component, DoCheck, OnChanges, OnInit, SimpleChanges, ViewChild} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {PaginationComponent} from "../../tools/pagination/pagination.component";
 import {SchemeService} from "../../../services/scheme.service";
 import swal from "sweetalert2";
+import {Input} from "@angular/compiler/src/core";
 
 @Component({
   selector: 'scheme-manager',
@@ -14,6 +15,8 @@ import swal from "sweetalert2";
 })
 
 export class SchemeManagerComponent implements OnInit {
+
+
 
   param: string;
 
@@ -72,6 +75,8 @@ export class SchemeManagerComponent implements OnInit {
 
   singlePage: Array<any>;
 
+  searchVersion: string;
+
   @ViewChild(PaginationComponent)
   private paginationComponent: PaginationComponent;
 
@@ -101,17 +106,17 @@ export class SchemeManagerComponent implements OnInit {
     schemeService.queryScheme(this.param, '5a0269747ac9d897d0f57b60')
       .then(res => {
         if (res.success) {
-
           this.paginationComponent.init(4, res.data);
         }
       })
       .catch(error => {
         console.log('error = ' + error.toString());
       });
+
   }
 
 
-  licensesChange($event) {
+  schemeChange($event) {
     this.singlePage = $event;
   }
 
@@ -134,9 +139,7 @@ export class SchemeManagerComponent implements OnInit {
           if (res.success) {
             self.schemeService.queryScheme(self.param,'5a0269747ac9d897d0f57b60')
               .then(response => {
-
                 self.paginationComponent.deleteItem(response.data);
-
               })
               .catch(error => {
                 console.log('error => ' + error.toString());
@@ -159,6 +162,27 @@ export class SchemeManagerComponent implements OnInit {
         });
     }).catch(swal.noop);
   }
+
+
+
+  // private findBySearch(): any {
+  //   const self = this;
+  //   const searchResult = [];
+  //   if (this.schemeAll !== undefined) {
+  //     if (this.searchVersion !== undefined && this.searchVersion !== null && this.searchVersion !== '') {
+  //       this.schemeAll.forEach(function (scheme) {
+  //         if (scheme.version.indexOf(self.searchVersion) !== -1) {
+  //           searchResult.push(scheme);
+  //         }
+  //       });
+  //     } else {
+  //       return this.schemeAll;
+  //     }
+  //   }
+  //   return searchResult;
+  // }
+
+
 
 
 

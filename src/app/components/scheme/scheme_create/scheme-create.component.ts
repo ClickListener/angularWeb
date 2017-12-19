@@ -8,6 +8,8 @@ import swal from "sweetalert2";
 import {FileUploaderCustom} from "../../../services/FileUploaderCustom";
 import {HttpClient} from "@angular/common/http";
 
+declare const jQuery: any;
+
 @Component({
   selector: 'scheme-create',
   templateUrl: './scheme-create.component.html',
@@ -20,6 +22,8 @@ export class SchemeCreateComponent implements OnInit {
   description: string;
 
   version: string;  // 版本号
+
+  beta: boolean;
 
 
   // fileUploader 初始化
@@ -54,11 +58,15 @@ export class SchemeCreateComponent implements OnInit {
   // 上传文件
   uploadFile() {
 
+    this.beta = jQuery("input[name='beta']:checked").val();
+    console.log('this.beta = ' + this.beta);
+
     // 增加post中的body信息
     this.uploader.onBuildItemForm = (item, form) => {
       form.append('resourceName', this.resourceName);
       form.append('version', this.version);
       form.append('description', this.description);
+      form.append('beta', this.beta);
     };
 
     console.log(this.uploader.queue);

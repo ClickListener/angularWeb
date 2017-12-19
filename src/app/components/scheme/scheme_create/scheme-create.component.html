@@ -1,35 +1,41 @@
-<h1>scheme_create</h1>
-<div class="form-control">
-  <form novalidate="novalidate" (submit)="uploadFile()" >
+<div class="card top-marge">
+  <div class="card-body">
 
-    <div class="md-form">
-      <input name="version" id="version" required class="form-control" type="text" [(ngModel)]="version">
-      <label for="version">Version</label>
+      <form novalidate="novalidate" (submit)="uploadFile()" >
+
+        <div class="md-form">
+          <input name="version" id="version" required class="form-control" type="text" [(ngModel)]="version">
+          <label for="version">Version</label>
+        </div>
+
+        <div class="md-form">
+          <input name="description" id="description" required class="form-control" type="text" [(ngModel)]="description">
+          <label for="description">Description</label>
+        </div>
+
+        <div class="md-form">
+          <span>Beta:</span>
+          <input type="radio" value="true" name="beta">true
+          <input type="radio" value="false" name="beta" checked>false
+        </div>
+
+        <div>
+          <span>上传文件：</span>
+          <input type="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)"/>
+        </div>
+
+        <div>
+          <span>上传文件：</span>
+          <input type="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)"/>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
+
     </div>
-
-    <div class="md-form">
-      <input name="description" id="description" required class="form-control" type="text" [(ngModel)]="description">
-      <label for="description">Description</label>
-    </div>
-
-    <div class="md-form">
-      <span>Beta:</span>
-      <input type="radio" value="true" name="beta">是
-      <input type="radio" value="false" name="beta" checked>否
-    </div>
-
-    <div>
-      <span>上传文件：</span>
-      <input type="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)"/>
-    </div>
-
-    <div>
-      <span>上传文件：</span>
-      <input type="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)"/>
-    </div>
-
-    <button type="submit">Submit</button>
-  </form>
 
 </div>
+
+
+
 

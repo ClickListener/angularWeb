@@ -3,6 +3,7 @@
  */
 import {Component} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
+import {SchemeService} from "../../../services/scheme.service";
 
 @Component({
   selector: 'scheme-details',
@@ -13,9 +14,19 @@ import {ActivatedRoute} from "@angular/router";
 export class SchemeDetailsComponent {
 
   version: string;
+  schemeSelected: any;
 
-  constructor(private activatedRoute: ActivatedRoute) {
+
+  constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService) {
     console.log("scheme = " + JSON.stringify(activatedRoute.snapshot.paramMap['params'].schemeID));
     this.version = activatedRoute.snapshot.paramMap['params'].schemeID;
+
+    this.schemeSelected = schemeService.schemeAll.find(function (scheme, index, arr) {
+      return scheme._id === activatedRoute.snapshot.paramMap['params'].schemeID;
+    });
+
+
+
+
   }
 }
