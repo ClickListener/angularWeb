@@ -66,6 +66,8 @@ export class PaginationComponent {
    * @param {Array<any>} data
    */
   deleteItem(data: Array<any>) {
+
+    this.dataAll = data;
     // 处理如果删除License导致减少页数
     this.paginationNum = Math.ceil(data.length/this.pageSize); // 向上取整
 

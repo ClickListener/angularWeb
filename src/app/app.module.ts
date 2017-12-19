@@ -25,6 +25,7 @@ import {SchemeDetailsComponent} from "./components/scheme/scheme_details/scheme-
 import {PaginationComponent} from "./components/tools/pagination/pagination.component";
 import {SchemeMainComponent} from "./components/scheme/scheme_main/scheme-main.component";
 import {FileUploadModule} from "ng2-file-upload";
+import {SchemeService} from "./services/scheme.service";
 
 @NgModule({
 
@@ -58,7 +59,7 @@ import {FileUploadModule} from "ng2-file-upload";
 
   bootstrap: [AppComponent],
 
-  providers: [UserService, LicenseService, DevicesService, DatePipe]
+  providers: [UserService, LicenseService, DevicesService, DatePipe, SchemeService]
 })
 
 export class AppModule {

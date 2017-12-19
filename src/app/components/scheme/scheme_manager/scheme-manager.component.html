@@ -41,13 +41,13 @@
       <!--Table body-->
       <tbody>
       <tr *ngFor="let scheme of singlePage" [routerLink]="['./scheme-details',scheme.version]">
-        <th>{{scheme.project}}</th>
+        <th>{{scheme.resourceName}}</th>
         <th>{{scheme.version}}</th>
         <th>{{scheme.CreateTime}}</th>
         <th>
-          <div>
+          <div (click)="stop_Propagation($event)">
             <a class="btn btn-primary">修改</a>
-            <a class="btn btn-danger">删除</a>
+            <a class="btn btn-danger" (click)="deleteScheme(scheme.version)">删除</a>
           </div>
         </th>
       </tr>
