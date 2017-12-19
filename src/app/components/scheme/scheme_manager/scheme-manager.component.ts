@@ -14,64 +14,13 @@ import {Input} from "@angular/compiler/src/core";
   styleUrls: ['./scheme-manager.component.css']
 })
 
-export class SchemeManagerComponent implements OnInit {
+export class SchemeManagerComponent {
 
 
 
   param: string;
 
-  schemes = [
-    {
-      "project": "SDK",
-      "version": "1.0.0",
-      "CreateTime": "2017-12-12"
-    },
-    {
-      "project": "SDK",
-      "version": "2.0.0",
-      "CreateTime": "2017-12-12"
-    },
-    {
-      "project": "SDK",
-      "version": "3.0.0",
-      "CreateTime": "2017-12-12"
-    },
-    {
-      "project": "SDK",
-      "version": "4.0.0",
-      "CreateTime": "2017-12-12"
-    },
-    {
-      "project": "SDK",
-      "version": "2.0.0",
-      "CreateTime": "2017-12-12"
-    },
-    {
-      "project": "SDK",
-      "version": "3.0.0",
-      "CreateTime": "2017-12-12"
-    },
-    {
-      "project": "SDK",
-      "version": "4.0.0",
-      "CreateTime": "2017-12-12"
-    },
-    {
-      "project": "SDK",
-      "version": "2.0.0",
-      "CreateTime": "2017-12-12"
-    },
-    {
-      "project": "SDK",
-      "version": "3.0.0",
-      "CreateTime": "2017-12-12"
-    },
-    {
-      "project": "SDK",
-      "version": "4.0.0",
-      "CreateTime": "2017-12-12"
-    }
-  ];
+  schemeAll: Array<any>;
 
   singlePage: Array<any>;
 
@@ -91,8 +40,6 @@ export class SchemeManagerComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {}
-
   constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService) {
 
     // 如果同一个页面，使用同样的url，但是参数不同，只有第一次加载的时候，会走constructor(),和ngOnInit()方法，快照版式无法实时的获取新的参数
@@ -106,7 +53,8 @@ export class SchemeManagerComponent implements OnInit {
     schemeService.queryScheme(this.param, '5a0269747ac9d897d0f57b60')
       .then(res => {
         if (res.success) {
-          this.paginationComponent.init(4, res.data);
+          this.schemeAll = res.data;
+          this.paginationComponent.init(4, this.findBySearch());
         }
       })
       .catch(error => {
@@ -139,7 +87,8 @@ export class SchemeManagerComponent implements OnInit {
           if (res.success) {
             self.schemeService.queryScheme(self.param,'5a0269747ac9d897d0f57b60')
               .then(response => {
-                self.paginationComponent.deleteItem(response.data);
+                self.schemeAll = response.data;
+                self.paginationComponent.deleteItem(self.findBySearch());
               })
               .catch(error => {
                 console.log('error => ' + error.toString());
@@ -165,23 +114,28 @@ export class SchemeManagerComponent implements OnInit {
 
 
 
-  // private findBySearch(): any {
-  //   const self = this;
-  //   const searchResult = [];
-  //   if (this.schemeAll !== undefined) {
-  //     if (this.searchVersion !== undefined && this.searchVersion !== null && this.searchVersion !== '') {
-  //       this.schemeAll.forEach(function (scheme) {
-  //         if (scheme.version.indexOf(self.searchVersion) !== -1) {
-  //           searchResult.push(scheme);
-  //         }
-  //       });
-  //     } else {
-  //       return this.schemeAll;
-  //     }
-  //   }
-  //   return searchResult;
-  // }
+  private findBySearch(): any {
+    const self = this;
+    const searchResult = [];
+    if (this.schemeAll !== undefined) {
 
+      if (this.searchVersion !== undefined && this.searchVersion !== null && this.searchVersion !== '') {
+
+        this.schemeAll.forEach(function (scheme) {
+          if (scheme.version.indexOf(self.searchVersion) !== -1) {
+            searchResult.push(scheme);
+          }
+        });
+      } else {
+        return this.schemeAll;
+      }
+    }
+    return searchResult;
+  }
+
+  inputChange() {
+    this.paginationComponent.init(4, this.findBySearch());
+  }
 
 
 
