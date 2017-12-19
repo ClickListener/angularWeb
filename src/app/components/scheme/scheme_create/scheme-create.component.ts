@@ -69,7 +69,8 @@ export class SchemeCreateComponent implements OnInit {
       form.append('beta', this.beta);
     };
 
-    console.log(this.uploader.queue);
+    const self = this;
+
 
     this.uploader.queue[0].onComplete = function (response, status, headers) {
       console.log("response = " + response);
@@ -78,6 +79,7 @@ export class SchemeCreateComponent implements OnInit {
       const res = JSON.parse(response);
 
       if (res.success) {
+        self.router.navigate(['/scheme-main',self.resourceName]);
         swal({
           position: 'bottom-right',
           type: 'success',
@@ -86,7 +88,6 @@ export class SchemeCreateComponent implements OnInit {
           timer: 2000,
           padding: 0
         }).catch(swal.noop);
-        console.log(this.uploader.queue);
       } else {
         swal({
           position: 'bottom-right',
