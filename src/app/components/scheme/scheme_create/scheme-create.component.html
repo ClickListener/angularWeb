@@ -20,7 +20,12 @@
 
     <div>
       <span>上传文件：</span>
-      <input type="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)" name="thumbnail"/>
+      <input type="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)"/>
+    </div>
+
+    <div>
+      <span>上传文件：</span>
+      <input type="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)"/>
     </div>
 
     <button type="submit">Submit</button>

@@ -5,6 +5,8 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FileUploader} from "ng2-file-upload";
 import swal from "sweetalert2";
+import {FileUploaderCustom} from "../../../services/FileUploaderCustom";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'scheme-create',
@@ -17,11 +19,11 @@ export class SchemeCreateComponent implements OnInit {
   resourceName: string;
   description: string;
 
-  version: string;
+  version: string;  // 版本号
 
 
   // fileUploader 初始化
-  uploader: FileUploader = new FileUploader ({
+  uploader: FileUploaderCustom = new FileUploaderCustom ({
     url: "http://localhost:3001/api/app/upload",
     method: "POST",
     itemAlias: "thumbnail"
@@ -49,7 +51,6 @@ export class SchemeCreateComponent implements OnInit {
     console.log(this.uploader.queue[0]);
   }
 
-
   // 上传文件
   uploadFile() {
 
@@ -60,9 +61,9 @@ export class SchemeCreateComponent implements OnInit {
       form.append('description', this.description);
     };
 
-    // 上传文件成功 （通讯成功）
-    this.uploader.queue[0].onSuccess = function (response, status, headers) {
+    console.log(this.uploader.queue);
 
+    this.uploader.queue[0].onComplete = function (response, status, headers) {
       console.log("response = " + response);
       console.log("status = " + status);
 
@@ -77,6 +78,7 @@ export class SchemeCreateComponent implements OnInit {
           timer: 2000,
           padding: 0
         }).catch(swal.noop);
+        console.log(this.uploader.queue);
       } else {
         swal({
           position: 'bottom-right',
@@ -89,10 +91,9 @@ export class SchemeCreateComponent implements OnInit {
       }
     };
 
-    // 上传文件失败 （通讯失败）
     this.uploader.queue[0].onError = function (response, status, headers) {
-        console.log("response = " + response);
-        console.log("status = " + status);
+      console.log("response = " + response);
+      console.log("status = " + status);
 
       swal({
         position: 'bottom-right',
@@ -103,6 +104,9 @@ export class SchemeCreateComponent implements OnInit {
         padding: 0
       }).catch(swal.noop);
     };
-    this.uploader.queue[0].upload(); // 开始上传
+
+    this.uploader.uploadAllFiles();
+
+
   }
 }
