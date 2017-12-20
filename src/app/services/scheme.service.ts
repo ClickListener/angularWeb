@@ -9,7 +9,8 @@ export class SchemeService {
 
   schemeAll: Array<any>;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
 
   /**
@@ -37,7 +38,7 @@ export class SchemeService {
         console.log(res);
         this.schemeAll = res['data'];
         return res;
-    })
+      })
       .catch(error => {
         console.log(error);
         return error;
@@ -51,7 +52,7 @@ export class SchemeService {
    * @param {string} version
    * @returns {Promise<any>}
    */
-  deleteScheme(appName: string, version: string):Promise<any> {
+  deleteScheme(appName: string, version: string): Promise<any> {
 
     const url = 'http://localhost:3001/api/app/delete';
 

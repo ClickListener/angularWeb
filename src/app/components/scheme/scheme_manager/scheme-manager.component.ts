@@ -53,7 +53,7 @@ export class SchemeManagerComponent {
     schemeService.queryScheme(this.param, '5a0269747ac9d897d0f57b60')
       .then(res => {
         if (res.success) {
-          this.schemeAll = res.data;
+          this.schemeAll = res.data.reverse();
           this.paginationComponent.init(4, this.findBySearch());
         }
       })
@@ -83,11 +83,10 @@ export class SchemeManagerComponent {
     }).then(function () {
       self.schemeService.deleteScheme(self.param, version)
         .then(res => {
-          console.log('res = ' + JSON.stringify(res));
           if (res.success) {
             self.schemeService.queryScheme(self.param,'5a0269747ac9d897d0f57b60')
               .then(response => {
-                self.schemeAll = response.data;
+                self.schemeAll = response.data.reverse();
                 self.paginationComponent.deleteItem(self.findBySearch());
               })
               .catch(error => {

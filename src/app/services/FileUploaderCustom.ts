@@ -65,7 +65,7 @@ export class FileUploaderCustom extends FileUploader {
     };
 
     xhr.open("POST", this.options.url, true);
-    xhr.withCredentials = true;
+    // xhr.withCredentials = true;
     if (this.options.headers) {
       for (let _i = 0, _a = this.options.headers; _i < _a.length; _i++) {
         const header = _a[_i];

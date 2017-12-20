@@ -42,7 +42,7 @@
       <tr *ngFor="let scheme of singlePage" [routerLink]="['./scheme-details',scheme._id]">
         <th>{{scheme.resourceName}}</th>
         <th>{{scheme.version}}</th>
-        <th>{{scheme.CreateTime}}</th>
+        <th>{{scheme.createTime | date: 'yyyy-MM-dd hh:mm:ss'}}</th>
         <th>
           <div (click)="stop_Propagation($event)">
             <a class="btn btn-primary">修改</a>
