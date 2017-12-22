@@ -1,1 +1,16 @@
-  <router-outlet></router-outlet>
+
+<nav class="navbar align-content-between" style="height: 60px">
+  <div class="navbar-brand">
+    <a (click)="backClicked()"><i *ngIf="title !== 'manager'" class=" fa fa-arrow-left fa-2x"></i></a>
+    <div *ngIf="title !== 'manager'" class="divider"></div>
+    <div style="display: inline-block ">{{title}}</div>
+  </div>
+
+  <div *ngIf="title === 'detail'">
+    <a><i class="fa fa-pencil fa-2x" style="margin: 0 10px 0 10px"></i></a>
+    <a><i class="fa fa-times-circle fa-2x" style="margin: 0 10px 0 10px"></i></a>
+  </div>
+
+</nav>
+
+<router-outlet></router-outlet>

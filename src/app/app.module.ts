@@ -59,7 +59,7 @@ import {SchemeService} from "./services/scheme.service";
 
   bootstrap: [AppComponent],
 
-  providers: [UserService, LicenseService, DevicesService, DatePipe, SchemeService]
+  providers: [UserService, LicenseService, DevicesService, DatePipe, SchemeService, Location]
 })
 
 export class AppModule {

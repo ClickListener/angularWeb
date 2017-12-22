@@ -52,20 +52,24 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: SchemeManagerComponent
+        component: SchemeManagerComponent,
+        data: { title: 'manager' }
       },
       {
         path: 'scheme-create',
-        component: SchemeCreateComponent
+        component: SchemeCreateComponent,
+        data: { title: 'create' }
       },
 
       {
         path: 'scheme-modify/:schemeID',
-        component: SchemeModifyComponent
+        component: SchemeModifyComponent,
+        data: { title: 'modify' }
       },
       {
         path: 'scheme-details/:schemeID',
-        component: SchemeDetailsComponent
+        component: SchemeDetailsComponent,
+        data: { title: 'detail' }
       }
     ]
   }
