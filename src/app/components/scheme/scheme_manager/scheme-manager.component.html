@@ -45,7 +45,7 @@
         <th>{{scheme.createTime | date: 'yyyy-MM-dd hh:mm:ss'}}</th>
         <th>
           <div (click)="stop_Propagation($event)">
-            <a class="btn btn-primary">修改</a>
+            <a class="btn btn-primary" [routerLink]="['./scheme-modify', scheme._id]">修改</a>
             <a class="btn btn-danger" (click)="deleteScheme(scheme.version)">删除</a>
           </div>
         </th>

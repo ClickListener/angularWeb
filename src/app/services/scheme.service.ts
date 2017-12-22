@@ -75,4 +75,24 @@ export class SchemeService {
       });
   }
 
+
+  deleteFile(body: any): Promise<any> {
+
+    const url = 'http://localhost:3001/api/app/deleteFile'
+
+    return this.http.post(url, body, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      })
+    }).toPromise()
+      .then(res => {
+        console.log(res);
+        return res;
+      })
+      .catch(error => {
+        console.log(error);
+        return error;
+      });
+  }
 }

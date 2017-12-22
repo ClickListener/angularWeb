@@ -60,7 +60,7 @@ const routes: Routes = [
       },
 
       {
-        path: 'scheme-modify',
+        path: 'scheme-modify/:schemeID',
         component: SchemeModifyComponent
       },
       {
