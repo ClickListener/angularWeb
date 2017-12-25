@@ -7,9 +7,31 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 @Injectable()
 export class SchemeService {
 
+
   schemeAll: Array<any>;
 
+  private _schemeID: string;
+
   constructor(private http: HttpClient) {
+  }
+
+  get schemeID(): string {
+    return this._schemeID;
+  }
+
+  set schemeID(value: string) {
+    this._schemeID = value;
+  }
+
+
+  findSchemeById(schemeID: string): any {
+    console.log(this.schemeAll);
+    console.log(this.schemeID === schemeID);
+
+    return this.schemeAll.find(function (scheme, index, arr) {
+      return scheme._id === schemeID;
+    });
+
   }
 
 

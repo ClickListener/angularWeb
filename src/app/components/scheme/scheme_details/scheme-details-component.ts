@@ -16,17 +16,19 @@ declare const jQuery: any;
 
 export class SchemeDetailsComponent {
 
-  version: string;
+
   schemeSelected: any;
 
 
   constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService) {
-    console.log("scheme = " + JSON.stringify(activatedRoute.snapshot.paramMap['params'].schemeID));
-    this.version = activatedRoute.snapshot.paramMap['params'].schemeID;
+
+    const schemeID = activatedRoute.snapshot.paramMap['params'].schemeID;
+    schemeService.schemeID = schemeID;
 
     this.schemeSelected = schemeService.schemeAll.find(function (scheme, index, arr) {
-      return scheme._id === activatedRoute.snapshot.paramMap['params'].schemeID;
+      return scheme._id === schemeID;
     });
+
 
   }
 

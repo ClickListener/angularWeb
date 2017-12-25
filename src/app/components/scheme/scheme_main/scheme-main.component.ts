@@ -5,6 +5,7 @@ import {Component} from "@angular/core";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {SchemeService} from "../../../services/scheme.service";
+import swal from "sweetalert2";
 
 
 
@@ -18,7 +19,7 @@ export class SchemeMainComponent {
 
   title: string;
 
-  scheme: any;
+  schemeID: any;
 
   param: string;
 
@@ -35,8 +36,7 @@ export class SchemeMainComponent {
         while (route.firstChild) {
           route = route.firstChild;
         }
-        console.log(route);
-        console.log(route.snapshot.params.schemeID);
+        this.schemeID = route.snapshot.params.schemeID;
         return route;
       })
       .mergeMap(route => route.data)
@@ -44,13 +44,59 @@ export class SchemeMainComponent {
         this.title = data.title;
       });
 
-
   }
 
 
   // 导航返回
   private backClicked() {
     this._location.back();
+  }
+
+
+  // 当查看scheme详细时，编辑的点击事件
+  private navigationTo():void {
+    this.router.navigate(['/scheme-main/'+ this.title + '/scheme-modify', this.schemeService.schemeID]);
+  }
+
+  // 当查看scheme详细时，删除的点击事件
+  private deleteScheme(): void {
+
+    const scheme = this.schemeService.findSchemeById(this.schemeService.schemeID);
+
+    const self = this;
+    swal({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      type: 'warning',
+      showCancelButton: true,
+      animation: false,
+      customClass: 'animated tada',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then(function () {
+      self.schemeService.deleteScheme(scheme.resourceName, scheme.version)
+        .then(res => {
+          if (res.success) {
+            self.router.navigate(['/scheme-main/', scheme.resourceName]);
+            swal(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            );
+          } else {
+            swal(
+              'Fail!',
+              'Something went wrong!',
+              'error'
+            );
+          }
+        })
+        .catch(error => {
+          console.log('ManagerComponent--error = ' + JSON.stringify(error));
+        });
+    });
+
   }
 
 }
