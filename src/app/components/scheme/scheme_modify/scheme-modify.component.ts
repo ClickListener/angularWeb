@@ -17,8 +17,9 @@ export class SchemeModifyComponent {
 
   constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService) {
 
-    this.selectedScheme = schemeService.schemeAll.find(function (scheme, index, arr) {
-      return scheme._id === activatedRoute.snapshot.paramMap['params'].schemeID;
-    });
+    const schemeID = activatedRoute.snapshot.paramMap['params'].schemeID;
+
+    this.selectedScheme = schemeService.findSchemeById(schemeID)
+
   }
 }

@@ -25,9 +25,7 @@ export class SchemeDetailsComponent {
     const schemeID = activatedRoute.snapshot.paramMap['params'].schemeID;
     schemeService.schemeID = schemeID;
 
-    this.schemeSelected = schemeService.schemeAll.find(function (scheme, index, arr) {
-      return scheme._id === schemeID;
-    });
+    this.schemeSelected = schemeService.findSchemeById(schemeID);
 
 
   }
