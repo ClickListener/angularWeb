@@ -25,8 +25,6 @@ export class SchemeService {
 
 
   findSchemeById(schemeID: string): any {
-    console.log(this.schemeAll);
-    console.log(this.schemeID === schemeID);
 
     return this.schemeAll.find(function (scheme, index, arr) {
       return scheme._id === schemeID;
@@ -100,7 +98,7 @@ export class SchemeService {
 
   deleteFile(body: any): Promise<any> {
 
-    const url = 'http://localhost:3001/api/app/deleteFile'
+    const url = 'http://localhost:3001/api/app/deleteFile';
 
     return this.http.post(url, body, {
       headers: new HttpHeaders({

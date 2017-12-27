@@ -1,19 +1,41 @@
-
+<!--<h1>scheme-details</h1>-->
 
 <form>
+  <fieldset>
+    <legend>Base Info</legend>
+    <table class="table table-borderLess ">
+      <tbody>
+      <tr>
+        <th>ResourceName</th>
+        <td>{{schemeSelected.resourceName}}</td>
+      </tr>
+      <tr>
+        <th>Version</th>
+        <td>{{schemeSelected.version}}</td>
+      </tr>
+      <tr>
+        <th>CreateTime</th>
+        <td>{{schemeSelected.createTime | date:"yyyy-MM-dd"}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </fieldset>
 
+  <fieldset>
+    <legend>Description</legend>
+    <p>{{schemeSelected.description}}</p>
+  </fieldset>
+
+  <fieldset>
+    <legend>Files</legend>
+    <ul>
+      <li *ngFor="let url of schemeSelected.urls" [attr.id]="url.fileName.replace('.', '_')">
+        <a href="http://localhost:3001/api/app/download?userId=5a0269747ac9d897d0f57b60&description={{url.description}}&fileName={{url.fileName}}">{{url.fileName}}</a>
+        <a (click)="deleteFile(url.fileName, url.description)"><i class="fa fa-times-circle" ></i></a>
+      </li>
+    </ul>
+  </fieldset>
 </form>
-<h1>scheme-details</h1>
-<h1>resourceName: {{schemeSelected.resourceName}}</h1>
 
-<h1>Version: {{schemeSelected.version}}</h1>
 
-<h1>description: {{schemeSelected.description}}</h1>
-
-<h1>createTime: {{schemeSelected.createTime | date:"yyyy-MM-dd"}}</h1>
-
-<div *ngFor="let url of schemeSelected.urls" [attr.id]="url.fileName.replace('.', '_')">
-  <a href="http://localhost:3001/api/app/download?userId=5a0269747ac9d897d0f57b60&description={{url.description}}&fileName={{url.fileName}}">{{url.fileName}}</a>
-  <i class="fa fa-times-circle fa-2x" (click)="deleteFile(url.fileName, url.description)"></i>
-</div>
 
