@@ -1,48 +1,57 @@
-<h1>scheme_modify</h1>
-
-<h1>resourceName: {{selectedScheme.resourceName}}</h1>
-
-<h1>Version: {{selectedScheme.version}}</h1>
-
-<h1>description: {{selectedScheme.description}}</h1>
-
-<h1>createTime: {{selectedScheme.createTime | date:"yyyy-MM-dd"}}</h1>
-
-<h1 *ngFor="let url of selectedScheme.urls">
-  <h1>{{url.description}}/{{url.fileName}}</h1>
-  <h1><a href="http://localhost:3001{{url.description}}/{{url.fileName}}">{{url.fileName}}</a></h1>
-</h1>
 
 <div class="card top-marge">
   <div class="card-body">
 
     <form novalidate="novalidate" (submit)="uploadFile()" >
 
-      <div class="md-form">
-        <input name="version" id="version" required class="form-control" type="text" [(ngModel)]="selectedScheme.version">
-        <label for="version">Version</label>
-      </div>
 
-      <div class="md-form">
-        <input name="description" id="description" required class="form-control" type="text" [(ngModel)]="selectedScheme.description">
-        <label for="description">Description</label>
-      </div>
+      <table>
+        <tbody>
+        <tr>
+          <th class="w-110px" >ResourceName</th>
+          <td>{{selectedScheme.resourceName}}</td>
+        </tr>
+        <tr>
+          <th class="w-110px">Version</th>
+          <td>{{selectedScheme.version}}</td>
+        </tr>
+        <tr>
+          <th class="w-110px">Description</th>
+          <td>
+            <div>
+              <textarea name="descriptionArea" cols ="100" style="width: 100%; height: 100px;" [(ngModel)]="selectedScheme.description">
 
-      <div class="md-form">
-        <span>Beta:</span>
-        <input type="radio" value="true" name="beta">true
-        <input type="radio" value="false" name="beta" checked>false
-      </div>
+              </textarea>
+              <!--<p>{{selectedScheme.description}}</p>-->
+            </div>
+          </td>
+        </tr>
 
-      <div>
-        <span>上传文件：</span>
-        <input type="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)"/>
-      </div>
+        <tr>
+          <th class="w-110px">Beta</th>
+          <td>
+            <input type="radio" value="true" name="beta">true
+            <input type="radio" value="false" name="beta" checked>false
+          </td>
+        </tr>
 
-      <div>
-        <span>上传文件：</span>
-        <input type="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)"/>
-      </div>
+        <tr>
+          <th class="w-110px">Upload File</th>
+          <td id="inputView">
+            <div>
+              <input type="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)"/>
+            </div>
+            <div>
+              <input type="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)"/>
+            </div>
+            <div>
+              <input type="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)"/>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
 
       <button class="btn btn-primary" type="submit">Submit</button>
     </form>
@@ -50,3 +59,4 @@
   </div>
 
 </div>
+

@@ -29,7 +29,7 @@ export class FileUploaderCustom extends FileUploader {
       if (typeof item._file.size !== 'number') {
         throw new TypeError('The file specified is no longer valid');
       }
-      sendable.append("thumbnail", item._file, item._file.name);
+      sendable.append(item.alias, item._file, item._file.name);
     }
 
     if (this.options.additionalParameter !== undefined) {
