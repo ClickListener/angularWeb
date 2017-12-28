@@ -7,7 +7,7 @@ import {User} from "../../model/User";
 import {UserService} from "../../services/user.service";
 import {Router} from "@angular/router";
 import {isUndefined} from "util";
-declare const $: any;
+declare const jQuery: any;
 @Component({
     selector: 'my-app',
 
@@ -25,9 +25,9 @@ export class AppComponent implements OnInit {
 
     ngOnInit(): void {
 
-      $("#menu-toggle, .mask").click(function(e) {
+      jQuery("#menu-toggle, .mask").click(function(e) {
         e.preventDefault();
-        $(".wrapper").toggleClass("toggled");
+        jQuery(".wrapper").toggleClass("toggled");
       });
 
 
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
       this.clickActionForSideNav();
       // 当屏幕变化的时候
       const self = this;
-      $(window).resize(function () {
+      jQuery(window).resize(function () {
         self.clickActionForSideNav();
       });
 
@@ -43,20 +43,20 @@ export class AppComponent implements OnInit {
 
     // 当屏幕小于992时，点击侧边栏选项，侧边栏自动隐藏
     private clickActionForSideNav(): void {
-      if ($(window).width() < 992) {
+      if (jQuery(window).width() < 992) {
         // 当页面大小变化的时候，会给标签绑定多次点击事件。
-        $("li>ul>li").unbind('click').click(function (e) {
+        jQuery("li>ul>li").unbind('click').click(function (e) {
           e.preventDefault();
-          $(".wrapper").toggleClass("toggled");
+          jQuery(".wrapper").toggleClass("toggled");
         });
 
-        $("li.class-li").unbind('click').click(function (e) {
+        jQuery("li.class-li").unbind('click').click(function (e) {
           e.preventDefault();
-          $(".wrapper").toggleClass("toggled");
+          jQuery(".wrapper").toggleClass("toggled");
         });
       } else {
-        $("li>ul>li").unbind('click');
-        $("li.class-li").unbind('click');
+        jQuery("li>ul>li").unbind('click');
+        jQuery("li.class-li").unbind('click');
       }
     }
 
