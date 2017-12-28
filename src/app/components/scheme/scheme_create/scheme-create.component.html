@@ -1,38 +1,40 @@
+
 <div class="card top-marge">
   <div class="card-body">
 
-      <form novalidate="novalidate" (submit)="uploadFile()" >
+    <form id="createForm" novalidate="novalidate" enctype="multipart/form-data">
 
-        <div class="md-form">
-          <input name="version" id="version" required class="form-control" type="text" [(ngModel)]="version">
-          <label for="version">Version</label>
-        </div>
+      <input name="resourceName" required class="form-control" type="text" [(ngModel)]="resourceName" hidden>
+      <div class="md-form">
+        <input name="version" id="version" required class="form-control" type="text" [(ngModel)]="version">
+        <label for="version">Version</label>
+      </div>
 
-        <div class="md-form">
-          <input name="description" id="description" required class="form-control" type="text" [(ngModel)]="description">
-          <label for="description">Description</label>
-        </div>
+      <div class="md-form">
+        <input name="description" id="description" required class="form-control" type="text" [(ngModel)]="description">
+        <label for="description">Description</label>
+      </div>
 
-        <div class="md-form">
-          <span>Beta:</span>
-          <input type="radio" value="true" name="beta">true
-          <input type="radio" value="false" name="beta" checked>false
-        </div>
+      <div class="md-form">
+        <span>Beta:</span>
+        <input type="radio" value="true" name="beta">true
+        <input type="radio" value="false" name="beta" checked>false
+      </div>
 
+
+      <div id="inputView">
         <div>
-          <span>上传文件：</span>
-          <input type="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)"/>
+          <input type="file" name="thumbnail"/>
+          <a class="add"><i class="fa fa-plus"></i></a>
+          <a class="delete"><i class="fa fa-minus"></i></a>
         </div>
+      </div>
 
-        <div>
-          <span>上传文件：</span>
-          <input type="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)"/>
-        </div>
 
-        <button class="btn btn-primary" type="submit">Submit</button>
-      </form>
+      <button class="btn btn-primary" (click)="submitForm()">Submit</button>
+    </form>
 
-    </div>
+  </div>
 
 </div>
 

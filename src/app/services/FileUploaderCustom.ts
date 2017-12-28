@@ -46,7 +46,7 @@ export class FileUploaderCustom extends FileUploader {
       for (const item of this.queue) {
         this[method](item, response, xhr.status, headers);
       }
-      this._onCompleteItem(this.queue[0], response, xhr.status, headers);
+      // this._onCompleteItem(this.queue[0], response, xhr.status, headers);
     };
 
     xhr.onerror = () => {
@@ -57,7 +57,7 @@ export class FileUploaderCustom extends FileUploader {
       for (const item of this.queue) {
         this[method](item, response, xhr.status, headers);
       }
-      this._onErrorItem(this.queue[0], response, xhr.status, headers);
+      // this._onErrorItem(this.queue[0], response, xhr.status, headers);
     };
 
     xhr.onabort = () => {
