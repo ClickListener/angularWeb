@@ -69,6 +69,16 @@ export class SchemeCreateComponent {
   }
 
   private beforeSubmit(formData) {
+
+    const resourceName = {
+      name: "resourceName",
+      value: this.resourceName,
+      type: "text"
+    };
+
+    formData.splice(0, 0, resourceName);
+    console.log(formData);
+
     // 可以校验输入参数
   }
 

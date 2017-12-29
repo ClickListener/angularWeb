@@ -64,6 +64,28 @@ export class SchemeModifyComponent {
   }
 
   private beforeSubmit(formData) {
+
+    const extraData = [
+      {
+        name: "_id",
+        value: this.selectedScheme._id,
+        type: "text"
+      },
+      {
+        name: "resourceName",
+        value: this.selectedScheme.resourceName,
+        type: "text"
+      },
+      {
+        name: "version",
+        value: this.selectedScheme.version,
+        type: "text"
+      }
+    ];
+
+    for (let i = 0; i < extraData.length; i++) {
+      formData.splice(i, 0, extraData[i]);
+    }
     console.log(formData);
     // 可以校验输入参数
     return true;
