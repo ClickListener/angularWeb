@@ -3,26 +3,33 @@
 }
 
 .custom-nav {
-  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .custom-nav .menu {
   padding-left: 20px;
-  padding-top: 10px;
   display: inline-block;
 }
 
-.custom-nav .user {
+.custom-nav .menu-logo {
+  margin-left: 40px;
+  display: inline-block;
+  outline: none;
+}
+
+.user {
+  display: inline-block;
   padding-right: 20px;
   float: right;
 }
 
-.custom-nav .user a {
+.user a {
   color: #0089ec;
   padding: 10px;
 }
 
-.custom-nav .user a.active {
+.user a.active {
   color: #ee2200;
 }
 
@@ -99,23 +106,6 @@
   background: rgba(72,198,255,.8);
 }
 
-
-/*边栏的头部*/
-.slide-header {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  height: 59px;
-}
-.slide-header a {
-  padding-right: 32%;
-  text-decoration: none;
-
-}
-
-.slide-header i {
-  padding-right: 3%;
-}
 
 /*分割线*/
 .divider {
