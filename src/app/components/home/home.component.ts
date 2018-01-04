@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit, DoCheck {
         this.user = this.userService.user;
     }
     constructor(private userService: UserService, private router: Router) {
+      jQuery
     }
 
 

@@ -1,38 +1,41 @@
+
+
+<nav class="navbar white fixed-top">
+
+  <div class="custom-nav">
+
+    <div class="menu">
+      <a><i class="fa fa-reorder" id="menu-toggle"></i></a>
+    </div>
+
+    <div class="menu-logo waves-effect" routerLink="/">
+      <a><img src="../../../assets/images/ihealth-logo.png"></a>
+    </div>
+    <div style="align-self: flex-end; font-size: 20px; margin-left: 5px">
+      <a>Developer</a>
+    </div>
+
+  </div>
+
+  <div class="user">
+
+    <div *ngIf="!user">
+      <a class="waves-effect" routerLink="/sign-up" routerLinkActive="active">Sign Up</a>
+      <i class="vertical-divider"></i>
+      <a class="waves-effect" routerLink="/sign-in" routerLinkActive="active">Sign In</a>
+    </div>
+
+    <div *ngIf="user">
+      <a class="waves-effect" (click)="signOut()" routerLinkActive="active">Sign out</a>
+    </div>
+
+  </div>
+
+</nav>
 <!--/.Navbar-->
 <div class="wrapper toggled">
 
-  <nav class="navbar">
-
-    <div class="custom-nav">
-
-
-      <div class="menu">
-        <a><i class="fa fa-reorder fa-2x" id="menu-toggle"></i></a>
-      </div>
-
-      <div class="menu-logo waves-effect" routerLink="/">
-        <a><img src="../../../assets/images/ihealth-logo.png"></a>
-      </div>
-
-    </div>
-
-    <div class="user">
-
-      <div *ngIf="!user">
-        <a class="waves-effect" routerLink="/sign-up" routerLinkActive="active">Sign Up</a>
-        <a class="waves-effect" routerLink="/sign-in" routerLinkActive="active">Sign In</a>
-      </div>
-
-      <div *ngIf="user">
-        <a class="waves-effect" (click)="signOut()" routerLinkActive="active">Sign out</a>
-      </div>
-
-    </div>
-
-  </nav>
-
   <div class="wrapper-container">
-
 
     <router-outlet></router-outlet>
 
@@ -73,6 +76,8 @@
       <li>
         <div class="divider"></div>
       </li>
+
+
 
     </ul>
 
