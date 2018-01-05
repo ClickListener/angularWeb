@@ -1,16 +1,36 @@
+
+.card-width {
+  width: 40rem;
+}
+
+
+/*当屏幕小于992时，显示显示样式*/
+@media screen and (max-width: 992px) {
+  .card-width {
+    width: 30rem;
+  }
+}
+
+
+@media screen and (max-width: 600px){
+  .card-width {
+    width: 22rem;
+  }
+}
+.header-img {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
 .header-state {
     margin-top: 20px;
     margin-bottom: 20px;
-    font-size: 22px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: bolder;
+    font-size: 18px;
 }
 
 
 
 .form-signIn {
-    max-width: 400px;
     padding: 15px;
     margin: 0 auto;
 }

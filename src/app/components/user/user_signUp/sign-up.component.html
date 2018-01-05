@@ -1,42 +1,63 @@
-<div class="container">
+<div class="d-flex justify-content-center" style="margin-top: 60px">
+  <div class="card card-width">
+    <div class="card-body">
 
-    <div class="row">
-        <div class="offset-md-3 col-md-6">
-
-            <form class="form-signIn " novalidate="novalidate" accept-charset="UTF-8" (submit)="signUp(email.value, password.value)">
-
-
-                <h2 class="text-center header-state">Sign up</h2>
-
-                <div class="md-form">
-                    <input required="required" class="form-control" id="email" type="text" #email>
-                    <label for="email">Email</label>
-
-                </div>
-
-                <div class="md-form">
-                    <input required="required" class="form-control" id="password" type="password" #password>
-                    <label for="password">Password</label>
-
-                </div>
-
-                <div class="md-form">
-                    <input required class="form-control" id="confirmPassword" type="password">
-                    <label for="confirmPassword">Confirm PassWord</label>
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+      <div class="d-flex justify-content-center header-img">
+        <img src="../../../assets/images/ihealth-logo.png">
+      </div>
 
 
-            </form>
+      <p class="text-center header-state">Sign in to your Developer account</p>
 
-            <div class="text-center">
+      <form class="simple_form form-signIn" novalidate="novalidate" id="new_user"
+            accept-charset="UTF-8" (submit)="signUp(email.value, password.value)">
 
-                <a routerLink="/sign-in">Sign In</a>
+        <div class="error"></div>
 
-            </div>
+        <div class="md-form">
+          <input required="required" class="form-control" id="name" type="text" #name>
+          <label for="name">Name</label>
 
         </div>
-    </div>
+        <div class="md-form">
+          <input required="required" class="form-control" id="email" type="text" #email>
+          <label for="email">Email address</label>
 
+        </div>
+
+        <div class="md-form">
+          <input required="required" class="form-control" id="password" type="password" #password>
+          <label for="password">Password</label>
+
+        </div>
+
+        <div class="md-form">
+          <input required class="form-control" id="confirmPassword" type="password" #confirmPassword>
+          <label for="confirmPassword">Confirm PassWord</label>
+        </div>
+
+        <div style="font-size: 15px">
+          <input type="checkbox">
+          <p style="display: inline">By creating an account your agree to our </p>
+          <a href="#">Terms & polices</a>
+        </div>
+
+        <div style="margin-top: 20px">
+          <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+        </div>
+
+
+      </form>
+
+
+      <div class="text-center" style="margin-bottom: 30px; margin-top: 10px; font-size: 15px">
+
+        <a>Already have an account?</a>
+        <a routerLink="/sign-in">Sign in</a>
+
+      </div>
+
+
+    </div>
+  </div>
 </div>

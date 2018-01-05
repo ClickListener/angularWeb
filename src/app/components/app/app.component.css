@@ -147,6 +147,7 @@
   right: 0;
   left: 0;
   position: fixed;
+  overflow-y: auto;
 }
 
 .wrapper.toggled .wrapper-container {

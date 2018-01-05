@@ -1,39 +1,60 @@
-<div class="container">
-    <div class="row">
-        <div class="offset-md-3 col-md-6">
-            <form class="simple_form form-signIn" novalidate="novalidate" id="new_user"
-                  accept-charset="UTF-8" (submit)="signIn(email.value, password.value)" >
+
+<div class="d-flex justify-content-center" style="margin-top: 60px">
+  <div class="card card-width" >
+    <div class="card-body">
+
+      <div class="d-flex justify-content-center header-img">
+        <img src="../../../assets/images/ihealth-logo.png">
+      </div>
 
 
-                <h2 class="text-center header-state">Sign in</h2>
+      <p class="text-center header-state">Sign in to your Developer account</p>
 
+      <form class="simple_form form-signIn" novalidate="novalidate" id="new_user"
+            accept-charset="UTF-8" (submit)="signIn(email.value, password.value)" >
 
-                <div class="error"></div>
-                <div class="md-form">
-                    <input required="required" class="form-control" id="email" type="text" #email>
-                    <label for="email">Email</label>
+        <div class="error"></div>
+        <div class="md-form">
+          <input required="required" class="form-control" id="email" type="text" #email>
+          <label for="email">Email</label>
 
-                </div>
-
-                <div class="md-form">
-                    <input required="required" class="form-control" id="password" type="password" #password>
-                    <label for="password">Password</label>
-
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-block" >Sign In</button>
-
-            </form>
-            <div class="text-center">
-                <br>
-
-                <a routerLink="/sign-up">Sign up</a><br>
-
-                <a>Forgot your password?</a><br>
-
-
-            </div>
         </div>
+
+        <div class="md-form">
+          <input required="required" class="form-control" id="password" type="password" #password>
+          <label for="password">Password</label>
+
+        </div>
+
+        <div class="d-flex justify-content-between">
+
+          <div>
+            <input type="checkbox">
+            <p style="display: inline">Remember me</p>
+          </div>
+
+          <p class="font-small blue-text">Forgot <a href="#" class="blue-text ml-1"> Password?</a></p>
+        </div>
+
+        <div style="margin-top: 20px">
+          <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+        </div>
+
+      </form>
+
+
+      <div class="text-center" style="margin-bottom: 70px; margin-top: 10px; font-size: 15px">
+
+        <a>Don't have an account?</a>
+        <a routerLink="/sign-up">Sign up</a>
+
+      </div>
+
+
+
+
     </div>
+  </div>
 </div>
+
 
