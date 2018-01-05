@@ -49,17 +49,19 @@ export class SchemeManagerComponent {
     // 官方建议使用paramMap 替代 params
     activatedRoute.paramMap.subscribe(paramMap => {
       this.param = paramMap['params'].param;
+
+      schemeService.queryScheme(this.param, '5a0269747ac9d897d0f57b60')
+        .then(res => {
+          if (res.success) {
+            this.schemeAll = res.data.reverse();
+            this.paginationComponent.init(4, this.findBySearch());
+          }
+        })
+        .catch(error => {
+          console.log('error = ' + error.toString());
+        });
     });
-    schemeService.queryScheme(this.param, '5a0269747ac9d897d0f57b60')
-      .then(res => {
-        if (res.success) {
-          this.schemeAll = res.data.reverse();
-          this.paginationComponent.init(4, this.findBySearch());
-        }
-      })
-      .catch(error => {
-        console.log('error = ' + error.toString());
-      });
+
 
   }
 

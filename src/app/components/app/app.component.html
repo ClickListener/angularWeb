@@ -1,6 +1,6 @@
 
 
-<nav class="navbar white fixed-top">
+<nav class="navbar white fixed-top" style="height: 62px">
 
   <div class="custom-nav">
 
@@ -20,13 +20,19 @@
   <div class="user">
 
     <div *ngIf="!user">
-      <a class="waves-effect" routerLink="/sign-up" routerLinkActive="active">Sign Up</a>
-      <i class="vertical-divider"></i>
-      <a class="waves-effect" routerLink="/sign-in" routerLinkActive="active">Sign In</a>
+      <a class="waves-effect" routerLink="/sign-up" routerLinkActive="active">
+        <img src="../../../assets/images/notice.png">
+      </a>
+      <a class="waves-effect" routerLink="/sign-in" routerLinkActive="active">
+        <img src="../../../assets/images/login.png">
+        <a style="color:#333333">Sign in</a>
+      </a>
     </div>
 
     <div *ngIf="user">
-      <a class="waves-effect" (click)="signOut()" routerLinkActive="active">Sign out</a>
+      <a class="waves-effect" (click)="signOut()" routerLinkActive="active">
+        <img src="../../../assets/images/user.png">
+      </a>
     </div>
 
   </div>
@@ -49,15 +55,20 @@
       <li class="class-li">
         <a data-toggle="collapse" data-parent="#accordionId"
            aria-expanded="false" data-target="#collapseTwo" class="collapsed">
-          <b>Manager admin</b>
+          <b>SDK</b>
           <i class="fa fa-angle-down rotate-icon fa-position"></i>
         </a>
-        <ul id="collapseTwo" class="collapse">
-          <li><a routerLinkActive="active">Admin</a></li>
-          <li><a routerLinkActive="active">Main developer</a></li>
-          <li><a routerLinkActive="active">Developer</a></li>
+        <ul id="collapseTwo" class="collapse show">
+          <li><a routerLinkActive="active">Native SDK</a></li>
+          <li><a routerLinkActive="active">RN SDK</a></li>
+          <li><a routerLinkActive="active">Library SDK</a></li>
+          <li><a routerLinkActive="active">Layer App</a></li>
         </ul>
       </li>
+      <li>
+        <div class="divider"></div>
+      </li>
+
       <li>
         <a class="collapsed" data-toggle="collapse" data-parent="#accordionId"
            aria-expanded="false" data-target="#collapseOne">
@@ -71,8 +82,7 @@
           <li><a routerLinkActive="active" routerLink='/scheme-main/Library'>Library scheme</a></li>
         </ul>
       </li>
-      <li class="class-li"><a routerLink="/sign-up" routerLinkActive="active">Subheader</a></li>
-      <li class="class-li"><a routerLink="/sign-in" routerLinkActive="active">Third Link With Waves</a></li>
+
       <li>
         <div class="divider"></div>
       </li>
