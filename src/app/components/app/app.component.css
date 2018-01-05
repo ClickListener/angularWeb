@@ -61,13 +61,14 @@
 .slide-out > ul {
   list-style: none;
   padding: 0;
+  margin-top: 16px;
 }
 
 /*边栏内容样式 li*/
 .slide-out li {
   display: list-item;
   padding-bottom: 5px;
-  line-height: 40px;
+  line-height: 34px;
   border: 0;
   outline: none;
 }
@@ -137,7 +138,7 @@
 
 .wrapper {
   position: fixed;
-  margin-top: 62px;
+  margin-top: 63px;
 }
 
 .wrapper-container {
