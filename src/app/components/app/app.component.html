@@ -30,6 +30,9 @@
     </div>
 
     <div *ngIf="user">
+      <a class="waves-effect" routerLink="/" routerLinkActive="active">
+        <img src="../../../assets/images/notice.png">
+      </a>
       <a class="waves-effect" (click)="signOut()" routerLinkActive="active">
         <img src="../../../assets/images/user.png">
       </a>
