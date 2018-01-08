@@ -14,6 +14,8 @@ import {SchemeManagerComponent} from "./components/scheme/scheme_manager/scheme-
 import {SchemeModifyComponent} from "./components/scheme/scheme_modify/scheme-modify.component";
 import {SchemeDetailsComponent} from "./components/scheme/scheme_details/scheme-details-component";
 import {SchemeMainComponent} from "./components/scheme/scheme_main/scheme-main.component";
+import {DevelopmentPrimaryComponent} from "./components/development/development_primary/development_primary";
+import {DevelopmentApplyMasterComponent} from "./components/development/development_apply_master/development_apply_master";
 
 /**
  * 路由模块
@@ -72,6 +74,14 @@ const routes: Routes = [
         data: { title: 'detail' }
       }
     ]
+  },
+  {
+    path: 'development-primary',
+    component: DevelopmentPrimaryComponent
+  },
+  {
+    path: 'development-apply-master',
+    component: DevelopmentApplyMasterComponent
   }
 
 

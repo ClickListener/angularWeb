@@ -39,6 +39,13 @@ export class AppComponent implements OnInit {
         self.clickActionForSideNav();
       });
 
+
+      // jQuery('#development_primary').attr('data-target', '#development_collapse');
+      // jQuery('#development_primary').removeAttr('data-target', '#development_collapse');
+
+
+      console.log(jQuery('#development_primary').data('target'));
+
     }
 
     // 当屏幕小于992时，点击侧边栏选项，侧边栏自动隐藏

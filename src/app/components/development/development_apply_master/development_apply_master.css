@@ -1,0 +1,89 @@
+
+/*输入块 样式*/
+.input-block {
+  margin-top: 15px;
+  margin-left: 10%;
+}
+
+.input-block label {
+  display: block;
+}
+
+.input-block input {
+  border: 1px solid #bbbbbb;
+  width: 70%;
+  padding: 0px;
+}
+
+.input-block input:focus {
+  border: 1px solid #007afa;
+  box-shadow: none;
+}
+
+
+.input-block textarea {
+  border: 1px solid #bbbbbb;
+  width: 70%;
+  height: 10rem;
+  padding: 0px;
+}
+
+.input-block textarea:focus {
+  border: 1px solid #007afa;
+  outline: none;
+}
+
+
+/*business license*/
+.license-block {
+  margin-top: 15px;
+  margin-left: 10%;
+}
+
+.square-big {
+  border: 1px solid #bbbbbb;
+  width: 90px;
+  height: 90px;
+}
+
+.square-small {
+  position: absolute;
+  border: 1px solid #bbbbbb;
+  width: 80px;
+  height: 80px;
+  margin-top: 4px;
+  margin-left: 4px;
+}
+
+.row-line {
+  position: absolute;
+  height: 50px;
+  width: 2px;
+  top: 15px;
+  left: 39px;
+  background: #333;
+
+}
+
+.col-line {
+  position: absolute;
+  width: 50px;
+  height: 2px;
+  left: 15px;
+  top: 39px;
+  background: #333;
+}
+
+/*提交按钮块 样式*/
+.submit-block {
+  display: flex;
+  justify-content: center;
+}
+
+.submit-block a {
+  margin-top: 5%;
+  text-transform: none;
+}
+
+
+

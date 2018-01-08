@@ -26,6 +26,8 @@ import {PaginationComponent} from "./components/tools/pagination/pagination.comp
 import {SchemeMainComponent} from "./components/scheme/scheme_main/scheme-main.component";
 import {FileUploadModule} from "ng2-file-upload";
 import {SchemeService} from "./services/scheme.service";
+import {DevelopmentPrimaryComponent} from "./components/development/development_primary/development_primary";
+import {DevelopmentApplyMasterComponent} from "./components/development/development_apply_master/development_apply_master";
 
 @NgModule({
 
@@ -54,7 +56,10 @@ import {SchemeService} from "./services/scheme.service";
     SchemeModifyComponent,
     SchemeDetailsComponent,
 
-    PaginationComponent
+    PaginationComponent,
+
+    DevelopmentPrimaryComponent,
+    DevelopmentApplyMasterComponent
   ],
 
   bootstrap: [AppComponent],
