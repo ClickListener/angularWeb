@@ -16,6 +16,9 @@ import {SchemeDetailsComponent} from "./components/scheme/scheme_details/scheme-
 import {SchemeMainComponent} from "./components/scheme/scheme_main/scheme-main.component";
 import {DevelopmentPrimaryComponent} from "./components/development/development_primary/development_primary";
 import {DevelopmentApplyMasterComponent} from "./components/development/development_apply_master/development_apply_master";
+import {DevelopmentMainComponent} from "./components/development/development_main/development_main";
+import {DevelopmentAppManagerComponent} from "./components/development/development_app_manager/development_app_manager";
+import {DevelopmentGroupComponent} from "./components/development/development_group/development_group";
 
 /**
  * 路由模块
@@ -82,6 +85,27 @@ const routes: Routes = [
   {
     path: 'development-apply-master',
     component: DevelopmentApplyMasterComponent
+  },
+  {
+    path: 'development-main',
+    component: DevelopmentMainComponent,
+
+    children: [
+      {
+        path: '',
+        redirectTo: 'development-app-manager',
+        pathMatch: 'full'
+      },
+
+      {
+        path: 'development-app-manager',
+        component: DevelopmentAppManagerComponent,
+      },
+      {
+        path: 'development-group',
+        component: DevelopmentGroupComponent
+      }
+    ]
   }
 
 

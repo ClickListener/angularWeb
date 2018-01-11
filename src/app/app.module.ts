@@ -28,6 +28,9 @@ import {FileUploadModule} from "ng2-file-upload";
 import {SchemeService} from "./services/scheme.service";
 import {DevelopmentPrimaryComponent} from "./components/development/development_primary/development_primary";
 import {DevelopmentApplyMasterComponent} from "./components/development/development_apply_master/development_apply_master";
+import {DevelopmentMainComponent} from "./components/development/development_main/development_main";
+import {DevelopmentAppManagerComponent} from "./components/development/development_app_manager/development_app_manager";
+import {DevelopmentGroupComponent} from "./components/development/development_group/development_group";
 
 @NgModule({
 
@@ -59,7 +62,10 @@ import {DevelopmentApplyMasterComponent} from "./components/development/developm
     PaginationComponent,
 
     DevelopmentPrimaryComponent,
-    DevelopmentApplyMasterComponent
+    DevelopmentApplyMasterComponent,
+    DevelopmentMainComponent,
+    DevelopmentAppManagerComponent,
+    DevelopmentGroupComponent
   ],
 
   bootstrap: [AppComponent],

@@ -39,6 +39,9 @@ export class AppComponent implements OnInit {
         self.clickActionForSideNav();
       });
 
+      if (!this.user) {
+        jQuery('#development_primary').attr('data-target', '#development_collapse');
+      }
 
       // jQuery('#development_primary').attr('data-target', '#development_collapse');
       // jQuery('#development_primary').removeAttr('data-target', '#development_collapse');
