@@ -1,0 +1,32 @@
+
+
+.title {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+
+}
+
+
+.table {
+  border: 1px solid #bbbbbb;
+  margin-top: 1rem;
+}
+
+.table thead {
+  text-align: center;
+}
+
+
+/*Add members style*/
+
+.add-member {
+  overflow: hidden;
+}
+
+.add-member a {
+  text-transform: none;
+  margin-right: 0;
+  float: right;
+}
+
