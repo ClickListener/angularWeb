@@ -1,0 +1,49 @@
+
+/*reg app style*/
+
+.reg-app {
+  overflow: hidden;
+}
+
+.reg-app a {
+  text-transform: none;
+  margin-right: 0;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  float: right;
+  border-radius: 4px;
+}
+
+
+.table-custom {
+  border: 1px solid #e9ecef;
+  margin-top: 1rem;
+}
+
+.table-custom>thead {
+  text-align: center;
+  background: #f2f2f2;
+}
+
+.table-custom tbody {
+  text-align: center;
+}
+
+.device-detail {
+  position: absolute;
+  z-index: 100;
+  left: -10rem;
+  width: 30rem;
+}
+
+.table-device {
+  border: 1px solid #e9ecef;
+}
+
+.table-device thead {
+  text-align: center;
+}
+
+.table-device tbody {
+  text-align: center;
+}
