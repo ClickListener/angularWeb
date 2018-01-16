@@ -54,7 +54,7 @@ export class ManagerComponent implements OnInit {
 
   ngOnInit() {
 
-    this.licenseService.getAllLicense('5a0269747ac9d897d0f57b60')
+    this.licenseService.getAllLicense('5a0269747ac9d897d0f57b60', '006bc61e386f926e7dd86f16b31f799a')
       .then(licenses => {
           this.paginationComponent.init(5, licenses);
       })
@@ -68,7 +68,7 @@ export class ManagerComponent implements OnInit {
 
   // 下载License
   downloadLicense(licenseId: string): void {
-    this.licenseService.downloadLicense(licenseId)
+    this.licenseService.downloadLicense(licenseId, '006bc61e386f926e7dd86f16b31f799a')
       .then(res => {
         console.log('res = ' + res);
         if (res.success) {
@@ -121,7 +121,7 @@ export class ManagerComponent implements OnInit {
         .then(res => {
           console.log('res = ' + JSON.stringify(res));
           if (res.success) {
-            self.licenseService.getAllLicense('5a0269747ac9d897d0f57b60')
+            self.licenseService.getAllLicense('5a0269747ac9d897d0f57b60', '006bc61e386f926e7dd86f16b31f799a')
               .then(licenses => {
 
                 self.paginationComponent.deleteItem(licenses);

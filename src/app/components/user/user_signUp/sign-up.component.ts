@@ -14,15 +14,22 @@ import {Router} from '@angular/router'
 
 export class SignUpComponent {
 
-    constructor(private userService : UserService, private router: Router) {}
+    constructor(private userService: UserService, private router: Router) {}
 
-    signUp(email: string, password: string) {
+    signUp(name:string, email: string, password: string, confirmPassword: string) {
         console.log("email = " + email + "password = " + password);
 
-        this.userService.signUp({"email": email, "password":password})
+
+        const signUp_info = {
+          "username": name,
+          "email": email,
+          "password": password,
+          "type": 4
+        };
+        this.userService.signUp(signUp_info)
             .then(() => {
                 alert("注册成功");
-                this.router.navigate(['/'])
+                this.router.navigate(['/']);
             })
             .catch(error => {
                 console.log("error = " + JSON.stringify(error));

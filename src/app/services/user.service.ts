@@ -10,7 +10,9 @@ import {License} from "../model/License";
 import {LicenseService} from "./license.service";
 import {CookieService} from "ngx-cookie";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Token} from "../model/Token";
 
+import { AES, enc, mode, pad } from "crypto-js";
 
 @Injectable()
 export class UserService {
@@ -28,6 +30,8 @@ export class UserService {
 
     user: User;
 
+    token: Token;
+
     private options = {
         headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
@@ -44,6 +48,7 @@ export class UserService {
         return this.http.post(url, JSON.stringify(userInfo), this.options)
             .toPromise()
             .then(res => {
+
                 // console.log("user = " + JSON.stringify(res.json().user));
                 // console.log("As user = " + JSON.stringify(res.json().user as User));
                 // this.user = res.json().user as User;
@@ -114,6 +119,57 @@ export class UserService {
             })
             .catch(UserService.handleError);
 
+    }
+
+
+    accessToken(password: string): Promise<any> {
+      const timeStamp = new Date().getTime().toString().substr(0, 10);
+
+      // const content = this.user._id + password + timeStamp;
+      // const secretKey = this.user._id + timeStamp.substr(2, 10);
+
+      const content = "5a0269747ac9d897d0f57b60" + password + timeStamp;
+      const secretKey = "5a0269747ac9d897d0f57b60" + timeStamp.substr(2, 10);
+
+
+      const grantStr = this.encrypt(content, secretKey);
+
+      // const tokenInfo = {
+      //   "grant_type": "token",
+      //   "userId": this.user._id,
+      //   "grantStr": grantStr,
+      //   "timeStamp": timeStamp
+      //
+      // };
+      const tokenInfo = {
+        "grant_type": "token",
+        "userId": "5a0269747ac9d897d0f57b60",
+        "grantStr": grantStr,
+        "timeStamp": timeStamp
+
+      };
+
+      const url = 'http://localhost:3001/token/getAccessToken';
+
+      console.log(tokenInfo);
+
+      return this.http.post(url, JSON.stringify(tokenInfo), this.options)
+        .toPromise()
+        .then(res => {
+          this.token = res as Token;
+          return res;
+        })
+        .catch(UserService.handleError);
+    }
+
+
+    private encrypt(content, secretKey): string {
+      const ciphertext = AES.encrypt(content, enc.Utf8.parse(secretKey), {
+        mode: mode.ECB,
+        padding: pad.Pkcs7
+      });
+
+      return ciphertext.toString();
     }
 
     private static handleError(error:any): Promise<any> {

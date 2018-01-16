@@ -24,16 +24,26 @@ export class LicenseService {
 
   // url = '/api/license'; // 本地的url
 
-  url = 'http://192.168.69.111:3001/api/license'; // 跨域访问的url(服务器)
-  // url = 'http://localhost:3001/api/license'; // 跨域访问的url(本地)
+  // url = 'http://192.168.69.111:3001/api/license'; // 跨域访问的url(服务器)
+  url = 'http://localhost:3001/api/license'; // 跨域访问的url(本地)
 
-  getAllLicense(userId: string): Promise<License[]> {
+  getAllLicense(userId: string, token: string): Promise<License[]> {
 
     const url = this.url + '/all/' + userId;
 
-    return this.http.get(url, this.header)
+    return this.http.get(url, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      params: {
+        'token': token
+      }
+    })
       .toPromise()
       .then((res) => {
+
+        console.log(res);
         if (res['success']) {
 
           this.licenses = this.sortLicenses(res['data'] as License[]);
@@ -97,11 +107,14 @@ export class LicenseService {
       .catch(LicenseService.handleError);
   }
 
-  downloadLicense(licenseId: string): Promise<any> {
+  downloadLicense(licenseId: string, token: string): Promise<any> {
 
 
     const url = this.url + '/' + licenseId;
     return this.http.get(url, {
+      params: {
+        'token': token
+      },
       observe: 'response', // 默认返回的是response的body，设置这个key,能获得全部的response，包括headers
       responseType: 'text', // HttpClient默认返回的是json,如果想接受其他类型，指定一下这个key就行了。
     })

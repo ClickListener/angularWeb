@@ -158,6 +158,7 @@ export class CreateNewComponent implements OnInit, OnDestroy {
 
         const licenseInfo = {
             userId : '5a0269747ac9d897d0f57b60',
+            token: this.userService.token,
             license : {
                 licenseType: '3',
                 expireTime: new Date(expiredDate).getTime(),

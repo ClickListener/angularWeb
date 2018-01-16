@@ -114,6 +114,7 @@ export class ModifyComponent implements OnInit, OnDestroy {
 
     const licenseInfo = {
       userId: this.license.userId,
+      token: this.userService.token,
       license: {
         licenseType: this.license.licenseType,
         expireTime: this.license.expireTime,
