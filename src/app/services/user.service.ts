@@ -17,9 +17,10 @@ import { AES, enc, mode, pad } from "crypto-js";
 @Injectable()
 export class UserService {
 
-    constructor(private http: HttpClient, private licenseService:LicenseService, private _cookieService:CookieService) {
+    constructor(private http: HttpClient, private _cookieService:CookieService) {
         console.log('UserService--------constructor');
         this.user = JSON.parse(sessionStorage.getItem('user'));
+        this.token = JSON.parse(sessionStorage.getItem('token'));
         console.log('UserService--------user = ' + this.user);
 
         // _cookieService.put('name', 'nanme', {
@@ -42,13 +43,24 @@ export class UserService {
      * @param userInfo
      */
     signIn(userInfo: any): Promise<User> {
-        const url = '/user/signin';
+        const url = 'http://localhost:3001/user/login';
         console.log(JSON.stringify(userInfo));
 
         return this.http.post(url, JSON.stringify(userInfo), this.options)
             .toPromise()
             .then(res => {
 
+              this.user = new User();
+
+              if (res['success']) {
+                this.user._id = res['userId'];
+                this.user.username = res['username'];
+                this.user.type = res['type'];
+
+                this.getAccessToken('123456');
+
+                sessionStorage.setItem('user', JSON.stringify(this.user));
+              }
                 // console.log("user = " + JSON.stringify(res.json().user));
                 // console.log("As user = " + JSON.stringify(res.json().user as User));
                 // this.user = res.json().user as User;
@@ -74,14 +86,15 @@ export class UserService {
      *
      */
     signUp(userInfo: any): Promise<User> {
-        const url = '/user/signup';
+        const url = 'http://localhost:3001/user/add';
 
         console.log(JSON.stringify(userInfo));
 
         return this.http.post(url, JSON.stringify(userInfo), this.options)
             .toPromise()
             .then(res => {
-                // console.log("res.json = " + JSON.stringify(res.json()));
+                console.log(res);
+
                 // this.user = res.json().user as User;
                 // this.licenseService.licenses = res.json().licenses;
                 //
@@ -111,7 +124,7 @@ export class UserService {
 
                 console.log('msg = ' + msg);
                 this.user = undefined;
-                this.licenseService.licenses = undefined;
+                // this.licenseService.licenses = undefined;
                 sessionStorage.removeItem('user');
                 sessionStorage.removeItem('licenses');
                 console.log('user = ' + this.user);
@@ -122,32 +135,22 @@ export class UserService {
     }
 
 
-    accessToken(password: string): Promise<any> {
+    private getAccessToken(password: string): Promise<any> {
       const timeStamp = new Date().getTime().toString().substr(0, 10);
 
-      // const content = this.user._id + password + timeStamp;
-      // const secretKey = this.user._id + timeStamp.substr(2, 10);
-
-      const content = "5a0269747ac9d897d0f57b60" + password + timeStamp;
-      const secretKey = "5a0269747ac9d897d0f57b60" + timeStamp.substr(2, 10);
-
+      const content = this.user._id + password + timeStamp;
+      const secretKey = this.user._id + timeStamp.substr(2, 10);
 
       const grantStr = this.encrypt(content, secretKey);
 
-      // const tokenInfo = {
-      //   "grant_type": "token",
-      //   "userId": this.user._id,
-      //   "grantStr": grantStr,
-      //   "timeStamp": timeStamp
-      //
-      // };
       const tokenInfo = {
         "grant_type": "token",
-        "userId": "5a0269747ac9d897d0f57b60",
+        "userId": this.user._id,
         "grantStr": grantStr,
         "timeStamp": timeStamp
 
       };
+
 
       const url = 'http://localhost:3001/token/getAccessToken';
 
@@ -156,11 +159,36 @@ export class UserService {
       return this.http.post(url, JSON.stringify(tokenInfo), this.options)
         .toPromise()
         .then(res => {
+          console.log(res);
           this.token = res as Token;
+
+          sessionStorage.setItem('token', JSON.stringify(this.token));
           return res;
         })
         .catch(UserService.handleError);
     }
+
+
+    refreshToken() {
+      const refreshTokenInfo = {
+        "grant_type": "refresh_token",
+        "userId": this.user._id,
+        "refresh_token": this.token.refresh_token
+      };
+
+      const url = 'http://localhost:3001/token/getAccessToken';
+
+      return this.http.post(url, JSON.stringify(refreshTokenInfo), this.options)
+        .toPromise()
+        .then(res => {
+          this.token = res as Token;
+
+          console.log(this.token);
+          return res;
+        })
+        .catch(UserService.handleError);
+    }
+
 
 
     private encrypt(content, secretKey): string {
@@ -173,7 +201,7 @@ export class UserService {
     }
 
     private static handleError(error:any): Promise<any> {
-        console.log('An error occurred', JSON.stringify(error));// for demo purposes only
+        console.log('An error occurred', error.toString());// for demo purposes only
         return Promise.reject(error.message || error);
     }
 }

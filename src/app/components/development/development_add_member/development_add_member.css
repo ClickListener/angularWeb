@@ -1,0 +1,92 @@
+
+
+
+/*输入块 样式*/
+.input-block {
+  margin-top: 15px;
+  margin-left: 10%;
+}
+
+.input-block label {
+  display: block;
+}
+
+.input-block input {
+  border: 1px solid #bbbbbb;
+  width: 50%;
+  padding: 0px;
+  border-radius: 3px;
+}
+
+/* 使用webkit内核的浏览器 */
+.input-block input::-webkit-input-placeholder {
+  text-indent: 1rem;
+  font-size: .9rem;
+  color: #e9ecef;
+}
+
+/* Firefox版本4-18 */
+.input-block input:-moz-placeholder {
+  text-indent: 1rem;
+  color: #e9ecef;
+  font-size: .9rem;
+}
+
+/* Firefox版本19+ */
+.input-block input::-moz-placeholder {
+  text-indent: 1rem;
+  color: #e9ecef;
+  font-size: .9rem;
+}
+
+/* IE浏览器 */
+.input-block input:-ms-input-placeholder {
+  text-indent: 1rem;
+  color: #e9ecef;
+  font-size: .9rem;
+}
+
+.input-block input:focus {
+  border: 1px solid #007afa;
+  box-shadow: none;
+}
+
+.checkbox-block {
+  margin-left: 10%;
+}
+
+.checkbox-block > p {
+  margin-top: 1rem;
+}
+
+
+.checkbox-line {
+  margin-bottom: 1rem;
+
+}
+
+
+.check-box {
+  width: 15rem;
+  display: inline-block;
+}
+
+.check-box p {
+  display: inline;
+  margin-left: .5rem;
+}
+
+
+/*提交按钮块 样式*/
+.submit-block {
+  display: flex;
+  justify-content: center;
+}
+
+.submit-block a {
+  margin-top: 5%;
+  text-transform: none;
+  width: 10rem;
+  border-radius: 3px;
+}
+

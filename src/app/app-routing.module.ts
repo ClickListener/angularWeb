@@ -19,6 +19,7 @@ import {DevelopmentApplyMasterComponent} from "./components/development/developm
 import {DevelopmentMainComponent} from "./components/development/development_main/development_main";
 import {DevelopmentAppManagerComponent} from "./components/development/development_app_manager/development_app_manager";
 import {DevelopmentGroupComponent} from "./components/development/development_group/development_group";
+import {DevelopmentAddMemberComponent} from "./components/development/development_add_member/development_add_member";
 
 /**
  * 路由模块
@@ -106,6 +107,10 @@ const routes: Routes = [
         component: DevelopmentGroupComponent
       }
     ]
+  },
+  {
+    path: 'development-add-member',
+    component: DevelopmentAddMemberComponent
   }
 
 

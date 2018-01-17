@@ -51,7 +51,7 @@ export class CreateNewComponent implements OnInit, OnDestroy {
             selectMonths: true,
             selectYears: true,
             min: +1,
-            max: [2018, 0, 1],
+            max: [2019, 0, 1],
             formatSubmit: 'yyyy/MM/dd'
         });
     }

@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
 import {License} from '../model/License';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {UserService} from "./user.service";
 
 
 @Injectable()
 export class LicenseService {
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private userService: UserService) {
     console.log('LicenseService--------constructor');
     this.licenses = JSON.parse(sessionStorage.getItem('licenses'));
     console.log('LicenseService--------licenses = ' + this.licenses);
@@ -27,9 +28,9 @@ export class LicenseService {
   // url = 'http://192.168.69.111:3001/api/license'; // 跨域访问的url(服务器)
   url = 'http://localhost:3001/api/license'; // 跨域访问的url(本地)
 
-  getAllLicense(userId: string, token: string): Promise<License[]> {
+  getAllLicense(): Promise<License[]> {
 
-    const url = this.url + '/all/' + userId;
+    const url = this.url + '/all/' + this.userService.user._id;
 
     return this.http.get(url, {
       headers: new HttpHeaders({
@@ -37,7 +38,7 @@ export class LicenseService {
         'Accept': 'application/json'
       }),
       params: {
-        'token': token
+        'token': this.userService.token.token
       }
     })
       .toPromise()
@@ -97,8 +98,17 @@ export class LicenseService {
   deleteLicense(licenseID: string): Promise<any> {
     console.log('licenseID = ' + licenseID);
 
-    const url = this.url + '/' + licenseID;
-    return this.http.delete(url, this.header)
+    const url = this.url + '/del/' + licenseID;
+
+    return this.http.get(url, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      params: {
+        'token': this.userService.token.token
+      }
+    })
       .toPromise()
       .then(res => {
         console.log('res = ' + JSON.stringify(res));
@@ -107,13 +117,13 @@ export class LicenseService {
       .catch(LicenseService.handleError);
   }
 
-  downloadLicense(licenseId: string, token: string): Promise<any> {
+  downloadLicense(licenseId: string): Promise<any> {
 
 
     const url = this.url + '/' + licenseId;
     return this.http.get(url, {
       params: {
-        'token': token
+        'token': this.userService.token.token
       },
       observe: 'response', // 默认返回的是response的body，设置这个key,能获得全部的response，包括headers
       responseType: 'text', // HttpClient默认返回的是json,如果想接受其他类型，指定一下这个key就行了。

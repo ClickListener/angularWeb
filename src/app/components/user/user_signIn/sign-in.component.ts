@@ -21,14 +21,16 @@ export class SignInComponent {
 
     user:User;
 
-    signIn(email:string, password:string) : void {
+    signIn(email:string, password:string): void {
         console.log('email = ' + email + " password = " + password);
-        this.userService.signIn({"email": email, "password": password})
-            .then((res) => {
-                this.user = res;
 
-                console.log("email = " + JSON.stringify(this.user.email));
-                console.log("email = " + JSON.stringify(this.user.licenseType));
+        const userInfo = {
+          "email": email,
+          "password": password
+        };
+        this.userService.signIn(userInfo)
+            .then((res) => {
+
                 alert("登录成功");
 
                 this.router.navigate(['/']);
@@ -36,6 +38,6 @@ export class SignInComponent {
             .catch(error => {
                 console.log("error = " + JSON.stringify(error));
                 alert(error._body.message);
-            })
+            });
     }
 }

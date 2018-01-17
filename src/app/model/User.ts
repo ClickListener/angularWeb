@@ -6,7 +6,6 @@ import {License} from "./License";
 export class User {
 
     _id:string;
-    email: string;
-    roles: string;
-    licenseType:String;
+    username: string;
+    type: string;
 }

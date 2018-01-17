@@ -21,10 +21,12 @@ export class SignUpComponent {
 
 
         const signUp_info = {
-          "username": name,
-          "email": email,
-          "password": password,
-          "type": 4
+          addUser: {
+            "username": name,
+            "email": email,
+            "password": password,
+            "type": 4
+          }
         };
         this.userService.signUp(signUp_info)
             .then(() => {
@@ -33,7 +35,7 @@ export class SignUpComponent {
             })
             .catch(error => {
                 console.log("error = " + JSON.stringify(error));
-            })
+            });
 
     }
 }
