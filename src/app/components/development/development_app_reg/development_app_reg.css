@@ -176,8 +176,7 @@ select {
 
 /*content*/
 .form-custom-content {
-  /*display: flex;*/
-  /*align-content: center;*/
+  padding-top: 1rem;
 }
 
 .form-custom-content p {
@@ -192,7 +191,6 @@ select {
 }
 
 .form-custom-content > div {
-  padding-top: 1rem;
   padding-bottom: 1rem;
   display: flex;
   text-align: center;
@@ -200,5 +198,23 @@ select {
 
 .form-custom-content select {
   width: 70%;
+}
+
+
+/*提交块*/
+.submit-block {
+  position: relative;
+  margin-top: 3rem;
+
+  margin-bottom: 10rem;
+}
+
+.submit-block a {
+  position: absolute;
+  right: 0;
+  text-transform: none;
+  width: 10rem;
+  margin: 0;
+  border-radius: 3px;
 }
 

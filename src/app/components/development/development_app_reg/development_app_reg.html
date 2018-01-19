@@ -1,7 +1,6 @@
-<h1>Development App reg</h1>
 <div style="margin-left: 10%; width: 70%">
 
-  <P>Register App</P>
+  <P style="margin-top: 15px; margin-bottom: 30px;font-size: 30px">Register App</P>
 
   <div class="radio-block">
 
@@ -94,32 +93,37 @@
         <p class="custom-item4">Operation</p>
       </div>
 
-      <div id="form-content" class="form-custom-content">
+      <div id="form-content" class="form-custom-content" *ngFor="let deviceSelected of deviceSelectList let i = index">
         <div>
-          <p class="custom-item1">01</p>
+          <p class="custom-item1">0{{i + 1}}</p>
           <div class="custom-item2">
-            <select>
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
+
+            <select  [(ngModel)]="deviceSelected.deviceName">
+              <option *ngFor="let device of deviceList" >
+                {{device}}
+              </option>
             </select>
           </div>
           <div class="custom-item3">
-            <select>
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
+            <select [(ngModel)]="deviceSelected.totalNumber" >
+              <option *ngFor="let deviceNumber of deviceNumberList" [ngValue]="deviceNumber">{{deviceNumber}}</option>
             </select>
           </div>
-          <a class="custom-item4"><img src="../../../../assets/images/notice.png"></a>
+          <a class="custom-item4" (click)="deleteDevice(i)"><img src="../../../../assets/images/delete.png"></a>
         </div>
       </div>
 
       <div class="form-custom-end">
         <p>Add a new device</p>
-        <a id="add-device"><img src="../../../../assets/images/notice.png"></a>
+        <a id="add-device" (click)="addDevice()"><img src="../../../../assets/images/add.png"></a>
       </div>
+
     </div>
+
+  </div>
+
+  <div class="submit-block">
+    <a class="btn btn-primary">Submit</a>
   </div>
 
 </div>

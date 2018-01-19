@@ -2,6 +2,7 @@
  * Created by zhangxu on 17/01/2018.
  */
 import {Component} from "@angular/core";
+import {Device} from "../../../model/Device";
 
 declare const jQuery: any;
 
@@ -11,39 +12,49 @@ declare const jQuery: any;
 })
 
 export class DevelopmentAppRegComponent {
+
+  deviceSelectList: Array<Device>;
+
+  deviceList = [
+    "BP5",
+    "BP3L",
+    "BP7",
+    "BP3M",
+    "Bp7S"
+  ];
+
+  deviceNumberList = [
+    100,
+    200,
+    500,
+    1000
+  ];
   constructor() {
+    this.deviceSelectList = new Array();
+    const device = new Device();
+    device.deviceName = "BP5";
+    device.totalNumber = 100;
 
-    jQuery(document).ready(function () {
-      jQuery('#add-device').on('click', function () {
-        console.log('click');
-        jQuery('#form-content').append('<div>\n' +
-          '          <p class="custom-item1">01</p>\n' +
-          '          <div class="custom-item2">\n' +
-          '            <select>\n' +
-          '              <option value="1">Option 1</option>\n' +
-          '              <option value="2">Option 2</option>\n' +
-          '              <option value="3">Option 3</option>\n' +
-          '            </select>\n' +
-          '          </div>\n' +
-          '          <div class="custom-item3">\n' +
-          '            <select>\n' +
-          '              <option value="1">Option 1</option>\n' +
-          '              <option value="2">Option 2</option>\n' +
-          '              <option value="3">Option 3</option>\n' +
-          '            </select>\n' +
-          '          </div>\n' +
-          '          <a class="custom-item4"><img src="../../../../assets/images/notice.png"></a>\n' +
-          '        </div>');
+    this.deviceSelectList.push(device);
 
-      });
-
-      jQuery('#form-content').on('click', '.delete', function () {
-        console.log('delete');
-        if (jQuery('#inputView').children().length !== 1 ) {
-          jQuery(this).parent().remove();
-        }
-
-      });
-    });
   }
+
+  addDevice() {
+    const device = new Device();
+    device.deviceName = "BP5";
+    device.totalNumber = 100;
+
+    this.deviceSelectList.push(device);
+  }
+
+  deleteDevice(index: number) {
+    this.deviceSelectList.splice(index, 1);
+  }
+
+
+
+
+
+
+
 }
