@@ -32,6 +32,7 @@ import {DevelopmentMainComponent} from "./components/development/development_mai
 import {DevelopmentAppManagerComponent} from "./components/development/development_app_manager/development_app_manager";
 import {DevelopmentGroupComponent} from "./components/development/development_group/development_group";
 import {DevelopmentAddMemberComponent} from "./components/development/development_add_member/development_add_member";
+import {DevelopmentAppRegComponent} from "./components/development/development_app_reg/development_app_reg";
 
 @NgModule({
 
@@ -67,7 +68,8 @@ import {DevelopmentAddMemberComponent} from "./components/development/developmen
     DevelopmentMainComponent,
     DevelopmentAppManagerComponent,
     DevelopmentGroupComponent,
-    DevelopmentAddMemberComponent
+    DevelopmentAddMemberComponent,
+    DevelopmentAppRegComponent
   ],
 
   bootstrap: [AppComponent],

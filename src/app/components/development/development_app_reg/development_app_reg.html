@@ -1,0 +1,125 @@
+<h1>Development App reg</h1>
+<div style="margin-left: 10%; width: 70%">
+
+  <P>Register App</P>
+
+  <div class="radio-block">
+
+    <p>Platform</p>
+
+    <label>
+      <input type="radio" name="platform" value="option1" checked/> Android
+    </label>
+
+    <label>
+      <input name="platform" type="radio" value="false"/> IOS
+    </label>
+
+  </div>
+
+  <div class="input-block">
+    <label for="id_name">App Name</label>
+    <input id="id_name" type="text">
+  </div>
+
+  <div class="input-block">
+    <label for="id_bundle">Bundled/Package Name</label>
+    <input id="id_bundle" type="text">
+  </div>
+
+  <div class="input-block">
+    <label for="id_description">Description</label>
+    <textarea id="id_description" type="text"></textarea>
+  </div>
+
+  <div class="license-block">
+    <p>Business license</p>
+    <div class="square-big">
+      <div class="square-small">
+        <div class="row-line"></div>
+        <div class="col-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown-block">
+
+    <div>
+      <label>SDK Scheme</label>
+      <select class="mdb-select">
+        <option value="" disabled selected>Choose your option</option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
+    </div>
+
+    <div>
+      <label>BG Code Type</label>
+
+      <select class="mdb-select">
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
+
+    </div>
+
+
+  </div>
+
+  <P>Set License</P>
+
+  <div class="dropdown-block">
+
+    <div>
+      <label>Expired Date</label>
+      <select>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
+    </div>
+  </div>
+
+
+  <div style="margin-top: 15px">
+    <label>Select The Device</label>
+
+    <div class="form-custom">
+      <div class="form-custom-head">
+        <p class="custom-item1">No.</p>
+        <p class="custom-item2">Device Model</p>
+        <p class="custom-item3">Total Number</p>
+        <p class="custom-item4">Operation</p>
+      </div>
+
+      <div id="form-content" class="form-custom-content">
+        <div>
+          <p class="custom-item1">01</p>
+          <div class="custom-item2">
+            <select>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+            </select>
+          </div>
+          <div class="custom-item3">
+            <select>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+            </select>
+          </div>
+          <a class="custom-item4"><img src="../../../../assets/images/notice.png"></a>
+        </div>
+      </div>
+
+      <div class="form-custom-end">
+        <p>Add a new device</p>
+        <a id="add-device"><img src="../../../../assets/images/notice.png"></a>
+      </div>
+    </div>
+  </div>
+
+</div>
