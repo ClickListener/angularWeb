@@ -1,0 +1,27 @@
+.title-custom {
+  font-size: 2rem;
+}
+
+.subhead {
+  margin-top: 1rem;
+}
+
+.subhead .title {
+  font-size: 1.5rem;
+}
+
+.subhead .content {
+  font-size: 1rem;
+}
+
+.form-custom {
+  display: flex;
+}
+.item-narrow-custom {
+  flex: 1;
+}
+
+.item-wide-custom {
+  flex: 5;
+}
+

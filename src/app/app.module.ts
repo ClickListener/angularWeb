@@ -38,6 +38,7 @@ import {ManagerMainComponent} from "./components/version/version_manager_main/ma
 import {AndroidComponent} from "./components/version/version_android/android.component";
 import {IOSComponent} from "./components/version/version_ios/ios.component";
 import {VersionManagerComponent} from "./components/version/version_manager/version_manager.component";
+import {DetailComponent} from "./components/version/version_detail/detail.component";
 
 @NgModule({
 
@@ -80,7 +81,8 @@ import {VersionManagerComponent} from "./components/version/version_manager/vers
 
     ManagerMainComponent,
     AndroidComponent,
-    IOSComponent
+    IOSComponent,
+    DetailComponent
   ],
 
   bootstrap: [AppComponent],
