@@ -34,6 +34,10 @@ import {DevelopmentGroupComponent} from "./components/development/development_gr
 import {DevelopmentAddMemberComponent} from "./components/development/development_add_member/development_add_member";
 import {DevelopmentAppRegComponent} from "./components/development/development_app_reg/development_app_reg";
 import {ForgotPasswordComponent} from "./components/user/user_forgot/forgot-password.component";
+import {ManagerMainComponent} from "./components/version/version_manager_main/manager-main.component";
+import {AndroidComponent} from "./components/version/version_android/android.component";
+import {IOSComponent} from "./components/version/version_ios/ios.component";
+import {VersionManagerComponent} from "./components/version/version_manager/version_manager.component";
 
 @NgModule({
 
@@ -72,7 +76,11 @@ import {ForgotPasswordComponent} from "./components/user/user_forgot/forgot-pass
     DevelopmentAppManagerComponent,
     DevelopmentGroupComponent,
     DevelopmentAddMemberComponent,
-    DevelopmentAppRegComponent
+    DevelopmentAppRegComponent,
+
+    ManagerMainComponent,
+    AndroidComponent,
+    IOSComponent
   ],
 
   bootstrap: [AppComponent],
