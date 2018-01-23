@@ -21,6 +21,7 @@ import {DevelopmentAppManagerComponent} from "./components/development/developme
 import {DevelopmentGroupComponent} from "./components/development/development_group/development_group";
 import {DevelopmentAddMemberComponent} from "./components/development/development_add_member/development_add_member";
 import {DevelopmentAppRegComponent} from "./components/development/development_app_reg/development_app_reg";
+import {ForgotPasswordComponent} from "./components/user/user_forgot/forgot-password.component";
 
 /**
  * 路由模块
@@ -40,6 +41,10 @@ const routes: Routes = [
   {
     path: 'sign-up',
     component: SignUpComponent
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent
   },
   {
     path: 'manager-license',

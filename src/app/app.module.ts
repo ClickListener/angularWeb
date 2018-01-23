@@ -33,6 +33,7 @@ import {DevelopmentAppManagerComponent} from "./components/development/developme
 import {DevelopmentGroupComponent} from "./components/development/development_group/development_group";
 import {DevelopmentAddMemberComponent} from "./components/development/development_add_member/development_add_member";
 import {DevelopmentAppRegComponent} from "./components/development/development_app_reg/development_app_reg";
+import {ForgotPasswordComponent} from "./components/user/user_forgot/forgot-password.component";
 
 @NgModule({
 
@@ -53,6 +54,8 @@ import {DevelopmentAppRegComponent} from "./components/development/development_a
     CreateNewComponent,
     ManagerComponent,
     ModifyComponent,
+
+    ForgotPasswordComponent,
 
     SchemeMainComponent,
 
