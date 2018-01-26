@@ -135,6 +135,11 @@ export class UserService {
     }
 
 
+  /**
+   * 获取Token，并保存到session中，用于每个接口的调用
+   * @param {string} password
+   * @returns {Promise<any>}
+   */
     private getAccessToken(password: string): Promise<any> {
       const timeStamp = new Date().getTime().toString().substr(0, 10);
 
@@ -169,7 +174,11 @@ export class UserService {
     }
 
 
-    refreshToken() {
+  /**
+   * 刷新token，当Token过期时，调用刷新
+   * @returns {Promise<any>}
+   */
+  refreshToken() {
       const refreshTokenInfo = {
         "grant_type": "refresh_token",
         "userId": this.user._id,
@@ -190,7 +199,12 @@ export class UserService {
     }
 
 
-
+  /**
+   * 加密内容
+   * @param content user id , password, 时间戳
+   * @param secretKey user id , 时间戳后8位
+   * @returns {string}
+   */
     private encrypt(content, secretKey): string {
       const ciphertext = AES.encrypt(content, enc.Utf8.parse(secretKey), {
         mode: mode.ECB,

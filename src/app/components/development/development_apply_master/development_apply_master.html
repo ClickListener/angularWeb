@@ -3,39 +3,53 @@
 <p style="margin-left: 10%; margin-top: 15px; margin-bottom: 30px;font-size: 30px">
   Apply for enterprise developer</p>
 
-<form>
+<form id="applyForm" novalidate enctype="multipart/form-data">
 
   <div class="input-block">
-    <label for="id_country">Country</label>
-    <input id="id_country" type="text">
+    <label>Country</label>
+    <select name="country" [(ngModel)]="country">
+      <option *ngFor="let country of countryList" >
+        {{country.cn}}
+      </option>
+    </select>
   </div>
 
+  <div class="input-block">
+    <label for="id_corporate">Corporate Name</label>
+    <input id="id_corporate" name="id_corporate" type="text" [(ngModel)]="companyName">
+  </div>
 
   <div class="input-block">
     <label for="id_address">Address</label>
-    <input id="id_address" type="text">
+    <input id="id_address" name="id_address" type="text" [(ngModel)]="address">
   </div>
 
 
   <div class="input-block">
     <label for="id_description">Description</label>
-    <textarea id="id_description" type="text"></textarea>
+    <textarea id="id_description" name="id_description" type="text" [(ngModel)]="description"></textarea>
   </div>
 
   <div class="license-block">
     <p>Business license</p>
-    <div class="square-big">
-      <div class="square-small">
-        <div class="row-line"></div>
-        <div class="col-line"></div>
-      </div>
+    <a style="position: absolute"><img id="preview" src="../../../../assets/images/addPic.png" style="width: 80px; height: 80px"></a>
+    <div>
+      <input type="file" name="image" style="width: 80px;height: 80px;opacity: 0;" (change)="previewImg($event)" accept="image/*">
     </div>
 
   </div>
 
 
+
+
   <div class="submit-block">
-    <a class="btn btn-primary">Submit</a>
+    <a class="btn btn-primary" (click)="applyMasterDeveloper()">Submit</a>
+  </div>
+
+
+  <div class="text-block">
+    <p style="font-size: 1.2rem">Members join The Enterprise Development Group</p>
+    <p>Only enterprise master developers can add members into the enterprise development group.</p>
   </div>
 
 

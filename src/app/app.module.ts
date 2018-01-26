@@ -37,8 +37,9 @@ import {ForgotPasswordComponent} from "./components/user/user_forgot/forgot-pass
 import {ManagerMainComponent} from "./components/version/version_manager_main/manager-main.component";
 import {AndroidComponent} from "./components/version/version_android/android.component";
 import {IOSComponent} from "./components/version/version_ios/ios.component";
-import {VersionManagerComponent} from "./components/version/version_manager/version_manager.component";
 import {DetailComponent} from "./components/version/version_detail/detail.component";
+import {CompanyService} from "./services/company.service";
+import {AppService} from "./services/app.service";
 
 @NgModule({
 
@@ -87,7 +88,7 @@ import {DetailComponent} from "./components/version/version_detail/detail.compon
 
   bootstrap: [AppComponent],
 
-  providers: [UserService, LicenseService, DevicesService, DatePipe, SchemeService, Location]
+  providers: [UserService, LicenseService, DevicesService, DatePipe, SchemeService, Location, CompanyService, AppService]
 })
 
 export class AppModule {

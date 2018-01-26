@@ -38,40 +38,11 @@
 .license-block {
   margin-top: 15px;
   margin-left: 10%;
+  position: relative;
 }
 
-.square-big {
-  border: 1px solid #bbbbbb;
-  width: 90px;
-  height: 90px;
-}
-
-.square-small {
-  position: absolute;
-  border: 1px solid #bbbbbb;
-  width: 80px;
-  height: 80px;
-  margin-top: 4px;
-  margin-left: 4px;
-}
-
-.row-line {
-  position: absolute;
-  height: 50px;
-  width: 2px;
-  top: 15px;
-  left: 39px;
-  background: #333;
-
-}
-
-.col-line {
-  position: absolute;
-  width: 50px;
-  height: 2px;
-  left: 15px;
-  top: 39px;
-  background: #333;
+.license-block input:hover {
+  cursor: pointer;
 }
 
 /*提交按钮块 样式*/
@@ -83,7 +54,36 @@
 .submit-block a {
   margin-top: 5%;
   text-transform: none;
+  width: 10rem;
+  border-radius: 3px;
 }
+
+/*文字块*/
+
+.text-block {
+  margin-left: 10%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+select {
+  border: solid 1px #bbbbbb;
+
+  border-radius: 3px;
+  height: 2.1rem;
+  width: 35%;
+
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+  padding-right: 15px;
+
+  background: url("../../../../assets/images/down.png") no-repeat scroll right transparent;
+  background-origin: content-box;
+
+}
+
+
 
 
 
