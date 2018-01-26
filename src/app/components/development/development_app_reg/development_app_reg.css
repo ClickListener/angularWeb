@@ -44,41 +44,13 @@
 /*business license*/
 .license-block {
   margin-top: 15px;
+  position: relative;
 }
 
-.square-big {
-  border: 1px solid #bbbbbb;
-  width: 70px;
-  height: 70px;
+.license-block > div > input:hover {
+  cursor: pointer;
 }
 
-.square-small {
-  position: absolute;
-  border: 1px solid #bbbbbb;
-  width: 60px;
-  height: 60px;
-  margin-top: 4px;
-  margin-left: 4px;
-}
-
-.row-line {
-  position: absolute;
-  height: 50px;
-  width: 2px;
-  top: 5px;
-  left: 29px;
-  background: #333;
-
-}
-
-.col-line {
-  position: absolute;
-  width: 50px;
-  height: 2px;
-  left: 5px;
-  top: 29px;
-  background: #333;
-}
 
 .dropdown-block {
   margin-top: 15px;

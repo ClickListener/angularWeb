@@ -33,11 +33,9 @@
 
   <div class="license-block">
     <p>Business license</p>
-    <div class="square-big">
-      <div class="square-small">
-        <div class="row-line"></div>
-        <div class="col-line"></div>
-      </div>
+    <a style="position: absolute"><img id="preview" src="../../../../assets/images/addPic.png" style="width: 80px; height: 80px"></a>
+    <div>
+      <input type="file" name="image" style="width: 80px;height: 80px;opacity: 0;" (change)="previewImg($event)" accept="image/*">
     </div>
   </div>
 

@@ -24,7 +24,7 @@ export class DevelopmentApplyMasterComponent implements DoCheck {
 
   description: string;
 
-  countryList =  Array<any>;
+  countryList: Array<any>;
 
 
   ngDoCheck(): void {
@@ -64,7 +64,7 @@ export class DevelopmentApplyMasterComponent implements DoCheck {
 
     const code = this.countryList.find((country, index, arr) => {
         return country.en === this.country;
-    })
+    });
 
 
     formData.splice(0, formData.length - 1);
@@ -143,16 +143,16 @@ export class DevelopmentApplyMasterComponent implements DoCheck {
 
     reader.onabort = function (e) {
       console.log("中断读取....");
-    }
+    };
     reader.onerror = function (e) {
       console.log("读取异常....");
-    }
+    };
     reader.onload = function (e) {
       console.log("成功读取....");
 
       const img = document.getElementById("preview");
-      img.src = e.target.result;
-    }
+      img['src'] = e.target['result'];
+    };
 
     reader.readAsDataURL(file);
   }

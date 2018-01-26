@@ -48,7 +48,44 @@ export class DevelopmentAppRegComponent {
   }
 
   deleteDevice(index: number) {
-    this.deviceSelectList.splice(index, 1);
+    if (this.deviceSelectList.length === 1) {
+
+    } else {
+      this.deviceSelectList.splice(index, 1);
+    }
+
+  }
+
+
+
+  // 使用FileReader 将图片读取为base64字符串形式，实现图片预览
+  private previewImg(event) {
+    const file = event.target.files[0];
+
+    const reader = new FileReader();
+
+    reader.onloadstart = function (e) {
+      console.log("开始读取....");
+    };
+
+    reader.onprogress = function (e) {
+      console.log("正在读取中....");
+    };
+
+    reader.onabort = function (e) {
+      console.log("中断读取....");
+    };
+    reader.onerror = function (e) {
+      console.log("读取异常....");
+    };
+    reader.onload = function (e) {
+      console.log("成功读取....");
+
+      const img = document.getElementById("preview");
+      img['src'] = e.target['result'];
+    };
+
+    reader.readAsDataURL(file);
   }
 
 
