@@ -39,18 +39,17 @@ export class CompanyService {
       .catch(CompanyService.handleError);
   }
 
-
   /**
-   * 上传用户APP信息
-   * @param appInfo
-   * @returns {Promise<any>}
+   * 审核/禁用公司
    */
-  uploadUserAppInfo(appInfo: any): Promise<any> {
 
-    console.log("appInfo = " + JSON.stringify(appInfo));
+  ReviewCompany(companyInfo: any):Promise<any> {
 
-    const url = "http://loaclhost:3001/api/company/addApp";
-    return this.http.post(url, JSON.stringify(appInfo), {
+    console.log("companyInfo = " + JSON.stringify(companyInfo));
+
+    const url = "http://loaclhost:3001/api/company/reviewCompany";
+
+    return this.http.post(url, companyInfo, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -61,6 +60,112 @@ export class CompanyService {
       })
       .catch(CompanyService.handleError);
   }
+
+
+  /**
+   * 查找公司信息
+   * @param companyInfo
+   * @returns {Promise<any>}
+   */
+  findCompany(companyInfo: any):Promise<any> {
+    console.log("companyInfo = " + JSON.stringify(companyInfo));
+
+    const url = "hhtp://loaclhost:3001/api/company/findCompany";
+
+    return this.http.get(url, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      params: {
+        "cid": companyInfo.cid,
+        "userId": companyInfo.userId,
+        "token": companyInfo.token
+      }
+    }).toPromise()
+      .then(res => {
+
+      })
+      .catch(CompanyService.handleError);
+  }
+
+  /**
+   * 删除公司信息
+   */
+  deleteCompany(companyInfo: any): Promise<any> {
+
+    console.log("companyInfo = " + JSON.stringify(companyInfo));
+
+    const url = "http://loaclhost:3001/api/company/deleteCompany";
+
+    return this.http.get(url, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      params: {
+        "cid": companyInfo.cid,
+        "userId": companyInfo.userId,
+        "token": companyInfo.token
+      }
+    }).toPromise()
+      .then(res => {
+
+      })
+      .catch(CompanyService.handleError);
+  }
+
+  /**
+   * 修改公司信息
+   */
+
+  updateCompany(companyInfo: any): Promise<any> {
+    console.log("companyInfo = " + JSON.stringify(companyInfo));
+
+    const url = "http://loaclhost:3001/api/company/updateCompany";
+    return this.http.post(url, companyInfo, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      })
+    }).toPromise()
+      .then(res => {
+
+      })
+      .catch(CompanyService.handleError);
+  }
+
+
+  /**
+   * 添加开发者 到 企业开发组
+   * @param invitedUser
+   * @returns {Promise<any>}
+   */
+  inviteUserToGroup(invitedUser: any): Promise<any> {
+    console.log("invitedUser = " + JSON.stringify(invitedUser));
+
+    const url = "http://loaclhost:3001/api/company/invite";
+
+    return this.http.get(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      params: {
+        "inviteEmail": invitedUser.inviteEmail,
+        "userId": invitedUser.userId,
+        "token": invitedUser.token
+      }
+    }).toPromise()
+      .then(res => {
+
+      })
+      .catch(CompanyService.handleError);
+  }
+
+
+
+
 
 
 
