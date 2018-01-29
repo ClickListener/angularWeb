@@ -66,10 +66,10 @@
         </a>
 
         <ul id="document_collapse" class="collapse show" style="font-size: 14px">
-          <li><a routerLinkActive="active">Native SDK Document</a></li>
-          <li><a routerLinkActive="active">RN SDK Document</a></li>
-          <li><a routerLinkActive="active">Library SDK Document</a></li>
-          <li><a routerLinkActive="active">Layer App Document</a></li>
+          <li><a routerLinkActive="active" [routerLink]="['document-main', 'NativeSDK']">Native SDK Document</a></li>
+          <li><a routerLinkActive="active" [routerLink]="['document-main', 'RNSDK']">RN SDK Document</a></li>
+          <li><a routerLinkActive="active" [routerLink]="['document-main', 'LibrarySDK']">Library SDK Document</a></li>
+          <li><a routerLinkActive="active" [routerLink]="['document-main', 'LayerApp']">Layer App Document</a></li>
         </ul>
       </li>
 

@@ -26,6 +26,9 @@ import {ManagerMainComponent} from "./components/version/version_manager_main/ma
 import {AndroidComponent} from "./components/version/version_android/android.component";
 import {IOSComponent} from "./components/version/version_ios/ios.component";
 import {DetailComponent} from "./components/version/version_detail/detail.component";
+import {DocumentMainComponent} from "./components/document/document_main/document_main.component";
+import {DocumentAndroidComponent} from "./components/document/document_android/document-android.component";
+import {DocumentIosComponent} from "./components/document/document_ios/document-ios.component";
 
 /**
  * 路由模块
@@ -149,6 +152,27 @@ const routes: Routes = [
   {
     path: 'detail/:param',
     component: DetailComponent
+  },
+
+  {
+    path: 'document-main/:param',
+    component: DocumentMainComponent,
+
+    children: [
+      {
+        path: '',
+        redirectTo: 'android-document',
+        pathMatch: 'full'
+      },
+      {
+        path: 'android-document',
+        component: DocumentAndroidComponent
+      },
+      {
+        path: 'ios-document',
+        component: DocumentIosComponent
+      }
+    ]
   }
 
 

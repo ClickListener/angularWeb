@@ -40,6 +40,9 @@ import {IOSComponent} from "./components/version/version_ios/ios.component";
 import {DetailComponent} from "./components/version/version_detail/detail.component";
 import {CompanyService} from "./services/company.service";
 import {AppService} from "./services/app.service";
+import {DocumentMainComponent} from "./components/document/document_main/document_main.component";
+import {DocumentAndroidComponent} from "./components/document/document_android/document-android.component";
+import {DocumentIosComponent} from "./components/document/document_ios/document-ios.component";
 
 @NgModule({
 
@@ -83,7 +86,11 @@ import {AppService} from "./services/app.service";
     ManagerMainComponent,
     AndroidComponent,
     IOSComponent,
-    DetailComponent
+    DetailComponent,
+
+    DocumentMainComponent,
+    DocumentAndroidComponent,
+    DocumentIosComponent
   ],
 
   bootstrap: [AppComponent],
