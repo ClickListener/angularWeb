@@ -47,7 +47,7 @@ export class CompanyService {
 
     console.log("companyInfo = " + JSON.stringify(companyInfo));
 
-    const url = "http://loaclhost:3001/api/company/reviewCompany";
+    const url = "http://localhost:3001/api/company/reviewCompany";
 
     return this.http.post(url, companyInfo, {
       headers: new HttpHeaders({
@@ -70,7 +70,7 @@ export class CompanyService {
   findCompany(companyInfo: any):Promise<any> {
     console.log("companyInfo = " + JSON.stringify(companyInfo));
 
-    const url = "hhtp://loaclhost:3001/api/company/findCompany";
+    const url = "hhtp://localhost:3001/api/company/findCompany";
 
     return this.http.get(url, {
       headers: new HttpHeaders({
@@ -96,7 +96,7 @@ export class CompanyService {
 
     console.log("companyInfo = " + JSON.stringify(companyInfo));
 
-    const url = "http://loaclhost:3001/api/company/deleteCompany";
+    const url = "http://localhost:3001/api/company/deleteCompany";
 
     return this.http.get(url, {
       headers: new HttpHeaders({
@@ -122,7 +122,7 @@ export class CompanyService {
   updateCompany(companyInfo: any): Promise<any> {
     console.log("companyInfo = " + JSON.stringify(companyInfo));
 
-    const url = "http://loaclhost:3001/api/company/updateCompany";
+    const url = "http://localhost:3001/api/company/updateCompany";
     return this.http.post(url, companyInfo, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -144,15 +144,15 @@ export class CompanyService {
   inviteUserToGroup(invitedUser: any): Promise<any> {
     console.log("invitedUser = " + JSON.stringify(invitedUser));
 
-    const url = "http://loaclhost:3001/api/company/invite";
+    const url = "http://localhost:3001/api/company/invite";
 
     return this.http.get(url, {
-      headers: {
+      headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': 'application/json'
-      },
+      }),
       params: {
-        "inviteEmail": invitedUser.inviteEmail,
+        "inviteId": invitedUser.inviteEmail,
         "userId": invitedUser.userId,
         "token": invitedUser.token
       }

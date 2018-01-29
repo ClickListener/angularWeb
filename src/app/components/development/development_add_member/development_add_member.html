@@ -2,7 +2,7 @@
 <form>
   <div class="input-block">
     <label for="id_account">Member Account</label>
-    <input id="id_account" type="text" placeholder="Email address">
+    <input id="id_account" type="text" placeholder="Email address" #emailOrUserName>
   </div>
 
   <div class="checkbox-block">
@@ -48,7 +48,7 @@
   </div>
 
   <div class="submit-block">
-    <a class="btn btn-primary">Submit</a>
+    <a class="btn btn-primary" (click)="inviteUserToGroup(emailOrUserName.value)">Submit</a>
   </div>
 
 
