@@ -15,38 +15,95 @@
 }
 
 
-.table-custom {
-  border: 1px solid #e9ecef;
-  margin-top: 1rem;
+.preview-custom {
+  position: relative;
 }
 
-.table-custom>thead {
-  text-align: center;
-  background: #f2f2f2;
+.preview-custom:before, .preview-custom:after {
+  content: '';
+  display: block;
+  position: absolute;  /*日常绝对定位*/
+
+  left: 4%;
+  width: 0;
+  height: 0;
+  border:6px solid transparent;
 }
 
-.table-custom tbody {
-  text-align: center;
+/*img.collapsed .preview-custom:before{*/
+  /*top: 65%;*/
+  /*border-bottom-color: rgba(256,256,256,256);*/
+  /*z-index:1*/
+/*}*/
+
+/*img.collapsed .preview-custom:after{*/
+  /*top: 65%;*/
+  /*border-bottom-color: rgba(0,0,0,1);*/
+  /*z-index:0*/
+/*}*/
+
+.preview-custom:before {
+  top: 90%;
+  border-bottom-color: rgba(256,256,256,256);
+  z-index:1
 }
 
+.preview-custom:after {
+  top: 90%;
+  border-bottom-color: rgba(0,0,0,1);
+  z-index:0
+}
+
+
+/*Device detail*/
 .device-detail {
   position: absolute;
   z-index: 100;
-  left: -10rem;
+  left: -15rem;
   width: 30rem;
-}
-
-.table-device {
+  top: 72%;
   border: 1px solid #e9ecef;
+  background: #FFFFFF;
 }
 
-.table-device thead {
+.device-detail-form {
+  position: relative;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.device-detail-form-head {
+  display: flex;
+  height: 3rem;
+}
+.custom-center-p {
+  margin: 0;
+  line-height: 3rem;
   text-align: center;
 }
 
-.table-device tbody {
-  text-align: center;
-}
+/*.device-detail:before, .device-detail:after {*/
+  /*content: "";  !*:before和:after必带技能，重要性为满5颗星*!*/
+  /*display: block;*/
+  /*position: absolute;  !*日常绝对定位*!*/
+
+  /*!*left:59%;*!*/
+  /*width: 0;*/
+  /*height: 0;*/
+  /*border:6px solid transparent;*/
+/*}*/
+/*.device-detail:before {*/
+  /*top:-11px;*/
+  /*border-bottom-color: rgba(245,245,245,1);*/
+  /*z-index:1*/
+/*}*/
+
+/*.device-detail:after {*/
+  /*top: -12px;*/
+  /*border-bottom-color: rgba(0,0,0,1);*/
+  /*z-index: 0*/
+/*}*/
+
 
 
 .form-custom {
@@ -56,24 +113,36 @@
 .form-custom-head {
   border-bottom: 1px solid #e9ecef;
   display: flex;
-  height: 2.1rem;
-  background: #e9ecef;
+  height: 3rem;
+  background: #f2f2f2;
 }
 .form-custom-head p {
-  margin: 0
-}
-
-
-.custom-item-wide {
-  flex: 2;
   margin: 0;
-  line-height: 2.1rem;
+  line-height: 3rem;
   text-align: center;
 }
 
-.custom-item-narrow {
+
+.item-2 {
+  flex: 2;
+  /*line-height: 2.1rem;*/
+  /*text-align: center;*/
+}
+
+.item-1 {
   flex: 1;
-  line-height: 2.1rem;
+  /*line-height: 2.1rem;*/
+  /*text-align: center;*/
+}
+
+.form-custom-content {
+  margin: 0;
+}
+
+.form-custom-content > div {
+  display: flex;
+  height: 5.5rem;
+  line-height: 5.5rem;
   text-align: center;
 }
 
