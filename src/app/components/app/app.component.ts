@@ -39,7 +39,11 @@ export class AppComponent implements OnInit {
         self.clickActionForSideNav();
       });
 
-      if (!this.user) {
+      this.user = this.userService.user;
+
+      console.log(this.user);
+
+      if (this.user) {
         jQuery('#development_primary').attr('data-target', '#development_collapse');
       }
 

@@ -60,7 +60,7 @@
 
       <li class="class-li">
         <a data-toggle="collapse"
-        aria-expanded="true" data-target="#document_collapse">
+        aria-expanded="true" data-target="#document_collapse" >
           <b style="font-size: 16px">SDK Document</b>
           <i class="fa fa-angle-up rotate-icon fa-position"></i>
         </a>
@@ -74,17 +74,15 @@
       </li>
 
       <li>
-        <a id="development_primary"
-           data-target="#development_collapse" data-toggle="collapse"
+        <a id="development_primary" data-toggle="collapse"
            aria-expanded="true"  routerLink="/development-primary" routerLinkActive="active">
           <b style="font-size: 16px">Enterprise Development</b>
           <i class="fa fa-angle-up rotate-icon fa-position"></i>
         </a>
 
         <ul id="development_collapse" class="collapse show" style="font-size: 14px">
-          <li><a routerLinkActive="active" routerLink='/development-main'>SDK scheme</a></li>
-          <li><a routerLinkActive="active" routerLink='/scheme-main/LayerApp'>LayerApp scheme</a></li>
-          <li><a routerLinkActive="active" routerLink='/scheme-main/Library'>Library scheme</a></li>
+          <li><a routerLinkActive="active" routerLink='/development-main/development-app-manager'>Development Group</a></li>
+          <li><a routerLinkActive="active" routerLink='/development-main/development-group'>App Manager</a></li>
         </ul>
       </li>
 
@@ -95,10 +93,10 @@
           <i class="fa fa-angle-up rotate-icon fa-position"></i>
         </a>
         <ul id="Download_collapse" class="collapse show" style="font-size: 14px">
-          <li><a routerLinkActive="active" [routerLink]="['/manager-main', 1]">Native SDK</a></li>
-          <li><a routerLinkActive="active">RN SDK</a></li>
-          <li><a routerLinkActive="active">Library SDK</a></li>
-          <li><a routerLinkActive="active">Layer App</a></li>
+          <li><a routerLinkActive="active" [routerLink]="['/manager-main', 1]">Native SDK Download</a></li>
+          <li><a routerLinkActive="active">RN SDK Download</a></li>
+          <li><a routerLinkActive="active">Library SDK Download</a></li>
+          <li><a routerLinkActive="active">Layer App Download</a></li>
         </ul>
       </li>
       <li>
