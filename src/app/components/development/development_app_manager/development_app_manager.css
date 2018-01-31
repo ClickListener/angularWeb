@@ -15,53 +15,44 @@
 }
 
 
-.preview-custom {
-  position: relative;
-}
+/*小三角*/
 
-.preview-custom:before, .preview-custom:after {
-  content: '';
+.triangle-big, .triangle-small {
+  content: "";  /*:before和:after必带技能，重要性为满5颗星*/
   display: block;
   position: absolute;  /*日常绝对定位*/
 
-  left: 4%;
+  left: -4px;
   width: 0;
   height: 0;
-  border:6px solid transparent;
+  border:10px solid transparent;
+
 }
 
-/*img.collapsed .preview-custom:before{*/
-  /*top: 65%;*/
-  /*border-bottom-color: rgba(256,256,256,256);*/
-  /*z-index:1*/
-/*}*/
-
-/*img.collapsed .preview-custom:after{*/
-  /*top: 65%;*/
-  /*border-bottom-color: rgba(0,0,0,1);*/
-  /*z-index:0*/
-/*}*/
-
-.preview-custom:before {
-  top: 90%;
-  border-bottom-color: rgba(256,256,256,256);
-  z-index:1
+.triangle-big {
+  bottom: -22px;
+}
+.triangle-small {
+  bottom: -20px;
+}
+a:not(.collapsed) .triangle-big {
+  border-bottom-color: #FFFFFF;
+  z-index:1;
 }
 
-.preview-custom:after {
-  top: 90%;
-  border-bottom-color: rgba(0,0,0,1);
-  z-index:0
+a:not(.collapsed) .triangle-small {
+  border-bottom-color: #e9ecef;
+  z-index: 0;
 }
 
 
 /*Device detail*/
 .device-detail {
   position: absolute;
-  z-index: 100;
+  z-index: 5;
   left: -15rem;
   width: 30rem;
-  top: 72%;
+  top: 10px;
   border: 1px solid #e9ecef;
   background: #FFFFFF;
 }
@@ -82,30 +73,10 @@
   text-align: center;
 }
 
-/*.device-detail:before, .device-detail:after {*/
-  /*content: "";  !*:before和:after必带技能，重要性为满5颗星*!*/
-  /*display: block;*/
-  /*position: absolute;  !*日常绝对定位*!*/
-
-  /*!*left:59%;*!*/
-  /*width: 0;*/
-  /*height: 0;*/
-  /*border:6px solid transparent;*/
-/*}*/
-/*.device-detail:before {*/
-  /*top:-11px;*/
-  /*border-bottom-color: rgba(245,245,245,1);*/
-  /*z-index:1*/
-/*}*/
-
-/*.device-detail:after {*/
-  /*top: -12px;*/
-  /*border-bottom-color: rgba(0,0,0,1);*/
-  /*z-index: 0*/
-/*}*/
 
 
 
+/*自定义表单*/
 .form-custom {
   border: 1px solid #e9ecef;
 }
@@ -145,6 +116,10 @@
   line-height: 5.5rem;
   text-align: center;
 }
+
+
+
+
 
 
 
