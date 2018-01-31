@@ -83,6 +83,14 @@ export class DevelopmentApplyMasterComponent implements DoCheck {
 
     formData.splice(0, 0, company);
 
+    const action = {
+      name: 'action',
+      value: 'C',
+      type: 'text'
+    };
+
+    formData.splice(0, 0, action);
+
     const token = {
       name: 'token',
       value: this.userService.token.token,
