@@ -39,6 +39,59 @@ export class UserService {
 
 
   /**
+   * 获取单个用户信息
+   */
+
+  getUserInfo(): Promise<any> {
+
+    const url = "http://localhost:3001/user/userInfo";
+    return this.http.get(url, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      params: {
+        "userId": this.user._id,
+        "token": this.token.token
+      }
+    }).toPromise()
+      .then(res => {
+
+        this.user = res['user'] as User;
+        console.log('user = ' + JSON.stringify(this.user));
+
+        return res;
+
+      })
+      .catch(UserService.handleError);
+
+  }
+
+  /**
+   * 根据companyID获得属于该公司的所有开发者
+   */
+
+  getUserList(queryInfo): Promise<any> {
+    console.log(JSON.stringify(queryInfo));
+
+    const url = 'http://localhost:3001/user/getUserList';
+
+    return this.http.get(url, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      params: queryInfo
+    }).toPromise()
+      .then(res => {
+        console.log(res);
+        return res;
+      })
+      .catch(UserService.handleError);
+
+  }
+
+  /**
    * 登录服务3
    * @param userInfo
    */

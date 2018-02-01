@@ -70,7 +70,7 @@ export class CompanyService {
   findCompany(companyInfo: any):Promise<any> {
     console.log("companyInfo = " + JSON.stringify(companyInfo));
 
-    const url = "hhtp://localhost:3001/api/company/findCompany";
+    const url = "http://localhost:3001/api/company/findCompany";
 
     return this.http.get(url, {
       headers: new HttpHeaders({
@@ -84,7 +84,8 @@ export class CompanyService {
       }
     }).toPromise()
       .then(res => {
-
+        console.log(res);
+        return res;
       })
       .catch(CompanyService.handleError);
   }

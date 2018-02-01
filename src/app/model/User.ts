@@ -7,5 +7,7 @@ export class User {
 
     _id:string;
     username: string;
+    email: string;
     type: string;
+    companyId: string;
 }
