@@ -158,7 +158,30 @@ export class CompanyService {
       }
     }).toPromise()
       .then(res => {
+        console.log(res);
+      })
+      .catch(CompanyService.handleError);
+  }
 
+
+  getCompanyList(userInfo: any): Promise<any> {
+
+    console.log(userInfo);
+
+    const url = "http://localhost:3001/api/company/getCompnayList";
+
+    return this.http.get(url, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      params: {
+        "userId": userInfo.userId,
+        "token": userInfo.token
+      }
+    }).toPromise()
+      .then(res => {
+        console.log(res);
       })
       .catch(CompanyService.handleError);
   }

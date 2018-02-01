@@ -5,6 +5,7 @@ import {Component, DoCheck, OnChanges} from "@angular/core";
 import {UserService} from "../../../services/user.service";
 import {CompanyService} from "../../../services/company.service";
 import swal from "sweetalert2";
+import {Router} from "@angular/router";
 
 
 declare const jQuery: any;
@@ -31,7 +32,7 @@ export class DevelopmentApplyMasterComponent implements DoCheck {
     console.log("country = " + this.country);
   }
 
-  constructor(private userService: UserService, private companyService: CompanyService) {
+  constructor(private userService: UserService, private companyService: CompanyService, private router: Router) {
 
     if (companyService.countryList === undefined ) {
       companyService.getCountryList()
@@ -113,7 +114,7 @@ export class DevelopmentApplyMasterComponent implements DoCheck {
 
   private success(response) {
     if (response.success) {
-      // this.router.navigate(['/scheme-main', this.resourceName]);
+      this.router.navigate(['/development-main/development-group']);
       swal({
         position: 'bottom-right',
         type: 'success',

@@ -77,16 +77,16 @@
         <a id="development_primary" data-toggle="collapse"
            aria-expanded="true"  routerLink="/development-primary" routerLinkActive="active">
           <b style="font-size: 16px">Enterprise Development</b>
-          <i class="fa fa-angle-up rotate-icon fa-position"></i>
+          <i class="fa fa-angle-up rotate-icon fa-position" *ngIf="user"></i>
         </a>
 
-        <ul id="development_collapse" class="collapse show" style="font-size: 14px">
+        <ul id="development_collapse" class="collapse show" style="font-size: 14px" *ngIf="user">
           <li><a routerLinkActive="active" routerLink='/development-main/development-app-manager'>Development Group</a></li>
           <li><a routerLinkActive="active" routerLink='/development-main/development-group'>App Manager</a></li>
         </ul>
       </li>
 
-      <li class="class-li">
+      <li class="class-li" *ngIf="user">
         <a data-toggle="collapse"
            aria-expanded="true" data-target="#Download_collapse">
           <b style="font-size: 16px">SDK Download</b>
@@ -99,11 +99,11 @@
           <li><a routerLinkActive="active">Layer App Download</a></li>
         </ul>
       </li>
-      <li>
-        <div class="divider"></div>
-      </li>
+      <!--<li>-->
+        <!--<div class="divider"></div>-->
+      <!--</li>-->
 
-      <li>
+      <li *ngIf="user">
         <a data-toggle="collapse"
            aria-expanded="true" data-target="#scheme_collapse">
           <b style="font-size: 16px">Scheme</b>
@@ -117,9 +117,9 @@
         </ul>
       </li>
 
-      <li>
-        <div class="divider"></div>
-      </li>
+      <!--<li>-->
+        <!--<div class="divider"></div>-->
+      <!--</li>-->
 
 
 

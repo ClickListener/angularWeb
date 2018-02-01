@@ -29,6 +29,14 @@ export class DevelopmentAppRegComponent {
     500,
     1000
   ];
+
+  appName: string;
+  bundleOrPackageName: string;
+  description: string;
+  scheme: string;
+  codeType: string;
+  expiredDate: string;
+
   constructor() {
     this.deviceSelectList = new Array();
     const device = new Device();
@@ -86,6 +94,35 @@ export class DevelopmentAppRegComponent {
     };
 
     reader.readAsDataURL(file);
+  }
+
+
+  reqisterApp() {
+    const option = {
+      url: "http://loaclhost:3001/api/useApp/addApp",
+      type: "POST",
+      beforeSubmit: this.beforeSubmit.bind(this),
+      success: this.success.bind(this)
+    };
+
+    jQuery('#registerAppForm').ajaxSubmit(option);
+  }
+
+  private beforeSubmit(formData) {
+
+
+    const file = formData.splice(4, 1);
+
+    formData.push(file[0]);
+
+
+
+
+  }
+
+
+  private success(res) {
+
   }
 
 

@@ -6,6 +6,7 @@ import {UserService} from "../../../services/user.service";
 import {Router} from "@angular/router";
 import {User} from "../../../model/User";
 import {License} from "../../../model/License";
+import swal from "sweetalert2";
 
 
 @Component({
@@ -31,9 +32,30 @@ export class SignInComponent {
         this.userService.signIn(userInfo)
             .then((res) => {
 
-                alert("登录成功");
+              if (res['success']) {
+                swal({
+                  position: 'bottom-right',
+                  type: 'success',
+                  titleText: 'Sign in success',
+                  showConfirmButton: false,
+                  timer: 2000,
+                  padding: 0
+                }).catch(swal.noop);
+
 
                 this.router.navigate(['/']);
+              } else {
+                swal({
+                  position: 'bottom-right',
+                  type: 'error',
+                  titleText: res['message'],
+                  showConfirmButton: false,
+                  timer: 2000,
+                  padding: 0
+                }).catch(swal.noop);
+              }
+
+
             })
             .catch(error => {
                 console.log("error = " + JSON.stringify(error));

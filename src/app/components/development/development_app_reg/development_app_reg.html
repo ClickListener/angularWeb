@@ -1,4 +1,4 @@
-<div style="margin-left: 10%; width: 70%">
+<form id="registerAppForm" style="margin-left: 10%; width: 70%" novalidate enctype="multipart/form-data">
 
   <P style="margin-top: 15px; margin-bottom: 30px;font-size: 30px">Register App</P>
 
@@ -7,35 +7,35 @@
     <p>Platform</p>
 
     <label>
-      <input type="radio" name="platform" value="option1" checked/> Android
+      <input name="platform" type="radio" value="android" checked/> Android
     </label>
 
     <label>
-      <input name="platform" type="radio" value="false"/> IOS
+      <input name="platform" type="radio" value="ios"/> IOS
     </label>
 
   </div>
 
   <div class="input-block">
     <label for="id_name">App Name</label>
-    <input id="id_name" type="text">
+    <input name="id_name" id="id_name" type="text" [(ngModel)]="appName">
   </div>
 
   <div class="input-block">
     <label for="id_bundle">Bundled/Package Name</label>
-    <input id="id_bundle" type="text">
+    <input id="id_bundle" type="text" name="id_bundle" [(ngModel)]="bundleOrPackageName">
   </div>
 
   <div class="input-block">
     <label for="id_description">Description</label>
-    <textarea id="id_description" type="text"></textarea>
+    <textarea id="id_description" type="text" name="id_description" [(ngModel)]="description"></textarea>
   </div>
 
   <div class="license-block">
     <p>Business license</p>
     <a style="position: absolute"><img id="preview" src="../../../../assets/images/addPic.png" style="width: 80px; height: 80px"></a>
     <div>
-      <input type="file" name="image" style="width: 80px;height: 80px;opacity: 0;" (change)="previewImg($event)" accept="image/*">
+      <input type="file" name="icon" style="width: 80px;height: 80px;opacity: 0;" (change)="previewImg($event)" accept="image/*">
     </div>
   </div>
 
@@ -43,21 +43,21 @@
 
     <div>
       <label>SDK Scheme</label>
-      <select class="mdb-select">
+      <select class="mdb-select" name="SDK_Scheme" [(ngModel)]="scheme">
         <option value="" disabled selected>Choose your option</option>
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-        <option value="3">Option 3</option>
+        <option value="Scheme1">Option 1</option>
+        <option value="Scheme2">Option 2</option>
+        <option value="Scheme3">Option 3</option>
       </select>
     </div>
 
     <div>
       <label>BG Code Type</label>
 
-      <select class="mdb-select">
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-        <option value="3">Option 3</option>
+      <select class="mdb-select" name="BG_TYPE" [(ngModel)]="codeType">
+        <option value="code1">Option 1</option>
+        <option value="code2">Option 2</option>
+        <option value="code3">Option 3</option>
       </select>
 
     </div>
@@ -71,10 +71,10 @@
 
     <div>
       <label>Expired Date</label>
-      <select>
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-        <option value="3">Option 3</option>
+      <select name="expired Date" [(ngModel)]="expiredDate">
+        <option value="2011">Option 1</option>
+        <option value="2012">Option 2</option>
+        <option value="2013">Option 3</option>
       </select>
     </div>
   </div>
@@ -96,15 +96,15 @@
           <p class="custom-item1">0{{i + 1}}</p>
           <div class="custom-item2">
 
-            <select  [(ngModel)]="deviceSelected.deviceName">
-              <option *ngFor="let device of deviceList" >
+            <select  name="deviceName" [(ngModel)]="deviceSelected.deviceName">
+              <option *ngFor="let device of deviceList" value="device">
                 {{device}}
               </option>
             </select>
           </div>
           <div class="custom-item3">
-            <select [(ngModel)]="deviceSelected.totalNumber" >
-              <option *ngFor="let deviceNumber of deviceNumberList" [ngValue]="deviceNumber">{{deviceNumber}}</option>
+            <select name="devicetotalNumber" [(ngModel)]="deviceSelected.totalNumber" >
+              <option *ngFor="let deviceNumber of deviceNumberList" Value="deviceNumber">{{deviceNumber}}</option>
             </select>
           </div>
           <a class="custom-item4" (click)="deleteDevice(i)"><img src="../../../../assets/images/delete.png"></a>
@@ -121,7 +121,7 @@
   </div>
 
   <div class="submit-block">
-    <a class="btn btn-primary">Submit</a>
+    <a class="btn btn-primary" (click)="reqisterApp()">Submit</a>
   </div>
 
-</div>
+</form>

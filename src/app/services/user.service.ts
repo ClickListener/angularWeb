@@ -12,127 +12,115 @@ import {CookieService} from "ngx-cookie";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Token} from "../model/Token";
 
-import { AES, enc, mode, pad } from "crypto-js";
+import {AES, enc, mode, pad} from "crypto-js";
 
 @Injectable()
 export class UserService {
 
-    constructor(private http: HttpClient, private _cookieService:CookieService) {
-        console.log('UserService--------constructor');
-        this.user = JSON.parse(sessionStorage.getItem('user'));
-        this.token = JSON.parse(sessionStorage.getItem('token'));
-        console.log('UserService--------user = ' + this.user);
+  constructor(private http: HttpClient, private _cookieService: CookieService) {
+    console.log('UserService--------constructor');
+    this.user = JSON.parse(sessionStorage.getItem('user'));
+    this.token = JSON.parse(sessionStorage.getItem('token'));
+    console.log('UserService--------user = ' + this.user);
 
-        // _cookieService.put('name', 'nanme', {
-        //   expires: new Date(2017, 11 , 5)
-        // });
-      console.log('name = ' + _cookieService.get('name'));
-    }
+    // _cookieService.put('name', 'nanme', {
+    //   expires: new Date(2017, 11 , 5)
+    // });
+    console.log('name = ' + _cookieService.get('name'));
+  }
 
-    user: User;
+  user: User;
 
-    token: Token;
+  token: Token;
 
-    private options = {
-        headers: new HttpHeaders({'Content-Type': 'application/json'})
-    };
+  private options = {
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
+  };
 
 
-    /**
-     * 登录服务3
-     * @param userInfo
-     */
-    signIn(userInfo: any): Promise<User> {
-        const url = 'http://localhost:3001/user/login';
-        console.log(JSON.stringify(userInfo));
+  /**
+   * 登录服务3
+   * @param userInfo
+   */
+  signIn(userInfo: any): Promise<User> {
+    const url = 'http://localhost:3001/user/login';
+    console.log(JSON.stringify(userInfo));
 
-        return this.http.post(url, JSON.stringify(userInfo), this.options)
-            .toPromise()
-            .then(res => {
+    return this.http.post(url, JSON.stringify(userInfo), this.options)
+      .toPromise()
+      .then(async res => {
 
-              this.user = new User();
+        console.log(res);
 
-              if (res['success']) {
-                this.user._id = res['userId'];
-                this.user.username = res['username'];
-                this.user.type = res['type'];
 
-                this.getAccessToken('123456');
+        if (res['success']) {
 
-                sessionStorage.setItem('user', JSON.stringify(this.user));
-              }
-                // console.log("user = " + JSON.stringify(res.json().user));
-                // console.log("As user = " + JSON.stringify(res.json().user as User));
-                // this.user = res.json().user as User;
-                // this.licenseService.licenses = res.json().licenses;
-                //
-                // sessionStorage.setItem('user', JSON.stringify(this.user));
-                // sessionStorage.setItem('licenses', JSON.stringify(this.licenseService.licenses));
-                //
-                // console.log("this.licenseService.licenses = " + JSON.stringify(this.licenseService.licenses));
-                // console.log("res.json().licenses = " + JSON.stringify(res.json().licenses));
-                // console.log("res.json().licenses as License[] = " + JSON.stringify(res.json().licenses as License[]));
-                // // this.licenseService.licenses = res.json().licenses as License[];
-                //
-                // return res.json().user as User;
-            })
-            .catch(UserService.handleError);
+          this.user = new User();
+          this.user._id = res['userId'];
+          this.user.username = res['username'];
+          this.user.type = res['type'];
 
-    }
+          return await this.getAccessToken(userInfo.password);
 
-    /**
-     * 注册服务
-     * @param userInfo
-     *
-     */
-    signUp(userInfo: any): Promise<User> {
-        const url = 'http://localhost:3001/user/add';
 
-        console.log(JSON.stringify(userInfo));
+        } else {
+          return res;
+        }
 
-        return this.http.post(url, JSON.stringify(userInfo), this.options)
-            .toPromise()
-            .then(res => {
-                console.log(res);
+      })
+      .catch(UserService.handleError);
 
-                // this.user = res.json().user as User;
-                // this.licenseService.licenses = res.json().licenses;
-                //
-                //
-                // sessionStorage.setItem('user', JSON.stringify(this.user));
-                // sessionStorage.setItem('licenses', JSON.stringify(this.licenseService.licenses));
-                //
-                //
-                // return res.json().user as User;
+  }
 
-            })
-            .catch(UserService.handleError);
+  /**
+   * 注册服务
+   * @param userInfo
+   *
+   */
+  signUp(userInfo: any): Promise<User> {
+    const url = 'http://localhost:3001/user/add';
 
-    }
+    console.log(JSON.stringify(userInfo));
 
-    /**
-     * 登出服务
-     * @returns {Promise<TResult|T>}
-     */
-    signOut(): Promise<string> {
+    return this.http.post(url, JSON.stringify(userInfo), this.options)
+      .toPromise()
+      .then(async res => {
+        console.log(res);
 
-        console.log("signOut()");
-        const url = '/user/signout';
+        if (res['success']) {
 
-        return this.http.get(url).toPromise()
-            .then((msg) => {
+          const userSignInfo = {
+            "username": userInfo.addUser.username,
+            "password": userInfo.addUser.password
+          };
 
-                console.log('msg = ' + msg);
-                this.user = undefined;
-                // this.licenseService.licenses = undefined;
-                sessionStorage.removeItem('user');
-                sessionStorage.removeItem('licenses');
-                console.log('user = ' + this.user);
+          return await this.signIn(userSignInfo);
 
-            })
-            .catch(UserService.handleError);
+        } else {
+          return res;
+        }
 
-    }
+
+      })
+      .catch(UserService.handleError);
+
+  }
+
+  /**
+   * 登出服务
+   * @returns {Promise<TResult|T>}
+   */
+  signOut() {
+
+    console.log("signOut()");
+
+    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('token');
+
+    this.token = null;
+    this.user = null;
+
+  }
 
 
   /**
@@ -140,38 +128,42 @@ export class UserService {
    * @param {string} password
    * @returns {Promise<any>}
    */
-    private getAccessToken(password: string): Promise<any> {
-      const timeStamp = new Date().getTime().toString().substr(0, 10);
+  private getAccessToken(password: string): Promise<any> {
+    const timeStamp = new Date().getTime().toString().substr(0, 10);
 
-      const content = this.user._id + password + timeStamp;
-      const secretKey = this.user._id + timeStamp.substr(2, 10);
+    const content = this.user._id + password + timeStamp;
+    const secretKey = this.user._id + timeStamp.substr(2, 10);
 
-      const grantStr = this.encrypt(content, secretKey);
+    const grantStr = this.encrypt(content, secretKey);
 
-      const tokenInfo = {
-        "grant_type": "token",
-        "userId": this.user._id,
-        "grantStr": grantStr,
-        "timeStamp": timeStamp
+    const tokenInfo = {
+      "grant_type": "token",
+      "userId": this.user._id,
+      "grantStr": grantStr,
+      "timeStamp": timeStamp
 
-      };
+    };
 
 
-      const url = 'http://localhost:3001/token/getAccessToken';
+    const url = 'http://localhost:3001/token/getAccessToken';
 
-      console.log(tokenInfo);
+    console.log(tokenInfo);
 
-      return this.http.post(url, JSON.stringify(tokenInfo), this.options)
-        .toPromise()
-        .then(res => {
-          console.log(res);
+    return this.http.post(url, JSON.stringify(tokenInfo), this.options)
+      .toPromise()
+      .then(res => {
+        console.log(res);
+
+        if (res['success']) {
           this.token = res as Token;
-
           sessionStorage.setItem('token', JSON.stringify(this.token));
-          return res;
-        })
-        .catch(UserService.handleError);
-    }
+          sessionStorage.setItem('user', JSON.stringify(this.user));
+        }
+
+        return res;
+      })
+      .catch(UserService.handleError);
+  }
 
 
   /**
@@ -179,24 +171,24 @@ export class UserService {
    * @returns {Promise<any>}
    */
   refreshToken() {
-      const refreshTokenInfo = {
-        "grant_type": "refresh_token",
-        "userId": this.user._id,
-        "refresh_token": this.token.refresh_token
-      };
+    const refreshTokenInfo = {
+      "grant_type": "refresh_token",
+      "userId": this.user._id,
+      "refresh_token": this.token.refresh_token
+    };
 
-      const url = 'http://localhost:3001/token/getAccessToken';
+    const url = 'http://localhost:3001/token/getAccessToken';
 
-      return this.http.post(url, JSON.stringify(refreshTokenInfo), this.options)
-        .toPromise()
-        .then(res => {
-          this.token = res as Token;
+    return this.http.post(url, JSON.stringify(refreshTokenInfo), this.options)
+      .toPromise()
+      .then(res => {
+        this.token = res as Token;
 
-          console.log(this.token);
-          return res;
-        })
-        .catch(UserService.handleError);
-    }
+        console.log(this.token);
+        return res;
+      })
+      .catch(UserService.handleError);
+  }
 
 
   /**
@@ -205,17 +197,17 @@ export class UserService {
    * @param secretKey user id , 时间戳后8位
    * @returns {string}
    */
-    private encrypt(content, secretKey): string {
-      const ciphertext = AES.encrypt(content, enc.Utf8.parse(secretKey), {
-        mode: mode.ECB,
-        padding: pad.Pkcs7
-      });
+  private encrypt(content, secretKey): string {
+    const ciphertext = AES.encrypt(content, enc.Utf8.parse(secretKey), {
+      mode: mode.ECB,
+      padding: pad.Pkcs7
+    });
 
-      return ciphertext.toString();
-    }
+    return ciphertext.toString();
+  }
 
-    private static handleError(error:any): Promise<any> {
-        console.log('An error occurred', error.toString());// for demo purposes only
-        return Promise.reject(error.message || error);
-    }
+  private static handleError(error: any): Promise<any> {
+    console.log('An error occurred', error.toString());// for demo purposes only
+    return Promise.reject(error.message || error);
+  }
 }

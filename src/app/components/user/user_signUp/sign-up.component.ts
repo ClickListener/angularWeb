@@ -29,9 +29,13 @@ export class SignUpComponent {
           }
         };
         this.userService.signUp(signUp_info)
-            .then(() => {
+            .then((res) => {
+              console.log(res);
+              if (res['success']) {
                 alert("注册成功");
                 this.router.navigate(['/']);
+              }
+
             })
             .catch(error => {
                 console.log("error = " + JSON.stringify(error));
