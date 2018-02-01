@@ -20,12 +20,9 @@
   <div class="user">
 
     <div *ngIf="!user">
-      <a class="waves-effect" routerLink="/" routerLinkActive="active">
-        <img src="../../../assets/images/notice.png">
-      </a>
       <a class="waves-effect" routerLink="/sign-in" routerLinkActive="active">
         <img src="../../../assets/images/login.png">
-        <a>Sign in</a>
+        <a>Sign In</a>
       </a>
     </div>
 
@@ -73,11 +70,11 @@
         </ul>
       </li>
 
-      <li>
+      <li *ngIf="user">
         <a id="development_primary" data-toggle="collapse"
            aria-expanded="true"  routerLink="/development-primary" routerLinkActive="active">
           <b style="font-size: 16px">Enterprise Development</b>
-          <i class="fa fa-angle-up rotate-icon fa-position" *ngIf="user"></i>
+          <i class="fa fa-angle-up rotate-icon fa-position"></i>
         </a>
 
         <ul id="development_collapse" class="collapse show" style="font-size: 14px" *ngIf="user">
