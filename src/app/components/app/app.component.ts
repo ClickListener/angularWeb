@@ -24,6 +24,7 @@ export class AppComponent implements OnInit, DoCheck {
   private sideNav: any;
 
   constructor(private userService: UserService, private router: Router) {
+    userService.getResourceList();
   }
 
   ngDoCheck(): void {
@@ -91,6 +92,7 @@ export class AppComponent implements OnInit, DoCheck {
   // 防止向上冒泡
   stop_Propagation(event): void {
 
+
     if (event && event.stopPropagation) {
       event.stopPropagation();
     } else {
@@ -102,6 +104,8 @@ export class AppComponent implements OnInit, DoCheck {
   signOut(): void {
     console.log('signOut');
     this.userService.signOut();
+
+    this.router.navigate(['/']);
   }
 
 

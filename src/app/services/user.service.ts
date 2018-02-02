@@ -33,9 +33,18 @@ export class UserService {
 
   token: Token;
 
+  resourceList = [];
+
   private options = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
+
+
+  private static handleError(error: any): Promise<any> {
+    console.log('An error occurred', error.toString());// for demo purposes only
+    return Promise.reject(error.message || error);
+  }
+
 
 
   /**
@@ -62,6 +71,115 @@ export class UserService {
 
         return res;
 
+      })
+      .catch(UserService.handleError);
+
+  }
+
+  getResourceList():Promise<any> {
+
+
+    const url = "http://localhost:3001/auth/getAuthList";
+
+    return this.http.get(url, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      })
+    }).toPromise()
+      .then(res => {
+        console.log(res);
+        this.resourceList = res['data'];
+
+      })
+      .catch(UserService.handleError);
+  }
+
+  /**
+   * 禁用／删除用户
+   */
+
+  changeValid(userInfo: any): Promise<any> {
+
+    console.log('userInfo = ' + JSON.stringify(userInfo));
+
+    const url = "http://localhost:3001/user/changeValid";
+
+    return this.http.post(url, userInfo, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      })
+    }).toPromise()
+      .then(res => {
+        console.log(res);
+      })
+      .catch(UserService.handleError);
+  }
+
+
+  /**
+   * 获得当前用户权限，不传uid ，则返回当前用户的权限，传uid， 返回该用户权限
+   */
+
+  getUserAuth(userInfo: any):Promise<any> {
+
+    console.log('userInfo = ' + JSON.stringify(userInfo));
+
+    const url = "http://localhost:3001/auth/getUserAuth";
+
+    return this.http.get(url, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      params: userInfo
+    }).toPromise()
+      .then(res => {
+        console.log(res);
+        return res;
+      })
+      .catch(UserService.handleError);
+  }
+
+
+  /**
+   * 添加用户权限
+   * @param perssionInfo
+   * @returns {Promise<any>}
+   */
+  addUserAuth(perssionInfo: any): Promise<any> {
+
+    console.log("perssionInfo = " + JSON.stringify(perssionInfo));
+
+    const url = "http://localhost:3001/user/userAuth";
+
+    return this.http.post(url, perssionInfo, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      })
+    }).toPromise()
+      .then(res => {
+        console.log(res);
+      })
+      .catch(UserService.handleError);
+  }
+
+  updateUser(userInfo: any): Promise<any> {
+
+    console.log('userInfo = ' + JSON.stringify(userInfo));
+
+    const url = "http://localhost:3001/user/update";
+
+    return this.http.post(url, userInfo, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      })
+    }).toPromise()
+      .then(res => {
+        console.log(res);
       })
       .catch(UserService.handleError);
 
@@ -259,8 +377,4 @@ export class UserService {
     return ciphertext.toString();
   }
 
-  private static handleError(error: any): Promise<any> {
-    console.log('An error occurred', error.toString());// for demo purposes only
-    return Promise.reject(error.message || error);
-  }
 }

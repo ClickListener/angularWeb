@@ -74,6 +74,14 @@ export class DevelopmentGroupComponent {
           if (companyResponse.success) {
             this.companyInfo = companyResponse.data;
           }
+
+          const userInfo = {
+            "userId": userService.user._id,
+            "token": userService.token.token
+          };
+
+          const perssionResponse = await userService.getUserAuth(userInfo);
+
         }
 
 

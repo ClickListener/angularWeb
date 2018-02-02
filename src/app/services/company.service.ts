@@ -156,6 +156,7 @@ export class CompanyService {
     }).toPromise()
       .then(res => {
         console.log(res);
+        return res;
       })
       .catch(CompanyService.handleError);
   }
@@ -182,6 +183,8 @@ export class CompanyService {
       })
       .catch(CompanyService.handleError);
   }
+
+
 
 
 
