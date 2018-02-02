@@ -162,6 +162,7 @@ export class UserService {
     }).toPromise()
       .then(res => {
         console.log(res);
+        return res;
       })
       .catch(UserService.handleError);
   }
