@@ -110,4 +110,27 @@ export class AppService {
       })
       .catch(AppService.handleError);
   }
+
+  findAllAppInfo(appInfo: any): Promise<any> {
+    console.log('appInfo = ' + JSON.stringify(appInfo));
+
+    const url = "http://localhost:3001/api/useApp/gatAllAppList";
+
+    return this.http.get(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      params: {
+        'companyId': appInfo.companyId,
+        'userId': appInfo.userId,
+        'token': appInfo.token
+      }
+    }).toPromise()
+      .then(res => {
+        console.log(res);
+        return res;
+      })
+      .catch(AppService.handleError);
+  }
 }

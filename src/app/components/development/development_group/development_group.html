@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <div class="add-member">
+  <div class="add-member" *ngIf="master.type !== 4">
     <a class="btn btn-primary" routerLink="/development-add-member" routerLinkActive="active">Add Members</a>
   </div>
 

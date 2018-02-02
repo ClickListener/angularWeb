@@ -1,8 +1,11 @@
 /**
  * Created by zhangxu on 17/01/2018.
  */
-import {Component} from "@angular/core";
+import {Component, DoCheck} from "@angular/core";
 import {Device} from "../../../model/Device";
+import {UserService} from "../../../services/user.service";
+import swal from "sweetalert2";
+import {Router} from "@angular/router";
 
 declare const jQuery: any;
 
@@ -12,6 +15,7 @@ declare const jQuery: any;
 })
 
 export class DevelopmentAppRegComponent {
+
 
   deviceSelectList: Array<Device>;
 
@@ -37,13 +41,16 @@ export class DevelopmentAppRegComponent {
   codeType: string;
   expiredDate: string;
 
-  constructor() {
+
+  constructor(private userService: UserService, private router: Router) {
     this.deviceSelectList = new Array();
     const device = new Device();
     device.deviceName = "BP5";
     device.totalNumber = 100;
 
     this.deviceSelectList.push(device);
+
+    this.userService.getUserInfo();
 
   }
 
@@ -97,9 +104,9 @@ export class DevelopmentAppRegComponent {
   }
 
 
-  reqisterApp() {
+  registerApp() {
     const option = {
-      url: "http://loaclhost:3001/api/useApp/addApp",
+      url: "http://localhost:3001/api/useApp/addApp",
       type: "POST",
       beforeSubmit: this.beforeSubmit.bind(this),
       success: this.success.bind(this)
@@ -110,19 +117,76 @@ export class DevelopmentAppRegComponent {
 
   private beforeSubmit(formData) {
 
-
     const file = formData.splice(4, 1);
+
+    formData.splice(0, formData.length);
+
+    const userId = {
+      name: 'userId',
+      value: this.userService.user._id,
+      type: 'text'
+    };
+
+    formData.push(userId);
+
+    const token = {
+      name: 'token',
+      value: this.userService.token.token,
+      type: 'text'
+    };
+
+    formData.push(token);
+
+    const app = {
+      "platform": jQuery("input:radio:checked").val(),
+      "appName": this.appName,
+      "bundleOrPackageName": this.bundleOrPackageName,
+      "description": this.description,
+      "scheme": this.scheme,
+      "codeType": this.codeType,
+      "devices": this.deviceSelectList,
+      "licenseType": 3,
+      "companyId": this.userService.user.companyId
+    };
+
+    const appInfo = {
+      name: 'appInfo',
+      value: JSON.stringify(app)
+    }
+
+    formData.push(appInfo);
+
 
     formData.push(file[0]);
 
-
-
-
+    console.log(formData);
   }
 
 
   private success(res) {
 
+    console.log(res);
+
+    if (res.success) {
+      this.router.navigate(['/development-main/development-app-manager']);
+      swal({
+        position: 'bottom-right',
+        type: 'success',
+        titleText: 'Create success',
+        showConfirmButton: false,
+        timer: 2000,
+        padding: 0
+      }).catch(swal.noop);
+    } else {
+      swal({
+        position: 'bottom-right',
+        type: 'error',
+        titleText: res.message,
+        showConfirmButton: false,
+        timer: 2000,
+        padding: 0
+      }).catch(swal.noop);
+    }
   }
 
 

@@ -97,14 +97,14 @@
           <div class="custom-item2">
 
             <select  name="deviceName" [(ngModel)]="deviceSelected.deviceName">
-              <option *ngFor="let device of deviceList" value="device">
+              <option *ngFor="let device of deviceList">
                 {{device}}
               </option>
             </select>
           </div>
           <div class="custom-item3">
             <select name="devicetotalNumber" [(ngModel)]="deviceSelected.totalNumber" >
-              <option *ngFor="let deviceNumber of deviceNumberList" Value="deviceNumber">{{deviceNumber}}</option>
+              <option *ngFor="let deviceNumber of deviceNumberList">{{deviceNumber}}</option>
             </select>
           </div>
           <a class="custom-item4" (click)="deleteDevice(i)"><img src="../../../../assets/images/delete.png"></a>
@@ -121,7 +121,7 @@
   </div>
 
   <div class="submit-block">
-    <a class="btn btn-primary" (click)="reqisterApp()">Submit</a>
+    <a class="btn btn-primary" (click)="registerApp()">Submit</a>
   </div>
 
 </form>

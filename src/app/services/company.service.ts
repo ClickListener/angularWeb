@@ -152,11 +152,7 @@ export class CompanyService {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       }),
-      params: {
-        "inviteId": invitedUser.inviteEmail,
-        "userId": invitedUser.userId,
-        "token": invitedUser.token
-      }
+      params: invitedUser
     }).toPromise()
       .then(res => {
         console.log(res);

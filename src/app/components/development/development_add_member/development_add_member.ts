@@ -12,15 +12,19 @@ import {UserService} from "../../../services/user.service";
 
 
 export class DevelopmentAddMemberComponent {
-  constructor(private companyService: CompanyService, private userService: UserService) {}
+  constructor(private companyService: CompanyService, private userService: UserService) {
+
+    this.userService.getUserInfo();
+  }
 
 
   inviteUserToGroup(emailOrUserName: string) {
 
     const userInfo = {
-      "inviteEmail": emailOrUserName,
+      "inviteName": emailOrUserName,
       "userId": this.userService.user._id,
-      "token": this.userService.token.token
+      "token": this.userService.token.token,
+      "companyId": this.userService.user.companyId
     }
 
     this.companyService.inviteUserToGroup(userInfo)

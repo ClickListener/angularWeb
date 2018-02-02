@@ -8,8 +8,8 @@
 
     <div class="card-body">
 
-      <div>
-        <p>iHealth MyVitals</p>
+      <div *ngFor="let app of appList; let i = index">
+        <p>{{app.appName}}</p>
         <div class="form-custom">
           <div class="form-custom-head">
             <p class="item-1">App icon</p>
@@ -24,20 +24,20 @@
           <div class="form-custom-content">
             <div>
               <a class="item-1"><img src="../../../../assets/images/addPic.png"></a>
-              <p class="item-1">Via</p>
-              <p class="item-1">Android</p>
+              <p class="item-1">{{app.state}}</p>
+              <p class="item-1">{{app.platform}}</p>
               <p class="item-2">2018-01-10</p>
-              <div class="item-1">2
+              <div class="item-1">{{app.devices.length}}
 
                 <a class="collapsed" style="position: relative"
-                   data-toggle="collapse" data-target="#devices-detail"
-                   aria-expanded="false" aria-controls="devices-detail">
+                   data-toggle="collapse" [attr.data-target]="'#detail' + i"
+                   aria-expanded="false" aria-controls="devices-detail" *ngIf="app.devices.length !== 0">
                   <img src="../../../../assets/images/down.png">
 
                   <div class="triangle-big"></div>
                   <div class="triangle-small">
 
-                    <div class="collapse device-detail" id="devices-detail">
+                    <div class="collapse device-detail" [attr.id]="'detail' + i">
 
                       <div class="device-detail-form">
                         <div class="device-detail-form-head">
@@ -45,12 +45,12 @@
                           <p class="item-1 custom-center-p">Device No.</p>
                           <p class="item-1 custom-center-p">Use No.</p>
                         </div>
-                        <div class="device-detail-form-head" style="border-top: 1px solid #e9ecef;">
+                        <div class="device-detail-form-head" style="border-top: 1px solid #e9ecef;" *ngFor="let device of app.devices">
                           <div class="item-2 custom-center-p" style="margin-right: 15%;">
-                            <img src="../../../../assets/images/device_bp5.png" style="width: 3rem; height: 3rem">
-                            <p style="display: inline-block">Feel (BP5)</p>
+                            <img src="../../../../assets/images/device_{{device.deviceName | lowercase}}.png" style="width: 3rem; height: 3rem">
+                            <p style="display: inline-block">{{device.deviceName}}</p>
                           </div>
-                          <p class="item-1 custom-center-p">1</p>
+                          <p class="item-1 custom-center-p">{{device.totalNumber}}</p>
                           <p class="item-1 custom-center-p">0</p>
                         </div>
                       </div>
@@ -68,14 +68,14 @@
                 <a><img src="../../../../assets/images/download.png"></a>
                 <a><img src="../../../../assets/images/edit.png"></a>
 
-                <a class="collapsed" style="position: relative" data-toggle="collapse" data-target="#confirm"
+                <a class="collapsed" style="position: relative" data-toggle="collapse" [attr.data-target]="'#confirm' + i"
                    aria-expanded="false" aria-controls="devices-detail">
                   <img src="../../../../assets/images/delete.png">
 
                   <div class="triangle-big" style="left: 4px"></div>
                   <div class="triangle-small" style="left: 4px">
 
-                    <div class="collapse device-detail" id="confirm" style="width: 20rem">
+                    <div class="collapse device-detail" [attr.id]="'confirm' + i" style="width: 20rem">
 
                       <div>
                         Sure to delete this app?
