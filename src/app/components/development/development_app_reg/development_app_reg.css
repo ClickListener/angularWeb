@@ -90,6 +90,11 @@ select {
 }
 
 
+select:hover {
+  cursor: pointer;
+}
+
+
 
 .form-custom {
   border: 1px solid #bbbbbb;
@@ -212,7 +217,68 @@ select {
 
   text-align: left;
 
+}
 
+.selectDevice-block:hover {
+  cursor: pointer;
+}
+
+.selectDevice-title {
+  border-bottom: 1px solid #e9ecef;
+  height: 2.5rem;
+  text-align: center;
+}
+
+.selectDevice-title p {
+  line-height: 2.5rem;
+}
+
+.selectDevice-title a {
+  position: fixed;
+  right: 0;
+  line-height: 2.5rem;
+  margin-right: 1rem
+}
+
+
+.selectDevice-body {
 
 }
+
+.selectDevice-deviceTile {
+
+  margin-left: 5%;
+
+}
+
+.selectDevice-deviceBlock {
+
+  background-color: #e9ecef;
+  border-radius: 5px;
+
+  margin-left: 5%;
+  margin-right: 5%;
+
+  display: flex;
+
+}
+
+.selectDevice-device {
+  flex: 1;
+  display: inline-block;
+  text-align: center;
+}
+
+.selectDevice-device:hover{
+  cursor: pointer;
+}
+
+.selectDevice-device > img {
+  width: 80%;
+}
+
+.selectDevice-device > p {
+  line-height: 1.5rem;
+}
+
 

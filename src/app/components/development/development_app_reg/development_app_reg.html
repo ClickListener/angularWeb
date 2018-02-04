@@ -97,8 +97,215 @@
           <div class="custom-item2">
 
             <div class="selectDevice-block" data-target="#exampleModal" data-toggle="modal">
-              <img src="../../../../assets/images/device_bp5.png" style="height: 2rem; width: 2rem">
-              <a>Bp5</a>
+              <img src="../../../../assets/images/device_{{deviceSelected.deviceName | lowercase}}.png" style="height: 2rem; width: 2rem">
+              <a>{{deviceSelected.deviceName}}</a>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document" style="width: 50%; max-width: 100%">
+                <div class="modal-content">
+                  <div class="modal-body" style="padding: 0">
+                    <div class="selectDevice-title">
+                      <a data-dismiss="modal"><img src="../../../../assets/images/delete.png"></a>
+                      <p>Select A Device</p>
+                    </div>
+
+                    <div style="text-align: left">
+                      <div class="selectDevice-deviceTile">
+                        Blood Pressure
+                      </div>
+                      <div class="selectDevice-deviceBlock">
+                        <div class="selectDevice-device" (click)="selectDevice(i, 'BP3')" data-dismiss="modal">
+                          <img src="../../../../assets/images/device_bp3.png">
+                          <p>BP3</p>
+                        </div>
+                        <div class="selectDevice-device" (click)="selectDevice(i, 'BP3M')" data-dismiss="modal">
+                          <img src="../../../../assets/images/device_bp3m.png">
+                          <p>BP3M</p>
+                        </div>
+                        <div class="selectDevice-device" (click)="selectDevice(i, 'BP3l')" data-dismiss="modal">
+                          <img src="../../../../assets/images/device_bp3l.png">
+                          <p>Ease</p>
+                          <p>(BP3L)</p>
+                        </div>
+                        <div class="selectDevice-device" (click)="selectDevice(i, 'BP5')" data-dismiss="modal">
+                          <img src="../../../../assets/images/device_bp5.png">
+                          <p>Feel</p>
+                          <p>(BP5)</p>
+                        </div>
+                        <div class="selectDevice-device" (click)="selectDevice(i, 'BP7')" data-dismiss="modal">
+                          <img src="../../../../assets/images/device_bp7.png" >
+                          <p>BP7</p>
+                        </div>
+                        <div class="selectDevice-device" (click)="selectDevice(i, 'BP7S')" data-dismiss="modal">
+                          <img src="../../../../assets/images/device_bp7s.png">
+                          <p>View</p>
+                          <p>(BP7S)</p>
+                        </div>
+                        <div class="selectDevice-device" (click)="selectDevice(i, 'BPM1')" data-dismiss="modal">
+                          <img src="../../../../assets/images/device_bpm1.png">
+                          <p>Clear</p>
+                          <p>(BPM1)</p>
+                        </div>
+
+
+                      </div>
+                    </div>
+
+                    <div style="text-align: left; display: flex; margin-left: 5%; margin-right: 5%">
+                      <div style="flex: 3">
+                        <div class="selectDevice-deviceTile" style="opacity: 0">
+                          空
+                        </div>
+                        <div class="selectDevice-deviceBlock" style="margin: 0">
+                          <div class="selectDevice-device" (click)="selectDevice(i, 'Kn550BT')" data-dismiss="modal">
+                            <img src="../../../../assets/images/device_kn-550bt.png">
+                            <p>Track</p>
+                            <p>(KN550BT)</p>
+                          </div>
+                          <div class="selectDevice-device" (click)="selectDevice(i, 'ABI')" data-dismiss="modal">
+                            <img src="../../../../assets/images/device_bp5.png">
+                            <p>CardioLab</p>
+                            <p>(ABI)</p>
+                          </div>
+                          <div class="selectDevice-device"  (click)="selectDevice(i, 'ABP100')" data-dismiss="modal">
+                            <img src="../../../../assets/images/device_bp5.png">
+                            <p>CardioMed</p>
+                            <p>(ABP100)</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div style="flex: 3;">
+                        <div class="selectDevice-deviceTile">
+                          Blood Pressure
+                        </div>
+                        <div class="selectDevice-deviceBlock" style="margin: 0">
+                          <div class="selectDevice-device" (click)="selectDevice(i, 'AM3')" data-dismiss="modal">
+                            <img src="../../../../assets/images/device_am3.png">
+                            <p>AM3</p>
+                          </div>
+                          <div class="selectDevice-device"  (click)="selectDevice(i, 'AM3S')" data-dismiss="modal">
+                            <img src="../../../../assets/images/device_am3s.png">
+                            <p>Edge</p>
+                            <p>(AM3S)</p>
+                          </div>
+                          <div class="selectDevice-device" (click)="selectDevice(i, 'AM4')" data-dismiss="modal">
+                            <img src="../../../../assets/images/device_am4.png">
+                            <p>Wave</p>
+                            <p>(AM4)</p>
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <div style="flex: 1">
+                        <div class="selectDevice-deviceTile">
+                          Oxygen
+                        </div>
+                        <div class="selectDevice-deviceBlock" style="margin: 0">
+                          <div class="selectDevice-device"  (click)="selectDevice(i, 'PO3')" data-dismiss="modal">
+                            <img src="../../../../assets/images/device_po3.png">
+                            <p>PO3</p>
+                            <p style="opacity: 0">PO3</p>
+                          </div>
+
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div style="text-align: left">
+                      <div class="selectDevice-deviceTile">
+                        Weight
+                      </div>
+                      <div class="selectDevice-deviceBlock">
+                        <div class="selectDevice-device" (click)="selectDevice(i, 'HS2')" data-dismiss="modal">
+                          <img src="../../../../assets/images/device_hs3.png">
+                          <p>Lina</p>
+                          <p>(HS2)</p>
+                        </div>
+                        <div class="selectDevice-device" (click)="selectDevice(i, 'HS3')" data-dismiss="modal">
+                          <img src="../../../../assets/images/device_hs3.png">
+                          <p>HS3</p>
+                        </div>
+                        <div class="selectDevice-device" (click)="selectDevice(i, 'HS4')" data-dismiss="modal">
+                          <img src="../../../../assets/images/device_hs4.png">
+                          <p>Lite</p>
+                          <p>(HS4)</p>
+                        </div>
+                        <div class="selectDevice-device" (click)="selectDevice(i, 'HS4S')" data-dismiss="modal">
+                          <img src="../../../../assets/images/device_hs4s.png">
+                          <p>Lite</p>
+                          <p>(HS4S)</p>
+                        </div>
+                        <div class="selectDevice-device" (click)="selectDevice(i, 'HS5')" data-dismiss="modal">
+                          <img src="../../../../assets/images/device_hs5.png" >
+                          <p>HS5</p>
+                        </div>
+                        <div class="selectDevice-device" (click)="selectDevice(i, 'HS5S')" data-dismiss="modal">
+                          <img src="../../../../assets/images/device_hs5.png">
+                          <p>Vista</p>
+                          <p>(HS5S)</p>
+                        </div>
+                        <div class="selectDevice-device" (click)="selectDevice(i, 'HS6')" data-dismiss="modal">
+                          <img src="../../../../assets/images/device_hs6.png">
+                          <p>Core</p>
+                          <p>(HS6)</p>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div style="text-align: left; display: flex; margin-left: 5%; margin-right: 5%">
+                      <div style="flex: 3">
+                        <div class="selectDevice-deviceTile" style="opacity: 0">
+                          空
+                        </div>
+                        <div class="selectDevice-deviceBlock" style="margin: 0">
+                          <div class="selectDevice-device" (click)="selectDevice(i, 'BG1')" data-dismiss="modal">
+                            <img src="../../../../assets/images/device_bg1.png">
+                            <p>Align</p>
+                            <p>(BG1)</p>
+                          </div>
+                          <div class="selectDevice-device" (click)="selectDevice(i, 'BG5')" data-dismiss="modal">
+                            <img src="../../../../assets/images/device_bp5.png">
+                            <p>Smart</p>
+                            <p>(BG5)</p>
+                          </div>
+                          <div class="selectDevice-device" (click)="selectDevice(i, 'BG5S')" data-dismiss="modal">
+                            <img src="../../../../assets/images/device_bg5l.png">
+                            <p>Gluco+</p>
+                            <p>(BG5S)</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div style="flex: 1; margin-bottom: 2rem">
+                        <div class="selectDevice-deviceTile">
+                          Oxygen
+                        </div>
+                        <div class="selectDevice-deviceBlock" style="margin: 0">
+                          <div class="selectDevice-device"  (click)="selectDevice(i, 'ECG3')" data-dismiss="modal">
+                            <img src="../../../../assets/images/device_bp5.png">
+                            <p>Rhythm</p>
+                            <p>(ECG3)</p>
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <div style="flex: 3;">
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
           </div>

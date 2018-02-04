@@ -190,6 +190,11 @@ export class DevelopmentAppRegComponent {
   }
 
 
+  selectDevice(index: number, deviceName: string) {
+    this.deviceSelectList[index].deviceName = deviceName;
+
+  }
+
 
 
 
