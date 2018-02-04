@@ -27,15 +27,19 @@ export class DevelopmentGroupComponent {
   constructor(private companyService: CompanyService, private userService: UserService) {
 
 
+
     // 获得当前用户信息，拿到companyId，然后通过CompanyId获取改公司下的所有开发者 和 该公司的信息
     this.userService.getUserInfo()
       .then(async res => {
 
         if (res.success) {
 
+
+          this.user = userService.user;
+
           // 获得该公司下的所有开发者
           const queryDeveloperList = {
-            "userId": userService.user._id,
+            "userId": this.user._id,
             "token": userService.token.token,
             "companyId": res.user.companyId
           };
@@ -45,19 +49,13 @@ export class DevelopmentGroupComponent {
           if (developerResponse.success) {
             this.allList = developerResponse.data;
 
-            if (this.allList && this.allList.length === 1) {
-              this.master = this.allList[0];
-              this.developerList = [];
-            } else {
-              this.master = this.allList.find((developer, index, arr) => {
-                if (developer.type === 3) {
-                  arr.splice(index, 1);
-                  this.developerList = arr;
-                }
-
-                return developer.type === 3;
-              });
-            }
+            this.allList.find((developer, index, arr) => {
+              if (developer._id === this.user._id) {
+                arr.splice(index, 1);
+                this.developerList = arr;
+              }
+              return developer._id === this.user._id;
+            });
 
             console.log(this.master);
 
@@ -65,7 +63,7 @@ export class DevelopmentGroupComponent {
 
           // 获得公司信息
           const queryCompanyInfo = {
-            "userId": userService.user._id,
+            "userId": this.user._id,
             "token": userService.token.token,
             "cid": res.user.companyId
           };
@@ -75,12 +73,16 @@ export class DevelopmentGroupComponent {
             this.companyInfo = companyResponse.data;
           }
 
+
+          // 获得当前用户的权限
           const userInfo = {
-            "userId": userService.user._id,
+            "userId": this.user._id,
             "token": userService.token.token
           };
 
-          const perssionResponse = await userService.getUserAuth(userInfo);
+          const permissionResponse = await userService.getUserAuth(userInfo);
+
+
 
         }
 

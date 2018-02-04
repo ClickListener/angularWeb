@@ -80,7 +80,9 @@ select {
   appearance:none;
   -moz-appearance:none;
   -webkit-appearance:none;
+
   padding-right: 15px;
+  padding-left: 15px;
 
   background: url("../../../../assets/images/down.png") no-repeat scroll right transparent;
   background-origin: content-box;
@@ -186,5 +188,31 @@ select {
   width: 10rem;
   margin: 0;
   border-radius: 3px;
+}
+
+
+.selectDevice-block {
+
+  display: inline-block;
+  width: 70%;
+
+  border: solid 1px #bbbbbb;
+  border-radius: 3px;
+  height: 2.1rem;
+
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+
+  padding-right: 15px;
+  padding-left: 15px;
+
+  background: url("../../../../assets/images/down.png") no-repeat scroll right transparent;
+  background-origin: content-box;
+
+  text-align: left;
+
+
+
 }
 

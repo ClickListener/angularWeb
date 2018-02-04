@@ -119,7 +119,7 @@ export class UserService {
 
 
   /**
-   * 获得当前用户权限，不传uid ，则返回当前用户的权限，传uid， 返回该用户权限
+   * 获得当前用户权限，不传uid ，则返回当前用户的权限，传uid， 返回查询的用户权限
    */
 
   getUserAuth(userInfo: any):Promise<any> {

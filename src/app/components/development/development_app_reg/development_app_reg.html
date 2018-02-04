@@ -87,7 +87,7 @@
       <div class="form-custom-head">
         <p class="custom-item1">No.</p>
         <p class="custom-item2">Device Model</p>
-        <p class="custom-item3">Total Number</p>
+        <p class="custom-item1">Total Number</p>
         <p class="custom-item4">Operation</p>
       </div>
 
@@ -96,13 +96,13 @@
           <p class="custom-item1">0{{i + 1}}</p>
           <div class="custom-item2">
 
-            <select  name="deviceName" [(ngModel)]="deviceSelected.deviceName">
-              <option *ngFor="let device of deviceList">
-                {{device}}
-              </option>
-            </select>
+            <div class="selectDevice-block" data-target="#exampleModal" data-toggle="modal">
+              <img src="../../../../assets/images/device_bp5.png" style="height: 2rem; width: 2rem">
+              <a>Bp5</a>
+            </div>
+
           </div>
-          <div class="custom-item3">
+          <div class="custom-item1">
             <select name="devicetotalNumber" [(ngModel)]="deviceSelected.totalNumber" >
               <option *ngFor="let deviceNumber of deviceNumberList">{{deviceNumber}}</option>
             </select>
