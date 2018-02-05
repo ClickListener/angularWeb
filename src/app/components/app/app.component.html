@@ -78,8 +78,8 @@
         </a>
 
         <ul id="development_collapse" class="collapse show" style="font-size: 14px" *ngIf="user">
-          <li><a routerLinkActive="active" routerLink='/development-main/development-app-manager'>Development Group</a></li>
-          <li><a routerLinkActive="active" routerLink='/development-main/development-group'>App Manager</a></li>
+          <li><a routerLinkActive="active" routerLink='/development-main/development-group'>Development Group</a></li>
+          <li><a routerLinkActive="active" routerLink='/development-main/development-app-manager'>App Manager</a></li>
         </ul>
       </li>
 
@@ -100,7 +100,7 @@
         <!--<div class="divider"></div>-->
       <!--</li>-->
 
-      <li *ngIf="user">
+      <li *ngIf="user && user.type === '1'">
         <a data-toggle="collapse"
            aria-expanded="true" data-target="#scheme_collapse">
           <b style="font-size: 16px">Scheme</b>

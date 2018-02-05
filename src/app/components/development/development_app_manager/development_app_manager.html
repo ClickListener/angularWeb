@@ -4,7 +4,7 @@
     <a class="btn btn-primary" routerLink="/development-app-reg" routerLinkActive="active">Registered App</a>
   </div>
 
-  <div class="card">
+  <div class="card" *ngIf="appList && appList.length !== 0">
 
     <div class="card-body">
 
