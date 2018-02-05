@@ -33,9 +33,11 @@
 
   <div class="license-block">
     <p>Business license</p>
-    <a style="position: absolute"><img id="preview" src="../../../../assets/images/addPic.png" style="width: 80px; height: 80px"></a>
+    <a style="position: absolute"><img id="preview" src="../../../../assets/images/addPic.png"
+                                       style="width: 80px; height: 80px"></a>
     <div>
-      <input type="file" name="icon" style="width: 80px;height: 80px;opacity: 0;" (change)="previewImg($event)" accept="image/*">
+      <input type="file" name="icon" style="width: 80px;height: 80px;opacity: 0;" (change)="previewImg($event)"
+             accept="image/*">
     </div>
   </div>
 
@@ -65,27 +67,25 @@
 
   </div>
 
-  <P>Set License</P>
+  <P style="margin-top: 15px; margin-bottom: 30px;font-size: 30px">Set License</P>
 
-  <div class="dropdown-block">
+  <div class="data-block">
 
-    <div>
-      <label>Expired Date</label>
+    <label>Expired Date</label>
 
 
-      <div class="md-form">
-        <i class="fa fa-calendar prefix"></i>
-        <input placeholder="Set Expired Date" type="number" id="expiredDate" required
-               class="datapicker"
-               #expiredDate readonly>
-      </div>
-
-      <!--<select name="expired Date" [(ngModel)]="expiredDate">-->
-        <!--<option value="2011">Option 1</option>-->
-        <!--<option value="2012">Option 2</option>-->
-        <!--<option value="2013">Option 3</option>-->
-      <!--</select>-->
+    <div >
+      <input style="outline: none;border: 0; line-height: 2.1rem" placeholder="Set Expired Date" type="number" id="expiredDate" required
+             class="datapicker" readonly name="expiredDate">
     </div>
+
+
+
+    <!--<select name="expired Date" [(ngModel)]="expiredDate">-->
+    <!--<option value="2011">Option 1</option>-->
+    <!--<option value="2012">Option 2</option>-->
+    <!--<option value="2013">Option 3</option>-->
+    <!--</select>-->
   </div>
 
 
@@ -106,7 +106,8 @@
           <div class="custom-item2">
 
             <div class="selectDevice-block" [attr.data-target]="'#exampleModal' + i" data-toggle="modal">
-              <img src="../../../../assets/images/device_{{deviceSelected.deviceName | lowercase}}.png" style="height: 2rem; width: 2rem">
+              <img src="../../../../assets/images/device_{{deviceSelected.deviceName | lowercase}}.png"
+                   style="height: 2rem; width: 2rem">
               <a>{{deviceSelected.deviceName}}</a>
             </div>
 
@@ -145,7 +146,7 @@
                           <p>(BP5)</p>
                         </div>
                         <div class="selectDevice-device" (click)="selectDevice(i, 'BP7')" data-dismiss="modal">
-                          <img src="../../../../assets/images/device_bp7.png" >
+                          <img src="../../../../assets/images/device_bp7.png">
                           <p>BP7</p>
                         </div>
                         <div class="selectDevice-device" (click)="selectDevice(i, 'BP7S')" data-dismiss="modal">
@@ -179,7 +180,7 @@
                             <p>CardioLab</p>
                             <p>(ABI)</p>
                           </div>
-                          <div class="selectDevice-device"  (click)="selectDevice(i, 'ABP100')" data-dismiss="modal">
+                          <div class="selectDevice-device" (click)="selectDevice(i, 'ABP100')" data-dismiss="modal">
                             <img src="../../../../assets/images/device_bp5.png">
                             <p>CardioMed</p>
                             <p>(ABP100)</p>
@@ -196,7 +197,7 @@
                             <img src="../../../../assets/images/device_am3.png">
                             <p>AM3</p>
                           </div>
-                          <div class="selectDevice-device"  (click)="selectDevice(i, 'AM3S')" data-dismiss="modal">
+                          <div class="selectDevice-device" (click)="selectDevice(i, 'AM3S')" data-dismiss="modal">
                             <img src="../../../../assets/images/device_am3s.png">
                             <p>Edge</p>
                             <p>(AM3S)</p>
@@ -215,7 +216,7 @@
                           Oxygen
                         </div>
                         <div class="selectDevice-deviceBlock" style="margin: 0">
-                          <div class="selectDevice-device"  (click)="selectDevice(i, 'PO3')" data-dismiss="modal">
+                          <div class="selectDevice-device" (click)="selectDevice(i, 'PO3')" data-dismiss="modal">
                             <img src="../../../../assets/images/device_po3.png">
                             <p>PO3</p>
                             <p style="opacity: 0">PO3</p>
@@ -251,7 +252,7 @@
                           <p>(HS4S)</p>
                         </div>
                         <div class="selectDevice-device" (click)="selectDevice(i, 'HS5')" data-dismiss="modal">
-                          <img src="../../../../assets/images/device_hs5.png" >
+                          <img src="../../../../assets/images/device_hs5.png">
                           <p>HS5</p>
                         </div>
                         <div class="selectDevice-device" (click)="selectDevice(i, 'HS5S')" data-dismiss="modal">
@@ -296,7 +297,7 @@
                           Oxygen
                         </div>
                         <div class="selectDevice-deviceBlock" style="margin: 0">
-                          <div class="selectDevice-device"  (click)="selectDevice(i, 'ECG3')" data-dismiss="modal">
+                          <div class="selectDevice-device" (click)="selectDevice(i, 'ECG3')" data-dismiss="modal">
                             <img src="../../../../assets/images/device_bp5.png">
                             <p>Rhythm</p>
                             <p>(ECG3)</p>
@@ -310,7 +311,6 @@
                       </div>
 
 
-
                     </div>
                   </div>
                 </div>
@@ -319,7 +319,7 @@
 
           </div>
           <div class="custom-item1">
-            <select name="devicetotalNumber" [(ngModel)]="deviceSelected.totalNumber" >
+            <select name="devicetotalNumber" [(ngModel)]="deviceSelected.totalNumber">
               <option *ngFor="let deviceNumber of deviceNumberList">{{deviceNumber}}</option>
             </select>
           </div>

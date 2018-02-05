@@ -1,7 +1,7 @@
 /**
  * Created by zhangxu on 17/01/2018.
  */
-import {Component, DoCheck} from "@angular/core";
+import {Component, DoCheck, OnInit} from "@angular/core";
 import {Device} from "../../../model/Device";
 import {UserService} from "../../../services/user.service";
 import swal from "sweetalert2";
@@ -14,7 +14,8 @@ declare const jQuery: any;
   styleUrls: ['./development_app_reg.css']
 })
 
-export class DevelopmentAppRegComponent {
+export class DevelopmentAppRegComponent implements OnInit {
+
 
 
   deviceSelectList: Array<Device>;
@@ -39,7 +40,7 @@ export class DevelopmentAppRegComponent {
   description: string;
   scheme: string;
   codeType: string;
-  expiredDate: string;
+  expiredDate: any;
 
 
   constructor(private userService: UserService, private router: Router) {
@@ -52,6 +53,12 @@ export class DevelopmentAppRegComponent {
 
     this.userService.getUserInfo();
 
+
+
+  }
+
+
+  ngOnInit(): void {
     jQuery('.datapicker').pickadate({
       labelMonthNext: 'Go to the next month',
       labelMonthPrev: 'Go to the previous month',
@@ -61,11 +68,12 @@ export class DevelopmentAppRegComponent {
       selectYears: true,
       min: +1,
       max: [2019, 0, 1],
-      formatSubmit: 'yyyy/MM/dd'
+      formatSubmit: 'yyyy/MM/dd',
+      onSet: context =>  {
+        this.expiredDate = context.select;
+      }
     });
-
   }
-
   addDevice() {
     const device = new Device();
     device.deviceName = "BP5";
@@ -158,6 +166,7 @@ export class DevelopmentAppRegComponent {
       "codeType": this.codeType,
       "devices": this.deviceSelectList,
       "licenseType": 3,
+      "expireTime": this.expiredDate,
       "companyId": this.userService.user.companyId
     };
 
