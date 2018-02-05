@@ -43,6 +43,7 @@ import {AppService} from "./services/app.service";
 import {DocumentMainComponent} from "./components/document/document_main/document_main.component";
 import {DocumentAndroidComponent} from "./components/document/document_android/document-android.component";
 import {DocumentIosComponent} from "./components/document/document_ios/document-ios.component";
+import {DevelopmentAppModifyComponent} from "./components/development/development_app_modify/development_app_modify";
 
 @NgModule({
 
@@ -82,6 +83,7 @@ import {DocumentIosComponent} from "./components/document/document_ios/document-
     DevelopmentGroupComponent,
     DevelopmentAddMemberComponent,
     DevelopmentAppRegComponent,
+    DevelopmentAppModifyComponent,
 
     ManagerMainComponent,
     AndroidComponent,

@@ -29,6 +29,7 @@ import {DetailComponent} from "./components/version/version_detail/detail.compon
 import {DocumentMainComponent} from "./components/document/document_main/document_main.component";
 import {DocumentAndroidComponent} from "./components/document/document_android/document-android.component";
 import {DocumentIosComponent} from "./components/document/document_ios/document-ios.component";
+import {DevelopmentAppModifyComponent} from "./components/development/development_app_modify/development_app_modify";
 
 /**
  * 路由模块
@@ -128,6 +129,11 @@ const routes: Routes = [
   {
     path: 'development-app-reg',
     component: DevelopmentAppRegComponent
+  },
+
+  {
+    path: 'development-app-modify/:param',
+    component: DevelopmentAppModifyComponent
   },
 
   {

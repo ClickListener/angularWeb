@@ -9,8 +9,8 @@ import {promise} from "selenium-webdriver";
 export class AppService {
 
 
-  url = "http://192.168.69.111:3001";
-  // url = "http://localhost:3001";
+  // url = "http://192.168.69.111:3001";
+  url = "http://localhost:3001";
 
 
   constructor(private http: HttpClient) {
@@ -52,21 +52,18 @@ export class AppService {
 
     console.log("appInfo: " + JSON.stringify(appInfo));
 
-    const url = this.url + "/api/company/finduserApp";
+    const url = this.url + "/api/useApp/findUserApp";
 
     return this.http.get(url, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       }),
-      params: {
-        'appId': appInfo.appId,
-        'userId': appInfo.userId,
-        'token': appInfo.token
-      }
+      params: appInfo
     }).toPromise()
       .then(res => {
         console.log(res);
+        return res;
       })
       .catch(AppService.handleError);
 
@@ -79,7 +76,7 @@ export class AppService {
   deleteUserApp(appInfo: any): Promise<any> {
     console.log("appInfo = " + JSON.stringify(appInfo));
 
-    const url = this.url + "/api/company/deleteUserApp";
+    const url = this.url + "/api/useApp/deleteUserApp";
 
     return this.http.get(url, {
       headers: {

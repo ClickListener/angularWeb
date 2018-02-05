@@ -66,7 +66,7 @@
 
               <div class="item-2">
                 <a><img src="../../../../assets/images/download.png"></a>
-                <a><img src="../../../../assets/images/edit.png"></a>
+                <a [routerLink]= '["/development-app-modify", app._id]'><img src="../../../../assets/images/edit.png"></a>
 
                 <a class="collapsed" style="position: relative" data-toggle="collapse" [attr.data-target]="'#confirm' + i"
                    aria-expanded="false" aria-controls="devices-detail">
