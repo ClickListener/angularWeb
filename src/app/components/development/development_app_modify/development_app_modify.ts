@@ -1,21 +1,34 @@
 /**
  * Created by zhangxu on 2018/2/5.
  */
-import {Component} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
+import {Component, DoCheck, OnInit} from "@angular/core";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AppService} from "../../../services/app.service";
 import {UserService} from "../../../services/user.service";
+import {Device} from "../../../model/Device";
+import swal from "sweetalert2";
+
+declare const jQuery: any;
 
 @Component({
   templateUrl: './development_app_modify.html',
   styleUrls: ['./development_app_modify.css']
 })
 
-export class DevelopmentAppModifyComponent {
+export class DevelopmentAppModifyComponent implements OnInit {
+
+  appInfo: any;
+
+  deviceNumberList = [
+    100,
+    200,
+    500,
+    1000
+  ];
 
 
-
-  constructor(private activatedRoute: ActivatedRoute, private appService: AppService, private userService: UserService) {
+  constructor(private activatedRoute: ActivatedRoute, private appService: AppService,
+              private userService: UserService, private router: Router) {
 
     this.activatedRoute.paramMap.subscribe(paramMap => {
       const appId = paramMap['params'].param;
@@ -25,14 +38,186 @@ export class DevelopmentAppModifyComponent {
         "userId": userService.user._id,
         "token": userService.token.token,
         "appId": appId
-      }
+      };
       appService.findUerApp(appInfo)
         .then(res => {
           console.log(res);
+          if (res.success) {
+
+            this.appInfo = res.data;
+          }
+
         })
         .catch(error => {
           console.log(error);
         });
     });
+
   }
+
+
+
+  ngOnInit(): void {
+    jQuery('.datapicker').pickadate({
+      labelMonthNext: 'Go to the next month',
+      labelMonthPrev: 'Go to the previous month',
+      labelMonthSelect: 'Pick a month from the dropdown',
+      labelYearSelect: 'Pick a year from the dropdown',
+      selectMonths: true,
+      selectYears: true,
+      min: +1,
+      max: [2019, 0, 1],
+      formatSubmit: 'yyyy/MM/dd',
+      onSet: context =>  {
+        this.appInfo.expireDate = context.select;
+      }
+    });
+  }
+
+
+  addDevice() {
+    const device = new Device();
+    device.deviceName = "BP5";
+    device.totalNumber = 100;
+
+    this.appInfo.devices.push(device);
+  }
+
+  deleteDevice(index: number) {
+    if (this.appInfo.devices.length === 1) {
+
+    } else {
+      this.appInfo.devices.splice(index, 1);
+    }
+
+  }
+
+
+  // 使用FileReader 将图片读取为base64字符串形式，实现图片预览
+  private previewImg(event) {
+    const file = event.target.files[0];
+
+    const reader = new FileReader();
+
+    reader.onloadstart = function (e) {
+      console.log("开始读取....");
+    };
+
+    reader.onprogress = function (e) {
+      console.log("正在读取中....");
+    };
+
+    reader.onabort = function (e) {
+      console.log("中断读取....");
+    };
+    reader.onerror = function (e) {
+      console.log("读取异常....");
+    };
+    reader.onload = function (e) {
+      console.log("成功读取....");
+
+      const img = document.getElementById("preview");
+      img['src'] = e.target['result'];
+    };
+
+    reader.readAsDataURL(file);
+  }
+
+
+
+  updateApp() {
+    const option = {
+      url: "http://localhost:3001/api/useApp/updateUserApp",
+      // url: "http://192.168.69.111:3001/api/useApp/updateUserApp",
+      type: "POST",
+      beforeSubmit: this.beforeSubmit.bind(this),
+      success: this.success.bind(this)
+    };
+
+    jQuery('#registerAppForm').ajaxSubmit(option);
+  }
+
+
+  private beforeSubmit(formData) {
+
+    const file = formData.splice(4, 1);
+
+    formData.splice(0, formData.length);
+
+    const userId = {
+      name: 'userId',
+      value: this.userService.user._id,
+      type: 'text'
+    };
+
+    formData.push(userId);
+
+    const token = {
+      name: 'token',
+      value: this.userService.token.token,
+      type: 'text'
+    };
+
+    formData.push(token);
+
+    const app = {
+      "platform": this.appInfo.platform,
+      "appName": this.appInfo.appName,
+      "bundleOrPackageName": this.appInfo.bundleOrPackageName,
+      "description": this.appInfo.description,
+      "scheme": this.appInfo.scheme,
+      "codeType": this.appInfo.codeType,
+      "devices": this.appInfo.devices,
+      "licenseType": 3,
+      "expireTime": this.appInfo.expireDate,
+      "companyId": this.appInfo.companyId
+    };
+
+    const appInfo = {
+      name: 'appInfo',
+      value: JSON.stringify(app)
+    };
+
+    formData.push(appInfo);
+
+
+    formData.push(file[0]);
+
+    console.log(formData);
+  }
+
+
+  private success(res) {
+
+    console.log(res);
+
+    if (res.success) {
+      this.router.navigate(['/development-main/development-app-manager']);
+      swal({
+        position: 'bottom-right',
+        type: 'success',
+        titleText: 'Create success',
+        showConfirmButton: false,
+        timer: 2000,
+        padding: 0
+      }).catch(swal.noop);
+    } else {
+      swal({
+        position: 'bottom-right',
+        type: 'error',
+        titleText: res.message,
+        showConfirmButton: false,
+        timer: 2000,
+        padding: 0
+      }).catch(swal.noop);
+    }
+  }
+
+
+  selectDevice(index: number, deviceName: string) {
+    this.appInfo.devices[index].deviceName = deviceName;
+
+  }
+
+
 }

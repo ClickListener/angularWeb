@@ -21,28 +21,6 @@ export class AppService {
     return Promise.reject(error.message || error);
   }
 
-  /**
-   * 上传用户APP信息
-   * @param appInfo
-   * @returns {Promise<any>}
-   */
-  uploadUserAppInfo(appInfo: any): Promise<any> {
-
-    console.log("appInfo = " + JSON.stringify(appInfo));
-
-    const url = this.url + "/api/company/addApp";
-    return this.http.post(url, JSON.stringify(appInfo), {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      })
-    }).toPromise()
-      .then(res => {
-        console.log(res);
-      })
-      .catch(AppService.handleError);
-  }
-
 
   /**
    * 查找用户APP信息
@@ -96,22 +74,6 @@ export class AppService {
       .catch(AppService.handleError);
   }
 
-  updateUserApp(appInfo: any): Promise<any> {
-    console.log('appInfo = ' + JSON.stringify(appInfo));
-
-    const url = this.url + "/api/company/updateUserApp";
-
-    return this.http.post(url, appInfo, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }
-    }).toPromise()
-      .then(res => {
-        console.log(res);
-      })
-      .catch(AppService.handleError);
-  }
 
   findAllAppInfo(appInfo: any): Promise<any> {
     console.log('appInfo = ' + JSON.stringify(appInfo));

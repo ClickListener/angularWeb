@@ -1,0 +1,310 @@
+.radio-block {
+
+}
+
+.radio-block label {
+  width: 10rem
+}
+
+
+/*输入块 样式*/
+.input-block {
+  margin-top: 15px;
+}
+
+.input-block label {
+  display: block;
+}
+
+.input-block input {
+  border: 1px solid #bbbbbb;
+  padding: 0px;
+  border-radius: 3px;
+}
+
+.input-block input:focus {
+  border: 1px solid #007afa;
+  box-shadow: none;
+}
+
+
+.input-block textarea {
+  border: 1px solid #bbbbbb;
+  height: 10rem;
+  padding: 0px;
+  border-radius: 3px;
+}
+
+.input-block textarea:focus {
+  border: 1px solid #007afa;
+  outline: none;
+}
+
+
+/*business license*/
+.license-block {
+  margin-top: 15px;
+  position: relative;
+}
+
+.license-block > div > input:hover {
+  cursor: pointer;
+}
+
+
+.dropdown-block {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.dropdown-block > div {
+  display: inline-block;
+  width: 45%
+}
+
+.dropdown-block > div > select{
+  width: 100%;
+}
+
+.dropdown-block label {
+  display: block;
+}
+
+
+.data-block {
+  width: 45%;
+}
+
+.data-block label {
+  display: block;
+}
+
+.data-block>div {
+
+  width: 100%;
+  border: 1px solid #bbbbbb;
+
+  border-radius: 3px;
+  height: 2.1rem;
+
+  padding-right: 15px;
+  padding-left: 15px;
+
+
+  background: url("../../../../assets/images/down.png") no-repeat scroll right transparent;
+
+  background-origin: content-box;
+}
+
+
+select {
+  border: solid 1px #bbbbbb;
+
+  border-radius: 3px;
+  height: 2.1rem;
+
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+
+  padding-right: 15px;
+  padding-left: 15px;
+
+  background: url("../../../../assets/images/down.png") no-repeat scroll right transparent;
+  background-origin: content-box;
+
+}
+
+
+select:hover {
+  cursor: pointer;
+}
+
+
+
+.form-custom {
+  border: 1px solid #bbbbbb;
+  width: 100%;
+}
+
+/*head*/
+.form-custom-head {
+  background: #e9ecef;
+  height: 2.1rem;
+  border-bottom: 1px solid #bbbbbb;
+  display: flex;
+}
+
+.form-custom-head p {
+  margin: 0;
+  line-height: 2.1rem;
+  text-align: center;
+}
+
+
+/*end*/
+.form-custom-end {
+  height: 3rem;
+  border-top: 1px solid #bbbbbb;
+  display: flex;
+}
+
+.form-custom-end p {
+  flex: 7;
+  line-height: 3rem;
+  margin-left: 5%;
+}
+
+.form-custom-end a {
+  flex: 1;
+  line-height: 3rem;
+  text-align: center;
+}
+
+
+.custom-item1 {
+  flex: 1;
+}
+
+.custom-item2 {
+  flex: 3;
+}
+
+.custom-item3 {
+  flex: 3;
+}
+
+.custom-item4 {
+  flex: 1;
+}
+
+
+/*content*/
+.form-custom-content {
+  margin: 0;
+  line-height: 2.1rem;
+  padding-top: 1rem;
+}
+
+.form-custom-content p {
+  margin: 0;
+  line-height: 2.1rem;
+  text-align: center;
+}
+
+
+.form-custom-content > div {
+  padding-bottom: 1rem;
+  display: flex;
+  text-align: center;
+}
+
+.form-custom-content select {
+  width: 70%;
+}
+
+
+/*提交块*/
+.submit-block {
+  position: relative;
+  margin-top: 3rem;
+
+  margin-bottom: 10rem;
+}
+
+.submit-block a {
+  position: absolute;
+  right: 0;
+  text-transform: none;
+  width: 10rem;
+  margin: 0;
+  border-radius: 3px;
+}
+
+
+.selectDevice-block {
+
+  display: inline-block;
+  width: 70%;
+
+  border: solid 1px #bbbbbb;
+  border-radius: 3px;
+  height: 2.1rem;
+
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+
+  padding-right: 15px;
+  padding-left: 15px;
+
+  background: url("../../../../assets/images/down.png") no-repeat scroll right transparent;
+  background-origin: content-box;
+
+  text-align: left;
+
+}
+
+.selectDevice-block:hover {
+  cursor: pointer;
+}
+
+.selectDevice-title {
+  border-bottom: 1px solid #e9ecef;
+  height: 2.5rem;
+  text-align: center;
+}
+
+.selectDevice-title p {
+  line-height: 2.5rem;
+}
+
+.selectDevice-title a {
+  position: fixed;
+  right: 0;
+  line-height: 2.5rem;
+  margin-right: 1rem
+}
+
+
+.selectDevice-body {
+
+}
+
+.selectDevice-deviceTile {
+
+  margin-left: 5%;
+
+}
+
+.selectDevice-deviceBlock {
+
+  background-color: #e9ecef;
+  border-radius: 5px;
+
+  margin-left: 5%;
+  margin-right: 5%;
+
+  display: flex;
+
+}
+
+.selectDevice-device {
+  flex: 1;
+  display: inline-block;
+  text-align: center;
+}
+
+.selectDevice-device:hover{
+  cursor: pointer;
+}
+
+.selectDevice-device > img {
+  width: 80%;
+}
+
+.selectDevice-device > p {
+  line-height: 1.5rem;
+}
+
+
