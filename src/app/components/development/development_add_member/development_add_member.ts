@@ -12,9 +12,10 @@ import {Router} from "@angular/router";
 })
 
 
-export class DevelopmentAddMemberComponent{
+export class DevelopmentAddMemberComponent {
 
 
+  emailOrUserName: string;
   createApp = false;
   checkLicenseData = false;
   editApp = false;
@@ -33,7 +34,7 @@ export class DevelopmentAddMemberComponent{
   }
 
 
-  inviteUserToGroup(emailOrUserName: string) {
+  inviteUserToGroup() {
 
     const permissionArr = [];
 
@@ -85,17 +86,17 @@ export class DevelopmentAddMemberComponent{
     const permissionInfo = {
       "userId": this.userService.user._id,
       "token": this.userService.token.token,
-      "uid": '5a743283a09d9f8b18c40abf',
+      "username": this.emailOrUserName,
       "auth": permissionArr
     };
 
 
     const userInfo = {
-      "inviteName": emailOrUserName,
+      "inviteName": this.emailOrUserName,
       "userId": this.userService.user._id,
       "token": this.userService.token.token,
       "companyId": this.userService.user.companyId
-    }
+    };
 
     this.companyService.inviteUserToGroup(userInfo)
       .then(async res => {
