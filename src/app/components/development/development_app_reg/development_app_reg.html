@@ -71,11 +71,20 @@
 
     <div>
       <label>Expired Date</label>
-      <select name="expired Date" [(ngModel)]="expiredDate">
-        <option value="2011">Option 1</option>
-        <option value="2012">Option 2</option>
-        <option value="2013">Option 3</option>
-      </select>
+
+
+      <div class="md-form">
+        <i class="fa fa-calendar prefix"></i>
+        <input placeholder="Set Expired Date" type="number" id="expiredDate" required
+               class="datapicker"
+               #expiredDate readonly>
+      </div>
+
+      <!--<select name="expired Date" [(ngModel)]="expiredDate">-->
+        <!--<option value="2011">Option 1</option>-->
+        <!--<option value="2012">Option 2</option>-->
+        <!--<option value="2013">Option 3</option>-->
+      <!--</select>-->
     </div>
   </div>
 
@@ -96,13 +105,13 @@
           <p class="custom-item1">0{{i + 1}}</p>
           <div class="custom-item2">
 
-            <div class="selectDevice-block" data-target="#exampleModal" data-toggle="modal">
+            <div class="selectDevice-block" [attr.data-target]="'#exampleModal' + i" data-toggle="modal">
               <img src="../../../../assets/images/device_{{deviceSelected.deviceName | lowercase}}.png" style="height: 2rem; width: 2rem">
               <a>{{deviceSelected.deviceName}}</a>
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+            <div class="modal fade" [attr.id]="'exampleModal' + i" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document" style="width: 50%; max-width: 100%">
                 <div class="modal-content">
@@ -270,7 +279,7 @@
                             <p>(BG1)</p>
                           </div>
                           <div class="selectDevice-device" (click)="selectDevice(i, 'BG5')" data-dismiss="modal">
-                            <img src="../../../../assets/images/device_bp5.png">
+                            <img src="../../../../assets/images/device_bg5.png">
                             <p>Smart</p>
                             <p>(BG5)</p>
                           </div>
