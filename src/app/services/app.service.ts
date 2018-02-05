@@ -9,6 +9,10 @@ import {promise} from "selenium-webdriver";
 export class AppService {
 
 
+  url = "http://192.168.69.111:3001";
+  // url = "http://localhost:3001";
+
+
   constructor(private http: HttpClient) {
   }
 
@@ -26,7 +30,7 @@ export class AppService {
 
     console.log("appInfo = " + JSON.stringify(appInfo));
 
-    const url = "http://loaclhost:3001/api/company/addApp";
+    const url = this.url + "/api/company/addApp";
     return this.http.post(url, JSON.stringify(appInfo), {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -48,7 +52,7 @@ export class AppService {
 
     console.log("appInfo: " + JSON.stringify(appInfo));
 
-    const url = "http://loaclhost:3001/api/company/finduserApp";
+    const url = this.url + "/api/company/finduserApp";
 
     return this.http.get(url, {
       headers: new HttpHeaders({
@@ -75,7 +79,7 @@ export class AppService {
   deleteUserApp(appInfo: any): Promise<any> {
     console.log("appInfo = " + JSON.stringify(appInfo));
 
-    const url = "http://loaclhost:3001/api/company/deleteUserApp";
+    const url = this.url + "/api/company/deleteUserApp";
 
     return this.http.get(url, {
       headers: {
@@ -90,6 +94,7 @@ export class AppService {
     }).toPromise()
       .then(res => {
         console.log(res);
+        return res;
       })
       .catch(AppService.handleError);
   }
@@ -97,7 +102,7 @@ export class AppService {
   updateUserApp(appInfo: any): Promise<any> {
     console.log('appInfo = ' + JSON.stringify(appInfo));
 
-    const url = "http://loaclhost:3001/api/company/updateUserApp";
+    const url = this.url + "/api/company/updateUserApp";
 
     return this.http.post(url, appInfo, {
       headers: {
@@ -114,7 +119,7 @@ export class AppService {
   findAllAppInfo(appInfo: any): Promise<any> {
     console.log('appInfo = ' + JSON.stringify(appInfo));
 
-    const url = "http://localhost:3001/api/useApp/gatAllAppList";
+    const url = this.url + "/api/useApp/gatAllAppList";
 
     return this.http.get(url, {
       headers: {

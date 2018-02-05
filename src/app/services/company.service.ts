@@ -9,6 +9,10 @@ export class CompanyService {
 
   countryList: Array<any>;
 
+
+  url = "http://192.168.69.111:3001";
+  // url = "http://localhost:3001";
+
   constructor(private http: HttpClient) {}
 
   private static handleError(error: any): Promise<any> {
@@ -22,7 +26,7 @@ export class CompanyService {
    */
   getCountryList(): Promise<any> {
 
-    const url = "http://localhost:3001/api/company/getCountryList";
+    const url = this.url + "/api/company/getCountryList";
 
     return this.http.get(url, {
       headers: new HttpHeaders({
@@ -47,7 +51,7 @@ export class CompanyService {
 
     console.log("companyInfo = " + JSON.stringify(companyInfo));
 
-    const url = "http://localhost:3001/api/company/reviewCompany";
+    const url = this.url + "/api/company/reviewCompany";
 
     return this.http.post(url, companyInfo, {
       headers: new HttpHeaders({
@@ -70,7 +74,7 @@ export class CompanyService {
   findCompany(companyInfo: any):Promise<any> {
     console.log("companyInfo = " + JSON.stringify(companyInfo));
 
-    const url = "http://localhost:3001/api/company/findCompany";
+    const url = this.url + "/api/company/findCompany";
 
     return this.http.get(url, {
       headers: new HttpHeaders({
@@ -97,7 +101,7 @@ export class CompanyService {
 
     console.log("companyInfo = " + JSON.stringify(companyInfo));
 
-    const url = "http://localhost:3001/api/company/deleteCompany";
+    const url = this.url + "/api/company/deleteCompany";
 
     return this.http.get(url, {
       headers: new HttpHeaders({
@@ -123,7 +127,7 @@ export class CompanyService {
   updateCompany(companyInfo: any): Promise<any> {
     console.log("companyInfo = " + JSON.stringify(companyInfo));
 
-    const url = "http://localhost:3001/api/company/updateCompany";
+    const url = this.url + "/api/company/updateCompany";
     return this.http.post(url, companyInfo, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -145,7 +149,7 @@ export class CompanyService {
   inviteUserToGroup(invitedUser: any): Promise<any> {
     console.log("invitedUser = " + JSON.stringify(invitedUser));
 
-    const url = "http://localhost:3001/api/company/invite";
+    const url = this.url + "/api/company/invite";
 
     return this.http.get(url, {
       headers: new HttpHeaders({
@@ -166,7 +170,7 @@ export class CompanyService {
 
     console.log(userInfo);
 
-    const url = "http://localhost:3001/api/company/getCompnayList";
+    const url = this.url + "/api/company/getCompnayList";
 
     return this.http.get(url, {
       headers: new HttpHeaders({

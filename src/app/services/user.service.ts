@@ -17,6 +17,10 @@ import {AES, enc, mode, pad} from "crypto-js";
 @Injectable()
 export class UserService {
 
+
+  url = "http://192.168.69.111:3001";
+  // url = "http://localhost:3001";
+
   constructor(private http: HttpClient, private _cookieService: CookieService) {
     console.log('UserService--------constructor');
     this.user = JSON.parse(sessionStorage.getItem('user'));
@@ -53,7 +57,7 @@ export class UserService {
 
   getUserInfo(): Promise<any> {
 
-    const url = "http://localhost:3001/user/userInfo";
+    const url = this.url + "/user/userInfo";
     return this.http.get(url, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -79,7 +83,7 @@ export class UserService {
   getResourceList():Promise<any> {
 
 
-    const url = "http://localhost:3001/auth/getAuthList";
+    const url = this.url + "/auth/getAuthList";
 
     return this.http.get(url, {
       headers: new HttpHeaders({
@@ -103,7 +107,7 @@ export class UserService {
 
     console.log('userInfo = ' + JSON.stringify(userInfo));
 
-    const url = "http://localhost:3001/user/changeValid";
+    const url = this.url + "/user/changeValid";
 
     return this.http.post(url, userInfo, {
       headers: new HttpHeaders({
@@ -126,7 +130,7 @@ export class UserService {
 
     console.log('userInfo = ' + JSON.stringify(userInfo));
 
-    const url = "http://localhost:3001/auth/getUserAuth";
+    const url =  this.url + "/auth/getUserAuth";
 
     return this.http.get(url, {
       headers: new HttpHeaders({
@@ -152,7 +156,7 @@ export class UserService {
 
     console.log("perssionInfo = " + JSON.stringify(perssionInfo));
 
-    const url = "http://localhost:3001/user/userAuth";
+    const url = this.url + "/user/userAuth";
 
     return this.http.post(url, perssionInfo, {
       headers: new HttpHeaders({
@@ -171,7 +175,7 @@ export class UserService {
 
     console.log('userInfo = ' + JSON.stringify(userInfo));
 
-    const url = "http://localhost:3001/user/update";
+    const url = this.url + "/user/update";
 
     return this.http.post(url, userInfo, {
       headers: new HttpHeaders({
@@ -193,7 +197,7 @@ export class UserService {
   getUserList(queryInfo): Promise<any> {
     console.log(JSON.stringify(queryInfo));
 
-    const url = 'http://localhost:3001/user/getUserList';
+    const url = this.url + '/user/getUserList';
 
     return this.http.get(url, {
       headers: new HttpHeaders({
@@ -215,7 +219,7 @@ export class UserService {
    * @param userInfo
    */
   signIn(userInfo: any): Promise<User> {
-    const url = 'http://localhost:3001/user/login';
+    const url = this.url + '/user/login';
     console.log(JSON.stringify(userInfo));
 
     return this.http.post(url, JSON.stringify(userInfo), this.options)
@@ -250,7 +254,7 @@ export class UserService {
    *
    */
   signUp(userInfo: any): Promise<User> {
-    const url = 'http://localhost:3001/user/add';
+    const url = this.url + '/user/add';
 
     console.log(JSON.stringify(userInfo));
 
@@ -317,7 +321,7 @@ export class UserService {
     };
 
 
-    const url = 'http://localhost:3001/token/getAccessToken';
+    const url = this.url + '/token/getAccessToken';
 
     console.log(tokenInfo);
 
@@ -349,7 +353,7 @@ export class UserService {
       "refresh_token": this.token.refresh_token
     };
 
-    const url = 'http://localhost:3001/token/getAccessToken';
+    const url = this.url + '/token/getAccessToken';
 
     return this.http.post(url, JSON.stringify(refreshTokenInfo), this.options)
       .toPromise()

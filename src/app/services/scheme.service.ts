@@ -12,6 +12,9 @@ export class SchemeService {
 
   private _schemeID: string;
 
+  url = "http://192.168.69.111:3001";
+  // url = "http://localhost:3001";
+
   constructor(private http: HttpClient) {
   }
 
@@ -41,7 +44,7 @@ export class SchemeService {
    */
   queryScheme(appName: string, userId: string): Promise<any> {
 
-    const url = 'http://localhost:3001/api/app/findAppInfo';
+    const url = this.url + '/api/app/findAppInfo';
 
     return this.http.get(url, {
       headers: new HttpHeaders({
@@ -74,7 +77,7 @@ export class SchemeService {
    */
   deleteScheme(appName: string, version: string): Promise<any> {
 
-    const url = 'http://localhost:3001/api/app/delete';
+    const url = this.url + '/api/app/delete';
 
     return this.http.get(url, {
       headers: new HttpHeaders({
@@ -98,7 +101,7 @@ export class SchemeService {
 
   deleteFile(body: any): Promise<any> {
 
-    const url = 'http://localhost:3001/api/app/deleteFile';
+    const url = this.url + '/api/app/deleteFile';
 
     return this.http.post(url, body, {
       headers: new HttpHeaders({
