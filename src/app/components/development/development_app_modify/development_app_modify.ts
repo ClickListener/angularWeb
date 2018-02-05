@@ -7,6 +7,7 @@ import {AppService} from "../../../services/app.service";
 import {UserService} from "../../../services/user.service";
 import {Device} from "../../../model/Device";
 import swal from "sweetalert2";
+import {DatePipe} from "@angular/common";
 
 declare const jQuery: any;
 
@@ -15,7 +16,8 @@ declare const jQuery: any;
   styleUrls: ['./development_app_modify.css']
 })
 
-export class DevelopmentAppModifyComponent implements OnInit {
+export class DevelopmentAppModifyComponent implements DoCheck {
+
 
   appInfo: any;
 
@@ -26,9 +28,12 @@ export class DevelopmentAppModifyComponent implements OnInit {
     1000
   ];
 
+  expiredDate: string;
+
 
   constructor(private activatedRoute: ActivatedRoute, private appService: AppService,
-              private userService: UserService, private router: Router) {
+              private userService: UserService, private router: Router,
+              private datePipe: DatePipe) {
 
     this.activatedRoute.paramMap.subscribe(paramMap => {
       const appId = paramMap['params'].param;
@@ -45,6 +50,10 @@ export class DevelopmentAppModifyComponent implements OnInit {
           if (res.success) {
 
             this.appInfo = res.data;
+
+            this.expiredDate = datePipe.transform(this.appInfo.expireTime, 'yyyy/MM/dd');
+
+            console.log('expiredDate = ' , this.expiredDate);
           }
 
         })
@@ -57,23 +66,28 @@ export class DevelopmentAppModifyComponent implements OnInit {
 
 
 
-  ngOnInit(): void {
-    jQuery('.datapicker').pickadate({
-      labelMonthNext: 'Go to the next month',
-      labelMonthPrev: 'Go to the previous month',
-      labelMonthSelect: 'Pick a month from the dropdown',
-      labelYearSelect: 'Pick a year from the dropdown',
-      selectMonths: true,
-      selectYears: true,
-      min: +1,
-      max: [2019, 0, 1],
-      formatSubmit: 'yyyy/MM/dd',
-      onSet: context =>  {
-        this.appInfo.expireDate = context.select;
-      }
-    });
-  }
+  ngDoCheck(): void {
 
+    if (this.appInfo !== null) {
+      jQuery('.datapicker').pickadate({
+        labelMonthNext: 'Go to the next month',
+        labelMonthPrev: 'Go to the previous month',
+        labelMonthSelect: 'Pick a month from the dropdown',
+        labelYearSelect: 'Pick a year from the dropdown',
+        selectMonths: true,
+        selectYears: true,
+        min: +1,
+        max: [2019, 0, 1],
+        formatSubmit: 'yyyy/mm/dd',
+        format: 'yyyy/mm/dd',
+        onSet: context =>  {
+          this.appInfo.expireTime = context.select;
+        }
+      });
+    }
+
+
+  }
 
   addDevice() {
     const device = new Device();
@@ -161,6 +175,7 @@ export class DevelopmentAppModifyComponent implements OnInit {
     formData.push(token);
 
     const app = {
+      "_id": this.appInfo._id,
       "platform": this.appInfo.platform,
       "appName": this.appInfo.appName,
       "bundleOrPackageName": this.appInfo.bundleOrPackageName,
@@ -169,8 +184,9 @@ export class DevelopmentAppModifyComponent implements OnInit {
       "codeType": this.appInfo.codeType,
       "devices": this.appInfo.devices,
       "licenseType": 3,
-      "expireTime": this.appInfo.expireDate,
-      "companyId": this.appInfo.companyId
+      "expireTime": this.appInfo.expireTime,
+      "companyId": this.appInfo.companyId,
+      "avatar": this.appInfo.avatar
     };
 
     const appInfo = {
