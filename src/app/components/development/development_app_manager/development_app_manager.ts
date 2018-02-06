@@ -4,6 +4,7 @@
 import {Component} from "@angular/core";
 import {AppService} from "../../../services/app.service";
 import {UserService} from "../../../services/user.service";
+import swal from "sweetalert2";
 
 @Component({
   templateUrl: './development_app_manager.html',
@@ -78,6 +79,41 @@ export class DevelopmentAppManagerComponent {
 
         if (response.success) {
           this.appList = response.data;
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+
+  // 下载License
+  downloadLicense(appId: string) {
+
+    const userInfo = {
+      "userId": this.userService.user._id,
+      "token": this.userService.token.token,
+      "appId": appId
+    }
+    this.appService.downloadLicense(userInfo)
+      .then(res => {
+        console.log(res);
+
+        if (res.success) {
+          swal({
+            position: 'bottom-right',
+            type: 'success',
+            titleText: 'Download successfully',
+            showConfirmButton: false,
+            timer: 2000,
+            padding: 0
+          }).catch(swal.noop);
+        } else {
+          swal(
+            'Fail!',
+            res.message,
+            'error'
+          ).catch(swal.noop);
         }
       })
       .catch(error => {
