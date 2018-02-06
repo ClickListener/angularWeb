@@ -18,8 +18,8 @@ import {AES, enc, mode, pad} from "crypto-js";
 export class UserService {
 
 
-  // url = "http://192.168.69.111:3001";
-  url = "http://localhost:3001";
+  url = "http://192.168.69.111:3001";
+  // url = "http://localhost:3001";
 
   constructor(private http: HttpClient, private _cookieService: CookieService) {
     console.log('UserService--------constructor');

@@ -10,8 +10,8 @@ export class CompanyService {
   countryList: Array<any>;
 
 
-  // url = "http://192.168.69.111:3001";
-  url = "http://localhost:3001";
+  url = "http://192.168.69.111:3001";
+  // url = "http://localhost:3001";
 
   constructor(private http: HttpClient) {}
 
@@ -190,7 +190,27 @@ export class CompanyService {
 
 
 
+  removeCompanyId(userInfo: any): Promise<any> {
 
+    console.log('userInfo = ', userInfo);
+
+    const url = this.url + "/compnay/removeCompanyId";
+
+    return this.http.get(url, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      params: userInfo
+    }).toPromise()
+      .then(res => {
+        console.log(res);
+        return res;
+      })
+      .catch(CompanyService.handleError);
+
+
+  }
 
 
 
