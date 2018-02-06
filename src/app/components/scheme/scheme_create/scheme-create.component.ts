@@ -7,6 +7,7 @@ import {FileUploader} from "ng2-file-upload";
 import swal from "sweetalert2";
 import {FileUploaderCustom} from "../../../services/FileUploaderCustom";
 import {HttpClient} from "@angular/common/http";
+import {UserService} from "../../../services/user.service";
 
 declare const jQuery: any;
 
@@ -27,7 +28,7 @@ export class SchemeCreateComponent {
 
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
-              private http: HttpClient) {
+              private http: HttpClient, private userService: UserService) {
 
     // 通过 parent 属性获得父组件，通过父组件的paramMap获得参数
     this.activatedRoute.parent.paramMap.subscribe(paramMap => {
@@ -70,6 +71,22 @@ export class SchemeCreateComponent {
 
   private beforeSubmit(formData) {
 
+
+
+    const token = {
+      name: "token",
+      value: this.userService.token.token
+    };
+
+    formData.splice(0, 0, token);
+
+    const userId = {
+      name: "userId",
+      value: this.userService.user._id
+    };
+
+    formData.splice(0, 0, userId);
+
     const resourceName = {
       name: "resourceName",
       value: this.resourceName,
@@ -79,7 +96,6 @@ export class SchemeCreateComponent {
     formData.splice(0, 0, resourceName);
     console.log(formData);
 
-    // 可以校验输入参数
   }
 
   private success(response) {

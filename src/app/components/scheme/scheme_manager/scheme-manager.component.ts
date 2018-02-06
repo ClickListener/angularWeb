@@ -55,7 +55,7 @@ export class SchemeManagerComponent {
         "userId": userService.user._id,
         "token": userService.token.token,
         "appName": this.param,
-        "platform": "Android"
+        "platform": "ios"
       };
 
       schemeService.queryScheme(fileInfo)
@@ -91,14 +91,21 @@ export class SchemeManagerComponent {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!'
     }).then(function () {
-      self.schemeService.deleteScheme(self.param, version)
+
+      const schemeInfo = {
+        "userId": self.userService.user._id,
+        "token": self.userService.token.token,
+        "appName": self.param,
+        "version": version
+      };
+      self.schemeService.deleteScheme(schemeInfo)
         .then(res => {
           if (res.success) {
             const fileInfo = {
               "userId": self.userService.user._id,
               "token": self.userService.token.token,
               "appName": self.param,
-              "platform": "Android"
+              "platform": "IOS"
             };
             self.schemeService.queryScheme(fileInfo)
               .then(response => {

@@ -6,8 +6,12 @@ import {ActivatedRoute} from "@angular/router";
 import {SchemeService} from "../../../services/scheme.service";
 import swal from "sweetalert2";
 import {UserService} from "../../../services/user.service";
+import {User} from "../../../model/User";
 
 declare const jQuery: any;
+
+class Token {
+}
 
 @Component({
   selector: 'scheme-details',
@@ -20,8 +24,14 @@ export class SchemeDetailsComponent {
 
   schemeSelected: any;
 
+  user: User;
+  token: Token;
+
 
   constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService, private userService: UserService) {
+
+    this.user = userService.user;
+    this.token = userService.token.token;
 
     const schemeID = activatedRoute.snapshot.paramMap['params'].schemeID;
     schemeService.schemeID = schemeID;
@@ -46,7 +56,8 @@ export class SchemeDetailsComponent {
 
   deleteFile(fileName:string, description: string): void {
     const body = {
-      "_id": this.schemeSelected._id,
+      "userId": this.user._id,
+      "token": this.token,
       "fileName": fileName,
       "description": description
     };

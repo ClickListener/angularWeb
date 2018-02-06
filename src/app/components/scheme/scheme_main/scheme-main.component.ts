@@ -6,6 +6,7 @@ import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {SchemeService} from "../../../services/scheme.service";
 import swal from "sweetalert2";
+import {UserService} from "../../../services/user.service";
 
 
 
@@ -21,11 +22,10 @@ export class SchemeMainComponent {
 
   schemeID: any;
 
-  param: string;
 
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
-              private _location: Location, private schemeService: SchemeService) {
+              private _location: Location, private schemeService: SchemeService, private userService: UserService) {
 
 
     // 还没弄懂，https://segmentfault.com/a/1190000009971757
@@ -37,6 +37,7 @@ export class SchemeMainComponent {
           route = route.firstChild;
         }
         this.schemeID = route.snapshot.params.schemeID;
+
         return route;
       })
       .mergeMap(route => route.data)
@@ -61,7 +62,6 @@ export class SchemeMainComponent {
   // 当查看scheme详细时，删除的点击事件
   private deleteScheme(): void {
 
-    const scheme = this.schemeService.findSchemeById(this.schemeService.schemeID);
 
     const self = this;
     swal({
@@ -74,27 +74,52 @@ export class SchemeMainComponent {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!'
-    }).then(function () {
-      self.schemeService.deleteScheme(scheme.resourceName, scheme.version)
-        .then(res => {
-          if (res.success) {
-            self.router.navigate(['/scheme-main/', scheme.resourceName]);
-            swal(
-              'Deleted!',
-              'Your file has been deleted.',
-              'success'
-            );
-          } else {
-            swal(
-              'Fail!',
-              'Something went wrong!',
-              'error'
-            );
-          }
+    }).then(() => {
+
+      const fileInfo = {
+        "userId": this.userService.user._id,
+        "token": this.userService.token.token,
+        "fileId": this.schemeID
+      };
+      this.schemeService.findFileInfo(fileInfo)
+        .then(async res => {
+
+          console.log(res);
+          const schemeSelected = res.data;
+          const schemeInfo = {
+            "userId": self.userService.user._id,
+            "token": self.userService.token.token,
+            "appName": schemeSelected.resourceName,
+            "version": schemeSelected.version
+          };
+
+          self.schemeService.deleteScheme(schemeInfo)
+            .then(response => {
+              if (response.success) {
+                self.router.navigate(['/scheme-main/', schemeSelected.resourceName,]);
+                swal(
+                  'Deleted!',
+                  'Your file has been deleted.',
+                  'success'
+                );
+              } else {
+                swal(
+                  'Fail!',
+                  'Something went wrong!',
+                  'error'
+                );
+              }
+            })
+            .catch(error => {
+              console.log('ManagerComponent--error = ' + JSON.stringify(error));
+            });
+
         })
         .catch(error => {
-          console.log('ManagerComponent--error = ' + JSON.stringify(error));
+          console.log(error);
         });
+
+
     });
 
   }

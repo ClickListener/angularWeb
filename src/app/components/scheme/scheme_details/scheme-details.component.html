@@ -1,6 +1,6 @@
 <!--<h1>scheme-details</h1>-->
 
-<form>
+<form *ngIf="schemeSelected">
   <fieldset>
     <legend>Base Info</legend>
     <table class="table table-borderLess ">
@@ -30,7 +30,7 @@
     <legend>Files</legend>
     <ul>
       <li *ngFor="let url of schemeSelected.urls" [attr.id]="url.fileName.replace('.', '_')">
-        <a href="http://localhost:3001/api/app/download?userId=5a0269747ac9d897d0f57b60&description={{url.description}}&fileName={{url.fileName}}">{{url.fileName}}</a>
+        <a href="http://localhost:3001/api/app/download?userId={{user}}&token={{token}}&description={{url.description}}&fileName={{url.fileName}}">{{url.fileName}}</a>
         <a (click)="deleteFile(url.fileName, url.description)"><i class="fa fa-times-circle" ></i></a>
       </li>
     </ul>

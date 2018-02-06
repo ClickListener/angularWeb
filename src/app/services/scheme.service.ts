@@ -104,7 +104,7 @@ export class SchemeService {
    * @param {string} version
    * @returns {Promise<any>}
    */
-  deleteScheme(appName: string, version: string): Promise<any> {
+  deleteScheme(schemeInfo: any): Promise<any> {
 
     const url = this.url + '/api/app/delete';
 
@@ -113,10 +113,7 @@ export class SchemeService {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       }),
-      params: {
-        'appName': appName,
-        'version': version
-      }
+      params: schemeInfo
     }).toPromise()
       .then(res => {
         console.log(res);
