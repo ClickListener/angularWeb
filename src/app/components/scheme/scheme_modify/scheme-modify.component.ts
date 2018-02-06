@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {SchemeService} from "../../../services/scheme.service";
 import {FileUploaderCustom} from "../../../services/FileUploaderCustom";
 import swal from "sweetalert2";
+import {UserService} from "../../../services/user.service";
 
 declare const jQuery: any;
 
@@ -19,11 +20,26 @@ export class SchemeModifyComponent {
 
   selectedScheme: any;
 
-  constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService, private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService, private router: Router, private userService: UserService) {
 
     const schemeID = activatedRoute.snapshot.paramMap['params'].schemeID;
 
-    this.selectedScheme = schemeService.findSchemeById(schemeID);
+
+    const schemeInfo = {
+      "userId": userService.user._id,
+      "token": userService.token.token,
+      "fileId": schemeID
+    };
+
+    this.schemeService.findFileInfo(schemeInfo)
+      .then(res => {
+        if (res.success) {
+          this.selectedScheme = res.data;
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
 
 
     jQuery(document).ready(function () {
@@ -38,7 +54,7 @@ export class SchemeModifyComponent {
 
       jQuery('#inputView').on('click', '.delete', function () {
         console.log('delete');
-        if (jQuery('#inputView').children().length !== 1 ) {
+        if (jQuery('#inputView').children().length !== 1) {
           jQuery(this).parent().remove();
         }
 
@@ -47,8 +63,6 @@ export class SchemeModifyComponent {
 
 
   }
-
-
 
 
   private submitForm() {
@@ -65,27 +79,36 @@ export class SchemeModifyComponent {
 
   private beforeSubmit(formData) {
 
-    const extraData = [
-      {
-        name: "_id",
-        value: this.selectedScheme._id,
-        type: "text"
-      },
-      {
-        name: "resourceName",
-        value: this.selectedScheme.resourceName,
-        type: "text"
-      },
-      {
-        name: "version",
-        value: this.selectedScheme.version,
-        type: "text"
-      }
-    ];
+    const _id = {
+      "name": "_id",
+      "value": this.selectedScheme._id
+    };
+    formData.splice(0, 0, _id);
 
-    for (let i = 0; i < extraData.length; i++) {
-      formData.splice(i, 0, extraData[i]);
-    }
+    const resourceName = {
+      "name": "resourceName",
+      "value": this.selectedScheme.resourceName
+    };
+    formData.splice(0, 0, resourceName);
+
+    const version = {
+      "name": "version",
+      "value": this.selectedScheme.version,
+    };
+    formData.splice(0, 0, version);
+
+    const token = {
+      "name": "token",
+      "value": this.userService.token.token
+    };
+    formData.splice(0, 0, token);
+
+    const userId = {
+      "name": "userId",
+      "value": this.userService.user._id
+    };
+    formData.splice(0, 0, userId);
+
     console.log(formData);
     // 可以校验输入参数
     return true;

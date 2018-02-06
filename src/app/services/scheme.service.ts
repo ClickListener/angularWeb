@@ -27,14 +27,6 @@ export class SchemeService {
   }
 
 
-  findSchemeById(schemeID: string): any {
-
-    return this.schemeAll.find(function (scheme, index, arr) {
-      return scheme._id === schemeID;
-    });
-
-  }
-
 
   /**
    * 查询 scheme List
