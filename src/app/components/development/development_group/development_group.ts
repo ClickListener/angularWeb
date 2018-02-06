@@ -14,8 +14,7 @@ import {User} from "../../../model/User";
 
 export class DevelopmentGroupComponent {
 
-  developerList: Array<any>; // 普通开发者 list
-  master: any; // 主开发者信息
+  developerList: Array<any>; // 开发者 list
 
   companyInfo: any;  // 用户所属公司信息
 
@@ -57,7 +56,6 @@ export class DevelopmentGroupComponent {
               return developer._id === this.user._id;
             });
 
-            console.log(this.master);
 
           }
 
@@ -81,9 +79,6 @@ export class DevelopmentGroupComponent {
           };
 
           const permissionResponse = await userService.getUserAuth(userInfo);
-
-
-
         }
 
 
@@ -92,10 +87,47 @@ export class DevelopmentGroupComponent {
         console.log(error);
       });
 
+  }
 
 
+  removeCompanyId(developer: any) {
+    const userInfo = {
+      "userId": this.user._id,
+      "token": this.userService.token.token,
+      "uid": developer._id,
+      "companyId": developer.companyId
+    };
+    this.companyService.removeCompanyId(userInfo)
+      .then(async res => {
+        console.log(res);
+
+        if (res.success) {
+          // 获得该公司下的所有开发者
+          const queryDeveloperList = {
+            "userId": this.user._id,
+            "token": this.userService.token.token,
+            "companyId": this.user.companyId
+          };
+
+          const developerResponse = await this.userService.getUserList(queryDeveloperList);
+
+          if (developerResponse.success) {
+            this.allList = developerResponse.data;
+
+            this.allList.find((findDeveloper, index, arr) => {
+              if (findDeveloper._id === this.user._id) {
+                arr.splice(index, 1);
+                this.developerList = arr;
+              }
+              return findDeveloper._id === this.user._id;
+            });
 
 
-
+          }
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 }
