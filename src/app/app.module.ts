@@ -44,6 +44,7 @@ import {DocumentMainComponent} from "./components/document/document_main/documen
 import {DocumentAndroidComponent} from "./components/document/document_android/document-android.component";
 import {DocumentIosComponent} from "./components/document/document_ios/document-ios.component";
 import {DevelopmentAppModifyComponent} from "./components/development/development_app_modify/development_app_modify";
+import {UserHintComponent} from "./components/user/user_hint.component/user-hint.component";
 
 @NgModule({
 
@@ -58,8 +59,11 @@ import {DevelopmentAppModifyComponent} from "./components/development/developmen
   ],
   declarations: [
     AppComponent,
+
     SignInComponent,
     SignUpComponent,
+    UserHintComponent,
+
     HomeComponent,
     CreateNewComponent,
     ManagerComponent,

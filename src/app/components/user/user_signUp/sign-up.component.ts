@@ -32,8 +32,7 @@ export class SignUpComponent {
             .then((res) => {
               console.log(res);
               if (res['success']) {
-                alert("注册成功");
-                this.router.navigate(['/']);
+                this.router.navigate(['/confirm-hint']);
               }
 
             })
