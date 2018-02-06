@@ -119,6 +119,8 @@ export class SchemeService {
 
   deleteFile(body: any): Promise<any> {
 
+    console.log('body = ', body);
+
     const url = this.url + '/api/app/deleteFile';
 
     return this.http.post(url, body, {

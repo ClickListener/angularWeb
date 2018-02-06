@@ -54,12 +54,13 @@ export class SchemeDetailsComponent {
   }
 
 
-  deleteFile(fileName:string, description: string): void {
+  deleteFile(fileName:string, description: string, _id: string): void {
     const body = {
       "userId": this.user._id,
       "token": this.token,
       "fileName": fileName,
-      "description": description
+      "description": description,
+      "_id": _id
     };
 
     const self = this;
