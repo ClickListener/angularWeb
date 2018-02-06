@@ -36,7 +36,7 @@ export class DevelopmentAppRegComponent implements OnInit {
   ];
 
   appName: string;
-  bundleOrPackageName: string;
+  bundleIdOrPackageName: string;
   description: string;
   scheme: string;
   codeType: string;
@@ -126,8 +126,8 @@ export class DevelopmentAppRegComponent implements OnInit {
 
   registerApp() {
     const option = {
-      // url: "http://localhost:3001/api/useApp/addApp",
-      url: "http://192.168.69.111:3001/api/useApp/addApp",
+      url: "http://localhost:3001/api/useApp/addApp",
+      // url: "http://192.168.69.111:3001/api/useApp/addApp",
       type: "POST",
       beforeSubmit: this.beforeSubmit.bind(this),
       success: this.success.bind(this)
@@ -161,7 +161,7 @@ export class DevelopmentAppRegComponent implements OnInit {
     const app = {
       "platform": jQuery("input:radio:checked").val(),
       "appName": this.appName,
-      "bundleOrPackageName": this.bundleOrPackageName,
+      "bundleIdOrPackageName": this.bundleIdOrPackageName,
       "description": this.description,
       "scheme": this.scheme,
       "codeType": this.codeType,
