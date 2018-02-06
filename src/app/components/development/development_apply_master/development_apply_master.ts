@@ -52,7 +52,8 @@ export class DevelopmentApplyMasterComponent implements DoCheck {
 
   private applyMasterDeveloper() {
     const options = {
-      url: "http://localhost:3001/api/company/uploadCompany",           // 默认是form的action，如果声明，则会覆盖
+      // url: "http://localhost:3001/api/company/uploadCompany",           // 默认是form的action，如果声明，则会覆盖
+      url: "http://192.168.69.111/api/company/uploadCompany",
       type: "POST",                                          // 默认是form的method，如果声明，则会覆盖
       beforeSubmit: this.beforeSubmit.bind(this),            // 提交前的回调函数
       success: this.success.bind(this)                       // 提交后的回调函数
