@@ -5,6 +5,7 @@ import {Component} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {SchemeService} from "../../../services/scheme.service";
 import swal from "sweetalert2";
+import {UserService} from "../../../services/user.service";
 
 declare const jQuery: any;
 
@@ -20,12 +21,24 @@ export class SchemeDetailsComponent {
   schemeSelected: any;
 
 
-  constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService) {
+  constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService, private userService: UserService) {
 
     const schemeID = activatedRoute.snapshot.paramMap['params'].schemeID;
     schemeService.schemeID = schemeID;
 
-    this.schemeSelected = schemeService.findSchemeById(schemeID);
+    const fileInfo = {
+      "userId": userService.user._id,
+      "token": userService.token.token,
+      "fileId": schemeID
+    };
+    schemeService.findFileInfo(fileInfo)
+      .then(res => {
+        console.log(res);
+        this.schemeSelected = res.data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
 
 
   }

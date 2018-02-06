@@ -18,8 +18,8 @@ import {AES, enc, mode, pad} from "crypto-js";
 export class UserService {
 
 
-  url = "http://192.168.69.111:3001";
-  // url = "http://localhost:3001";
+  // url = "http://192.168.69.111:3001";
+  url = "http://localhost:3001";
 
   constructor(private http: HttpClient, private _cookieService: CookieService) {
     console.log('UserService--------constructor');
@@ -265,12 +265,16 @@ export class UserService {
 
         if (res['success']) {
 
-          const userSignInfo = {
-            "username": userInfo.addUser.username,
-            "password": userInfo.addUser.password
-          };
+          console.log(res);
 
-          return await this.signIn(userSignInfo);
+          return res;
+
+          // const userSignInfo = {
+          //   "username": userInfo.addUser.username,
+          //   "password": userInfo.addUser.password
+          // };
+          //
+          // return await this.signIn(userSignInfo);
 
         } else {
           return res;

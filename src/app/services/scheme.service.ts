@@ -12,8 +12,8 @@ export class SchemeService {
 
   private _schemeID: string;
 
-  url = "http://192.168.69.111:3001";
-  // url = "http://localhost:3001";
+  // url = "http://192.168.69.111:3001";
+  url = "http://localhost:3001";
 
   constructor(private http: HttpClient) {
   }
@@ -37,29 +37,58 @@ export class SchemeService {
 
 
   /**
-   * 查询 scheme
+   * 查询 scheme List
    * @param {string} appName
    * @param {string} userId
    * @returns {Promise<any>}
    */
-  queryScheme(appName: string, userId: string): Promise<any> {
+  queryScheme(fileInfo: any): Promise<any> {
 
-    const url = this.url + '/api/app/findAppInfo';
+    console.log('fileInfo = ', fileInfo);
+
+    const url = this.url + '/api/app/findFileList';
 
     return this.http.get(url, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       }),
-      params: {
-        'appName': appName,
-        'userId': userId
-      }
+      params: fileInfo
     })
       .toPromise()
       .then(res => {
         console.log(res);
         this.schemeAll = res['data'];
+        return res;
+      })
+      .catch(error => {
+        console.log(error);
+        return error;
+      });
+  }
+
+
+  /**
+   * 查找单个Scheme的信息
+   * @param fileInfo
+   * @returns {Promise<any>}
+   */
+  findFileInfo(fileInfo: any): Promise<any> {
+
+    console.log('fileInfo = ', fileInfo);
+
+    const url = this.url + "/api/app/findFileInfo";
+
+    return this.http.get(url, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      params: fileInfo
+    }).toPromise()
+      .then(res => {
+        console.log(res);
+
         return res;
       })
       .catch(error => {

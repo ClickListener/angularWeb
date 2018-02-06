@@ -7,6 +7,7 @@ import {PaginationComponent} from "../../tools/pagination/pagination.component";
 import {SchemeService} from "../../../services/scheme.service";
 import swal from "sweetalert2";
 import {Input} from "@angular/compiler/src/core";
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'scheme-manager',
@@ -40,7 +41,7 @@ export class SchemeManagerComponent {
 
   }
 
-  constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService) {
+  constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService, private userService: UserService) {
 
     // 如果同一个页面，使用同样的url，但是参数不同，只有第一次加载的时候，会走constructor(),和ngOnInit()方法，快照版式无法实时的获取新的参数
     // stackoverflow 中问题：
@@ -50,7 +51,14 @@ export class SchemeManagerComponent {
     activatedRoute.paramMap.subscribe(paramMap => {
       this.param = paramMap['params'].param;
 
-      schemeService.queryScheme(this.param, '5a0269747ac9d897d0f57b60')
+      const fileInfo = {
+        "userId": userService.user._id,
+        "token": userService.token.token,
+        "appName": this.param,
+        "platform": "Android"
+      };
+
+      schemeService.queryScheme(fileInfo)
         .then(res => {
           if (res.success) {
             this.schemeAll = res.data.reverse();
@@ -86,7 +94,13 @@ export class SchemeManagerComponent {
       self.schemeService.deleteScheme(self.param, version)
         .then(res => {
           if (res.success) {
-            self.schemeService.queryScheme(self.param,'5a0269747ac9d897d0f57b60')
+            const fileInfo = {
+              "userId": self.userService.user._id,
+              "token": self.userService.token.token,
+              "appName": self.param,
+              "platform": "Android"
+            };
+            self.schemeService.queryScheme(fileInfo)
               .then(response => {
                 self.schemeAll = response.data.reverse();
                 self.paginationComponent.deleteItem(self.findBySearch());
