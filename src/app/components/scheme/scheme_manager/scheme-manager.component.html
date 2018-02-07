@@ -30,6 +30,7 @@
       <thead>
       <tr>
         <th>Project</th>
+        <th>Platform</th>
         <th>Version</th>
         <th>CreateTime</th>
         <th>Operation</th>
@@ -41,6 +42,7 @@
       <tbody>
       <tr *ngFor="let scheme of singlePage" [routerLink]="['./scheme-details',scheme._id]" style="cursor: pointer">
         <th>{{scheme.resourceName}}</th>
+        <th>{{scheme.platform}}</th>
         <th>{{scheme.version}}</th>
         <th>{{scheme.createTime | date: 'yyyy-MM-dd hh:mm:ss'}}</th>
         <th>

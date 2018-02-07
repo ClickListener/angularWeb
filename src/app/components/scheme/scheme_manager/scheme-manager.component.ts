@@ -54,8 +54,7 @@ export class SchemeManagerComponent {
       const fileInfo = {
         "userId": userService.user._id,
         "token": userService.token.token,
-        "appName": this.param,
-        "platform": "android"
+        "appName": this.param
       };
 
       schemeService.queryScheme(fileInfo)
