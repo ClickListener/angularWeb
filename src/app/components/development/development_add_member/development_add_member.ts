@@ -86,7 +86,8 @@ export class DevelopmentAddMemberComponent {
     const permissionInfo = {
       "userId": this.userService.user._id,
       "token": this.userService.token.token,
-      "username": this.emailOrUserName,
+      "companyId": this.userService.user.companyId,
+      "userName": this.emailOrUserName,
       "auth": permissionArr
     };
 

@@ -12,8 +12,6 @@ import * as myGlobals from '../../../../environments/config';
 
 declare const jQuery: any;
 
-class Token {
-}
 
 @Component({
   selector: 'scheme-details',
@@ -28,7 +26,7 @@ export class SchemeDetailsComponent {
   schemeSelected: any;
 
   user: User;
-  token: Token;
+  token: string;
 
 
   constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService, private userService: UserService) {
