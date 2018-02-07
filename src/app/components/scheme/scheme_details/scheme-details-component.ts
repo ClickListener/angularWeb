@@ -44,7 +44,9 @@ export class SchemeDetailsComponent {
     schemeService.findFileInfo(fileInfo)
       .then(res => {
         console.log(res);
-        this.schemeSelected = res.data;
+        if (res.success) {
+          this.schemeSelected = res.data;
+        }
       })
       .catch(error => {
         console.log(error);

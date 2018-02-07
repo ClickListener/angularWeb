@@ -1,11 +1,11 @@
 <h1>Detail component</h1>
-<div style="margin-left: 10%; margin-right: 10%">
+<div style="margin-left: 10%; margin-right: 10%" *ngIf="schemeSelected">
   <div class="title-custom">
-    <p>Native SDK_Android 2.0.4.6</p>
+    <p>Native SDK_Android {{schemeSelected.version}}</p>
   </div>
   <div class="subhead">
     <p class="title">Description</p>
-    <P class="content">1、Add interface</P>
+    <P class="content">{{schemeSelected.description}}</P>
   </div>
   <div class="subhead">
     <p class="title">Essential Information</p>
@@ -15,23 +15,17 @@
     </div>
     <div class="form-custom">
       <p class="item-narrow-custom">Version</p>
-      <p class="item-wide-custom">2.0.4.6</p>
+      <p class="item-wide-custom">{{schemeSelected.version}}6</p>
     </div>
     <div class="form-custom">
       <p class="item-narrow-custom">Packing Date</p>
-      <p class="item-wide-custom">2018-01-23</p>
+      <p class="item-wide-custom">{{schemeSelected.createTime | date: 'yyyy/MM/dd'}}</p>
     </div>
   </div>
   <div class="subhead">
     <p class="title">Enclosure</p>
-    <div>
-      <a><img src="../../../../assets/images/annex.png">apidoc.zip</a>
-    </div>
-    <div>
-      <a><img src="../../../../assets/images/annex.png">apidoc.zip</a>
-    </div>
-    <div>
-      <a><img src="../../../../assets/images/annex.png">apidoc.zip</a>
+    <div *ngFor="let url of schemeSelected.urls">
+      <a href="http://localhost:3001/api/app/download?userId={{user}}&token={{token}}&description={{url.description}}&fileName={{url.fileName}}"><img src="../../../../assets/images/annex.png">{{url.fileName}}</a>
     </div>
   </div>
 </div>
