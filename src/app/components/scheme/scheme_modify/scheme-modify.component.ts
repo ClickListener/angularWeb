@@ -20,6 +20,17 @@ export class SchemeModifyComponent {
 
   selectedScheme: any;
 
+
+  CN = true;
+  AS = true;
+  NA = true;
+  LA = true;
+  OA = true;
+  ME = true;
+  AF = true;
+  EU = true;
+  RU = true;
+
   constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService, private router: Router, private userService: UserService) {
 
     const schemeID = activatedRoute.snapshot.paramMap['params'].schemeID;
@@ -77,7 +88,56 @@ export class SchemeModifyComponent {
     jQuery('#createForm').ajaxSubmit(options);
   }
 
-  private beforeSubmit(formData) {
+  private beforeSubmit(formData, form, options) {
+
+    console.log('form = ', form);
+    console.log('options = ', options);
+
+    const originArr = [];
+
+    if (this.CN) {
+      originArr.push('CN');
+    }
+
+    if (this.AS) {
+      originArr.push('AS');
+    }
+
+    if (this.NA) {
+      originArr.push('NA');
+    }
+
+    if (this.LA) {
+      originArr.push('LA');
+    }
+
+    if (this.OA) {
+      originArr.push('OA');
+    }
+
+    if (this.ME) {
+      originArr.push('ME');
+    }
+
+    if (this.AF) {
+      originArr.push('AF');
+    }
+
+    if (this.EU) {
+      originArr.push('EU');
+    }
+
+    if (this.RU) {
+      originArr.push('RU');
+    }
+
+    console.log('originArr = ', originArr);
+
+    const origin = {
+      name: "openRegion",
+      value: originArr,
+    };
+    formData.splice(0, 0, origin);
 
     const _id = {
       "name": "_id",

@@ -25,8 +25,8 @@ export class LicenseService {
 
   // url = '/api/license'; // 本地的url
 
-  // url = 'http://192.168.69.111:3001/api/license'; // 跨域访问的url(服务器)
-  url = 'http://localhost:3001/api/license'; // 跨域访问的url(本地)
+  url = 'http://192.168.69.111:3001/api/license'; // 跨域访问的url(服务器)
+  // url = 'http://localhost:3001/api/license'; // 跨域访问的url(本地)
 
   getAllLicense(): Promise<License[]> {
 

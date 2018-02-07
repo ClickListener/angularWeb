@@ -10,8 +10,8 @@ export class CompanyService {
   countryList: Array<any>;
 
 
-  // url = "http://192.168.69.111:3001";
-  url = "http://localhost:3001";
+  url = "http://192.168.69.111:3001";
+  // url = "http://localhost:3001";
 
   constructor(private http: HttpClient) {}
 

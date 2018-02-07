@@ -1,7 +1,7 @@
 /**
  * Created by zhangxu on 2017/12/13.
  */
-import {Component, OnInit} from "@angular/core";
+import {Component, DoCheck, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FileUploader} from "ng2-file-upload";
 import swal from "sweetalert2";
@@ -19,12 +19,22 @@ declare const jQuery: any;
 
 export class SchemeCreateComponent {
 
+
   resourceName: string;
   description: string;
 
   version: string;  // 版本号
 
 
+  CN = true;
+  AS = true;
+  NA = true;
+  LA = true;
+  OA = true;
+  ME = true;
+  AF = true;
+  EU = true;
+  RU = true;
 
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
@@ -69,9 +79,56 @@ export class SchemeCreateComponent {
     jQuery('#createForm').ajaxSubmit(options);
   }
 
-  private beforeSubmit(formData) {
+  private beforeSubmit(formData, form, options) {
 
+    console.log('form = ', form);
+    console.log('options = ', options);
 
+    const originArr = [];
+
+    if (this.CN) {
+      originArr.push('CN');
+    }
+
+    if (this.AS) {
+      originArr.push('AS');
+    }
+
+    if (this.NA) {
+      originArr.push('NA');
+    }
+
+    if (this.LA) {
+      originArr.push('LA');
+    }
+
+    if (this.OA) {
+      originArr.push('OA');
+    }
+
+    if (this.ME) {
+      originArr.push('ME');
+    }
+
+    if (this.AF) {
+      originArr.push('AF');
+    }
+
+    if (this.EU) {
+      originArr.push('EU');
+    }
+
+    if (this.RU) {
+      originArr.push('RU');
+    }
+
+    console.log('originArr = ', originArr);
+
+    const origin = {
+      name: "openRegion",
+      value: originArr
+    };
+    formData.splice(0, 0, origin);
 
     const token = {
       name: "token",
@@ -99,6 +156,7 @@ export class SchemeCreateComponent {
   }
 
   private success(response) {
+    console.log('res = ', response);
     if (response.success) {
       this.router.navigate(['/scheme-main', this.resourceName]);
       swal({

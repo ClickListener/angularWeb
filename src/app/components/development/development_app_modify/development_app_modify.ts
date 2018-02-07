@@ -141,8 +141,8 @@ export class DevelopmentAppModifyComponent implements DoCheck {
 
   updateApp() {
     const option = {
-      url: "http://localhost:3001/api/useApp/updateUserApp",
-      // url: "http://192.168.69.111:3001/api/useApp/updateUserApp",
+      // url: "http://localhost:3001/api/useApp/updateUserApp",
+      url: "http://192.168.69.111:3001/api/useApp/updateUserApp",
       type: "POST",
       beforeSubmit: this.beforeSubmit.bind(this),
       success: this.success.bind(this)
