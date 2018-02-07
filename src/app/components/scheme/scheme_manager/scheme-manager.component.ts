@@ -55,7 +55,7 @@ export class SchemeManagerComponent {
         "userId": userService.user._id,
         "token": userService.token.token,
         "appName": this.param,
-        "platform": "ios"
+        "platform": "android"
       };
 
       schemeService.queryScheme(fileInfo)

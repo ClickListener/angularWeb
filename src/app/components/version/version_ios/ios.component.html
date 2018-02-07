@@ -1,4 +1,4 @@
-<div style="margin-left: 5rem; margin-right: 5rem">
+<div style="margin-left: 5rem; margin-right: 5rem" *ngIf="schemeList && schemeList.length !== 0">
 
   <p style="margin-top: 3rem;font-size: 2rem">Native SDK</p>
   <div class="form-custom">
@@ -11,12 +11,14 @@
     </div>
 
 
-    <div class="form-custom-content">
-      <p>001</p>
+    <div class="form-custom-content" *ngFor="let scheme of schemeList; let i = index">
+      <p>00{{i + 1}}</p>
       <p>Native SDK_Android</p>
-      <p>2.0.0</p>
-      <p>2017-10-10</p>
-      <p><img src="../../../../assets/images/add.png"></p>
+      <p>{{scheme.version}}</p>
+      <p>{{scheme.createTime | date: 'yyyy/MM/dd'}}</p>
+      <p>
+        <a [routerLink]="['/detail',scheme._id]" routerLinkActive="active"><img src="../../../../assets/images/add.png"></a>
+      </p>
     </div>
   </div>
 </div>

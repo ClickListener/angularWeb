@@ -97,49 +97,49 @@ export class SchemeModifyComponent {
     console.log('form = ', form);
     console.log('options = ', options);
 
-    const originArr = [];
+    const regionArr = [];
 
     if (this.CN) {
-      originArr.push('CN');
+      regionArr.push('CN');
     }
 
     if (this.AS) {
-      originArr.push('AS');
+      regionArr.push('AS');
     }
 
     if (this.NA) {
-      originArr.push('NA');
+      regionArr.push('NA');
     }
 
     if (this.LA) {
-      originArr.push('LA');
+      regionArr.push('LA');
     }
 
     if (this.OA) {
-      originArr.push('OA');
+      regionArr.push('OA');
     }
 
     if (this.ME) {
-      originArr.push('ME');
+      regionArr.push('ME');
     }
 
     if (this.AF) {
-      originArr.push('AF');
+      regionArr.push('AF');
     }
 
     if (this.EU) {
-      originArr.push('EU');
+      regionArr.push('EU');
     }
 
     if (this.RU) {
-      originArr.push('RU');
+      regionArr.push('RU');
     }
 
-    console.log('originArr = ', originArr);
+    console.log('regionArr = ', regionArr);
 
     const origin = {
       name: "openRegion",
-      value: originArr,
+      value: JSON.stringify(regionArr)
     };
     formData.splice(0, 0, origin);
 
