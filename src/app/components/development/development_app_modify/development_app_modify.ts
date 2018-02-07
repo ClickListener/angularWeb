@@ -161,6 +161,13 @@ export class DevelopmentAppModifyComponent implements DoCheck {
 
     formData.splice(0, formData.length);
 
+    const action = {
+      name: 'action',
+      value: 'U'
+    };
+
+    formData.push(action);
+
     const userId = {
       name: 'userId',
       value: this.userService.user._id,

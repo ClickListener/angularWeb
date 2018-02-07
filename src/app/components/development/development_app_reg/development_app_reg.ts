@@ -143,6 +143,13 @@ export class DevelopmentAppRegComponent implements OnInit {
 
     formData.splice(0, formData.length);
 
+    const action = {
+      name: 'action',
+      value: 'C'
+    };
+
+    formData.push(action);
+
     const userId = {
       name: 'userId',
       value: this.userService.user._id,
