@@ -1,5 +1,3 @@
-
-
 <nav class="navbar white fixed-top" style="height: 62px;">
 
   <div class="custom-nav">
@@ -30,8 +28,28 @@
       <a class="waves-effect" routerLink="/" routerLinkActive="active">
         <img src="../../../assets/images/notice.png">
       </a>
-      <a class="waves-effect" (click)="signOut()" routerLinkActive="active">
+
+      <a class="collapsed" style="position: relative" data-toggle="collapse" data-target="#signOut"
+         aria-expanded="false" aria-controls="devices-detail" id="userImg">
+
         <img src="../../../assets/images/user.png">
+        <div class="triangle-big" style="left: 10px"></div>
+        <div class="triangle-small" style="left: 10px">
+
+          <div class="collapse device-detail" id="signOut" style="width: 17rem">
+
+
+            <div style="padding-left: 1rem; border-bottom: 1px solid #e9ecef">
+              <p style="margin: .5rem 0 0 0; font-size: 1.2rem">{{user.username}}</p>
+              <p style="margin: 0 0 .5rem 0">{{user.email}}</p>
+            </div>
+
+
+            <a style="display:block; width: 100%; margin: .5rem 0 .5rem 0; padding-left: 1rem; color: #0089ec; font-weight: bold" (click)="signOut()"> Sign out</a>
+
+          </div>
+        </div>
+
       </a>
     </div>
 
@@ -57,7 +75,7 @@
 
       <li class="class-li">
         <a data-toggle="collapse"
-        aria-expanded="true" data-target="#document_collapse" >
+           aria-expanded="true" data-target="#document_collapse">
           <b style="font-size: 16px">SDK Document</b>
           <i class="fa fa-angle-up rotate-icon fa-position"></i>
         </a>
@@ -72,7 +90,7 @@
 
       <li *ngIf="user">
         <a id="development_primary" data-toggle="collapse"
-           aria-expanded="true"  routerLink="/development-primary" routerLinkActive="active">
+           aria-expanded="true" routerLink="/development-primary" routerLinkActive="active">
           <b style="font-size: 16px">Enterprise Development</b>
           <i class="fa fa-angle-up rotate-icon fa-position"></i>
         </a>
@@ -97,7 +115,7 @@
         </ul>
       </li>
       <!--<li>-->
-        <!--<div class="divider"></div>-->
+      <!--<div class="divider"></div>-->
       <!--</li>-->
 
       <li *ngIf="user && user.type == '1'">
@@ -115,12 +133,8 @@
       </li>
 
       <!--<li>-->
-        <!--<div class="divider"></div>-->
+      <!--<div class="divider"></div>-->
       <!--</li>-->
-
-
-
-
 
 
     </ul>

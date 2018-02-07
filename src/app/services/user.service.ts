@@ -237,6 +237,7 @@ export class UserService {
           this.user._id = res['userId'];
           this.user.username = res['username'];
           this.user.type = res['type'];
+          this.user.email = res['email'];
 
           return await this.getAccessToken(userInfo.password);
 

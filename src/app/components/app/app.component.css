@@ -1,4 +1,45 @@
 
+/*小三角*/
+
+.triangle-big, .triangle-small {
+  content: "";  /*:before和:after必带技能，重要性为满5颗星*/
+  display: block;
+  position: absolute;  /*日常绝对定位*/
+
+  left: -4px;
+  width: 0;
+  height: 0;
+  border:10px solid transparent;
+
+}
+
+.triangle-big {
+  bottom: -16px;
+}
+.triangle-small {
+  bottom: -14px;
+}
+
+#userImg:not(.collapsed) .triangle-big {
+  border-bottom-color: #FFFFFF;
+  z-index:1;
+}
+
+#userImg:not(.collapsed) .triangle-small {
+  border-bottom-color: #e9ecef;
+  z-index: 0;
+}
+
+.device-detail {
+  position: absolute;
+  z-index: 5;
+  left: -15rem;
+  width: 30rem;
+  top: 10px;
+  border: 1px solid #e9ecef;
+  background: #FFFFFF;
+}
+
 .custom-nav {
   display: flex;
   align-items: center;
