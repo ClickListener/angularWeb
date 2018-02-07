@@ -1,4 +1,3 @@
-<h1>Detail component</h1>
 <div style="margin-left: 10%; margin-right: 10%" *ngIf="schemeSelected">
   <div class="title-custom">
     <p>Native SDK_Android {{schemeSelected.version}}</p>
@@ -24,8 +23,8 @@
   </div>
   <div class="subhead">
     <p class="title">Enclosure</p>
-    <div *ngFor="let url of schemeSelected.urls">
-      <a href="{{url}}/api/app/download?userId={{user}}&token={{token}}&description={{url.description}}&fileName={{url.fileName}}"><img src="../../../../assets/images/annex.png">{{url.fileName}}</a>
+    <div *ngFor="let url_private of schemeSelected.urls">
+      <a href="{{url}}/api/app/download?userId={{user._id}}&token={{token}}&description={{url_private.description}}&fileName={{url_private.fileName}}"><img src="../../../../assets/images/annex.png">{{url_private.fileName}}</a>
     </div>
   </div>
 </div>
