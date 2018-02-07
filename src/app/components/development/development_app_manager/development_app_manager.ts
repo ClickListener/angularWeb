@@ -6,6 +6,7 @@ import {AppService} from "../../../services/app.service";
 import {UserService} from "../../../services/user.service";
 import swal from "sweetalert2";
 
+import * as myGlobals from '../../../../environments/config';
 @Component({
   templateUrl: './development_app_manager.html',
   styleUrls: ['./development_app_manager.css']
@@ -13,6 +14,9 @@ import swal from "sweetalert2";
 
 
 export class DevelopmentAppManagerComponent {
+
+
+  url = myGlobals.url;
 
   appList: Array<any>;
   constructor(private appService: AppService, private userService: UserService) {

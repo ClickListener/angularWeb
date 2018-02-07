@@ -30,7 +30,7 @@
     <legend>Files</legend>
     <ul>
       <li *ngFor="let url of schemeSelected.urls" [attr.id]="url.fileName.replace('.', '_')">
-        <a href="http://localhost:3001/api/app/download?userId={{user}}&token={{token}}&description={{url.description}}&fileName={{url.fileName}}">{{url.fileName}}</a>
+        <a href="{{url}}/api/app/download?userId={{user}}&token={{token}}&description={{url.description}}&fileName={{url.fileName}}">{{url.fileName}}</a>
         <a (click)="deleteFile(url.fileName, url.description, schemeSelected._id)"><i class="fa fa-times-circle" ></i></a>
       </li>
     </ul>

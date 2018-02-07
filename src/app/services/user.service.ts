@@ -14,12 +14,14 @@ import {Token} from "../model/Token";
 
 import {AES, enc, mode, pad} from "crypto-js";
 
+import * as myGlobals from '../../environments/config';
+
 @Injectable()
 export class UserService {
 
 
-  url = "http://192.168.69.111:3001";
-  // url = "http://localhost:3001";
+  url = myGlobals.url;
+
 
   constructor(private http: HttpClient, private _cookieService: CookieService) {
     console.log('UserService--------constructor');

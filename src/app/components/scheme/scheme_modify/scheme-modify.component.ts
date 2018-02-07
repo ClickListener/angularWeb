@@ -8,6 +8,8 @@ import {FileUploaderCustom} from "../../../services/FileUploaderCustom";
 import swal from "sweetalert2";
 import {UserService} from "../../../services/user.service";
 
+import * as myGlobals from '../../../../environments/config';
+
 declare const jQuery: any;
 
 @Component({
@@ -17,6 +19,8 @@ declare const jQuery: any;
 })
 
 export class SchemeModifyComponent {
+
+  url = myGlobals.url;
 
   selectedScheme: any;
 
@@ -79,7 +83,7 @@ export class SchemeModifyComponent {
   private submitForm() {
     console.log('submitForm()');
     const options = {
-      url: "http://localhost:3001/api/app/updateInfo",           // 默认是form的action，如果声明，则会覆盖
+      url: this.url + "/api/app/updateInfo",           // 默认是form的action，如果声明，则会覆盖
       type: 'POST',                                          // 默认是form的method，如果声明，则会覆盖
       beforeSubmit: this.beforeSubmit.bind(this),            // 提交前的回调函数
       success: this.success.bind(this)                       // 提交后的回调函数

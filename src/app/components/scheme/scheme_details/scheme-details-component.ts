@@ -8,6 +8,8 @@ import swal from "sweetalert2";
 import {UserService} from "../../../services/user.service";
 import {User} from "../../../model/User";
 
+import * as myGlobals from '../../../../environments/config';
+
 declare const jQuery: any;
 
 class Token {
@@ -22,6 +24,7 @@ class Token {
 export class SchemeDetailsComponent {
 
 
+  url = myGlobals.url;
   schemeSelected: any;
 
   user: User;

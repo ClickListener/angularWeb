@@ -9,6 +9,8 @@ import {FileUploaderCustom} from "../../../services/FileUploaderCustom";
 import {HttpClient} from "@angular/common/http";
 import {UserService} from "../../../services/user.service";
 
+import * as myGlobals from '../../../../environments/config';
+
 declare const jQuery: any;
 
 @Component({
@@ -19,6 +21,8 @@ declare const jQuery: any;
 
 export class SchemeCreateComponent {
 
+
+  url = myGlobals.url;
 
   resourceName: string;
   description: string;
@@ -70,7 +74,7 @@ export class SchemeCreateComponent {
 
   private submitForm() {
     const options = {
-      url: "http://localhost:3001/api/app/upload",           // 默认是form的action，如果声明，则会覆盖
+      url: this.url + "/api/app/upload",           // 默认是form的action，如果声明，则会覆盖
       type: 'POST',                                          // 默认是form的method，如果声明，则会覆盖
       beforeSubmit: this.beforeSubmit.bind(this),            // 提交前的回调函数
       success: this.success.bind(this)                       // 提交后的回调函数

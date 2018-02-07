@@ -5,12 +5,13 @@ import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {promise} from "selenium-webdriver";
 
+import * as myGlobals from '../../environments/config';
+
 @Injectable()
 export class AppService {
 
 
-  url = "http://192.168.69.111:3001";
-  // url = "http://localhost:3001";
+  url = myGlobals.url;
 
 
   constructor(private http: HttpClient) {

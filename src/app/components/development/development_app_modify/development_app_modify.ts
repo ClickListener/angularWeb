@@ -9,6 +9,8 @@ import {Device} from "../../../model/Device";
 import swal from "sweetalert2";
 import {DatePipe} from "@angular/common";
 
+import * as myGlobals from '../../../../environments/config'
+
 declare const jQuery: any;
 
 @Component({
@@ -18,6 +20,8 @@ declare const jQuery: any;
 
 export class DevelopmentAppModifyComponent implements DoCheck {
 
+
+  url = myGlobals.url;
 
   appInfo: any;
 
@@ -141,8 +145,7 @@ export class DevelopmentAppModifyComponent implements DoCheck {
 
   updateApp() {
     const option = {
-      // url: "http://localhost:3001/api/useApp/updateUserApp",
-      url: "http://192.168.69.111:3001/api/useApp/updateUserApp",
+      url: this.url + "/api/useApp/updateUserApp",
       type: "POST",
       beforeSubmit: this.beforeSubmit.bind(this),
       success: this.success.bind(this)

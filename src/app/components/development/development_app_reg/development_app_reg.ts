@@ -7,6 +7,8 @@ import {UserService} from "../../../services/user.service";
 import swal from "sweetalert2";
 import {Router} from "@angular/router";
 
+import * as myGlobals from '../../../../environments/config';
+
 declare const jQuery: any;
 
 @Component({
@@ -16,7 +18,7 @@ declare const jQuery: any;
 
 export class DevelopmentAppRegComponent implements OnInit {
 
-
+  url = myGlobals.url;
 
   deviceSelectList: Array<Device>;
 
@@ -126,8 +128,7 @@ export class DevelopmentAppRegComponent implements OnInit {
 
   registerApp() {
     const option = {
-      // url: "http://localhost:3001/api/useApp/addApp",
-      url: "http://192.168.69.111:3001/api/useApp/addApp",
+      url: this.url + "/api/useApp/addApp",
       type: "POST",
       beforeSubmit: this.beforeSubmit.bind(this),
       success: this.success.bind(this)

@@ -3,6 +3,7 @@ import {License} from '../model/License';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {UserService} from "./user.service";
 
+import * as myGlobals from '../../environments/config';
 
 @Injectable()
 export class LicenseService {
@@ -25,8 +26,7 @@ export class LicenseService {
 
   // url = '/api/license'; // 本地的url
 
-  url = 'http://192.168.69.111:3001/api/license'; // 跨域访问的url(服务器)
-  // url = 'http://localhost:3001/api/license'; // 跨域访问的url(本地)
+  url = myGlobals.url + '/api/license'; // 跨域访问的url(服务器)
 
   getAllLicense(): Promise<License[]> {
 

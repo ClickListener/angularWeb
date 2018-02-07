@@ -25,7 +25,7 @@
   <div class="subhead">
     <p class="title">Enclosure</p>
     <div *ngFor="let url of schemeSelected.urls">
-      <a href="http://localhost:3001/api/app/download?userId={{user}}&token={{token}}&description={{url.description}}&fileName={{url.fileName}}"><img src="../../../../assets/images/annex.png">{{url.fileName}}</a>
+      <a href="{{url}}/api/app/download?userId={{user}}&token={{token}}&description={{url.description}}&fileName={{url.fileName}}"><img src="../../../../assets/images/annex.png">{{url.fileName}}</a>
     </div>
   </div>
 </div>

@@ -8,6 +8,8 @@ import {ActivatedRoute} from "@angular/router";
 import {User} from "../../../model/User";
 import {Token} from "../../../model/Token";
 
+import * as myGlobals from '../../../../environments/config';
+
 @Component({
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.css']
@@ -15,6 +17,8 @@ import {Token} from "../../../model/Token";
 
 export class DetailComponent {
 
+
+  url = myGlobals.url;
 
   schemeId: string;
 

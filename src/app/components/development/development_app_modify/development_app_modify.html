@@ -33,7 +33,7 @@
 
   <div class="license-block">
     <p>Business license</p>
-    <a style="position: absolute"><img id="preview" src="http://localhost:3001{{appInfo.avatar.description}}/{{appInfo.avatar.fileName}}"
+    <a style="position: absolute"><img id="preview" src="{{url}}{{appInfo.avatar.description}}/{{appInfo.avatar.fileName}}"
                                        style="width: 80px; height: 80px"></a>
     <div>
       <input type="file" name="icon" style="width: 80px;height: 80px;opacity: 0;" (change)="previewImg($event)"

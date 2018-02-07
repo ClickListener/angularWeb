@@ -7,6 +7,8 @@ import {CompanyService} from "../../../services/company.service";
 import swal from "sweetalert2";
 import {Router} from "@angular/router";
 
+import * as myGlobals from '../../../../environments/config';
+
 
 declare const jQuery: any;
 @Component({
@@ -17,6 +19,7 @@ declare const jQuery: any;
 export class DevelopmentApplyMasterComponent implements DoCheck {
 
 
+  url = myGlobals.url;
 
   country: string;
   companyName: string;
@@ -52,8 +55,7 @@ export class DevelopmentApplyMasterComponent implements DoCheck {
 
   private applyMasterDeveloper() {
     const options = {
-      // url: "http://localhost:3001/api/company/uploadCompany",           // 默认是form的action，如果声明，则会覆盖
-      url: "http://192.168.69.111/api/company/uploadCompany",
+      url: this.url + "/api/company/uploadCompany",
       type: "POST",                                          // 默认是form的method，如果声明，则会覆盖
       beforeSubmit: this.beforeSubmit.bind(this),            // 提交前的回调函数
       success: this.success.bind(this)                       // 提交后的回调函数
