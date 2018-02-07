@@ -7,7 +7,7 @@
 .form-custom-head {
   background: #e9ecef;
   height: 2.1rem;
-  border-bottom: 1px solid #bbbbbb;
+
   display: flex;
 }
 
@@ -24,6 +24,7 @@
   margin: 0;
   line-height: 5rem;
   display: flex;
+  border-top: 1px solid #bbbbbb;
 }
 
 .form-custom-content p {
