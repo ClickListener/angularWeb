@@ -31,6 +31,7 @@ import {DocumentAndroidComponent} from "./components/document/document_android/d
 import {DocumentIosComponent} from "./components/document/document_ios/document-ios.component";
 import {DevelopmentAppModifyComponent} from "./components/development/development_app_modify/development_app_modify";
 import {UserHintComponent} from "./components/user/user_hint.component/user-hint.component";
+import {DevelopmentPermissionModifyComponent} from "./components/development/development_permission_modify/development_permission_modify";
 
 /**
  * 路由模块
@@ -139,6 +140,11 @@ const routes: Routes = [
   {
     path: 'development-app-modify/:param',
     component: DevelopmentAppModifyComponent
+  },
+
+  {
+    path: 'development-permission-modify/:param',
+    component: DevelopmentPermissionModifyComponent
   },
 
   {

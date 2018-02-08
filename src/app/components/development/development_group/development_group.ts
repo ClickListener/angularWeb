@@ -22,6 +22,18 @@ export class DevelopmentGroupComponent {
 
   user: any; // 当前登录用户信息
 
+  createApp: boolean;
+
+  editApp: boolean;
+  deleteApp: boolean;
+
+  checkLicenseData: boolean;
+
+  sdkDownload: boolean;
+
+  addMembers: boolean;
+
+  permissionString = '';
 
   constructor(private companyService: CompanyService, private userService: UserService) {
 
@@ -78,7 +90,15 @@ export class DevelopmentGroupComponent {
             "token": userService.token.token
           };
 
-          const permissionResponse = await userService.getUserAuth(userInfo);
+          if (this.user.type === 4) {
+            const permissionResponse = await userService.getUserAuth(userInfo);
+
+            if (permissionResponse.success) {
+              this.parsePermission(permissionResponse.data);
+            }
+          }
+
+
         }
 
 
@@ -88,6 +108,61 @@ export class DevelopmentGroupComponent {
       });
 
   }
+
+
+
+  private parsePermission(permission: any) {
+
+    console.log('permission = ', permission);
+
+
+    permission.forEach((item, index) => {
+      if (item.resourceId === '5a6585df5e149e1dfdf27964') {
+        this.createApp = (item.action.indexOf('C') !== -1);
+        this.editApp = (item.action.indexOf('U') !== -1);
+        this.deleteApp = (item.action.indexOf('D') !== -1);
+        this.checkLicenseData = (item.action.indexOf('R') !== -1);
+      } else if (item.resourceId === '5a71639e5e149e1dfdf27969') {
+        this.addMembers = (item.action.indexOf('C') !== -1);
+      }
+
+    });
+
+    if (this.createApp) {
+      if (this.permissionString === null || this.permissionString === '') {
+        this.permissionString += 'Create App';
+      } else {
+        this.permissionString += ',Create App';
+      }
+    }
+
+    if (this.editApp) {
+      if (this.permissionString === null || this.permissionString === '') {
+        this.permissionString += 'Edit App';
+      } else {
+        this.permissionString += ',Edit App';
+      }
+    }
+
+    if (this.deleteApp) {
+      if (this.permissionString === null || this.permissionString === '') {
+        this.permissionString += 'Delete App';
+      } else {
+        this.permissionString += ',Delete App';
+      }
+    }
+
+    if (this.checkLicenseData) {
+      if (this.permissionString === null || this.permissionString === '') {
+        this.permissionString += 'Check The License Data';
+      } else {
+        this.permissionString += 'Check The License Data';
+      }
+    }
+
+    console.log('permissionString', this.permissionString);
+  }
+
 
 
   removeCompanyId(developer: any) {
