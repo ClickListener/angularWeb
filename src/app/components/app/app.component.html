@@ -88,7 +88,7 @@
         </ul>
       </li>
 
-      <li *ngIf="user">
+      <li *ngIf="user && user.type != '1'">
         <a id="development_primary" data-toggle="collapse"
            aria-expanded="true" routerLink="/development-primary" routerLinkActive="active">
           <b style="font-size: 16px">Enterprise Development</b>
@@ -101,7 +101,7 @@
         </ul>
       </li>
 
-      <li class="class-li" *ngIf="user">
+      <li class="class-li" *ngIf="user && user.type != '1'">
         <a data-toggle="collapse"
            aria-expanded="true" data-target="#Download_collapse">
           <b style="font-size: 16px">SDK Download</b>
@@ -114,9 +114,11 @@
           <li><a routerLinkActive="active" [routerLink]="['/manager-main', 'LayerApp']">Layer App Download</a></li>
         </ul>
       </li>
-      <!--<li>-->
-      <!--<div class="divider"></div>-->
-      <!--</li>-->
+
+
+      <li *ngIf="user && user.type == '1'">
+      <div class="divider"></div>
+      </li>
 
       <li *ngIf="user && user.type == '1'">
         <a data-toggle="collapse"
@@ -131,6 +133,21 @@
           <li><a routerLinkActive="active" routerLink='/scheme-main/Library'>Library scheme</a></li>
         </ul>
       </li>
+
+      <li *ngIf="user && user.type == '1'">
+        <a data-toggle="collapse"
+           aria-expanded="true" data-target="#authority_collapse">
+          <b style="font-size: 16px">Authority</b>
+          <i class="fa fa-angle-up rotate-icon fa-position"></i>
+        </a>
+
+        <ul id="authority_collapse" class="collapse show" style="font-size: 14px">
+          <li><a routerLinkActive="active" routerLink='/scheme-main/SDK'>Secondary administrator</a></li>
+          <li><a routerLinkActive="active" routerLink='/developer-manager'>Developers</a></li>
+          <li><a routerLinkActive="active" routerLink='/company-manager'>Companies</a></li>
+        </ul>
+      </li>
+
 
       <!--<li>-->
       <!--<div class="divider"></div>-->

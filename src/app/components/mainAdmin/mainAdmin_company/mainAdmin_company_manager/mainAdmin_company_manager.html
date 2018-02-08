@@ -1,0 +1,32 @@
+
+
+<div style="margin: 5rem 5rem 0 5rem">
+
+  <div class="form-custom" *ngIf="companyList && companyList.length !== 0">
+    <div class="form-custom-head">
+      <p class="item-2">CompanyName</p>
+      <p class="item-1">Country</p>
+      <p class="item-1">Origin</p>
+      <p class="item-1">state</p>
+      <p class="item-2" >Operation</p>
+    </div>
+
+    <div class="form-custom-content">
+      <div *ngFor="let company of companyList">
+
+        <p class="item-2" style="line-height: 5rem; text-align: center">{{company.companyName}}</p>
+        <p class="item-1" style="line-height: 5rem; text-align: center">{{company.country}}</p>
+        <p class="item-1" style="line-height: 5rem; text-align: center">{{company.orgin}}</p>
+        <p class="item-1" style="line-height: 5rem; text-align: center">{{company.state}}</p>
+
+
+        <div class="item-2" style="line-height: 5rem; text-align: center">
+          <a [routerLink]="['/company-modify',company._id]"><img src="../../../../assets/images/edit.png"></a>
+          <a (click)="removeCompanyId(developer)"><img src="../../../../assets/images/delete.png"></a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+

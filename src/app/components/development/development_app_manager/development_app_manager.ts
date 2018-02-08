@@ -58,9 +58,7 @@ export class DevelopmentAppManagerComponent {
 
   }
 
-  deleteApp(index: number) {
-    const appId = this.appList[index]._id;
-
+  deleteApp(appId: string) {
 
     const appInfo = {
       "userId": this.userService.user._id,

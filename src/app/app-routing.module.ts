@@ -32,6 +32,10 @@ import {DocumentIosComponent} from "./components/document/document_ios/document-
 import {DevelopmentAppModifyComponent} from "./components/development/development_app_modify/development_app_modify";
 import {UserHintComponent} from "./components/user/user_hint.component/user-hint.component";
 import {DevelopmentPermissionModifyComponent} from "./components/development/development_permission_modify/development_permission_modify";
+import {MainAdminDeveloperManagerComponent} from "./components/mainAdmin/mainAdmin_developer/mainAdmin_developer_manager/mainAdmin_developer_manager";
+import {MainAdminCompanyManagerComponent} from "./components/mainAdmin/mainAdmin_company/mainAdmin_company_manager/mainAdmin_company_manager";
+import {MainAdminCompanyModifyComponent} from "./components/mainAdmin/mainAdmin_company/mainAdmin_company_modify/mainAdmin_company_modify";
+import {MainAdminDeveloperModifyComponent} from "./components/mainAdmin/mainAdmin_developer/mainAdmin_developer_modify/mainAdmin_developer_modify";
 
 /**
  * 路由模块
@@ -190,6 +194,24 @@ const routes: Routes = [
         component: DocumentIosComponent
       }
     ]
+  },
+
+  {
+    path: 'developer-manager',
+    component: MainAdminDeveloperManagerComponent
+  },
+  {
+    path: 'developer-modify/:param',
+    component: MainAdminDeveloperModifyComponent
+
+  },
+  {
+    path: 'company-manager',
+    component: MainAdminCompanyManagerComponent
+  },
+  {
+    path: 'company-modify/:param',
+    component: MainAdminCompanyModifyComponent
   }
 
 

@@ -47,7 +47,7 @@ export class CompanyService {
    * 审核/禁用公司
    */
 
-  ReviewCompany(companyInfo: any):Promise<any> {
+  reviewCompany(companyInfo: any):Promise<any> {
 
     console.log("companyInfo = " + JSON.stringify(companyInfo));
 
@@ -61,6 +61,7 @@ export class CompanyService {
     }).toPromise()
       .then(res => {
         console.log(res);
+        return res;
       })
       .catch(CompanyService.handleError);
   }
@@ -136,6 +137,8 @@ export class CompanyService {
     }).toPromise()
       .then(res => {
 
+        console.log(res);
+        return res;
       })
       .catch(CompanyService.handleError);
   }
@@ -170,7 +173,7 @@ export class CompanyService {
 
     console.log(userInfo);
 
-    const url = this.url + "/api/company/getCompnayList";
+    const url = this.url + "/api/company/getCompanyList";
 
     return this.http.get(url, {
       headers: new HttpHeaders({
@@ -184,6 +187,7 @@ export class CompanyService {
     }).toPromise()
       .then(res => {
         console.log(res);
+        return res;
       })
       .catch(CompanyService.handleError);
   }

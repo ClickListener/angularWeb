@@ -1,8 +1,24 @@
+<h1>mainAdmin company modify</h1>
+
+
+<div *ngIf="companyInfo">
+  <p style="display: inline-block">Company state: </p>
+
+  <select name="state" [(ngModel)]="companyInfo.state">
+    <option value="0">申请</option>
+    <option value="1">审核</option>
+    <option value="2">禁用</option>
+    <option value="3">批准</option>
+  </select>
+</div>
+
+<a class="btn btn-primary btn-sm" (click)="updateCompanyInfo()">Update company state</a>
+
+
+
+
 <div style="margin-left: 3rem;margin-right: 3rem">
 
-  <div class="reg-app">
-    <a class="btn btn-primary" routerLink="/development-app-reg" routerLinkActive="active">Registered App</a>
-  </div>
 
   <div class="card" *ngIf="appList && appList.length !== 0">
 
@@ -83,7 +99,7 @@
 
                       <div>
                         <a class="btn btn-default">Cancel</a>
-                        <a class="btn btn-danger" (click)="deleteApp(app._id)">Delete</a>
+                        <a class="btn btn-danger" (click)="deleteApp(i)">Delete</a>
                       </div>
                     </div>
                   </div>
