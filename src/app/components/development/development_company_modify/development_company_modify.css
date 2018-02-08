@@ -1,0 +1,89 @@
+
+/*输入块 样式*/
+.input-block {
+  margin-top: 15px;
+  margin-left: 10%;
+}
+
+.input-block label {
+  display: block;
+}
+
+.input-block input {
+  border: 1px solid #bbbbbb;
+  width: 70%;
+  padding: 0px;
+}
+
+.input-block input:focus {
+  border: 1px solid #007afa;
+  box-shadow: none;
+}
+
+
+.input-block textarea {
+  border: 1px solid #bbbbbb;
+  width: 70%;
+  height: 10rem;
+  padding: 0px;
+}
+
+.input-block textarea:focus {
+  border: 1px solid #007afa;
+  outline: none;
+}
+
+
+/*business license*/
+.license-block {
+  margin-top: 15px;
+  margin-left: 10%;
+  position: relative;
+}
+
+.license-block input:hover {
+  cursor: pointer;
+}
+
+/*提交按钮块 样式*/
+.submit-block {
+  display: flex;
+  justify-content: center;
+}
+
+.submit-block a {
+  margin: 5% 3rem 0 3rem;
+  text-transform: none;
+  width: 10rem;
+  border-radius: 3px;
+}
+
+/*文字块*/
+
+.text-block {
+  margin-left: 10%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+select {
+  border: solid 1px #bbbbbb;
+
+  border-radius: 3px;
+  height: 2.1rem;
+  width: 35%;
+
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+  padding-right: 15px;
+
+  background: url("../../../../assets/images/down.png") no-repeat scroll right transparent;
+  background-origin: content-box;
+
+}
+
+
+
+
+

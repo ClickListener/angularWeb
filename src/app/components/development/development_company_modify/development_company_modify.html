@@ -1,0 +1,53 @@
+
+<p style="margin-left: 10%; margin-top: 15px; margin-bottom: 30px;font-size: 30px">
+  Company Information</p>
+
+<form id="applyForm" novalidate enctype="multipart/form-data" *ngIf="companyInfo">
+
+  <div class="input-block">
+    <label>Country</label>
+    <select name="country" [(ngModel)]="companyInfo.country">
+      <option *ngFor="let country of countryList" value="{{country.code}}">
+        {{country.en}}
+      </option>
+    </select>
+  </div>
+
+  <div class="input-block">
+    <label for="id_corporate">Corporate Name</label>
+    <input id="id_corporate" name="id_corporate" type="text" [(ngModel)]="companyInfo.companyName">
+  </div>
+
+  <div class="input-block">
+    <label for="id_address">Address</label>
+    <input id="id_address" name="id_address" type="text" [(ngModel)]="companyInfo.address">
+  </div>
+
+
+  <div class="input-block">
+    <label for="id_description">Description</label>
+    <textarea id="id_description" name="id_description" type="text" [(ngModel)]="companyInfo.description"></textarea>
+  </div>
+
+  <div class="license-block">
+    <p>Business license</p>
+    <a style="position: absolute"><img id="preview" src="{{url}}/{{companyInfo.avatar.description}}/{{companyInfo.avatar.fileName}}" style="width: 80px; height: 80px"></a>
+    <div>
+      <input type="file" name="image" style="width: 80px;height: 80px;opacity: 0;" (change)="previewImg($event)" accept="image/*">
+    </div>
+
+  </div>
+
+
+
+
+  <div class="submit-block">
+    <a class="btn" style="color: #111 !important;background-color: #f8f9fa;border-color: #f8f9fa;" (click)="cancel()">Cancel</a>
+    <a class="btn btn-primary" (click)="updateCompanyInfo()">Submit</a>
+  </div>
+
+
+
+
+
+</form>

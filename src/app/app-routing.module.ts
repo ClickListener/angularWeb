@@ -37,6 +37,7 @@ import {MainAdminCompanyModifyComponent} from "./components/mainAdmin/mainAdmin_
 import {MainAdminDeveloperModifyComponent} from "./components/mainAdmin/mainAdmin_developer/mainAdmin_developer_modify/mainAdmin_developer_modify";
 import {UserHintComponent} from "./components/user/user_hint/user-hint.component";
 import {UserResetPasswordComponent} from "./components/user/user_reset_password/user_reset_password.component";
+import {DevelopmentCompanyModifyComponent} from "./components/development/development_company_modify/development_company_modify";
 
 /**
  * 路由模块
@@ -154,6 +155,10 @@ const routes: Routes = [
   {
     path: 'development-permission-modify/:param',
     component: DevelopmentPermissionModifyComponent
+  },
+  {
+    path: 'development-company-modify/:param',
+    component: DevelopmentCompanyModifyComponent
   },
 
   {

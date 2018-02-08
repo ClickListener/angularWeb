@@ -51,6 +51,7 @@ import {MainAdminDeveloperModifyComponent} from "./components/mainAdmin/mainAdmi
 import {MainAdminCompanyManagerComponent} from "./components/mainAdmin/mainAdmin_company/mainAdmin_company_manager/mainAdmin_company_manager";
 import {UserHintComponent} from "./components/user/user_hint/user-hint.component";
 import {UserResetPasswordComponent} from "./components/user/user_reset_password/user_reset_password.component";
+import {DevelopmentCompanyModifyComponent} from "./components/development/development_company_modify/development_company_modify";
 
 @NgModule({
 
@@ -96,6 +97,7 @@ import {UserResetPasswordComponent} from "./components/user/user_reset_password/
     DevelopmentAppRegComponent,
     DevelopmentAppModifyComponent,
     DevelopmentPermissionModifyComponent,
+    DevelopmentCompanyModifyComponent,
 
     ManagerMainComponent,
     AndroidComponent,

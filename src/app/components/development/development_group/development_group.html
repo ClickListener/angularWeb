@@ -20,7 +20,7 @@
         <p class="item-1" style="line-height: 4rem; text-align: center">{{user.type}}</p>
         <p class="item-1" style="line-height: 4rem; text-align: center">{{companyInfo.country}}</p>
         <p class="item-1" style="line-height: 4rem; text-align: center; color: #007afa">{{companyInfo.state}}</p>
-        <a class="item-1" style="line-height: 4rem; text-align: center" *ngIf="user.type !== 4"><img src="../../../../assets/images/edit.png"></a>
+        <a class="item-1" style="line-height: 4rem; text-align: center" *ngIf="user.type !== 4" [routerLink]="['/development-company-modify', companyInfo._id]"><img src="../../../../assets/images/edit.png"></a>
       </div>
     </div>
   </div>
