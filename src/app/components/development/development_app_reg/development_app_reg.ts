@@ -53,7 +53,12 @@ export class DevelopmentAppRegComponent implements OnInit {
 
     this.deviceSelectList.push(device);
 
-    this.userService.getUserInfo();
+    const userInfo = {
+      "userId": userService.user._id,
+      "token": userService.token.token
+    };
+
+    this.userService.getUserInfo(userInfo);
 
 
 

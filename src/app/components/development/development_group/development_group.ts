@@ -39,8 +39,13 @@ export class DevelopmentGroupComponent {
 
 
 
+    const userInfo = {
+      "userId": userService.user._id,
+      "token": userService.token.token
+    };
+
     // 获得当前用户信息，拿到companyId，然后通过CompanyId获取改公司下的所有开发者 和 该公司的信息
-    this.userService.getUserInfo()
+    this.userService.getUserInfo(userInfo)
       .then(async res => {
 
         if (res.success) {

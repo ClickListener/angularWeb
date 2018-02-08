@@ -25,7 +25,13 @@ export class DevelopmentAddMemberComponent {
 
   constructor(private companyService: CompanyService, private userService: UserService, private router: Router) {
 
-    this.userService.getUserInfo();
+
+    const userInfo = {
+      "userId": userService.user._id,
+      "token": userService.token.token
+    };
+
+    this.userService.getUserInfo(userInfo);
 
     if (userService.resourceList.length === 0) {
       userService.getResourceList();

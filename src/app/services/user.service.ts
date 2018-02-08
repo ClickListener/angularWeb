@@ -57,7 +57,9 @@ export class UserService {
    * 获取单个用户信息
    */
 
-  getUserInfo(): Promise<any> {
+  getUserInfo(userInfo: any): Promise<any> {
+
+    console.log('userInfo = ', userInfo);
 
     const url = this.url + "/user/userInfo";
     return this.http.get(url, {
@@ -65,10 +67,7 @@ export class UserService {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       }),
-      params: {
-        "userId": this.user._id,
-        "token": this.token.token
-      }
+      params: userInfo
     }).toPromise()
       .then(res => {
 

@@ -21,8 +21,12 @@ export class DevelopmentAppManagerComponent {
   appList: Array<any>;
   constructor(private appService: AppService, private userService: UserService) {
 
+    const userInfo = {
+      "userId": userService.user._id,
+      "token": userService.token.token
+    };
 
-    userService.getUserInfo()
+    userService.getUserInfo(userInfo)
       .then(async res => {
 
         if (res.success) {

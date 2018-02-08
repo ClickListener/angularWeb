@@ -50,7 +50,7 @@
         </div>
 
         <div class="item-1" style="line-height: 5rem; text-align: center" *ngIf="user.type !== 4">
-          <a><img src="../../../../assets/images/edit.png"></a>
+          <a [routerLink]="['/development-permission-modify', developer._id]"><img src="../../../../assets/images/edit.png"></a>
           <a (click)="removeCompanyId(developer)"><img src="../../../../assets/images/delete.png"></a>
         </div>
 
