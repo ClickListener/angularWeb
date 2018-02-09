@@ -58,6 +58,20 @@ export class DevelopmentAppModifyComponent implements DoCheck {
             this.expiredDate = datePipe.transform(this.appInfo.expireTime, 'yyyy/MM/dd');
 
             console.log('expiredDate = ' , this.expiredDate);
+          } else {
+
+            swal({
+              position: 'bottom-right',
+              type: 'error',
+              titleText: res.message,
+              showConfirmButton: false,
+              timer: 2000,
+              padding: 0
+            }).catch(swal.noop);
+
+            if (res.code === '1034') {
+              this.userService.signOut();
+            }
           }
 
         })

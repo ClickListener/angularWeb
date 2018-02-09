@@ -7,6 +7,7 @@ import {UserService} from "../../../services/user.service";
 import swal from "sweetalert2";
 
 import * as myGlobals from '../../../../environments/config';
+import {CompanyService} from "../../../services/company.service";
 @Component({
   templateUrl: './development_app_manager.html',
   styleUrls: ['./development_app_manager.css']
@@ -18,8 +19,10 @@ export class DevelopmentAppManagerComponent {
 
   url = myGlobals.url;
 
+  companyInfo: any;
+
   appList: Array<any>;
-  constructor(private appService: AppService, private userService: UserService) {
+  constructor(private appService: AppService, private userService: UserService, private companyService: CompanyService) {
 
     const userInfo = {
       "userId": userService.user._id,
@@ -40,6 +43,18 @@ export class DevelopmentAppManagerComponent {
 
           if (response.success) {
             this.appList = response.data;
+          }
+
+          // 获得公司信息
+          const queryCompanyInfo = {
+            "userId": res.user._id,
+            "token": userService.token.token,
+            "cid": res.user.companyId
+          };
+          const companyResponse = await companyService.findCompany(queryCompanyInfo);
+
+          if (companyResponse.success) {
+            this.companyInfo = companyResponse.data;
           }
         }
       })
@@ -76,16 +91,46 @@ export class DevelopmentAppManagerComponent {
 
         console.log(this.userService.user);
 
-        const appAll = {
-          "userId": this.userService.user._id,
-          "token": this.userService.token.token,
-          "companyId": this.userService.user.companyId
-        };
-        const response = await this.appService.findAllAppInfo(appAll);
+        if (res.success) {
+          const appAll = {
+            "userId": this.userService.user._id,
+            "token": this.userService.token.token,
+            "companyId": this.userService.user.companyId
+          };
+          const response = await this.appService.findAllAppInfo(appAll);
 
-        if (response.success) {
-          this.appList = response.data;
+          if (response.success) {
+            this.appList = response.data;
+          } else {
+            swal({
+              position: 'bottom-right',
+              type: 'error',
+              titleText: res.message,
+              showConfirmButton: false,
+              timer: 2000,
+              padding: 0
+            }).catch(swal.noop);
+
+            if (res.code === '1034') {
+              this.userService.signOut();
+            }
+          }
+        } else {
+          swal({
+            position: 'bottom-right',
+            type: 'error',
+            titleText: res.message,
+            showConfirmButton: false,
+            timer: 2000,
+            padding: 0
+          }).catch(swal.noop);
+
+          if (res.code === '1034') {
+            this.userService.signOut();
+          }
         }
+
+
       })
       .catch(error => {
         console.log(error);
@@ -115,11 +160,18 @@ export class DevelopmentAppManagerComponent {
             padding: 0
           }).catch(swal.noop);
         } else {
-          swal(
-            'Fail!',
-            res.message,
-            'error'
-          ).catch(swal.noop);
+          swal({
+            position: 'bottom-right',
+            type: 'error',
+            titleText: res.message,
+            showConfirmButton: false,
+            timer: 2000,
+            padding: 0
+          }).catch(swal.noop);
+
+          if (res.code === '1034') {
+            this.userService.signOut();
+          }
         }
       })
       .catch(error => {
