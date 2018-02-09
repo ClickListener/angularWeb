@@ -27,7 +27,8 @@
         "../src/assets/css/classic.css",
         "../src/assets/css/classic.date.css",
         "../src/assets/css/classic.time.css",
-        "../node_modules/sweetalert2/dist/sweetalert2.css"
+        "../node_modules/sweetalert2/dist/sweetalert2.css",
+        "../node_modules/prismjs/themes/prism.css"
       ],
       "scripts": [
 

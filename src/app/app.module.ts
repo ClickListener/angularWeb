@@ -52,6 +52,7 @@ import {MainAdminCompanyManagerComponent} from "./components/mainAdmin/mainAdmin
 import {UserHintComponent} from "./components/user/user_hint/user-hint.component";
 import {UserResetPasswordComponent} from "./components/user/user_reset_password/user_reset_password.component";
 import {DevelopmentCompanyModifyComponent} from "./components/development/development_company_modify/development_company_modify";
+import { MarkdownModule } from 'angular2-markdown';
 
 @NgModule({
 
@@ -62,7 +63,8 @@ import {DevelopmentCompanyModifyComponent} from "./components/development/develo
     HttpClientJsonpModule,
     FormsModule,
     CookieModule.forRoot(),
-    FileUploadModule
+    FileUploadModule,
+    MarkdownModule.forRoot()
   ],
   declarations: [
     AppComponent,
