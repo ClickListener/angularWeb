@@ -33,8 +33,6 @@ export class DevelopmentGroupComponent {
 
   addMembers: boolean;
 
-  permissionString = '';
-
   constructor(private companyService: CompanyService, private userService: UserService) {
 
 
@@ -89,19 +87,28 @@ export class DevelopmentGroupComponent {
           }
 
 
-          // 获得当前用户的权限
-          const userInfo = {
-            "userId": this.user._id,
-            "token": userService.token.token
-          };
+          this.developerList.forEach( async (developer, index) => {
+            const user_Info = {
+              "userId": this.user._id,
+              "token": userService.token.token,
+              "uid": developer._id
+            };
 
-          if (this.user.type === 4) {
-            const permissionResponse = await userService.getUserAuth(userInfo);
+            if (developer.type === 4) {
+              const permissionResponse = await userService.getUserAuth(user_Info);
 
-            if (permissionResponse.success) {
-              this.parsePermission(permissionResponse.data);
+              if (permissionResponse.success) {
+                const permissionString = this.parsePermission(permissionResponse.data);
+
+                developer['permission'] = permissionString;
+              }
             }
-          }
+
+            console.log('developer', developer);
+          });
+
+          // 获得当前用户的权限
+
 
 
         }
@@ -116,9 +123,11 @@ export class DevelopmentGroupComponent {
 
 
 
-  private parsePermission(permission: any) {
+  private parsePermission(permission: any): string {
 
     console.log('permission = ', permission);
+
+    let permissionString = '';
 
 
     permission.forEach((item, index) => {
@@ -134,38 +143,43 @@ export class DevelopmentGroupComponent {
     });
 
     if (this.createApp) {
-      if (this.permissionString === null || this.permissionString === '') {
-        this.permissionString += 'Create App';
+      if (permissionString === null || permissionString === '') {
+        permissionString += 'Create App';
       } else {
-        this.permissionString += ',Create App';
+        permissionString += ',Create App';
       }
     }
 
     if (this.editApp) {
-      if (this.permissionString === null || this.permissionString === '') {
-        this.permissionString += 'Edit App';
+      if (permissionString === null || permissionString === '') {
+        permissionString += 'Edit App';
       } else {
-        this.permissionString += ',Edit App';
+        permissionString += ',Edit App';
       }
     }
 
     if (this.deleteApp) {
-      if (this.permissionString === null || this.permissionString === '') {
-        this.permissionString += 'Delete App';
+      if (permissionString === null || permissionString === '') {
+        permissionString += 'Delete App';
       } else {
-        this.permissionString += ',Delete App';
+        permissionString += ',Delete App';
       }
     }
 
     if (this.checkLicenseData) {
-      if (this.permissionString === null || this.permissionString === '') {
-        this.permissionString += 'Check The License Data';
+      if (permissionString === null || permissionString === '') {
+        permissionString += 'Check The License Data';
       } else {
-        this.permissionString += 'Check The License Data';
+        permissionString += 'Check The License Data';
       }
     }
 
-    console.log('permissionString', this.permissionString);
+    console.log('permissionString', permissionString);
+
+    return permissionString;
+
+
+
   }
 
 
