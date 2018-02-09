@@ -71,7 +71,9 @@ export class UserService {
     }).toPromise()
       .then(res => {
 
-        this.user = res['user'] as User;
+        if (userInfo.uid === null || userInfo.uid === '') {
+          this.user = res['user'] as User;
+        }
         console.log('user = ' + JSON.stringify(this.user));
 
         return res;

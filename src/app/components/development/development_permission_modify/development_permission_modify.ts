@@ -2,7 +2,7 @@
  * Created by zhangxu on 2018/2/7.
  */
 import {Component} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../../services/user.service";
 
 @Component({
@@ -24,7 +24,7 @@ export class DevelopmentPermissionModifyComponent {
 
   sdkDownload: boolean;
 
-  constructor(private activatedRoute: ActivatedRoute, private userService: UserService) {
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router) {
 
     activatedRoute.paramMap.subscribe(paramMap => {
       this.userId = paramMap['params'].param;
@@ -85,4 +85,73 @@ export class DevelopmentPermissionModifyComponent {
     });
 
   }
+
+
+  upDatePermission() {
+
+    const permissionArr = [];
+
+
+    // const appCountPermission = {
+    //   "rid": '5a6582505e149e1dfdf27963',
+    //   "action": []
+    // };
+    const appLicensePermission = {
+      "rid": '5a6585df5e149e1dfdf27964',
+      "action": []
+    };
+    // const companyPermission = {
+    //   "rid": '5a6ae53f5e149e1dfdf27966',
+    //   "action": []
+    // };
+    // const invitePermission = {
+    //   "rid": '5a71639e5e149e1dfdf27969',
+    //   "action": []
+    // };
+
+
+    if (this.createApp) {
+      appLicensePermission.action.push('C');
+    }
+
+    if (this.checkLicenseData) {
+      appLicensePermission.action.push('R');
+    }
+    if (this.editApp) {
+      appLicensePermission.action.push('U');
+    }
+
+    if (this.deleteApp) {
+      appLicensePermission.action.push('D');
+    }
+
+
+    permissionArr.push(appLicensePermission);
+    // permissionArr.push(appCountPermission);
+    // permissionArr.push(companyPermission);
+    // permissionArr.push(invitePermission);
+
+
+    const permissionInfo = {
+      "userId": this.userService.user._id,
+      "token": this.userService.token.token,
+      "uid": this.userId,
+      "companyId": this.userService.user.companyId,
+      "auth": permissionArr,
+      "isValid": true
+    };
+
+    this.userService.addUserAuth(permissionInfo)
+      .then(res => {
+        console.log(res);
+        this.router.navigate(['/development-main/development-group']);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+
+  }
+
+
 }
