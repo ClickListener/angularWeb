@@ -35,7 +35,7 @@ export class UserService {
     console.log('name = ' + _cookieService.get('name'));
   }
 
-  user: User;
+  user: any;
 
   token: Token;
 
@@ -71,8 +71,9 @@ export class UserService {
     }).toPromise()
       .then(res => {
 
-        if (userInfo.uid === null || userInfo.uid === '') {
-          this.user = res['user'] as User;
+        if (!('uid' in userInfo)) {
+
+          this.user = res['user'];
         }
         console.log('user = ' + JSON.stringify(this.user));
 
