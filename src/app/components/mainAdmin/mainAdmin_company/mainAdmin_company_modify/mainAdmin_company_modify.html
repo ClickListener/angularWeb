@@ -40,7 +40,14 @@
           <div class="form-custom-content">
             <div>
               <a class="item-1"><img src="{{url}}{{app.avatar.description}}/{{app.avatar.fileName}}"></a>
-              <p class="item-1">{{app.state}}</p>
+              <p class="item-1">
+                <select name="state" [(ngModel)]="app.state">
+                  <option value="0">申请</option>
+                  <option value="1">审核</option>
+                  <option value="2">禁用</option>
+                  <option value="3">批准</option>
+                </select>
+              </p>
               <p class="item-1">{{app.platform}}</p>
               <p class="item-2">2018-01-10</p>
               <div class="item-1">{{app.devices.length}}
@@ -81,30 +88,7 @@
               <p class="item-1">0</p>
 
               <div class="item-2">
-                <a (click)="downloadLicense(app._id)"><img src="../../../../assets/images/download.png"></a>
-                <a [routerLink]= '["/development-app-modify", app._id]'><img src="../../../../assets/images/edit.png"></a>
-
-                <a class="collapsed" style="position: relative" data-toggle="collapse" [attr.data-target]="'#confirm' + i"
-                   aria-expanded="false" aria-controls="devices-detail">
-                  <img src="../../../../assets/images/delete.png">
-
-                  <div class="triangle-big" style="left: 4px"></div>
-                  <div class="triangle-small" style="left: 4px">
-
-                    <div class="collapse device-detail" [attr.id]="'confirm' + i" style="width: 20rem">
-
-                      <div>
-                        Sure to delete this app?
-                      </div>
-
-                      <div>
-                        <a class="btn btn-default">Cancel</a>
-                        <a class="btn btn-danger" (click)="deleteApp(i)">Delete</a>
-                      </div>
-                    </div>
-                  </div>
-
-                </a>
+                <a class="btn btn-primary" (click)="updateAppState(app)" >Update app state</a>
               </div>
             </div>
 

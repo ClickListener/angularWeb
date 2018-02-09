@@ -81,7 +81,7 @@ export class MainAdminCompanyModifyComponent {
       "token": this.userService.token.token,
       "cid": this.cid,
       "state": this.companyInfo.state
-    }
+    };
     this.companyService.reviewCompany(companyInfo)
       .then(res => {
         console.log(res);
@@ -112,8 +112,43 @@ export class MainAdminCompanyModifyComponent {
 
 
   // 更新APP 状态
-  updateAppState() {
+  updateAppState(app: any) {
 
+    const companyInfo = {
+      "userId": this.userService.user._id,
+      "token": this.userService.token.token,
+      "cid": this.cid,
+      "state": app.state,
+      "aid": app._id
+    };
+
+
+    this.companyService.reviewCompany(companyInfo)
+      .then(res => {
+        console.log(res);
+        if (res.success) {
+          swal({
+            position: 'bottom-right',
+            type: 'success',
+            titleText: 'Update success',
+            showConfirmButton: false,
+            timer: 1500,
+            padding: 0
+          }).catch(swal.noop);
+        } else {
+          swal({
+            position: 'bottom-right',
+            type: 'error',
+            titleText: res.message,
+            showConfirmButton: false,
+            timer: 2000,
+            padding: 0
+          }).catch(swal.noop);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
 

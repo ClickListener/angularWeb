@@ -1,0 +1,125 @@
+
+/*reg app style*/
+
+.reg-app {
+  overflow: hidden;
+}
+
+.reg-app a {
+  text-transform: none;
+  margin-right: 0;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  float: right;
+  border-radius: 4px;
+}
+
+
+/*小三角*/
+
+.triangle-big, .triangle-small {
+  content: "";  /*:before和:after必带技能，重要性为满5颗星*/
+  display: block;
+  position: absolute;  /*日常绝对定位*/
+
+  left: -4px;
+  width: 0;
+  height: 0;
+  border:10px solid transparent;
+
+}
+
+.triangle-big {
+  bottom: -22px;
+}
+.triangle-small {
+  bottom: -20px;
+}
+a:not(.collapsed) .triangle-big {
+  border-bottom-color: #FFFFFF;
+  z-index:1;
+}
+
+a:not(.collapsed) .triangle-small {
+  border-bottom-color: #e9ecef;
+  z-index: 0;
+}
+
+
+/*Device detail*/
+.device-detail {
+  position: absolute;
+  z-index: 5;
+  left: -15rem;
+  width: 30rem;
+  top: 10px;
+  border: 1px solid #e9ecef;
+  background: #FFFFFF;
+}
+
+.device-detail-form {
+  position: relative;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.device-detail-form-head {
+  display: flex;
+  height: 3rem;
+}
+.custom-center-p {
+  margin: 0;
+  line-height: 3rem;
+  text-align: center;
+}
+
+
+
+
+/*自定义表单*/
+.form-custom {
+  border: 1px solid #e9ecef;
+}
+
+.form-custom-head {
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  height: 3rem;
+  background: #f2f2f2;
+}
+.form-custom-head p {
+  margin: 0;
+  line-height: 3rem;
+  text-align: center;
+}
+
+
+.item-2 {
+  flex: 2;
+  /*line-height: 2.1rem;*/
+  /*text-align: center;*/
+}
+
+.item-1 {
+  flex: 1;
+  /*line-height: 2.1rem;*/
+  /*text-align: center;*/
+}
+
+.form-custom-content {
+  margin: 0;
+}
+
+.form-custom-content > div {
+  display: flex;
+  height: 5.5rem;
+  line-height: 5.5rem;
+  text-align: center;
+}
+
+
+
+
+
+
+
