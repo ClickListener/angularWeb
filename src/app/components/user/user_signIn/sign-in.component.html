@@ -11,12 +11,14 @@
       <p class="text-center header-state">Sign in to your Developer account</p>
 
       <form class="simple_form form-signIn" novalidate="novalidate" id="new_user"
-            accept-charset="UTF-8" (submit)="signIn(email.value, password.value)" >
+            accept-charset="UTF-8" (submit)="signIn()" #myForm="ngForm">
 
-        <div class="error"></div>
         <div class="md-form">
-          <input required="required" class="form-control" id="email" type="text" #email>
-          <label for="email">Email</label>
+          <input required="required" class="form-control" id="email" name="email" type="text" [(ngModel)]="emailOrUserName"
+                 #email="ngModel" [rangeLength]="[1,100]">
+          <label for="email">Email Or UserName</label>
+
+          <span *ngIf="!email.pristine&&email.invalid" style="color: #ee2200">Please input valid email or userName.</span>
 
         </div>
 

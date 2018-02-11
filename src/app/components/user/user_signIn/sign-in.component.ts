@@ -22,13 +22,17 @@ export class SignInComponent {
 
     user:User;
 
-    signIn(email:string, password:string): void {
-        console.log('email = ' + email + " password = " + password);
+    emailOrUserName: string;
+    password: string;
+
+    signIn(): void {
 
         const userInfo = {
-          "email": email,
-          "password": password
+          "email": this.emailOrUserName,
+          "password": this.password
         };
+
+        console.log('userInfo: ', userInfo);
         this.userService.signIn(userInfo)
             .then((res) => {
 
