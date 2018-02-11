@@ -212,7 +212,7 @@ select:hover {
   margin-bottom: 10rem;
 }
 
-.submit-block a {
+.submit-block button {
   position: absolute;
   right: 0;
   text-transform: none;

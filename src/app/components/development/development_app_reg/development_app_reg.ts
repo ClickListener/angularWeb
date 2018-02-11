@@ -18,17 +18,13 @@ declare const jQuery: any;
 
 export class DevelopmentAppRegComponent implements OnInit {
 
+
   url = myGlobals.url;
 
   deviceSelectList: Array<Device>;
 
-  deviceList = [
-    "BP5",
-    "BP3L",
-    "BP7",
-    "BP3M",
-    "Bp7S"
-  ];
+  appIcon = false;
+
 
   deviceNumberList = [
     100,
@@ -40,9 +36,9 @@ export class DevelopmentAppRegComponent implements OnInit {
   appName: string;
   bundleIdOrPackageName: string;
   description: string;
-  scheme: string;
-  codeType: string;
-  expiredDate: any;
+  scheme = 'NativeSDK';
+  codeType = 'code1';
+  expiredDate = 10;
 
 
   constructor(private userService: UserService, private router: Router) {
@@ -75,11 +71,15 @@ export class DevelopmentAppRegComponent implements OnInit {
       selectYears: true,
       min: +1,
       max: [2019, 0, 1],
-      formatSubmit: 'yyyy/MM/dd',
+      formatSubmit: 'yyyy/mm/dd',
       onSet: context =>  {
+
         this.expiredDate = context.select;
+        console.log('expiredDateValid = ', this.expiredDate);
+
       }
     });
+
   }
   addDevice() {
     const device = new Device();
@@ -103,6 +103,16 @@ export class DevelopmentAppRegComponent implements OnInit {
   // 使用FileReader 将图片读取为base64字符串形式，实现图片预览
   private previewImg(event) {
     const file = event.target.files[0];
+
+
+    if (!file) {
+      const img = document.getElementById("preview");
+      img['src'] = '../../../../assets/images/addPic.png';
+
+      this.appIcon = false;
+      return;
+    }
+    this.appIcon = true;
 
     const reader = new FileReader();
 
