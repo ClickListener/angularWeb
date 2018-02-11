@@ -21,12 +21,16 @@ export class DevelopmentApplyMasterComponent implements DoCheck {
 
   url = myGlobals.url;
 
-  country: string;
+  country = "China";
   companyName: string;
 
   address: string;
 
   description: string;
+
+  business = false;
+
+
 
   countryList: Array<any>;
 
@@ -142,6 +146,15 @@ export class DevelopmentApplyMasterComponent implements DoCheck {
   // 使用FileReader 将图片读取为base64字符串形式，实现图片预览
   private previewImg(event) {
     const file = event.target.files[0];
+    if (!file) {
+      const img = document.getElementById("preview");
+      img['src'] = '../../../../assets/images/addPic.png';
+
+      this.business = false;
+
+      return;
+    }
+    this.business = true;
 
     const reader = new FileReader();
 
