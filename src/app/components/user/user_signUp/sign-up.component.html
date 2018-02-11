@@ -34,7 +34,9 @@
                   #password="ngModel" pattern="^.*(?=.{6,16})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*?]).*$">
           <label for="password">Password</label>
 
-          <span *ngIf="!password.pristine&&password.invalid" style="color: #ee2200">Please input valid email.</span>
+          <span *ngIf="!password.pristine&&password.invalid" style="color: #ee2200">
+            Please input valid password: at least contain a upper letter, a lower letter, a number and a special character.
+          </span>
 
         </div>
 
@@ -43,7 +45,7 @@
                  #confirmPassword="ngModel" [equalTo]="password">
           <label for="confirmPassword">Confirm PassWord</label>
 
-          <span *ngIf="!confirmPassword.pristine && confirmPassword.invalid" style="color: #ee2200">Please input valid email.</span>
+          <span *ngIf="!confirmPassword.pristine && confirmPassword.invalid" style="color: #ee2200">ConfirmPassword must equal with password.</span>
         </div>
 
         <div style="font-size: 15px">
@@ -51,7 +53,6 @@
           <p style="display: inline">By creating an account your agree to our </p>
           <a href="#">Terms & polices</a>
 
-          <span *ngIf="!confirmPassword.pristine && confirmPassword.invalid" style="color: #ee2200">Please input valid email.</span>
         </div>
 
         <div style="margin-top: 20px">
