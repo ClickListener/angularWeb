@@ -14,20 +14,29 @@ import {Router} from '@angular/router'
 
 export class SignUpComponent {
 
+
+  nameValue: string;
+  emailValue: string;
+  passwordValue: string;
+  confirmPasswordValue: string;
+  agreeValue: boolean;
+
     constructor(private userService: UserService, private router: Router) {}
 
-    signUp(name:string, email: string, password: string, confirmPassword: string) {
-        console.log("email = " + email + "password = " + password);
+    signUp() {
 
 
         const signUp_info = {
           addUser: {
-            "username": name,
-            "email": email,
-            "password": password,
+            "username": this.nameValue,
+            "email": this.emailValue,
+            "password": this.passwordValue,
             "type": 4
           }
         };
+
+        console.log('signUp_info: ', signUp_info);
+
         this.userService.signUp(signUp_info)
             .then((res) => {
               console.log(res);

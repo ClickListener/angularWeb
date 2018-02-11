@@ -53,6 +53,7 @@ import {UserHintComponent} from "./components/user/user_hint/user-hint.component
 import {UserResetPasswordComponent} from "./components/user/user_reset_password/user_reset_password.component";
 import {DevelopmentCompanyModifyComponent} from "./components/development/development_company_modify/development_company_modify";
 import { MarkdownModule } from 'angular2-markdown';
+import {CustomFormsModule} from "ng2-validation";
 
 @NgModule({
 
@@ -62,6 +63,7 @@ import { MarkdownModule } from 'angular2-markdown';
     HttpClientModule,
     HttpClientJsonpModule,
     FormsModule,
+    CustomFormsModule,
     CookieModule.forRoot(),
     FileUploadModule,
     MarkdownModule.forRoot()
