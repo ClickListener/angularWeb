@@ -6,6 +6,7 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {promise} from "selenium-webdriver";
 
 import * as myGlobals from '../../environments/config';
+import {ErrorService} from "./error.service";
 
 @Injectable()
 export class AppService {
@@ -14,7 +15,7 @@ export class AppService {
   url = myGlobals.url;
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private errorService: ErrorService) {
   }
 
   private static handleError(error: any): Promise<any> {
@@ -42,6 +43,11 @@ export class AppService {
     }).toPromise()
       .then(res => {
         console.log(res);
+        if (res['success']) {
+
+        } else {
+          this.errorService.hintError(res);
+        }
         return res;
       })
       .catch(AppService.handleError);
@@ -70,6 +76,11 @@ export class AppService {
     }).toPromise()
       .then(res => {
         console.log(res);
+        if (res['success']) {
+
+        } else {
+          this.errorService.hintError(res);
+        }
         return res;
       })
       .catch(AppService.handleError);
@@ -94,6 +105,11 @@ export class AppService {
     }).toPromise()
       .then(res => {
         console.log(res);
+        if (res['success']) {
+
+        } else {
+          this.errorService.hintError(res);
+        }
         return res;
       })
       .catch(AppService.handleError);

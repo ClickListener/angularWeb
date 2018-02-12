@@ -119,12 +119,6 @@ export class SchemeManagerComponent {
               'Your file has been deleted.',
               'success'
             );
-          } else {
-            swal(
-              'Fail!',
-              'Something went wrong!',
-              'error'
-            );
           }
         })
         .catch(error => {

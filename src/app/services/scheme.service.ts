@@ -5,6 +5,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 import * as myGlobals from '../../environments/config';
+import {ErrorService} from "./error.service";
 
 @Injectable()
 export class SchemeService {
@@ -16,7 +17,7 @@ export class SchemeService {
 
   url = myGlobals.url;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private errorService: ErrorService) {
   }
 
   get schemeID(): string {
@@ -51,7 +52,11 @@ export class SchemeService {
       .toPromise()
       .then(res => {
         console.log(res);
-        this.schemeAll = res['data'];
+        if (res['success']) {
+
+        } else {
+          this.errorService.hintError(res);
+        }
         return res;
       })
       .catch(error => {
@@ -81,7 +86,11 @@ export class SchemeService {
     }).toPromise()
       .then(res => {
         console.log(res);
+        if (res['success']) {
 
+        } else {
+          this.errorService.hintError(res);
+        }
         return res;
       })
       .catch(error => {
@@ -110,6 +119,11 @@ export class SchemeService {
     }).toPromise()
       .then(res => {
         console.log(res);
+        if (res['success']) {
+
+        } else {
+          this.errorService.hintError(res);
+        }
         return res;
       })
       .catch(error => {
@@ -132,6 +146,11 @@ export class SchemeService {
     }).toPromise()
       .then(res => {
         console.log(res);
+        if (res['success']) {
+
+        } else {
+          this.errorService.hintError(res);
+        }
         return res;
       })
       .catch(error => {

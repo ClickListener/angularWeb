@@ -89,12 +89,6 @@ export class SchemeDetailsComponent {
               'success'
             );
             jQuery('#' + fileName.replace('.', '_')).remove();
-          } else {
-            swal(
-              'Fail!',
-              'Something went wrong!',
-              'error'
-            );
           }
         })
         .catch(error => {

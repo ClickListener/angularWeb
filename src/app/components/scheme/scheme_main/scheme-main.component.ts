@@ -85,34 +85,31 @@ export class SchemeMainComponent {
         .then(async res => {
 
           console.log(res);
-          const schemeSelected = res.data;
-          const schemeInfo = {
-            "userId": self.userService.user._id,
-            "token": self.userService.token.token,
-            "appName": schemeSelected.resourceName,
-            "version": schemeSelected.version
-          };
+          if (res.success) {
+            const schemeSelected = res.data;
+            const schemeInfo = {
+              "userId": self.userService.user._id,
+              "token": self.userService.token.token,
+              "appName": schemeSelected.resourceName,
+              "version": schemeSelected.version
+            };
 
-          self.schemeService.deleteScheme(schemeInfo)
-            .then(response => {
-              if (response.success) {
-                self.router.navigate(['/scheme-main/', schemeSelected.resourceName,]);
-                swal(
-                  'Deleted!',
-                  'Your file has been deleted.',
-                  'success'
-                );
-              } else {
-                swal(
-                  'Fail!',
-                  'Something went wrong!',
-                  'error'
-                );
-              }
-            })
-            .catch(error => {
-              console.log('ManagerComponent--error = ' + JSON.stringify(error));
-            });
+            self.schemeService.deleteScheme(schemeInfo)
+              .then(response => {
+                if (response.success) {
+                  self.router.navigate(['/scheme-main/', schemeSelected.resourceName,]);
+                  swal(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                  );
+                }
+              })
+              .catch(error => {
+                console.log('ManagerComponent--error = ' + JSON.stringify(error));
+              });
+          }
+
 
         })
         .catch(error => {

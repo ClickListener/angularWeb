@@ -5,6 +5,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 import * as myGlobals from '../../environments/config';
+import {ErrorService} from "./error.service";
 
 @Injectable()
 export class CompanyService {
@@ -13,7 +14,7 @@ export class CompanyService {
 
   url = myGlobals.url;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private errorService: ErrorService) {}
 
   private static handleError(error: any): Promise<any> {
     console.log('An error occurred', JSON.stringify(error)); // for demo purposes only
@@ -37,7 +38,6 @@ export class CompanyService {
       .toPromise()
       .then(res => {
         this.countryList = res as any[];
-
         return this.countryList;
       })
       .catch(CompanyService.handleError);
@@ -61,6 +61,11 @@ export class CompanyService {
     }).toPromise()
       .then(res => {
         console.log(res);
+        if (res['success']) {
+
+        } else {
+          this.errorService.hintError(res);
+        }
         return res;
       })
       .catch(CompanyService.handleError);
@@ -90,6 +95,11 @@ export class CompanyService {
     }).toPromise()
       .then(res => {
         console.log(res);
+        if (res['success']) {
+
+        } else {
+          this.errorService.hintError(res);
+        }
         return res;
       })
       .catch(CompanyService.handleError);
@@ -121,27 +131,6 @@ export class CompanyService {
       .catch(CompanyService.handleError);
   }
 
-  /**
-   * 修改公司信息
-   */
-
-  updateCompany(companyInfo: any): Promise<any> {
-    console.log("companyInfo = " + JSON.stringify(companyInfo));
-
-    const url = this.url + "/api/company/updateCompany";
-    return this.http.post(url, companyInfo, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      })
-    }).toPromise()
-      .then(res => {
-
-        console.log(res);
-        return res;
-      })
-      .catch(CompanyService.handleError);
-  }
 
 
   /**
@@ -163,6 +152,11 @@ export class CompanyService {
     }).toPromise()
       .then(res => {
         console.log(res);
+        if (res['success']) {
+
+        } else {
+          this.errorService.hintError(res);
+        }
         return res;
       })
       .catch(CompanyService.handleError);
@@ -187,6 +181,11 @@ export class CompanyService {
     }).toPromise()
       .then(res => {
         console.log(res);
+        if (res['success']) {
+
+        } else {
+          this.errorService.hintError(res);
+        }
         return res;
       })
       .catch(CompanyService.handleError);
@@ -209,6 +208,11 @@ export class CompanyService {
     }).toPromise()
       .then(res => {
         console.log(res);
+        if (res['success']) {
+
+        } else {
+          this.errorService.hintError(res);
+        }
         return res;
       })
       .catch(CompanyService.handleError);

@@ -3,12 +3,13 @@
  */
 import {Injectable} from "@angular/core";
 import swal from "sweetalert2";
+import {UserService} from "./user.service";
 
 @Injectable()
 
 export class ErrorService {
 
-  constructor() {}
+  constructor(private userService: UserService) {}
 
 
   hintError(res: any) {
@@ -24,10 +25,12 @@ export class ErrorService {
       case '1033':
 
         message = 'You account has been logged in elsewhere, please re-register.';
+        this.userService.signOut();
         break;
       case '1034':
 
         message = 'LogIn timeout.';
+        this.userService.signOut();
         break;
 
       default:
@@ -45,5 +48,7 @@ export class ErrorService {
       padding: 0
     }).catch(swal.noop);
   }
+
+
 
 }

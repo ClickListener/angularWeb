@@ -16,6 +16,8 @@ import {AES, enc, mode, pad} from "crypto-js";
 
 import * as myGlobals from '../../environments/config';
 import {ErrorService} from "./error.service";
+import swal from "sweetalert2";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class UserService {
@@ -24,8 +26,7 @@ export class UserService {
   url = myGlobals.url;
 
 
-  constructor(private http: HttpClient, private _cookieService: CookieService,
-              private errorService: ErrorService) {
+  constructor(private http: HttpClient, private _cookieService: CookieService, private router: Router) {
     console.log('UserService--------constructor');
     this.user = JSON.parse(sessionStorage.getItem('user'));
     this.token = JSON.parse(sessionStorage.getItem('token'));
@@ -81,7 +82,7 @@ export class UserService {
 
           }
         } else {
-          this.errorService.hintError(res);
+          this.hintError(res);
         }
 
         console.log('user = ' + JSON.stringify(this.user));
@@ -108,7 +109,7 @@ export class UserService {
         if (res['success']) {
           this.resourceList = res['data'];
         } else {
-          this.errorService.hintError(res);
+          this.hintError(res);
         }
 
 
@@ -162,7 +163,7 @@ export class UserService {
         if (res['success']) {
 
         } else {
-          this.errorService.hintError(res);
+          this.hintError(res);
         }
         return res;
       })
@@ -192,7 +193,7 @@ export class UserService {
         if (res['success']) {
 
         } else {
-          this.errorService.hintError(res);
+          this.hintError(res);
         }
         return res;
       })
@@ -239,7 +240,7 @@ export class UserService {
         if (res['success']) {
 
         } else {
-          this.errorService.hintError(res);
+          this.hintError(res);
         }
         return res;
       })
@@ -268,7 +269,7 @@ export class UserService {
 
 
         } else {
-          this.errorService.hintError(res);
+          this.hintError(res);
           return res;
         }
 
@@ -299,7 +300,7 @@ export class UserService {
           return res;
 
         } else {
-          this.errorService.hintError(res);
+          this.hintError(res);
           return res;
         }
 
@@ -322,6 +323,8 @@ export class UserService {
 
     this.token = null;
     this.user = null;
+
+    this.router.navigate(['/sign-in']);
 
   }
 
@@ -365,7 +368,7 @@ export class UserService {
           sessionStorage.setItem('token', JSON.stringify(this.token));
           sessionStorage.setItem('user', JSON.stringify(this.user));
         } else {
-          this.errorService.hintError(res);
+          this.hintError(res);
         }
 
         return res;
@@ -412,6 +415,42 @@ export class UserService {
     });
 
     return ciphertext.toString();
+  }
+
+
+  private hintError(res: any) {
+
+    let message = ''
+
+    switch(res['code']) {
+
+      case '1004':
+
+        message = 'Name or email have been registered.';
+        break;
+      case '1033':
+
+        message = 'You account has been logged in elsewhere, please re-register.';
+        break;
+      case '1034':
+
+        message = 'LogIn timeout.';
+        break;
+
+      default:
+
+        message = res['message'];
+        break;
+    }
+
+    swal({
+      position: 'bottom-right',
+      type: 'error',
+      titleText: message,
+      showConfirmButton: false,
+      timer: 2000,
+      padding: 0
+    }).catch(swal.noop);
   }
 
 }

@@ -101,32 +101,6 @@ export class DevelopmentAppManagerComponent {
 
           if (response.success) {
             this.appList = response.data;
-          } else {
-            swal({
-              position: 'bottom-right',
-              type: 'error',
-              titleText: res.message,
-              showConfirmButton: false,
-              timer: 2000,
-              padding: 0
-            }).catch(swal.noop);
-
-            if (res.code === '1034') {
-              this.userService.signOut();
-            }
-          }
-        } else {
-          swal({
-            position: 'bottom-right',
-            type: 'error',
-            titleText: res.message,
-            showConfirmButton: false,
-            timer: 2000,
-            padding: 0
-          }).catch(swal.noop);
-
-          if (res.code === '1034') {
-            this.userService.signOut();
           }
         }
 

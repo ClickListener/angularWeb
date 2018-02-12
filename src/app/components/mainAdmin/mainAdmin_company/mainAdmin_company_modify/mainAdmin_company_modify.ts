@@ -63,7 +63,9 @@ export class MainAdminCompanyModifyComponent {
     appService.findAllAppInfo(appInfo)
       .then(res => {
         console.log(res);
-        this.appList = res.data;
+        if (res.success) {
+          this.appList = res.data;
+        }
 
       })
       .catch(error => {
@@ -92,15 +94,6 @@ export class MainAdminCompanyModifyComponent {
             titleText: 'Update success',
             showConfirmButton: false,
             timer: 1500,
-            padding: 0
-          }).catch(swal.noop);
-        } else {
-          swal({
-            position: 'bottom-right',
-            type: 'error',
-            titleText: res.message,
-            showConfirmButton: false,
-            timer: 2000,
             padding: 0
           }).catch(swal.noop);
         }
@@ -133,15 +126,6 @@ export class MainAdminCompanyModifyComponent {
             titleText: 'Update success',
             showConfirmButton: false,
             timer: 1500,
-            padding: 0
-          }).catch(swal.noop);
-        } else {
-          swal({
-            position: 'bottom-right',
-            type: 'error',
-            titleText: res.message,
-            showConfirmButton: false,
-            timer: 2000,
             padding: 0
           }).catch(swal.noop);
         }
