@@ -33,6 +33,9 @@ export class DevelopmentGroupComponent {
 
   addMembers: boolean;
 
+
+  countryList: Array<any>;
+
   constructor(private companyService: CompanyService, private userService: UserService) {
 
 
@@ -71,7 +74,12 @@ export class DevelopmentGroupComponent {
               return developer._id === this.user._id;
             });
 
+          }
 
+          if (companyService.countryList === undefined ) {
+            this.countryList = await companyService.getCountryList();
+          } else {
+            this.countryList = companyService.countryList;
           }
 
           // 获得公司信息
@@ -84,6 +92,12 @@ export class DevelopmentGroupComponent {
 
           if (companyResponse.success) {
             this.companyInfo = companyResponse.data;
+
+            const countryFind = this.countryList.find((country, index, arr) => {
+              return country.code === this.companyInfo.country;
+            });
+
+            this.companyInfo.country = countryFind.en;
           }
 
 

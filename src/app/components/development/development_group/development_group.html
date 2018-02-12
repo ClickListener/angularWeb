@@ -17,9 +17,13 @@
           <p style=" margin: 0; margin-left: 1rem; margin-top: 0.5rem; color: #007afa"><b>{{user.username}}</b></p>
           <p style="margin: 0; margin-left: 1rem;">{{user.email}}</p>
         </div>
-        <p class="item-1" style="line-height: 4rem; text-align: center">{{user.type}}</p>
+        <p class="item-1" style="line-height: 4rem; text-align: center" *ngIf="user.type === 3">Administrator</p>
+        <p class="item-1" style="line-height: 4rem; text-align: center" *ngIf="user.type === 4">Member</p>
         <p class="item-1" style="line-height: 4rem; text-align: center">{{companyInfo.country}}</p>
-        <p class="item-1" style="line-height: 4rem; text-align: center; color: #007afa">{{companyInfo.state}}</p>
+        <p class="item-1" style="line-height: 4rem; text-align: center; color: #007afa" *ngIf="companyInfo.state === 0">Application</p>
+        <p class="item-1" style="line-height: 4rem; text-align: center; color: #007afa" *ngIf="companyInfo.state === 1">Approved</p>
+        <p class="item-1" style="line-height: 4rem; text-align: center; color: #007afa" *ngIf="companyInfo.state === 2">Disable</p>
+        <p class="item-1" style="line-height: 4rem; text-align: center; color: #007afa" *ngIf="companyInfo.state === 3">Via</p>
         <a class="item-1" style="line-height: 4rem; text-align: center" *ngIf="user.type !== 4" [routerLink]="['/development-company-modify', companyInfo._id]"><img src="../../../../assets/images/edit.png"></a>
       </div>
     </div>
@@ -44,7 +48,8 @@
           <p style=" margin: 0; margin-left: 1rem; margin-top: 0.5rem; color: #007afa"><b>{{developer.username}}</b></p>
           <p style="margin: 0; margin-left: 1rem; ">{{developer.email}}</p>
         </div>
-        <p class="item-1" style="line-height: 5rem; text-align: center">{{developer.type}}</p>
+        <p class="item-1" style="line-height: 5rem; text-align: center" *ngIf="developer.type === 4">Member</p>
+        <p class="item-1" style="line-height: 5rem; text-align: center" *ngIf="developer.type === 3">Administrator</p>
         <div class="item-2">
           <p style="margin: 1rem 0 1rem 0">{{developer.permission}}</p>
         </div>
