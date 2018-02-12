@@ -51,15 +51,6 @@ export class SignInComponent {
 
 
           this.router.navigate(['/']);
-        } else {
-          swal({
-            position: 'bottom-right',
-            type: 'error',
-            titleText: res['message'],
-            showConfirmButton: false,
-            timer: 2000,
-            padding: 0
-          }).catch(swal.noop);
         }
 
 

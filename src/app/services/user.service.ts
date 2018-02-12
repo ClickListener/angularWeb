@@ -15,6 +15,7 @@ import {Token} from "../model/Token";
 import {AES, enc, mode, pad} from "crypto-js";
 
 import * as myGlobals from '../../environments/config';
+import {ErrorService} from "./error.service";
 
 @Injectable()
 export class UserService {
@@ -23,7 +24,8 @@ export class UserService {
   url = myGlobals.url;
 
 
-  constructor(private http: HttpClient, private _cookieService: CookieService) {
+  constructor(private http: HttpClient, private _cookieService: CookieService,
+              private errorService: ErrorService) {
     console.log('UserService--------constructor');
     this.user = JSON.parse(sessionStorage.getItem('user'));
     this.token = JSON.parse(sessionStorage.getItem('token'));
@@ -71,10 +73,17 @@ export class UserService {
     }).toPromise()
       .then(res => {
 
-        if (!('uid' in userInfo)) {
+        if (res['success']) {
+          // 如果获得不是登录的用户信息，则不存
+          if (!('uid' in userInfo)) {
 
-          this.user = res['user'];
+            this.user = res['user'];
+
+          }
+        } else {
+          this.errorService.hintError(res);
         }
+
         console.log('user = ' + JSON.stringify(this.user));
 
         return res;
@@ -86,7 +95,6 @@ export class UserService {
 
   getResourceList():Promise<any> {
 
-
     const url = this.url + "/auth/getAuthList";
 
     return this.http.get(url, {
@@ -97,7 +105,12 @@ export class UserService {
     }).toPromise()
       .then(res => {
         console.log(res);
-        this.resourceList = res['data'];
+        if (res['success']) {
+          this.resourceList = res['data'];
+        } else {
+          this.errorService.hintError(res);
+        }
+
 
       })
       .catch(UserService.handleError);
@@ -145,6 +158,12 @@ export class UserService {
     }).toPromise()
       .then(res => {
         console.log(res);
+
+        if (res['success']) {
+
+        } else {
+          this.errorService.hintError(res);
+        }
         return res;
       })
       .catch(UserService.handleError);
@@ -170,6 +189,11 @@ export class UserService {
     }).toPromise()
       .then(res => {
         console.log(res);
+        if (res['success']) {
+
+        } else {
+          this.errorService.hintError(res);
+        }
         return res;
       })
       .catch(UserService.handleError);
@@ -212,6 +236,11 @@ export class UserService {
     }).toPromise()
       .then(res => {
         console.log(res);
+        if (res['success']) {
+
+        } else {
+          this.errorService.hintError(res);
+        }
         return res;
       })
       .catch(UserService.handleError);
@@ -232,7 +261,6 @@ export class UserService {
 
         console.log(res);
 
-
         if (res['success']) {
           this.user = res['data'];
 
@@ -240,6 +268,7 @@ export class UserService {
 
 
         } else {
+          this.errorService.hintError(res);
           return res;
         }
 
@@ -269,14 +298,8 @@ export class UserService {
 
           return res;
 
-          // const userSignInfo = {
-          //   "username": userInfo.addUser.username,
-          //   "password": userInfo.addUser.password
-          // };
-          //
-          // return await this.signIn(userSignInfo);
-
         } else {
+          this.errorService.hintError(res);
           return res;
         }
 
@@ -341,6 +364,8 @@ export class UserService {
           this.token = res as Token;
           sessionStorage.setItem('token', JSON.stringify(this.token));
           sessionStorage.setItem('user', JSON.stringify(this.user));
+        } else {
+          this.errorService.hintError(res);
         }
 
         return res;

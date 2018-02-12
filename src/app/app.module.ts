@@ -54,6 +54,7 @@ import {UserResetPasswordComponent} from "./components/user/user_reset_password/
 import {DevelopmentCompanyModifyComponent} from "./components/development/development_company_modify/development_company_modify";
 import { MarkdownModule } from 'angular2-markdown';
 import {CustomFormsModule} from "ng2-validation";
+import {ErrorService} from "./services/error.service";
 
 @NgModule({
 
@@ -120,7 +121,7 @@ import {CustomFormsModule} from "ng2-validation";
 
   bootstrap: [AppComponent],
 
-  providers: [UserService, LicenseService, DevicesService, DatePipe, SchemeService, Location, CompanyService, AppService, LowerCasePipe]
+  providers: [UserService, LicenseService, DevicesService, DatePipe, SchemeService, Location, CompanyService, AppService, LowerCasePipe, ErrorService]
 })
 
 export class AppModule {

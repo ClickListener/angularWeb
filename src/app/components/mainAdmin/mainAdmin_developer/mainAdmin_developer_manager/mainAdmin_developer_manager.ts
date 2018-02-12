@@ -26,7 +26,9 @@ export class MainAdminDeveloperManagerComponent {
       .then(res => {
         console.log(res);
 
-        this.developerList = res.data;
+        if (res.success) {
+          this.developerList = res.data;
+        }
 
       })
       .catch(error => {

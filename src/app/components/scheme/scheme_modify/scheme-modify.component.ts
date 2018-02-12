@@ -127,6 +127,14 @@ export class SchemeModifyComponent {
     };
     formData.splice(0, 0, origin);
 
+    const action = {
+      name: 'action',
+      value: 'U',
+      type: 'text'
+    };
+
+    formData.splice(0, 0, action);
+
     const _id = {
       "name": "_id",
       "value": this.selectedScheme._id

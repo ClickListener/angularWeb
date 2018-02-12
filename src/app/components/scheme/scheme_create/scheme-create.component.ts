@@ -134,6 +134,15 @@ export class SchemeCreateComponent {
 
     formData.splice(0, 0, userId);
 
+
+    const action = {
+      name: 'action',
+      value: 'C',
+      type: 'text'
+    };
+
+    formData.splice(0, 0, action);
+
     const resourceName = {
       name: "resourceName",
       value: this.resourceName,
