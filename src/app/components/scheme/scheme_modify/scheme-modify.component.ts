@@ -9,6 +9,7 @@ import swal from "sweetalert2";
 import {UserService} from "../../../services/user.service";
 
 import * as myGlobals from '../../../../environments/config';
+import {Device} from "../../../model/Device";
 
 declare const jQuery: any;
 
@@ -35,7 +36,10 @@ export class SchemeModifyComponent {
   EU = true;
   RU = true;
 
-  constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService, private router: Router, private userService: UserService) {
+  fileSelectList = [];
+
+  constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService, private router: Router,
+              private userService: UserService) {
 
     const schemeID = activatedRoute.snapshot.paramMap['params'].schemeID;
 
@@ -56,27 +60,7 @@ export class SchemeModifyComponent {
         console.log(error);
       });
 
-
-    jQuery(document).ready(function () {
-      jQuery('#inputView').on('click', '.add', function () {
-        console.log('click');
-        jQuery('#inputView').append('<div>\n' +
-          '              <input type="file" name="addFile"/>\n' +
-          '              <a class="add"><i class="fa fa-plus"></i></a>\n' +
-          '              <a class="delete"><i class="fa fa-minus"></i></a>\n' +
-          '            </div>');
-      });
-
-      jQuery('#inputView').on('click', '.delete', function () {
-        console.log('delete');
-        if (jQuery('#inputView').children().length !== 1) {
-          jQuery(this).parent().remove();
-        }
-
-      });
-    });
-
-
+    this.fileSelectList.push(1);
   }
 
 
@@ -201,6 +185,21 @@ export class SchemeModifyComponent {
         padding: 0
       }).catch(swal.noop);
     }
+  }
+
+
+  addFile() {
+
+    this.fileSelectList.push(1);
+  }
+
+  deleteFile(index: number) {
+    if (this.fileSelectList.length === 1) {
+
+    } else {
+      this.fileSelectList.splice(index, 1);
+    }
+
   }
 
 

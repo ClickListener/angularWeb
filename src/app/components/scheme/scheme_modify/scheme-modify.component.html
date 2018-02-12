@@ -63,10 +63,10 @@
         <tr>
           <th class="w-110px">Upload File</th>
           <td id="inputView">
-            <div>
+            <div *ngFor="let file of fileSelectList; let i = index">
               <input type="file" name="addFile"/>
-              <a class="add"><i class="fa fa-plus"></i></a>
-              <a class="delete"><i class="fa fa-minus"></i></a>
+              <a class="add" (click)="addFile()"><i class="fa fa-plus"></i></a>
+              <a class="delete" (click)="deleteFile(i)"><i class="fa fa-minus"></i></a>
             </div>
           </td>
         </tr>

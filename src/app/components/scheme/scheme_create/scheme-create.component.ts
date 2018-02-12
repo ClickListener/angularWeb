@@ -41,6 +41,9 @@ export class SchemeCreateComponent {
   RU = true;
 
 
+  fileSelectList = [];
+
+
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
               private http: HttpClient, private userService: UserService) {
 
@@ -50,25 +53,8 @@ export class SchemeCreateComponent {
       console.log('this.param = ' + this.resourceName);
     });
 
-    jQuery(document).ready(function () {
-      jQuery('#inputView').on('click', '.add', function () {
-        console.log('click');
-        jQuery('#inputView').append('<div>\n' +
-          '          <input type="file" name="thumbnail"/>\n' +
-          '          <a class="add"><i class="fa fa-plus"></i></a>\n' +
-          '          <a class="delete"><i class="fa fa-minus"></i></a>\n' +
-          '        </div>');
-      });
 
-      jQuery('#inputView').on('click', '.delete', function () {
-        console.log('delete');
-        if (jQuery('#inputView').children().length !== 1 ) {
-          jQuery(this).parent().remove();
-        }
-
-      });
-    });
-
+    this.fileSelectList.push(1);
 
   }
 
@@ -183,6 +169,20 @@ export class SchemeCreateComponent {
     }
   }
 
+
+  addFile() {
+
+    this.fileSelectList.push(1);
+  }
+
+  deleteFile(index: number) {
+    if (this.fileSelectList.length === 1) {
+
+    } else {
+      this.fileSelectList.splice(index, 1);
+    }
+
+  }
 
 
 }
