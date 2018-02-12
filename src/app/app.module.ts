@@ -14,7 +14,7 @@ import {CreateNewComponent} from './components/license/license_createNew/createN
 import {ManagerComponent} from './components/license/license_manager/manager.component';
 import {ModifyComponent} from './components/license/license_modify/modify.component';
 import {LicenseService} from './services/license.service';
-import {DatePipe} from '@angular/common';
+import {DatePipe, LowerCasePipe} from '@angular/common';
 import {DevicesService} from './services/devices.service';
 import {CookieModule} from 'ngx-cookie';
 import {HttpClientJsonpModule, HttpClientModule} from "@angular/common/http";
@@ -120,7 +120,7 @@ import {CustomFormsModule} from "ng2-validation";
 
   bootstrap: [AppComponent],
 
-  providers: [UserService, LicenseService, DevicesService, DatePipe, SchemeService, Location, CompanyService, AppService]
+  providers: [UserService, LicenseService, DevicesService, DatePipe, SchemeService, Location, CompanyService, AppService, LowerCasePipe]
 })
 
 export class AppModule {
