@@ -309,6 +309,9 @@ export class UserService {
    * @returns {Promise<any>}
    */
   private getAccessToken(password: string): Promise<any> {
+
+    console.log('user = ', this.user);
+
     const timeStamp = new Date().getTime().toString().substr(0, 10);
 
     const content = this.user._id + password + timeStamp;

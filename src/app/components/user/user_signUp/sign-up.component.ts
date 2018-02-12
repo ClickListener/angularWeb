@@ -5,6 +5,7 @@ import {Component} from "@angular/core";
 import {UserService} from "../../../services/user.service";
 
 import {Router} from '@angular/router'
+import swal from "sweetalert2";
 
 @Component({
     selector: 'sign-up',
@@ -42,6 +43,25 @@ export class SignUpComponent {
               console.log(res);
               if (res['success']) {
                 this.router.navigate(['/confirm-hint']);
+                swal({
+                  position: 'bottom-right',
+                  type: 'success',
+                  titleText: 'Sign up success',
+                  showConfirmButton: false,
+                  timer: 2000,
+                  padding: 0
+                }).catch(swal.noop);
+              } else {
+                if (res['code'] === '1004') {
+                  swal({
+                    position: 'bottom-right',
+                    type: 'error',
+                    titleText: 'Name or email have been registered.',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    padding: 0
+                  }).catch(swal.noop);
+                }
               }
 
             })
