@@ -43,10 +43,11 @@ export class AppComponent implements OnInit, DoCheck {
   ngDoCheck(): void {
     this.user = this.userService.user;
 
-    if (this.user) {
+    if (this.user && this.user.companyId) {
       jQuery('#development_primary').attr('data-target', '#development_collapse');
+      jQuery('#development_primary').removeAttr('class', 'active');
     } else {
-
+      jQuery('#development_primary').removeAttr('data-target', '#development_collapse');
     }
   }
 
@@ -74,9 +75,6 @@ export class AppComponent implements OnInit, DoCheck {
     if (this.user) {
       jQuery('#development_primary').attr('data-target', '#development_collapse');
     }
-
-    // jQuery('#development_primary').attr('data-target', '#development_collapse');
-    // jQuery('#development_primary').removeAttr('data-target', '#development_collapse');
 
 
     console.log(jQuery('#development_primary').data('target'));

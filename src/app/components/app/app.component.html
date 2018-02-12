@@ -90,7 +90,7 @@
 
       <li *ngIf="user && user.type != '1'">
         <a id="development_primary" data-toggle="collapse"
-           aria-expanded="true" routerLink="/development-primary" routerLinkActive="active">
+           aria-expanded="true" [routerLink]="(user && user.companyId)?  null : '/development-primary'" routerLinkActive="active">
           <b style="font-size: 16px">Enterprise Development</b>
           <i class="fa fa-angle-up rotate-icon fa-position" *ngIf="user.companyId"></i>
         </a>
