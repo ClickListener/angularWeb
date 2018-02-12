@@ -25,7 +25,7 @@ export class SchemeDetailsComponent {
   url = myGlobals.url;
   schemeSelected: any;
 
-  user: User;
+  user: any;
   token: string;
 
 

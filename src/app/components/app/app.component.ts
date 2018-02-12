@@ -20,16 +20,28 @@ declare const jQuery: any;
 export class AppComponent implements OnInit, DoCheck {
 
 
-  user: User;
+  user: any;
   private sideNav: any;
 
   constructor(private userService: UserService, private router: Router) {
     userService.getResourceList();
+
+
+    if (userService.user) {
+
+      const userInfo = {
+        "userId": userService.user._id,
+        "token": userService.token.token
+      };
+
+      userService.getUserInfo(userInfo);
+    }
+
+
   }
 
   ngDoCheck(): void {
     this.user = this.userService.user;
-
 
     if (this.user) {
       jQuery('#development_primary').attr('data-target', '#development_collapse');

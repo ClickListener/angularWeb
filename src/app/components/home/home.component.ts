@@ -16,7 +16,7 @@ declare let jQuery: any;
 
 export class HomeComponent implements OnInit, DoCheck {
 
-    user: User;
+    user: any;
 
 
 

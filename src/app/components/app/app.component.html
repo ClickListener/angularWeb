@@ -92,10 +92,10 @@
         <a id="development_primary" data-toggle="collapse"
            aria-expanded="true" routerLink="/development-primary" routerLinkActive="active">
           <b style="font-size: 16px">Enterprise Development</b>
-          <i class="fa fa-angle-up rotate-icon fa-position"></i>
+          <i class="fa fa-angle-up rotate-icon fa-position" *ngIf="user.companyId"></i>
         </a>
 
-        <ul id="development_collapse" class="collapse show" style="font-size: 14px" *ngIf="user">
+        <ul id="development_collapse" class="collapse show" style="font-size: 14px" *ngIf="user.companyId">
           <li><a routerLinkActive="active" routerLink='/development-main/development-group'>Development Group</a></li>
           <li><a routerLinkActive="active" routerLink='/development-main/development-app-manager'>App Manager</a></li>
         </ul>

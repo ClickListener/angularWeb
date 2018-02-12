@@ -234,12 +234,7 @@ export class UserService {
 
 
         if (res['success']) {
-
-          this.user = new User();
-          this.user._id = res['userId'];
-          this.user.username = res['username'];
-          this.user.type = res['type'];
-          this.user.email = res['email'];
+          this.user = res['data'];
 
           return await this.getAccessToken(userInfo.password);
 

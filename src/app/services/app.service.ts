@@ -79,7 +79,7 @@ export class AppService {
   findAllAppInfo(appInfo: any): Promise<any> {
     console.log('appInfo = ' + JSON.stringify(appInfo));
 
-    const url = this.url + "/api/useApp/gatAllAppList";
+    const url = this.url + "/api/useApp/getAllAppList";
 
     return this.http.get(url, {
       headers: {

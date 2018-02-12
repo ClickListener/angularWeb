@@ -24,7 +24,7 @@ export class DetailComponent {
 
   schemeSelected: any;
 
-  user: User;
+  user: any;
 
   token: string;
 
