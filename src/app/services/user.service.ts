@@ -214,6 +214,14 @@ export class UserService {
     }).toPromise()
       .then(res => {
         console.log(res);
+
+        if (res['success']) {
+
+        } else {
+          this.hintError(res);
+        }
+
+        return res;
       })
       .catch(UserService.handleError);
 
@@ -308,6 +316,32 @@ export class UserService {
       })
       .catch(UserService.handleError);
 
+  }
+
+  forgotPassword(userInfo: any): Promise<any> {
+
+    console.log('userInfo = ', userInfo);
+
+
+    const url = myGlobals.url + '/user/forgotPassword';
+    return this.http.get(url, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'Application/json'
+      }),
+      params: userInfo
+    }).toPromise()
+      .then(res => {
+        console.log(res);
+
+        if (res['success']) {
+
+        } else {
+          this.hintError(res);
+        }
+        return res;
+      })
+      .catch(UserService.handleError);
   }
 
   /**
