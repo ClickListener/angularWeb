@@ -25,7 +25,10 @@
             <div>
               <a class="item-1" *ngIf="app.avatar"><img style="width: 80px;height: 80px;" src="{{url}}{{app.avatar.description}}/{{app.avatar.fileName}}"></a>
               <a class="item-1" *ngIf="!app.avatar"><img style="width: 80px;height: 80px;" src="../../../../assets/images/addPic.png"></a>
-              <p class="item-1">{{app.state}}</p>
+              <p class="item-1" *ngIf="app.state === 0" style="color: #007afa">Apply</p>
+              <p class="item-1" *ngIf="app.state === 1" style="color: #007afa">Approved</p>
+              <p class="item-1" *ngIf="app.state === 2" style="color: #007afa">Disable</p>
+              <p class="item-1" *ngIf="app.state === 3" style="color: #007afa">Via</p>
               <p class="item-1">{{app.platform}}</p>
               <p class="item-2">{{app.expireTime | date: 'yyyy/MM/dd'}}</p>
               <div class="item-1">{{app.devices.length}}
