@@ -7,6 +7,7 @@ import {User} from "../../model/User";
 import {UserService} from "../../services/user.service";
 import {Router} from "@angular/router";
 import {isUndefined} from "util";
+import swal from "sweetalert2";
 
 declare const jQuery: any;
 
@@ -117,6 +118,27 @@ export class AppComponent implements OnInit, DoCheck {
     this.userService.signOut();
 
     this.router.navigate(['/']);
+  }
+
+
+  navigateDocument(schemeName: string) {
+
+    if (this.user) {
+      this.router.navigate(['/document-main', schemeName]);
+    } else {
+      swal({
+        text: 'Please Sign in first.',
+        showCancelButton: true,
+        confirmButtonText: 'Sign in',
+        cancelButtonText: 'Cancel',
+        allowOutsideClick: false,
+        reverseButtons: true
+      }).then( () => {
+        this.router.navigate(['/sign-in']);
+      })
+        .catch(swal.noop);
+
+    }
   }
 
 

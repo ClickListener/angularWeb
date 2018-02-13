@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit, DoCheck {
         this.user = this.userService.user;
     }
     constructor(private userService: UserService, private router: Router) {
-      jQuery
+
     }
 
 
@@ -33,8 +33,5 @@ export class HomeComponent implements OnInit, DoCheck {
         this.user = this.userService.user;
     }
 
-    managerLicense(): void {
-        this.router.navigate(['manager-license']);
-    }
 
 }

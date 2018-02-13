@@ -17,7 +17,7 @@
       <div class="carousel-caption-custom">
 
         <div class="animated fadeInDown">
-          <h3 class="custom-style-h1">Library SDK</h3>
+          <h3 class="custom-style-h1">Native SDK</h3>
         </div>
 
         <div class="animated fadeInUp">
@@ -25,7 +25,7 @@
             easily.</h3>
           <h3 class="custom-style-h3">The SDK helps developers to integrate and support iHealth devices more quickly and
             easily.</h3>
-          <a routerLink="manager-license" class="custom-style-h3" style="text-decoration: underline;">Understand in detail ></a>
+          <a [routerLink]="user? 'document-main/NativeSDK': '/sign-in'" class="custom-style-h3" style="text-decoration: underline;">Understand in detail ></a>
         </div>
       </div>
 
@@ -45,7 +45,7 @@
             easily.</h3>
           <h3 class="custom-style-h3">The SDK helps developers to integrate and support iHealth devices more quickly and
             easily.</h3>
-          <a href="#" class="custom-style-h3" style="text-decoration: underline">Understand in detail ></a>
+          <a [routerLink]="user? 'document-main/LibrarySDK': '/sign-in'" class="custom-style-h3" style="text-decoration: underline">Understand in detail ></a>
         </div>
       </div>
 
@@ -58,7 +58,7 @@
       <div class="carousel-caption-custom">
 
         <div class="animated fadeInDownBig">
-          <h1 class="custom-style-h1">Library SDK</h1>
+          <h1 class="custom-style-h1">React Native SDK</h1>
         </div>
 
         <div class="animated fadeInUpBig">
@@ -66,7 +66,7 @@
             easily.</h3>
           <h3 class="custom-style-h3">The SDK helps developers to integrate and support iHealth devices more quickly and
             easily.</h3>
-          <a href="#" class="custom-style-h3" style="text-decoration: underline">Understand in detail ></a>
+          <a [routerLink]="user? 'document-main/RNSDK': '/sign-in'" class="custom-style-h3" style="text-decoration: underline">Understand in detail ></a>
         </div>
       </div>
     </div>
@@ -77,7 +77,7 @@
       <div class="carousel-caption-custom">
 
         <div class="animated fadeInRightBig">
-          <h3 class="custom-style-h1">Library SDK</h3>
+          <h3 class="custom-style-h1">Layered APP</h3>
         </div>
 
         <div class="animated fadeInLeftBig">
@@ -85,7 +85,7 @@
             easily.</h3>
           <h3 class="custom-style-h3">The SDK helps developers to integrate and support iHealth devices more quickly and
             easily.</h3>
-          <a href="#" class="custom-style-h3" style="text-decoration: underline">Understand in detail ></a>
+          <a [routerLink]="user? 'document-main/LayerApp': '/sign-in'" class="custom-style-h3" style="text-decoration: underline">Understand in detail ></a>
         </div>
       </div>
     </div>
