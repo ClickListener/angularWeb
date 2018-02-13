@@ -184,7 +184,7 @@ export class DevelopmentGroupComponent {
       if (permissionString === null || permissionString === '') {
         permissionString += 'Check The License Data';
       } else {
-        permissionString += 'Check The License Data';
+        permissionString += ',Check The License Data';
       }
     }
 
