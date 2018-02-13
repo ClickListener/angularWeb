@@ -46,10 +46,10 @@
     <div>
       <label>SDK Scheme</label>
       <select class="mdb-select" name="SDK_Scheme" [(ngModel)]="appInfo.scheme">
-        <option value="" disabled selected>Choose your option</option>
-        <option value="Scheme1">Option 1</option>
-        <option value="Scheme2">Option 2</option>
-        <option value="Scheme3">Option 3</option>
+        <option value="NativeSDK">Native SDK</option>
+        <option value="RNSDK">RN SDK</option>
+        <option value="LibrarySDK">Library SDK</option>
+        <option value="LayeredAPP">Layered APP</option>
       </select>
     </div>
 
@@ -57,9 +57,9 @@
       <label>BG Code Type</label>
 
       <select class="mdb-select" name="BG_TYPE" [(ngModel)]="appInfo.codeType">
-        <option value="code1">Option 1</option>
-        <option value="code2">Option 2</option>
-        <option value="code3">Option 3</option>
+        <option value="code1">Code 1</option>
+        <option value="code2">Code 2</option>
+        <option value="code3">Code 3</option>
       </select>
 
     </div>
