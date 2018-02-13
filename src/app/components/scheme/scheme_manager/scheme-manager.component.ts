@@ -77,7 +77,7 @@ export class SchemeManagerComponent {
     this.singlePage = $event;
   }
 
-  deleteScheme(version: string) {
+  deleteScheme(version: string, platform: string) {
     const self = this;
     swal({
       title: 'Are you sure?',
@@ -95,7 +95,8 @@ export class SchemeManagerComponent {
         "userId": self.userService.user._id,
         "token": self.userService.token.token,
         "appName": self.param,
-        "version": version
+        "version": version,
+        "platform": platform
       };
       self.schemeService.deleteScheme(schemeInfo)
         .then(res => {
@@ -104,7 +105,6 @@ export class SchemeManagerComponent {
               "userId": self.userService.user._id,
               "token": self.userService.token.token,
               "appName": self.param,
-              "platform": "IOS"
             };
             self.schemeService.queryScheme(fileInfo)
               .then(response => {

@@ -91,7 +91,8 @@ export class SchemeMainComponent {
               "userId": self.userService.user._id,
               "token": self.userService.token.token,
               "appName": schemeSelected.resourceName,
-              "version": schemeSelected.version
+              "version": schemeSelected.version,
+              "platform": schemeSelected.platform
             };
 
             self.schemeService.deleteScheme(schemeInfo)

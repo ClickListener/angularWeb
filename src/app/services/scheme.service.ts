@@ -108,6 +108,8 @@ export class SchemeService {
    */
   deleteScheme(schemeInfo: any): Promise<any> {
 
+    console.log('schemeInfo', schemeInfo);
+
     const url = this.url + '/api/app/delete';
 
     return this.http.get(url, {

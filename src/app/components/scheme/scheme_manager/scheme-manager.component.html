@@ -48,7 +48,7 @@
         <th>
           <div (click)="stop_Propagation($event)">
             <a class="btn btn-primary" [routerLink]="['./scheme-modify', scheme._id]">修改</a>
-            <a class="btn btn-danger" (click)="deleteScheme(scheme.version)">删除</a>
+            <a class="btn btn-danger" (click)="deleteScheme(scheme.version, scheme.platform)">删除</a>
           </div>
         </th>
       </tr>
