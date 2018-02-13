@@ -465,10 +465,12 @@ export class UserService {
       case '1033':
 
         message = 'You account has been logged in elsewhere, please re-register.';
+        this.signOut();
         break;
       case '1034':
 
         message = 'LogIn timeout.';
+        this.signOut();
         break;
 
       default:
