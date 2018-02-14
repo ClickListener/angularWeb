@@ -20,9 +20,16 @@ export class SignInComponent {
 
 
   constructor(private userService: UserService, private router: Router, private lowerCasePipe: LowerCasePipe) {
+
+    this.user = userService.user;
+
+    if (this.user) {
+      this.router.navigate(['/']);
+    }
   }
 
-  user: User;
+  user: any;
+
 
   emailOrUserName: string;
   password: string;
