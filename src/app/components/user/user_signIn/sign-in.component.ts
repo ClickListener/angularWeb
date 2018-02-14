@@ -29,8 +29,9 @@ export class SignInComponent {
 
   signIn(): void {
 
+    const email = this.emailOrUserName.trim(); // 去除首尾空格
     const userInfo = {
-      "email": this.lowerCasePipe.transform(this.emailOrUserName),
+      "email": this.lowerCasePipe.transform(email),
       "password": this.password
     };
 
