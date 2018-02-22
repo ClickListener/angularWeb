@@ -1,14 +1,13 @@
 # Attention：
 
-	Before you use SDK, please get permission from iHealth team, otherwise you will not be able to use SDK (connect failed)      
+**Before you use SDK, please get permission from iHealth team, otherwise you will not be able to use SDK (connect failed)**      
+**Contact for more information:**
 
-	Contact for more information:    
+1. <yuchen.wang@ihealthlabs.com>(US)  
+2. <noah@ihealthlabs.com>(Europe)  
+3. <enterprise@ihealthlabs.com>(Other)
 
-	a. <yuchen.wang@ihealthlabs.com>(US)  
-	b. <noah@ihealthlabs.com>(Europe)  
-	c. <enterprise@ihealthlabs.com>(Other)  
-
-	After received a invitation, you will be able to register your application for iOS and Android platform.  
+**After received a invitation, you will be able to register your application for iOS and Android platform. **
 
 
 # iHealth Device Developer Documentation
@@ -21,24 +20,25 @@ This document describes how to use the iHealth Device SDK to accomplish the majo
 2.4.0
 
 ### Support iHealth Device for Android
-	AM:
-	iHealth AM3  iHealth AM3S  iHealth AM4  
+```java
+AM:
+iHealth AM3  iHealth AM3S  iHealth AM4  
 
-	BG:
-	iHealth BG1  iHealth BG5		iHealth BG5S
+BG:
+iHealth BG1  iHealth BG5	iHealth BG5S
 
-	BP:
-	iHealth BP3L   iHealth BP3M iHealth BP5  iHealth BP7  iHealth BP7S  iHealth KN-550BT  Continua BP iHealth KD723  iHealth KD926  iHealth BPM1	iHealth ABI  iHealth ABPM
+BP:
+iHealth BP3L  iHealth BP3M iHealth BP5  iHealth BP7  iHealth BP7S  iHealth KN-550BT  Continua BP iHealth KD723  iHealth KD926  iHealth BPM1	iHealth ABI  iHealth ABPM
 
-	HS:
-	iHealth HS3  iHealth HS4  iHealth HS4S  iHealth HS5  iHealth HS6  iHealth HS2  
+HS:
+iHealth HS3  iHealth HS4  iHealth HS4S  iHealth HS5  iHealth HS6  iHealth HS2  
 
-	PO:
-	iHealth PO3 iHealth PO3M
+PO:
+iHealth PO3 iHealth PO3M
 
-	Thermometer:
-
-	THV3  TS28B
+Thermometer:
+THV3  TS28B
+```
 
 
 ## How to use the iHealth SDK
@@ -79,14 +79,14 @@ Contact for more information:
 
 ##### 1. Initialization iHealth SDK.
 
-```
+```java
 iHealthDevicesManager.getInstance().init(MainActivity.this);
 
 ```
 
 ##### 2. Register callback, and get a callback ID.
 
-```
+```java
 /*
 * Register callback to the manager. This method will return a callback Id.
 */
@@ -95,25 +95,25 @@ int callbackId = iHealthDevicesManager.getInstance().registerClientCallback(iHea
 
 ##### 3. Add callback filter.
 
-```
+```java
 iHealthDevicesManager.getInstance().addCallbackFilterForAddress(clientCallbackId, ...);	iHealthDevicesManager.getInstance().addCallbackFilterForDeviceType(clientCallbackId, ...);
 ```
 
 ##### 4. Verify iHealth device user permission.
 
-```
+```java
 iHealthDevicesManager.getInstance().sdkUserInAuthor(MainActivity.this, userName, clientId, clientSecret, callbackId);
 If verify success, all the api avaliable, else 10 trial days you will get.
 ```
 
 ##### 5. Discovery a iHealth device or multi devices.
 
-```
+```java
 long type = iHealthDevicesManager.DISCOVERY_BP5 | iHealthDevicesManager.DISCOVERY_AM3S;
 iHealthDevicesManager.getInstance().startDiscovery(type);
 ```
 
-```
+```java
 private iHealthDevicesCallback iHealthDevicesCallback = new iHealthDevicesCallback() {  
 	@Override
     public void onScanDevice(String mac, String deviceType) {
@@ -123,11 +123,11 @@ private iHealthDevicesCallback iHealthDevicesCallback = new iHealthDevicesCallba
 
 ##### 6. Connection a iHealth device.
 
-```
+```java
 iHealthDevicesManager.getInstance().connectDevice(userName, mac, type);
 ```
 
-```
+```java
 private iHealthDevicesCallback iHealthDevicesCallback = new iHealthDevicesCallback() {
 	@Override
 	    public void onDeviceConnectionStateChange(String mac, String deviceType, int status) {
@@ -136,7 +136,7 @@ private iHealthDevicesCallback iHealthDevicesCallback = new iHealthDevicesCallba
 ```
 
 ##### 7. Get iHealth device controller.
-```
+```java
 
 /*
 * Get Am3 device controller
