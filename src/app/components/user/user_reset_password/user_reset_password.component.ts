@@ -56,11 +56,12 @@ export class UserResetPasswordComponent {
 
           swal({
             titleText: 'Reset password successfully! ',
-            position: 'bottom-right',
+            position: 'center',
             type: 'success',
             timer: 2000,
             padding: 0,
-            showConfirmButton: false
+            showConfirmButton: false,
+            width: 300
           }).catch(swal.noop);
 
         }

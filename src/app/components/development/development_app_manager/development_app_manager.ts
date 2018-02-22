@@ -126,21 +126,23 @@ export class DevelopmentAppManagerComponent {
 
         if (res.success) {
           swal({
-            position: 'bottom-right',
+            position: 'center',
             type: 'success',
             titleText: 'Download successfully',
             showConfirmButton: false,
             timer: 2000,
-            padding: 0
+            padding: 0,
+            width: 300
           }).catch(swal.noop);
         } else {
           swal({
-            position: 'bottom-right',
+            position: 'center',
             type: 'error',
             titleText: res.message,
             showConfirmButton: false,
             timer: 2000,
-            padding: 0
+            padding: 0,
+            width: 300
           }).catch(swal.noop);
 
           if (res.code === '1034') {

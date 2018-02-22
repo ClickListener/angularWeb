@@ -44,12 +44,13 @@ export class SignUpComponent {
               if (res['success']) {
                 this.router.navigate(['/confirm-hint']);
                 swal({
-                  position: 'bottom-right',
+                  position: 'center',
                   type: 'success',
                   titleText: 'Sign up success',
                   showConfirmButton: false,
                   timer: 2000,
-                  padding: 0
+                  padding: 0,
+                  width: 300
                 }).catch(swal.noop);
               }
 

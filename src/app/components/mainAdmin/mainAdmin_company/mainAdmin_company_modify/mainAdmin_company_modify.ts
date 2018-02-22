@@ -89,12 +89,13 @@ export class MainAdminCompanyModifyComponent {
         console.log(res);
         if (res.success) {
           swal({
-            position: 'bottom-right',
+            position: 'center',
             type: 'success',
             titleText: 'Update success',
             showConfirmButton: false,
             timer: 1500,
-            padding: 0
+            padding: 0,
+            width: 300
           }).catch(swal.noop);
         }
       })
@@ -121,12 +122,13 @@ export class MainAdminCompanyModifyComponent {
         console.log(res);
         if (res.success) {
           swal({
-            position: 'bottom-right',
+            position: 'center',
             type: 'success',
             titleText: 'Update success',
             showConfirmButton: false,
             timer: 1500,
-            padding: 0
+            padding: 0,
+            width: 300
           }).catch(swal.noop);
         }
       })
@@ -150,12 +152,13 @@ export class MainAdminCompanyModifyComponent {
 
         if (res.success) {
           swal({
-            position: 'bottom-right',
+            position: 'center',
             type: 'success',
             titleText: 'Download successfully',
             showConfirmButton: false,
             timer: 2000,
-            padding: 0
+            padding: 0,
+            width: 300
           }).catch(swal.noop);
         } else {
           swal(

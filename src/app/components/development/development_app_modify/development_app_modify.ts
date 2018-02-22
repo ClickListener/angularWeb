@@ -220,21 +220,23 @@ export class DevelopmentAppModifyComponent implements DoCheck {
     if (res.success) {
       this.router.navigate(['/development-main/development-app-manager']);
       swal({
-        position: 'bottom-right',
+        position: 'center',
         type: 'success',
         titleText: 'Create success',
         showConfirmButton: false,
         timer: 2000,
-        padding: 0
+        padding: 0,
+        width: 300
       }).catch(swal.noop);
     } else {
       swal({
-        position: 'bottom-right',
+        position: 'center',
         type: 'error',
         titleText: res.message,
         showConfirmButton: false,
         timer: 2000,
-        padding: 0
+        padding: 0,
+        width: 300
       }).catch(swal.noop);
     }
   }

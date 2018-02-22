@@ -49,12 +49,13 @@ export class SignInComponent {
 
         if (res['success']) {
           swal({
-            position: 'bottom-right',
+            position: 'center',
             type: 'success',
             titleText: 'Sign in success',
             showConfirmButton: false,
             timer: 2000,
-            padding: 0
+            padding: 0,
+            width: 300
           }).catch(swal.noop);
 
 

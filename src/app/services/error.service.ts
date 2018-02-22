@@ -40,12 +40,13 @@ export class ErrorService {
     }
 
     swal({
-      position: 'bottom-right',
+      position: 'center',
       type: 'error',
       titleText: message,
       showConfirmButton: false,
       timer: 2000,
-      padding: 0
+      padding: 0,
+      width: 300
     }).catch(swal.noop);
   }
 

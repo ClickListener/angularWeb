@@ -27,12 +27,13 @@ export class ForgotPasswordComponent {
       .then(res => {
         if (res.success) {
           swal({
-            position: 'bottom-right',
+            position: 'center',
             type: 'success',
             titleText: 'Send successfully',
             showConfirmButton: false,
             timer: 2000,
-            padding: 0
+            padding: 0,
+            width: 300
           }).catch(swal.noop);
         }
       })
