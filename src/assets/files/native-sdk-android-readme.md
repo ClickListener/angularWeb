@@ -61,8 +61,7 @@ Specific configuration as shown below:
 
 > Need ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION permission to get scan results in Android API 23+.
 
-![box-model](https://github.com/iHealthDeviceLabs/iHealthDeviceLabs-Android/blob/master/public/user_permission.png?raw=true)
-
+<img src="https://github.com/iHealthDeviceLabs/iHealthDeviceLabs-Android/blob/master/public/user_permission.png?raw=true" width="100%">
 
 ![box-model](https://github.com/iHealthDeviceLabs/iHealthDeviceLabs-Android/blob/master/public/ihealth_device_doc.png?raw=true)
 
