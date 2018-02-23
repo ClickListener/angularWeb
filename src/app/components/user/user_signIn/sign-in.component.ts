@@ -34,7 +34,11 @@ export class SignInComponent {
   emailOrUserName: string;
   password: string;
 
+  buttonDisable = false;  // 提交按钮状态
+
   signIn(): void {
+
+    this.buttonDisable = true;
 
     const email = this.emailOrUserName.trim(); // 去除首尾空格
     const userInfo = {
@@ -46,6 +50,8 @@ export class SignInComponent {
 
     this.userService.signIn(userInfo)
       .then((res) => {
+
+        this.buttonDisable = false;
 
         if (res['success']) {
           swal({
@@ -65,6 +71,8 @@ export class SignInComponent {
 
       })
       .catch(error => {
+
+        this.buttonDisable = false;
         console.log("error = " + error.toString());
       });
   }
