@@ -66,7 +66,6 @@ export class SignInComponent {
       })
       .catch(error => {
         console.log("error = " + error.toString());
-        alert(error._body.message);
       });
   }
 }
