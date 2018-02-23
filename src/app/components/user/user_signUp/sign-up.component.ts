@@ -8,9 +8,9 @@ import {Router} from '@angular/router'
 import swal from "sweetalert2";
 
 @Component({
-    selector: 'sign-up',
-    templateUrl : './sign-up.component.html',
-    styleUrls : ['./sign-up.component.css']
+  selector: 'sign-up',
+  templateUrl: './sign-up.component.html',
+  styleUrls: ['./sign-up.component.css']
 })
 
 export class SignUpComponent {
@@ -22,42 +22,48 @@ export class SignUpComponent {
   confirmPasswordValue: string;
   agreeValue: boolean;
 
-    constructor(private userService: UserService, private router: Router) {}
+  buttonDisable = false;  // 提交按钮状态
 
-    signUp() {
+  constructor(private userService: UserService, private router: Router) {
+  }
 
+  signUp() {
 
-        const signUp_info = {
-          addUser: {
-            "username": this.nameValue,
-            "email": this.emailValue,
-            "password": this.passwordValue,
-            "type": 4
-          }
-        };
+    this.buttonDisable = true;
 
-        console.log('signUp_info: ', signUp_info);
+    const signUp_info = {
+      addUser: {
+        "username": this.nameValue,
+        "email": this.emailValue,
+        "password": this.passwordValue,
+        "type": 4
+      }
+    };
 
-        this.userService.signUp(signUp_info)
-            .then((res) => {
-              console.log(res);
-              if (res['success']) {
-                this.router.navigate(['/confirm-hint']);
-                swal({
-                  position: 'center',
-                  type: 'success',
-                  titleText: 'Sign up success',
-                  showConfirmButton: false,
-                  timer: 2000,
-                  padding: 0,
-                  width: 300
-                }).catch(swal.noop);
-              }
+    console.log('signUp_info: ', signUp_info);
 
-            })
-            .catch(error => {
-                console.log("error = " + JSON.stringify(error));
-            });
+    this.userService.signUp(signUp_info)
+      .then((res) => {
+        console.log(res);
+        this.buttonDisable = false;
+        if (res['success']) {
+          this.router.navigate(['/confirm-hint']);
+          swal({
+            position: 'center',
+            type: 'success',
+            titleText: 'Sign up success',
+            showConfirmButton: false,
+            timer: 2000,
+            padding: 0,
+            width: 300
+          }).catch(swal.noop);
+        }
 
-    }
+      })
+      .catch(error => {
+        this.buttonDisable = false;
+        console.log("error = " + JSON.stringify(error));
+      });
+
+  }
 }
