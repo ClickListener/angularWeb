@@ -9,7 +9,7 @@ import {Device} from "../../../model/Device";
 import swal from "sweetalert2";
 import {DatePipe} from "@angular/common";
 
-import * as myGlobals from '../../../../environments/config'
+import * as myGlobals from '../../../../environments/config';
 
 declare const jQuery: any;
 
@@ -24,6 +24,10 @@ export class DevelopmentAppModifyComponent implements DoCheck {
   url = myGlobals.url;
 
   appInfo: any;
+
+  appIcon = true;
+
+  buttonDisable = false;  // 提交按钮状态
 
   deviceNumberList = [
     100,
@@ -86,6 +90,7 @@ export class DevelopmentAppModifyComponent implements DoCheck {
         format: 'yyyy/mm/dd',
         onSet: context =>  {
           this.appInfo.expireTime = context.select;
+          console.log('this.appInfo.expireTime = ',this.appInfo.expireTime);
         }
       });
     }
@@ -114,6 +119,15 @@ export class DevelopmentAppModifyComponent implements DoCheck {
   // 使用FileReader 将图片读取为base64字符串形式，实现图片预览
   private previewImg(event) {
     const file = event.target.files[0];
+
+    if (!file) {
+      const img = document.getElementById("preview");
+      img['src'] = '../../../../assets/images/addPic.png';
+
+      this.appIcon = false;
+      return;
+    }
+    this.appIcon = true;
 
     const reader = new FileReader();
 
@@ -144,6 +158,9 @@ export class DevelopmentAppModifyComponent implements DoCheck {
 
 
   updateApp() {
+
+    this.buttonDisable = true;
+
     const option = {
       url: this.url + "/api/useApp/updateUserApp",
       type: "POST",
@@ -214,6 +231,8 @@ export class DevelopmentAppModifyComponent implements DoCheck {
 
 
   private success(res) {
+
+    this.buttonDisable = false;
 
     console.log(res);
 

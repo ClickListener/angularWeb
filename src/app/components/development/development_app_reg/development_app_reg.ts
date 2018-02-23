@@ -41,6 +41,9 @@ export class DevelopmentAppRegComponent implements OnInit {
   expiredDate = 10;
 
 
+  buttonDisable = false;  // 提交按钮状态
+
+
   constructor(private userService: UserService, private router: Router) {
     this.deviceSelectList = new Array();
     const device = new Device();
@@ -142,6 +145,9 @@ export class DevelopmentAppRegComponent implements OnInit {
 
 
   registerApp() {
+
+    this.buttonDisable = true;
+
     const option = {
       url: this.url + "/api/useApp/addApp",
       type: "POST",
@@ -209,6 +215,8 @@ export class DevelopmentAppRegComponent implements OnInit {
 
 
   private success(res) {
+
+    this.buttonDisable = false;
 
     console.log(res);
 

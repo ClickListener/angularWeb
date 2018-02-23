@@ -18,7 +18,11 @@ export class ForgotPasswordComponent {
   constructor(private userService: UserService, private lowerCasePipe: LowerCasePipe) {}
 
 
+  buttonDisable = false;  // 提交按钮状态
+
   forgotPassword() {
+
+    this.buttonDisable = true;
 
     const email = this.lowerCasePipe.transform(this.email);
 
@@ -26,10 +30,12 @@ export class ForgotPasswordComponent {
       'userName': email
     };
 
-    console.log('email = ', email);
 
     this.userService.forgotPassword(userInfo)
       .then(res => {
+
+        this.buttonDisable = false;
+
         if (res.success) {
           swal({
             position: 'center',
@@ -43,6 +49,7 @@ export class ForgotPasswordComponent {
         }
       })
       .catch(error => {
+        this.buttonDisable = false;
         console.log(error);
       });
   }

@@ -19,7 +19,7 @@
   <div class="input-block">
     <label for="id_name">App Name</label>
     <input name="id_name" id="id_name" type="text" [(ngModel)]="appName"
-           #appNameValid="ngModel" pattern="^\w{1,100}$" required>
+           #appNameValid="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s]{1,100}$" required>
 
     <p *ngIf="!appNameValid.pristine&&appNameValid.invalid" style="color: #ee2200">Please input valid App name.</p>
   </div>
@@ -27,7 +27,7 @@
   <div class="input-block">
     <label for="id_bundle">Bundled/Package Name</label>
     <input id="id_bundle" type="text" name="id_bundle" [(ngModel)]="bundleIdOrPackageName"
-           #bundleId="ngModel" pattern="^\w{1,100}$" required>
+           #bundleId="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s]{1,100}$" required>
 
     <p *ngIf="!bundleId.pristine&&bundleId.invalid" style="color: #ee2200">Please input valid bundleId or package name.</p>
   </div>
@@ -35,7 +35,7 @@
   <div class="input-block">
     <label for="id_description">Description</label>
     <textarea id="id_description" type="text" name="id_description" [(ngModel)]="description"
-              #descriptionValid="ngModel" pattern="^\w{20,500}$"></textarea>
+              #descriptionValid="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[，,！!\.#%'\+\*\-:;^_`\(\)\（\）@\w\s]{20,100}$" required></textarea>
 
     <p *ngIf="!descriptionValid.pristine&&descriptionValid.invalid" style="color: #ee2200">Please input valid description.</p>
   </div>
@@ -343,7 +343,8 @@
   </div>
 
   <div class="submit-block">
-    <button class="btn btn-primary" (click)="registerApp()" [disabled]="!(myForm.form.valid && expiredDate !== 10 && expiredDate && appIcon)">Submit</button>
+    <button class="btn btn-primary" (click)="registerApp()"
+            [disabled]="(!(myForm.form.valid && expiredDate !== 10 && expiredDate && appIcon) || buttonDisable)">Submit</button>
   </div>
 
 </form>

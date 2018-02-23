@@ -1,4 +1,4 @@
-<form id="registerAppForm" style="margin-left: 10%; width: 70%" novalidate enctype="multipart/form-data" *ngIf="appInfo">
+<form id="registerAppForm" style="margin-left: 10%; width: 70%" novalidate enctype="multipart/form-data" *ngIf="appInfo" #myForm="ngForm">
 
   <P style="margin-top: 15px; margin-bottom: 30px;font-size: 30px">Register App</P>
 
@@ -18,18 +18,33 @@
 
   <div class="input-block">
     <label for="id_name">App Name</label>
-    <input name="id_name" id="id_name" type="text" [(ngModel)]="appInfo.appName">
+    <input name="id_name" id="id_name" type="text" [(ngModel)]="appInfo.appName"
+           #appNameValid="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s]{1,100}$" required>
+
+    <p *ngIf="!appNameValid.pristine&&appNameValid.invalid" style="color: #ee2200">Please input valid App name.</p>
   </div>
+
+
 
   <div class="input-block">
     <label for="id_bundle">Bundled/Package Name</label>
-    <input id="id_bundle" type="text" name="id_bundle" [(ngModel)]="appInfo.bundleIdOrPackageName">
+    <input id="id_bundle" type="text" name="id_bundle" [(ngModel)]="appInfo.bundleIdOrPackageName"
+           #bundleId="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s]{1,100}$" required>
+
+    <p *ngIf="!bundleId.pristine&&bundleId.invalid" style="color: #ee2200">Please input valid bundleId or package name.</p>
   </div>
+
+
 
   <div class="input-block">
     <label for="id_description">Description</label>
-    <textarea id="id_description" type="text" name="id_description" [(ngModel)]="appInfo.description"></textarea>
+    <textarea id="id_description" type="text" name="id_description" [(ngModel)]="appInfo.description"
+              #descriptionValid="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[，,！!\.#%'\+\*\-:;^_`\(\)\（\）@\w\s]{20,100}$" required></textarea>
+
+    <p *ngIf="!descriptionValid.pristine&&descriptionValid.invalid" style="color: #ee2200">Please input valid description.</p>
   </div>
+
+
 
   <div class="license-block">
     <p>Business license</p>
@@ -38,6 +53,8 @@
     <div>
       <input type="file" name="icon" style="width: 80px;height: 80px;opacity: 0;" (change)="previewImg($event)"
              accept="image/*">
+
+      <p *ngIf="!appIcon" style="color: #ee2200">You must input app icon.</p>
     </div>
   </div>
 
@@ -78,6 +95,8 @@
       <input style="outline: none;border: 0; line-height: 2.1rem" placeholder="Set Expired Date" type="text" id="expiredDate" required
              class="datapicker" readonly name="expiredDate" [(ngModel)]="expiredDate">
     </div>
+
+    <p *ngIf="!appInfo.expireTime" style="color: #ee2200">Please input valid expiredDate.</p>
 
   </div>
 
@@ -330,7 +349,8 @@
   </div>
 
   <div class="submit-block">
-    <a class="btn btn-primary" (click)="updateApp()">Submit</a>
+    <button class="btn btn-primary" (click)="updateApp()"
+       [disabled]="(!(myForm.form.valid && appInfo.expireTime && appIcon) || buttonDisable)">Submit</button>
   </div>
 
 </form>

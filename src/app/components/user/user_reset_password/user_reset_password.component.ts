@@ -22,6 +22,8 @@ export class UserResetPasswordComponent {
 
   confirmPassword: string;
 
+  buttonDisable = false;  // 提交按钮状态
+
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router) {
 
@@ -38,6 +40,8 @@ export class UserResetPasswordComponent {
 
   resetPassword() {
 
+    this.buttonDisable = true;
+
     const passwordInfo = {
       'userId': this.userId,
       'user': {
@@ -50,6 +54,9 @@ export class UserResetPasswordComponent {
 
     this.userService.updateUser(passwordInfo)
       .then(res => {
+
+        this.buttonDisable = false;
+
         if (res.success) {
 
           this.router.navigate(['/sign-in']);
@@ -67,6 +74,7 @@ export class UserResetPasswordComponent {
         }
       })
       .catch(error => {
+        // this.buttonDisable = false;
         console.log(error);
       });
 
