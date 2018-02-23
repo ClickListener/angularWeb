@@ -23,6 +23,9 @@ export class DevelopmentAddMemberComponent {
   addMembers = false;
 
 
+  buttonDisable = false;  // 提交按钮状态
+
+
   constructor(private companyService: CompanyService, private userService: UserService, private router: Router) {
 
 
@@ -41,6 +44,8 @@ export class DevelopmentAddMemberComponent {
 
 
   inviteUserToGroup() {
+
+    this.buttonDisable = true;
 
     const permissionArr = [];
 
@@ -110,12 +115,15 @@ export class DevelopmentAddMemberComponent {
 
         if (res.success) {
           const response = await this.userService.addUserAuth(permissionInfo);
+
+          this.buttonDisable = false;
           if (response.success) {
             this.router.navigate(['/development-main/development-group']);
           }
         }
       })
       .catch(error => {
+        this.buttonDisable = false;
         console.log(error);
       });
 

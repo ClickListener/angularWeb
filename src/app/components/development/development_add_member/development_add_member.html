@@ -1,8 +1,10 @@
 
-<form>
+<form #myForm="ngForm">
   <div class="input-block">
     <label for="id_account">Member Account</label>
-    <input id="id_account" name="id_account" type="text" placeholder="Email address" [(ngModel)]="emailOrUserName">
+    <input id="id_account" name="id_account" type="text" placeholder="Email address" [(ngModel)]="emailOrUserName"
+           required>
+
   </div>
 
   <div class="checkbox-block">
@@ -48,7 +50,7 @@
   </div>
 
   <div class="submit-block">
-    <a class="btn btn-primary" (click)="inviteUserToGroup()">Submit</a>
+    <button class="btn btn-primary" (click)="inviteUserToGroup()" [disabled]="!myForm.form.valid || buttonDisable">Submit</button>
   </div>
 
 
