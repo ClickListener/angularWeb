@@ -27,6 +27,10 @@ export class DevelopmentCompanyModifyComponent {
 
   url = myGlobals.url;
 
+  business = true;
+
+  buttonDisable = false;  // 提交按钮状态
+
   constructor(private activateRoute: ActivatedRoute, private companyService: CompanyService, private userService: UserService,
               private _location: Location, private router: Router) {
 
@@ -76,6 +80,9 @@ export class DevelopmentCompanyModifyComponent {
 
 
   updateCompanyInfo() {
+
+    this.buttonDisable = true;
+
     const options = {
       url: this.url + "/api/company/updateCompany",
       type: "POST",                                          // 默认是form的method，如果声明，则会覆盖
@@ -137,6 +144,9 @@ export class DevelopmentCompanyModifyComponent {
   }
 
   private success(response) {
+
+    this.buttonDisable = false;
+
     if (response.success) {
       this.router.navigate(['/development-main/development-group']);
       swal({
@@ -165,6 +175,16 @@ export class DevelopmentCompanyModifyComponent {
   // 使用FileReader 将图片读取为base64字符串形式，实现图片预览
   private previewImg(event) {
     const file = event.target.files[0];
+
+    if (!file) {
+      const img = document.getElementById("preview");
+      img['src'] = '../../../../assets/images/addPic.png';
+
+      this.business = false;
+
+      return;
+    }
+    this.business = true;
 
     const reader = new FileReader();
 

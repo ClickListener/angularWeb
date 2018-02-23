@@ -34,6 +34,8 @@ export class DevelopmentApplyMasterComponent implements DoCheck {
 
   countryList: Array<any>;
 
+  buttonDisable = false;  // 提交按钮状态
+
 
   ngDoCheck(): void {
     console.log("country = " + this.country);
@@ -58,6 +60,8 @@ export class DevelopmentApplyMasterComponent implements DoCheck {
 
 
   private applyMasterDeveloper() {
+
+    this.buttonDisable = true;
     const options = {
       url: this.url + "/api/company/uploadCompany",
       type: "POST",                                          // 默认是form的method，如果声明，则会覆盖
@@ -120,6 +124,8 @@ export class DevelopmentApplyMasterComponent implements DoCheck {
   }
 
   private success(response) {
+
+    this.buttonDisable = false;
     if (response.success) {
       this.router.navigate(['/development-main/development-group']);
       swal({
