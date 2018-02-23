@@ -4,6 +4,7 @@
 import {Component} from "@angular/core";
 import {UserService} from "../../../services/user.service";
 import swal from "sweetalert2";
+import {LowerCasePipe} from "@angular/common";
 
 @Component({
   templateUrl: './forgot-password.component.html',
@@ -14,14 +15,18 @@ export class ForgotPasswordComponent {
 
   email: string;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private lowerCasePipe: LowerCasePipe) {}
 
 
   forgotPassword() {
 
+    const email = this.lowerCasePipe.transform(this.email);
+
     const userInfo = {
-      'userName': this.email
+      'userName': email
     };
+
+    console.log('email = ', email);
 
     this.userService.forgotPassword(userInfo)
       .then(res => {
