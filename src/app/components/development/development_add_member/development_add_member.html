@@ -1,8 +1,9 @@
 
 <form #myForm="ngForm">
   <div class="input-block">
-    <label for="id_account">Member Account</label>
-    <input id="id_account" name="id_account" type="text" placeholder="Email address" [(ngModel)]="emailOrUserName"
+    <label style="display: inline-block" for="id_account">Member Account</label>
+    <a style="display: inline-block"><img src="../../../../assets/images/star.png"></a>
+    <input style="display: block" id="id_account" name="id_account" type="text" placeholder="Email" [(ngModel)]="emailOrUserName"
            required>
 
   </div>
