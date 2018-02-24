@@ -1,0 +1,35 @@
+
+
+.all-block {
+  margin: 5% 15% 5% 15%;
+}
+
+.module-block {
+  margin-bottom: 1rem;
+}
+
+.total-title {
+  font-size: 2rem;
+}
+
+.sub-title {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  margin-bottom: 0.5rem;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #bbbbbb;
+}
+
+.project-title {
+  margin: 1rem 0 0 0;
+  color: #007afa;
+  font-weight: bolder;
+}
+
+
+
+

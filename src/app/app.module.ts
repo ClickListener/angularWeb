@@ -55,6 +55,7 @@ import {DevelopmentCompanyModifyComponent} from "./components/development/develo
 import {CustomFormsModule} from "ng2-validation";
 import {ErrorService} from "./services/error.service";
 import {MarkdownModule} from "ngx-markdown";
+import {LastListComponent} from "./components/version/version_lastList/lastList.component";
 
 @NgModule({
 
@@ -108,6 +109,7 @@ import {MarkdownModule} from "ngx-markdown";
     AndroidComponent,
     IOSComponent,
     DetailComponent,
+    LastListComponent,
 
     DocumentMainComponent,
     DocumentAndroidComponent,

@@ -38,6 +38,7 @@ import {MainAdminDeveloperModifyComponent} from "./components/mainAdmin/mainAdmi
 import {UserHintComponent} from "./components/user/user_hint/user-hint.component";
 import {UserResetPasswordComponent} from "./components/user/user_reset_password/user_reset_password.component";
 import {DevelopmentCompanyModifyComponent} from "./components/development/development_company_modify/development_company_modify";
+import {LastListComponent} from "./components/version/version_lastList/lastList.component";
 
 /**
  * 路由模块
@@ -205,13 +206,17 @@ const routes: Routes = [
       }
     ]
   },
+  {
+    path: 'last-version',
+    component: LastListComponent
+  },
 
   {
     path: 'developer-manager',
     component: MainAdminDeveloperManagerComponent
   },
   {
-    path: 'developer-modify/:param',
+    path: 'developer-modify/:id/:companyId',
     component: MainAdminDeveloperModifyComponent
 
   },
