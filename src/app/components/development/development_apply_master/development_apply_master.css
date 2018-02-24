@@ -67,6 +67,8 @@
 }
 
 select {
+
+  display: block;
   border: solid 1px #bbbbbb;
 
   border-radius: 3px;

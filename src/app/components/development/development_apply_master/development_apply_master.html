@@ -6,7 +6,8 @@
 <form id="applyForm" novalidate enctype="multipart/form-data" #myForm="ngForm">
 
   <div class="input-block">
-    <label>Country</label>
+    <label style="display: inline-block">Country</label>
+    <a style="display: inline-block"><img src="../../../../assets/images/star.png"></a>
     <select name="country" [(ngModel)]="country">
       <option *ngFor="let country of countryList" >
         {{country.en}}
@@ -15,16 +16,18 @@
   </div>
 
   <div class="input-block">
-    <label for="id_corporate">Corporate Name</label>
-    <input id="id_corporate" name="id_corporate" type="text" [(ngModel)]="companyName"
+    <label style="display: inline-block" for="id_corporate">Corporate Name</label>
+    <a style="display: inline-block"><img src="../../../../assets/images/star.png"></a>
+    <input style="display: block" id="id_corporate" name="id_corporate" type="text" [(ngModel)]="companyName"
            #corporate="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s]{1,100}$" required>
 
     <p *ngIf="!corporate.pristine&&corporate.invalid" style="color: #ee2200">Please input valid corporate.</p>
   </div>
 
   <div class="input-block">
-    <label for="id_address">Address</label>
-    <input id="id_address" name="id_address" type="text" [(ngModel)]="address"
+    <label style="display: inline-block" for="id_address">Address</label>
+    <a style="display: inline-block"><img src="../../../../assets/images/star.png"></a>
+    <input style="display: block" id="id_address" name="id_address" type="text" [(ngModel)]="address"
            #addressValid="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s]{1,100}$" required>
 
     <p *ngIf="!addressValid.pristine&&addressValid.invalid" style="color: #ee2200">Please input valid address.</p>
@@ -32,16 +35,18 @@
 
 
   <div class="input-block">
-    <label for="id_description">Description</label>
-    <textarea id="id_description" name="id_description" type="text" [(ngModel)]="description"
+    <label style="display: inline-block" for="id_description">Description</label>
+    <a style="display: inline-block"><img src="../../../../assets/images/star.png"></a>
+    <textarea style="display: block" id="id_description" name="id_description" type="text" [(ngModel)]="description"
               #descriptionValid="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[，,！!\.#%'\+\*\-:;^_`\(\)\（\）@\w\s]{20,100}$" required></textarea>
 
     <p *ngIf="!descriptionValid.pristine&&descriptionValid.invalid" style="color: #ee2200">You must input at least 20 character.</p>
   </div>
 
   <div class="license-block">
-    <p>Business license</p>
-    <a style="position: absolute"><img id="preview" src="../../../../assets/images/addPic.png" style="width: 80px; height: 80px"></a>
+    <p style="display: inline-block">Business license</p>
+    <a style="display: inline-block"><img src="../../../../assets/images/star.png"></a>
+    <a style="position: absolute; display: block"><img id="preview" src="../../../../assets/images/addPic.png" style="width: 80px; height: 80px"></a>
     <div>
       <input type="file" id="image" name="image" style="width: 80px;height: 80px;opacity: 0;" (change)="previewImg($event)" accept="image/*">
 
