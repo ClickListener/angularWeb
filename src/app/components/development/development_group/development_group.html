@@ -43,7 +43,7 @@
     </div>
 
     <div class="form-custom-content">
-      <div *ngFor="let developer of developerList">
+      <div *ngFor="let developer of developerList; let i = index">
         <div class="item-2">
           <p style=" margin: 0; margin-left: 1rem; margin-top: 0.5rem; color: #007afa"><b>{{developer.username}}</b></p>
           <p style="margin: 0; margin-left: 1rem; ">{{developer.email}}</p>
@@ -56,7 +56,26 @@
 
         <div class="item-1" style="line-height: 5rem; text-align: center" *ngIf="user.type !== 4">
           <a [routerLink]="['/development-permission-modify', developer._id]"><img src="../../../../assets/images/edit.png"></a>
-          <a (click)="removeCompanyId(developer)"><img src="../../../../assets/images/delete.png"></a>
+          <a class="collapsed" style="position: relative" data-toggle="collapse" [attr.data-target]="'#confirm' + i"
+             aria-expanded="false" aria-controls="devices-detail">
+            <img src="../../../../assets/images/delete.png">
+
+            <div class="triangle-big" style="left: 4px"></div>
+            <div class="triangle-small" style="left: 4px">
+
+              <div class="collapse device-detail" [attr.id]="'confirm' + i" style="width: 20rem">
+
+                <div>
+                  Sure to delete this member?
+                </div>
+
+                <div>
+                  <a class="btn btn-default">Cancel</a>
+                  <a class="btn btn-danger" (click)="removeCompanyId(developer)">Delete</a>
+                </div>
+              </div>
+            </div>
+          </a>
         </div>
 
       </div>
