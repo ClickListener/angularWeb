@@ -22,12 +22,19 @@ export class DevelopmentAppManagerComponent {
   companyInfo: any;
 
   appList: Array<any>;
+
+  create_App: boolean;
+  edit_App: boolean;
+  delete_App: boolean;
+  checkLicenseData: boolean;
+
   constructor(private appService: AppService, private userService: UserService, private companyService: CompanyService) {
 
     const userInfo = {
       "userId": userService.user._id,
       "token": userService.token.token
     };
+
 
     userService.getUserInfo(userInfo)
       .then(async res => {
@@ -63,6 +70,48 @@ export class DevelopmentAppManagerComponent {
       });
 
 
+    // 获得用户权限，根据用户权限显示页面
+    if (userService.user.type === 4) {
+      userService.getUserAuth(userInfo)
+        .then(res => {
+          console.log('res = ', res);
+          if (res.success) {
+            this.parsePermission(res.data);
+          }
+        })
+        .catch(error => {
+          console.log('error = ', error);
+        });
+    } else if (userService.user.type === 3) {
+      this.create_App = true;
+      this.edit_App = true;
+      this.delete_App = true;
+      this.checkLicenseData = true;
+    }}
+
+
+
+
+
+  private parsePermission(permission: any) {
+
+
+    permission.forEach((item, index) => {
+      if (item.resourceId === '5a6585df5e149e1dfdf27964') {
+        this.create_App = (item.action.indexOf('C') !== -1);
+        this.edit_App = (item.action.indexOf('U') !== -1);
+        this.delete_App = (item.action.indexOf('D') !== -1);
+        this.checkLicenseData = (item.action.indexOf('R') !== -1);
+
+        console.log('create_App = ', this.create_App);
+        console.log('edit_App = ', this.edit_App);
+        console.log('delete_App = ', this.delete_App);
+        console.log('checkLicenseData = ', this.checkLicenseData);
+
+        return;
+      }
+
+    });
   }
 
 
@@ -83,7 +132,7 @@ export class DevelopmentAppManagerComponent {
       "userId": this.userService.user._id,
       "token": this.userService.token.token,
       "appId": appId
-    }
+    };
 
     this.appService.deleteUserApp(appInfo)
       .then(async res => {
@@ -119,7 +168,7 @@ export class DevelopmentAppManagerComponent {
       "userId": this.userService.user._id,
       "token": this.userService.token.token,
       "appId": appId
-    }
+    };
     this.appService.downloadLicense(userInfo)
       .then(res => {
         console.log(res);
