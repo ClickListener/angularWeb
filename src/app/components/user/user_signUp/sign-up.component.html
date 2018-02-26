@@ -16,7 +16,7 @@
 
         <div class="md-form">
           <input required="required" class="form-control" id="name" name="name" type="text" [(ngModel)]="nameValue"
-                 #name="ngModel" pattern="^\w{1,100}$">
+                 #name="ngModel" pattern="^[a-zA-Z_]{1}\w{0,99}$">
           <label for="name">Name</label>
           <span *ngIf="!name.pristine&&name.invalid" style="color: #ee2200">Please input name.</span>
 
