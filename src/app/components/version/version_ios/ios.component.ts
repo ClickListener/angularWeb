@@ -16,6 +16,9 @@ export class IOSComponent {
 
   schemeList: Array<any>;
 
+  title: string;
+  item: string;
+
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private schemeService: SchemeService) {
 
 
@@ -23,6 +26,16 @@ export class IOSComponent {
       this.param = paramMap['params'].param;
       console.log('param = ', this.param);
 
+      if (this.param === 'SDK') {
+        this.title = 'Native SDK';
+        this.item = 'Native SDK_IOS';
+      } else if (this.param === 'Library') {
+        this.title = 'Library SDK';
+        this.item = 'Library SDK_IOS';
+      } else if (this.param === 'LayerApp') {
+        this.title = 'Layered App';
+        this.item = 'Layered App_IOS';
+      }
 
       const fileInfo = {
         "userId": userService.user._id,

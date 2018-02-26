@@ -1,6 +1,6 @@
 <div style="margin-left: 5rem; margin-right: 5rem" *ngIf="schemeList && schemeList.length !== 0">
 
-  <p style="margin-top: 3rem;font-size: 2rem">Native SDK</p>
+  <p style="margin-top: 3rem;font-size: 2rem">{{title}}</p>
   <div class="form-custom">
     <div class="form-custom-head">
       <p>ID</p>
@@ -13,7 +13,7 @@
 
     <div class="form-custom-content" *ngFor="let scheme of schemeList; let i = index">
       <p>00{{i + 1}}</p>
-      <p>Native SDK_Android</p>
+      <p>{{item}}</p>
       <p>{{scheme.version}}</p>
       <p>{{scheme.createTime | date: 'yyyy/MM/dd'}}</p>
       <p>
