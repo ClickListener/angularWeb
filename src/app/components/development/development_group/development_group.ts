@@ -230,6 +230,26 @@ export class DevelopmentGroupComponent {
               return findDeveloper._id === this.user._id;
             });
 
+            this.developerList.forEach( async (_developer, index) => {
+              const user_Info = {
+                "userId": this.user._id,
+                "token": this.userService.token.token,
+                "uid": _developer._id
+              };
+
+              if (_developer.type === 4) {
+                const permissionResponse = await this.userService.getUserAuth(user_Info);
+
+                if (permissionResponse.success) {
+                  const permissionString = this.parsePermission(permissionResponse.data);
+
+                  _developer['permission'] = permissionString;
+                }
+              }
+
+              console.log('_developer', _developer);
+            });
+
 
           }
         }
