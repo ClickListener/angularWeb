@@ -15,8 +15,8 @@
 
         <div class="md-form">
           <input required="required" class="form-control" id="email" name="email" type="text" [(ngModel)]="emailOrUserName"
-                 #email="ngModel" [rangeLength]="[1,100]">
-          <label for="email">Email Or UserName</label>
+                 #email="ngModel">
+          <label for="email">Email</label>
 
           <span *ngIf="!email.pristine&&email.invalid" style="color: #ee2200">Please input valid email or userName.</span>
 
