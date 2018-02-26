@@ -50,8 +50,11 @@
         </div>
         <p class="item-1" style="line-height: 5rem; text-align: center" *ngIf="developer.type === 4">Member</p>
         <p class="item-1" style="line-height: 5rem; text-align: center" *ngIf="developer.type === 3">Administrator</p>
-        <div class="item-2">
+        <div class="item-2" *ngIf="developer.type === 4">
           <p style="margin: 1rem 0 1rem 0">{{developer.permission}}</p>
+        </div>
+        <div class="item-2" *ngIf="developer.type === 3">
+          <p style="line-height: 5rem; text-align: center">All</p>
         </div>
 
         <div class="item-1" style="line-height: 5rem; text-align: center" *ngIf="user.type !== 4">
