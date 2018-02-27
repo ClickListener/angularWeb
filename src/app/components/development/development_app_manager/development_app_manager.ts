@@ -28,12 +28,18 @@ export class DevelopmentAppManagerComponent {
   delete_App: boolean;
   checkLicenseData: boolean;
 
+  user: any;
+  token: any;
+
   constructor(private appService: AppService, private userService: UserService, private companyService: CompanyService) {
 
     const userInfo = {
       "userId": userService.user._id,
       "token": userService.token.token
     };
+
+    this.user = userService.user;
+    this.token = userService.token.token;
 
 
     userService.getUserInfo(userInfo)
