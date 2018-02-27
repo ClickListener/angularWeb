@@ -85,11 +85,16 @@ export class DevelopmentAppRegComponent implements OnInit {
 
   }
   addDevice() {
+
+    console.log('deviceSelectList = ', this.deviceSelectList);
+
     const device = new Device();
     device.deviceName = "BP5";
     device.totalNumber = 100;
 
     this.deviceSelectList.push(device);
+
+    console.log('deviceSelectList = ', this.deviceSelectList);
   }
 
   deleteDevice(index: number) {
@@ -247,6 +252,8 @@ export class DevelopmentAppRegComponent implements OnInit {
 
   selectDevice(index: number, deviceName: string) {
     this.deviceSelectList[index].deviceName = deviceName;
+
+    console.log('deviceSelectList = ', this.deviceSelectList);
 
   }
 
