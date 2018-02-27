@@ -39,7 +39,7 @@
   <div class="input-block">
     <label for="id_description">Description</label>
     <textarea id="id_description" type="text" name="id_description" [(ngModel)]="appInfo.description"
-              #descriptionValid="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[，,！!\.#%'\+\*\-:;^_`\(\)\（\）@\w\s]{20,100}$" required></textarea>
+              #descriptionValid="ngModel" [rangeLength]="[20,100]" required></textarea>
 
     <p *ngIf="!descriptionValid.pristine&&descriptionValid.invalid" style="color: #ee2200">Please input valid description.</p>
   </div>
