@@ -59,7 +59,7 @@
 
         <div class="item-1" style="line-height: 5rem; text-align: center" *ngIf="user.type !== 4">
           <a [routerLink]="['/development-permission-modify', developer._id]"><img src="../../../../assets/images/edit.png"></a>
-          <a class="collapsed" style="position: relative" data-toggle="collapse" [attr.data-target]="'#confirm' + i"
+          <a class="collapsed" style="position: relative" [style.z-index]="100 - i" data-toggle="collapse" [attr.data-target]="'#confirm' + i"
              aria-expanded="false" aria-controls="devices-detail">
             <img src="../../../../assets/images/delete.png">
 

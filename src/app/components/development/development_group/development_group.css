@@ -96,6 +96,7 @@ a:not(.collapsed) .triangle-small {
   top: 10px;
   border: 1px solid #e9ecef;
   background: #FFFFFF;
+  margin-bottom: 3rem;
 }
 
 
