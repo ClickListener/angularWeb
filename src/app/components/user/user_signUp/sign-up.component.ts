@@ -6,6 +6,7 @@ import {UserService} from "../../../services/user.service";
 
 import {Router} from '@angular/router'
 import swal from "sweetalert2";
+import {LowerCasePipe} from "@angular/common";
 
 @Component({
   selector: 'sign-up',
@@ -24,7 +25,7 @@ export class SignUpComponent {
 
   buttonDisable = false;  // 提交按钮状态
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private router: Router, private lowerCasePipe: LowerCasePipe) {
   }
 
   signUp() {
@@ -33,7 +34,7 @@ export class SignUpComponent {
 
     const signUp_info = {
       addUser: {
-        "username": this.nameValue,
+        "username": this.lowerCasePipe.transform(this.nameValue),
         "email": this.emailValue,
         "password": this.passwordValue,
         "type": 4

@@ -5,6 +5,7 @@ import {Component, DoCheck} from "@angular/core";
 import {CompanyService} from "../../../services/company.service";
 import {UserService} from "../../../services/user.service";
 import {Router} from "@angular/router";
+import {LowerCasePipe} from "@angular/common";
 
 @Component({
   templateUrl: './development_add_member.html',
@@ -26,7 +27,8 @@ export class DevelopmentAddMemberComponent {
   buttonDisable = false;  // 提交按钮状态
 
 
-  constructor(private companyService: CompanyService, private userService: UserService, private router: Router) {
+  constructor(private companyService: CompanyService, private userService: UserService, private router: Router
+    , private lowerCasePipe: LowerCasePipe) {
 
 
     const userInfo = {
@@ -98,7 +100,7 @@ export class DevelopmentAddMemberComponent {
       "userId": this.userService.user._id,
       "token": this.userService.token.token,
       "companyId": this.userService.user.companyId,
-      "userName": this.emailOrUserName,
+      "userName": this.lowerCasePipe.transform(this.emailOrUserName),
       "auth": permissionArr
     };
 
