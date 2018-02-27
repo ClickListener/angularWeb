@@ -29,7 +29,7 @@
   <div class="input-block">
     <label for="id_bundle">Bundled/Package Name</label>
     <input id="id_bundle" type="text" name="id_bundle" [(ngModel)]="appInfo.bundleIdOrPackageName"
-           #bundleId="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s]{1,100}$" required>
+           #bundleId="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s\.]{1,100}$" required>
 
     <p *ngIf="!bundleId.pristine&&bundleId.invalid" style="color: #ee2200">Please input valid bundleId or package name.</p>
   </div>
@@ -352,5 +352,6 @@
     <button class="btn btn-primary" (click)="updateApp()"
        [disabled]="(!(myForm.form.valid && appInfo.expireTime && appIcon) || buttonDisable)">Submit</button>
   </div>
+
 
 </form>
