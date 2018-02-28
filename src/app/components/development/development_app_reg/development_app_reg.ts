@@ -44,6 +44,112 @@ export class DevelopmentAppRegComponent implements OnInit {
   buttonDisable = false;  // 提交按钮状态
 
 
+  deviceList = [
+    {
+      deviceName: 'BP3',
+      isValid: true
+    },
+    {
+      deviceName: 'BP3M',
+      isValid: true
+    },
+    {
+      deviceName: 'BP3l',
+      isValid: true
+    },
+    {
+      deviceName: 'BP5',
+      isValid: false
+    },
+    {
+      deviceName: 'BP7',
+      isValid: true
+    },
+    {
+      deviceName: 'BP7S',
+      isValid: true
+    },
+    {
+      deviceName: 'BPM1',
+      isValid: true
+    },
+    {
+      deviceName: 'KN-550BT',
+      isValid: true
+    },
+    {
+      deviceName: 'ABI',
+      isValid: true
+    },
+    {
+      deviceName: 'ABP100',
+      isValid: true
+    },
+    {
+      deviceName: 'AM3',
+      isValid: true
+    },
+    {
+      deviceName: 'AM3S',
+      isValid: true
+    },
+    {
+      deviceName: 'AM4',
+      isValid: true
+    },
+    {
+      deviceName: 'PO3',
+      isValid: true
+    },
+    {
+      deviceName: 'HS2',
+      isValid: true
+    },
+    {
+      deviceName: 'HS3',
+      isValid: true
+    },
+    {
+      deviceName: 'HS4',
+      isValid: true
+    },
+    {
+      deviceName: 'HS4S',
+      isValid: true
+    },
+    {
+      deviceName: 'HS5',
+      isValid: true
+    },
+    {
+      deviceName: 'HS5S',
+      isValid: true
+    },
+    {
+      deviceName: 'HS6',
+      isValid: true
+    },
+
+    {
+      deviceName: 'BG1',
+      isValid: true
+    },
+    {
+      deviceName: 'BG5',
+      isValid: true
+    },
+    {
+      deviceName: 'BG5S',
+      isValid: true
+    },
+    {
+      deviceName: 'ECG3',
+      isValid: true
+    }
+
+  ];
+
+
   constructor(private userService: UserService, private router: Router) {
     this.deviceSelectList = new Array();
     const device = new Device();
@@ -84,15 +190,28 @@ export class DevelopmentAppRegComponent implements OnInit {
     });
 
   }
+
+
   addDevice() {
 
     console.log('deviceSelectList = ', this.deviceSelectList);
 
-    const device = new Device();
-    device.deviceName = "BP5";
-    device.totalNumber = 100;
+    for (let i = 0; i < this.deviceList.length; i++) {
+      if (this.deviceList[i].isValid) {
 
-    this.deviceSelectList.push(device);
+        this.deviceList[i].isValid = false;
+        const device = new Device();
+        device.deviceName = this.deviceList[i].deviceName;
+        device.totalNumber = 100;
+
+        this.deviceSelectList.push(device);
+
+        return;
+      }
+    }
+
+
+
 
     console.log('deviceSelectList = ', this.deviceSelectList);
   }
@@ -101,7 +220,15 @@ export class DevelopmentAppRegComponent implements OnInit {
     if (this.deviceSelectList.length === 1) {
 
     } else {
-      this.deviceSelectList.splice(index, 1);
+      const device_delete = this.deviceSelectList.splice(index, 1);
+
+
+      this.deviceList.find((device, i, arr) => {
+          if (device.deviceName === device_delete[0].deviceName) {
+            device.isValid = true;
+            return true;
+          }
+      });
     }
 
   }
@@ -251,6 +378,29 @@ export class DevelopmentAppRegComponent implements OnInit {
 
 
   selectDevice(index: number, deviceName: string) {
+
+    jQuery('#exampleModal' + index).modal('hide');
+
+
+    // 当已选择设备后，重新选择设备，则将之前的设备置成可选状态。
+    if (this.deviceSelectList[index].deviceName) {
+
+      this.deviceList.find((device, i, arr) => {
+        if (device.deviceName === this.deviceSelectList[index].deviceName) {
+          device.isValid = true;
+          return true;
+        }
+      });
+
+    }
+
+    this.deviceList.find((device, i, arr) => {
+      if (device.deviceName === deviceName) {
+        device.isValid = false;
+        return true;
+      }
+    });
+
     this.deviceSelectList[index].deviceName = deviceName;
 
     console.log('deviceSelectList = ', this.deviceSelectList);
