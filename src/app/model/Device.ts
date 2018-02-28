@@ -4,7 +4,7 @@
 
 export class Device {
 
-    deviceName: string;
-    totalNumber: number;
-    deviceUsedNumber: number;
+  model: string;
+  totalNumber: number;
+  deviceUsedNumber: number;
 }

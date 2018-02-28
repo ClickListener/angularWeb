@@ -46,104 +46,104 @@ export class DevelopmentAppRegComponent implements OnInit {
 
   deviceList = [
     {
-      deviceName: 'BP3',
+      model: 'BP3',
       isValid: true
     },
     {
-      deviceName: 'BP3M',
+      model: 'BP3M',
       isValid: true
     },
     {
-      deviceName: 'BP3l',
+      model: 'BP3l',
       isValid: true
     },
     {
-      deviceName: 'BP5',
+      model: 'BP5',
       isValid: false
     },
     {
-      deviceName: 'BP7',
+      model: 'BP7',
       isValid: true
     },
     {
-      deviceName: 'BP7S',
+      model: 'BP7S',
       isValid: true
     },
     {
-      deviceName: 'BPM1',
+      model: 'BPM1',
       isValid: true
     },
     {
-      deviceName: 'KN-550BT',
+      model: 'KN-550BT',
       isValid: true
     },
     {
-      deviceName: 'ABI',
+      model: 'ABI',
       isValid: true
     },
     {
-      deviceName: 'ABP100',
+      model: 'ABP100',
       isValid: true
     },
     {
-      deviceName: 'AM3',
+      model: 'AM3',
       isValid: true
     },
     {
-      deviceName: 'AM3S',
+      model: 'AM3S',
       isValid: true
     },
     {
-      deviceName: 'AM4',
+      model: 'AM4',
       isValid: true
     },
     {
-      deviceName: 'PO3',
+      model: 'PO3',
       isValid: true
     },
     {
-      deviceName: 'HS2',
+      model: 'HS2',
       isValid: true
     },
     {
-      deviceName: 'HS3',
+      model: 'HS3',
       isValid: true
     },
     {
-      deviceName: 'HS4',
+      model: 'HS4',
       isValid: true
     },
     {
-      deviceName: 'HS4S',
+      model: 'HS4S',
       isValid: true
     },
     {
-      deviceName: 'HS5',
+      model: 'HS5',
       isValid: true
     },
     {
-      deviceName: 'HS5S',
+      model: 'HS5S',
       isValid: true
     },
     {
-      deviceName: 'HS6',
+      model: 'HS6',
       isValid: true
     },
 
     {
-      deviceName: 'BG1',
+      model: 'BG1',
       isValid: true
     },
     {
-      deviceName: 'BG5',
+      model: 'BG5',
       isValid: true
     },
     {
-      deviceName: 'BG5S',
+      model: 'BG5S',
       isValid: true
     },
     {
-      deviceName: 'ECG3',
+      model: 'ECG3',
       isValid: true
     }
 
@@ -153,7 +153,7 @@ export class DevelopmentAppRegComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) {
     this.deviceSelectList = new Array();
     const device = new Device();
-    device.deviceName = "BP5";
+    device.model = "BP5";
     device.totalNumber = 100;
 
     this.deviceSelectList.push(device);
@@ -199,7 +199,7 @@ export class DevelopmentAppRegComponent implements OnInit {
 
         this.deviceList[i].isValid = false;
         const device = new Device();
-        device.deviceName = this.deviceList[i].deviceName;
+        device.model = this.deviceList[i].model;
         device.totalNumber = 100;
 
         this.deviceSelectList.push(device);
@@ -219,7 +219,7 @@ export class DevelopmentAppRegComponent implements OnInit {
 
 
       this.deviceList.find((device, i, arr) => {
-          if (device.deviceName === device_delete[0].deviceName) {
+          if (device.model === device_delete[0].model) {
             device.isValid = true;
             return true;
           }
@@ -378,10 +378,10 @@ export class DevelopmentAppRegComponent implements OnInit {
 
 
     // 当已选择设备后，重新选择设备，则将之前的设备置成可选状态。
-    if (this.deviceSelectList[index].deviceName) {
+    if (this.deviceSelectList[index].model) {
 
       this.deviceList.find((device, i, arr) => {
-        if (device.deviceName === this.deviceSelectList[index].deviceName) {
+        if (device.model === this.deviceSelectList[index].model) {
           device.isValid = true;
           return true;
         }
@@ -390,13 +390,13 @@ export class DevelopmentAppRegComponent implements OnInit {
     }
 
     this.deviceList.find((device, i, arr) => {
-      if (device.deviceName === deviceName) {
+      if (device.model === deviceName) {
         device.isValid = false;
         return true;
       }
     });
 
-    this.deviceSelectList[index].deviceName = deviceName;
+    this.deviceSelectList[index].model = deviceName;
 
 
   }

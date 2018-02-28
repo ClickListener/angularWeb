@@ -51,11 +51,11 @@
                         </div>
                         <div class="device-detail-form-head" style="border-top: 1px solid #e9ecef;" *ngFor="let device of app.devices">
                           <div class="item-2 custom-center-p" style="margin-right: 15%;">
-                            <img src="../../../../assets/images/device_{{device.deviceName | lowercase}}.png" style="width: 3rem; height: 3rem">
-                            <p style="display: inline-block">{{device.deviceName}}</p>
+                            <img src="../../../../assets/images/device_{{device.model | lowercase}}.png" style="width: 3rem; height: 3rem">
+                            <p style="display: inline-block">{{device.model}}</p>
                           </div>
                           <p class="item-1 custom-center-p">{{device.totalNumber}}</p>
-                          <p class="item-1 custom-center-p">0</p>
+                          <p class="item-1 custom-center-p">{{device.deviceUsedNumber}}</p>
                         </div>
                       </div>
                     </div>
