@@ -249,6 +249,36 @@ select:hover {
   cursor: pointer;
 }
 
+
+.selectDevice-number {
+
+  display: inline-block;
+  width: 50%;
+
+  border: solid 1px #bbbbbb;
+  border-radius: 3px;
+  height: 1.8rem;
+
+  padding-right: 15px;
+  padding-left: 15px;
+
+  background: url("../../../../assets/images/down.png") no-repeat scroll right transparent;
+  background-origin: content-box;
+
+  text-align: left;
+}
+
+
+
+/*消除Chrome格式*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+  -webkit-appearance: none !important;
+  margin: 0;
+}
+input[type="number"] {-moz-appearance: textfield;}
+
+
 .selectDevice-title {
   border-bottom: 1px solid #e9ecef;
   height: 2.5rem;
