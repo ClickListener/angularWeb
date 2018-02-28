@@ -123,6 +123,7 @@
               <a>{{deviceSelected.deviceName}}</a>
             </div>
 
+
             <!-- Modal -->
             <div class="modal fade" [attr.id]="'exampleModal' + i" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -139,34 +140,34 @@
                         Blood Pressure
                       </div>
                       <div class="selectDevice-deviceBlock">
-                        <div class="selectDevice-device" (click)="selectDevice(i, 'BP3')" data-dismiss="modal">
+                        <div  (click)="deviceList[0].isValid? selectDevice(i, 'BP3'): null" [class]="deviceList[0].isValid? 'selectDevice-device': 'selectedDevice-device'">
                           <img src="../../../../assets/images/device_bp3.png">
                           <p>BP3</p>
                         </div>
-                        <div class="selectDevice-device" (click)="selectDevice(i, 'BP3M')" data-dismiss="modal">
+                        <div (click)="deviceList[1].isValid? selectDevice(i, 'BP3M'): null" [class]="deviceList[1].isValid? 'selectDevice-device': 'selectedDevice-device'" >
                           <img src="../../../../assets/images/device_bp3m.png">
                           <p>BP3M</p>
                         </div>
-                        <div class="selectDevice-device" (click)="selectDevice(i, 'BP3l')" data-dismiss="modal">
+                        <div (click)="deviceList[2].isValid? selectDevice(i, 'BP3l'): null" [class]="deviceList[2].isValid? 'selectDevice-device': 'selectedDevice-device'">
                           <img src="../../../../assets/images/device_bp3l.png">
                           <p>Ease</p>
                           <p>(BP3L)</p>
                         </div>
-                        <div class="selectDevice-device" (click)="selectDevice(i, 'BP5')" data-dismiss="modal">
+                        <div (click)="deviceList[3].isValid? selectDevice(i, 'BP5'): null" [class]="deviceList[3].isValid? 'selectDevice-device': 'selectedDevice-device'">
                           <img src="../../../../assets/images/device_bp5.png">
                           <p>Feel</p>
                           <p>(BP5)</p>
                         </div>
-                        <div class="selectDevice-device" (click)="selectDevice(i, 'BP7')" data-dismiss="modal">
+                        <div (click)="deviceList[4].isValid? selectDevice(i, 'BP7'): null" [class]="deviceList[4].isValid? 'selectDevice-device': 'selectedDevice-device'">
                           <img src="../../../../assets/images/device_bp7.png">
                           <p>BP7</p>
                         </div>
-                        <div class="selectDevice-device" (click)="selectDevice(i, 'BP7S')" data-dismiss="modal">
+                        <div (click)="deviceList[5].isValid? selectDevice(i, 'BP7S'): null" [class]="deviceList[5].isValid? 'selectDevice-device': 'selectedDevice-device'">
                           <img src="../../../../assets/images/device_bp7s.png">
                           <p>View</p>
                           <p>(BP7S)</p>
                         </div>
-                        <div class="selectDevice-device" (click)="selectDevice(i, 'BPM1')" data-dismiss="modal">
+                        <div (click)="deviceList[6].isValid? selectDevice(i, 'BPM1'): null" [class]="deviceList[6].isValid? 'selectDevice-device': 'selectedDevice-device'">
                           <img src="../../../../assets/images/device_bpm1.png">
                           <p>Clear</p>
                           <p>(BPM1)</p>
@@ -177,22 +178,22 @@
                     </div>
 
                     <div style="text-align: left; display: flex; margin-left: 5%; margin-right: 5%">
-                      <div style="flex: 3">
+                      <div style="flex: 3; margin-right: 10px">
                         <div class="selectDevice-deviceTile" style="opacity: 0">
                           空
                         </div>
                         <div class="selectDevice-deviceBlock" style="margin: 0">
-                          <div class="selectDevice-device" (click)="selectDevice(i, 'Kn-550BT')" data-dismiss="modal">
+                          <div (click)="deviceList[7].isValid? selectDevice(i, 'KN-550BT'): null" [class]="deviceList[7].isValid? 'selectDevice-device': 'selectedDevice-device'">
                             <img src="../../../../assets/images/device_kn-550bt.png">
                             <p>Track</p>
                             <p>(KN550BT)</p>
                           </div>
-                          <div class="selectDevice-device" (click)="selectDevice(i, 'ABI')" data-dismiss="modal">
-                            <img src="../../../../assets/images/device_bp5.png">
+                          <div (click)="deviceList[8].isValid? selectDevice(i, 'ABI'): null" [class]="deviceList[8].isValid? 'selectDevice-device': 'selectedDevice-device'">
+                            <img src="../../../../assets/images/device_abi.png">
                             <p>CardioLab</p>
                             <p>(ABI)</p>
                           </div>
-                          <div class="selectDevice-device" (click)="selectDevice(i, 'ABP100')" data-dismiss="modal">
+                          <div (click)="deviceList[9].isValid? selectDevice(i, 'ABP100'): null" [class]="deviceList[9].isValid? 'selectDevice-device': 'selectedDevice-device'">
                             <img src="../../../../assets/images/device_abp100.png">
                             <p>CardioMed</p>
                             <p>(ABP100)</p>
@@ -200,21 +201,21 @@
                         </div>
                       </div>
 
-                      <div style="flex: 3;">
+                      <div style="flex: 3; margin-right: 10px">
                         <div class="selectDevice-deviceTile">
-                          Blood Pressure
+                          Sports
                         </div>
                         <div class="selectDevice-deviceBlock" style="margin: 0">
-                          <div class="selectDevice-device" (click)="selectDevice(i, 'AM3')" data-dismiss="modal">
+                          <div (click)="deviceList[10].isValid? selectDevice(i, 'AM3'): null" [class]="deviceList[10].isValid? 'selectDevice-device': 'selectedDevice-device'">
                             <img src="../../../../assets/images/device_am3.png">
                             <p>AM3</p>
                           </div>
-                          <div class="selectDevice-device" (click)="selectDevice(i, 'AM3S')" data-dismiss="modal">
+                          <div (click)="deviceList[11].isValid? selectDevice(i, 'AM3S'): null" [class]="deviceList[11].isValid? 'selectDevice-device': 'selectedDevice-device'">
                             <img src="../../../../assets/images/device_am3s.png">
                             <p>Edge</p>
                             <p>(AM3S)</p>
                           </div>
-                          <div class="selectDevice-device" (click)="selectDevice(i, 'AM4')" data-dismiss="modal">
+                          <div (click)="deviceList[12].isValid? selectDevice(i, 'AM4'): null" [class]="deviceList[12].isValid? 'selectDevice-device': 'selectedDevice-device'">
                             <img src="../../../../assets/images/device_am4.png">
                             <p>Wave</p>
                             <p>(AM4)</p>
@@ -228,7 +229,7 @@
                           Oxygen
                         </div>
                         <div class="selectDevice-deviceBlock" style="margin: 0">
-                          <div class="selectDevice-device" (click)="selectDevice(i, 'PO3')" data-dismiss="modal">
+                          <div (click)="deviceList[13].isValid? selectDevice(i, 'PO3'): null" [class]="deviceList[13].isValid? 'selectDevice-device': 'selectedDevice-device'">
                             <img src="../../../../assets/images/device_po3.png">
                             <p>PO3</p>
                             <p style="opacity: 0">PO3</p>
@@ -244,35 +245,35 @@
                         Weight
                       </div>
                       <div class="selectDevice-deviceBlock">
-                        <div class="selectDevice-device" (click)="selectDevice(i, 'HS2')" data-dismiss="modal">
-                          <img src="../../../../assets/images/device_hs3.png">
+                        <div (click)="deviceList[14].isValid? selectDevice(i, 'HS2'): null" [class]="deviceList[14].isValid? 'selectDevice-device': 'selectedDevice-device'">
+                          <img src="../../../../assets/images/device_hs2.png">
                           <p>Lina</p>
                           <p>(HS2)</p>
                         </div>
-                        <div class="selectDevice-device" (click)="selectDevice(i, 'HS3')" data-dismiss="modal">
+                        <div (click)="deviceList[15].isValid? selectDevice(i, 'HS3'): null" [class]="deviceList[15].isValid? 'selectDevice-device': 'selectedDevice-device'">
                           <img src="../../../../assets/images/device_hs3.png">
                           <p>HS3</p>
                         </div>
-                        <div class="selectDevice-device" (click)="selectDevice(i, 'HS4')" data-dismiss="modal">
+                        <div (click)="deviceList[16].isValid? selectDevice(i, 'HS4'): null" [class]="deviceList[16].isValid? 'selectDevice-device': 'selectedDevice-device'">
                           <img src="../../../../assets/images/device_hs4.png">
                           <p>Lite</p>
                           <p>(HS4)</p>
                         </div>
-                        <div class="selectDevice-device" (click)="selectDevice(i, 'HS4S')" data-dismiss="modal">
+                        <div (click)="deviceList[17].isValid? selectDevice(i, 'HS4S'): null" [class]="deviceList[17].isValid? 'selectDevice-device': 'selectedDevice-device'">
                           <img src="../../../../assets/images/device_hs4s.png">
                           <p>Lite</p>
                           <p>(HS4S)</p>
                         </div>
-                        <div class="selectDevice-device" (click)="selectDevice(i, 'HS5')" data-dismiss="modal">
+                        <div (click)="deviceList[18].isValid? selectDevice(i, 'HS5'): null" [class]="deviceList[18].isValid? 'selectDevice-device': 'selectedDevice-device'">
                           <img src="../../../../assets/images/device_hs5.png">
                           <p>HS5</p>
                         </div>
-                        <div class="selectDevice-device" (click)="selectDevice(i, 'HS5S')" data-dismiss="modal">
+                        <div (click)="deviceList[19].isValid? selectDevice(i, 'HS5S'): null" [class]="deviceList[19].isValid? 'selectDevice-device': 'selectedDevice-device'">
                           <img src="../../../../assets/images/device_hs5s.png">
                           <p>Vista</p>
                           <p>(HS5S)</p>
                         </div>
-                        <div class="selectDevice-device" (click)="selectDevice(i, 'HS6')" data-dismiss="modal">
+                        <div (click)="deviceList[20].isValid? selectDevice(i, 'HS6'): null" [class]="deviceList[20].isValid? 'selectDevice-device': 'selectedDevice-device'">
                           <img src="../../../../assets/images/device_hs6.png">
                           <p>Core</p>
                           <p>(HS6)</p>
@@ -281,22 +282,22 @@
                       </div>
                     </div>
                     <div style="text-align: left; display: flex; margin-left: 5%; margin-right: 5%">
-                      <div style="flex: 3">
+                      <div style="flex: 3; margin-right: 10px">
                         <div class="selectDevice-deviceTile">
                           Blood Glucose
                         </div>
                         <div class="selectDevice-deviceBlock" style="margin: 0">
-                          <div class="selectDevice-device" (click)="selectDevice(i, 'BG1')" data-dismiss="modal">
+                          <div (click)="deviceList[21].isValid? selectDevice(i, 'BG1'): null" [class]="deviceList[21].isValid? 'selectDevice-device': 'selectedDevice-device'">
                             <img src="../../../../assets/images/device_bg1.png">
                             <p>Align</p>
                             <p>(BG1)</p>
                           </div>
-                          <div class="selectDevice-device" (click)="selectDevice(i, 'BG5')" data-dismiss="modal">
+                          <div (click)="deviceList[22].isValid? selectDevice(i, 'BG5'): null" [class]="deviceList[22].isValid? 'selectDevice-device': 'selectedDevice-device'">
                             <img src="../../../../assets/images/device_bg5.png">
                             <p>Smart</p>
                             <p>(BG5)</p>
                           </div>
-                          <div class="selectDevice-device" (click)="selectDevice(i, 'BG5S')" data-dismiss="modal">
+                          <div (click)="deviceList[23].isValid? selectDevice(i, 'BG5S'): null" [class]="deviceList[23].isValid? 'selectDevice-device': 'selectedDevice-device'">
                             <img src="../../../../assets/images/device_bg5s.png">
                             <p>Gluco+</p>
                             <p>(BG5S)</p>
@@ -309,7 +310,7 @@
                           Oxygen
                         </div>
                         <div class="selectDevice-deviceBlock" style="margin: 0">
-                          <div class="selectDevice-device" (click)="selectDevice(i, 'ECG3')" data-dismiss="modal">
+                          <div (click)="deviceList[24].isValid? selectDevice(i, 'ECG3'): null" [class]="deviceList[24].isValid? 'selectDevice-device': 'selectedDevice-device'">
                             <img src="../../../../assets/images/device_ecg3.png">
                             <p>Rhythm</p>
                             <p>(ECG3)</p>
@@ -328,6 +329,7 @@
                 </div>
               </div>
             </div>
+
 
           </div>
           <div class="custom-item1">

@@ -307,4 +307,21 @@ select:hover {
   line-height: 1.5rem;
 }
 
+/*已选择设备*/
+.selectedDevice-device {
+  flex: 1;
+  display: inline-block;
+  text-align: center;
+  background: #bbbbbb;
+}
+
+.selectedDevice-device > img {
+  width: 80%;
+}
+
+.selectedDevice-device > p {
+  line-height: 1.5rem;
+}
+
+
 

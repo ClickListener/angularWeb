@@ -194,8 +194,6 @@ export class DevelopmentAppRegComponent implements OnInit {
 
   addDevice() {
 
-    console.log('deviceSelectList = ', this.deviceSelectList);
-
     for (let i = 0; i < this.deviceList.length; i++) {
       if (this.deviceList[i].isValid) {
 
@@ -211,9 +209,6 @@ export class DevelopmentAppRegComponent implements OnInit {
     }
 
 
-
-
-    console.log('deviceSelectList = ', this.deviceSelectList);
   }
 
   deleteDevice(index: number) {
@@ -403,7 +398,6 @@ export class DevelopmentAppRegComponent implements OnInit {
 
     this.deviceSelectList[index].deviceName = deviceName;
 
-    console.log('deviceSelectList = ', this.deviceSelectList);
 
   }
 

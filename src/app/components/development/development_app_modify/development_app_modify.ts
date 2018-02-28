@@ -38,6 +38,111 @@ export class DevelopmentAppModifyComponent implements DoCheck {
 
   expiredDate: string;
 
+  deviceList = [
+    {
+      deviceName: 'BP3',
+      isValid: true
+    },
+    {
+      deviceName: 'BP3M',
+      isValid: true
+    },
+    {
+      deviceName: 'BP3l',
+      isValid: true
+    },
+    {
+      deviceName: 'BP5',
+      isValid: false
+    },
+    {
+      deviceName: 'BP7',
+      isValid: true
+    },
+    {
+      deviceName: 'BP7S',
+      isValid: true
+    },
+    {
+      deviceName: 'BPM1',
+      isValid: true
+    },
+    {
+      deviceName: 'KN-550BT',
+      isValid: true
+    },
+    {
+      deviceName: 'ABI',
+      isValid: true
+    },
+    {
+      deviceName: 'ABP100',
+      isValid: true
+    },
+    {
+      deviceName: 'AM3',
+      isValid: true
+    },
+    {
+      deviceName: 'AM3S',
+      isValid: true
+    },
+    {
+      deviceName: 'AM4',
+      isValid: true
+    },
+    {
+      deviceName: 'PO3',
+      isValid: true
+    },
+    {
+      deviceName: 'HS2',
+      isValid: true
+    },
+    {
+      deviceName: 'HS3',
+      isValid: true
+    },
+    {
+      deviceName: 'HS4',
+      isValid: true
+    },
+    {
+      deviceName: 'HS4S',
+      isValid: true
+    },
+    {
+      deviceName: 'HS5',
+      isValid: true
+    },
+    {
+      deviceName: 'HS5S',
+      isValid: true
+    },
+    {
+      deviceName: 'HS6',
+      isValid: true
+    },
+
+    {
+      deviceName: 'BG1',
+      isValid: true
+    },
+    {
+      deviceName: 'BG5',
+      isValid: true
+    },
+    {
+      deviceName: 'BG5S',
+      isValid: true
+    },
+    {
+      deviceName: 'ECG3',
+      isValid: true
+    }
+
+  ];
+
 
   constructor(private activatedRoute: ActivatedRoute, private appService: AppService,
               private userService: UserService, private router: Router,
@@ -62,6 +167,15 @@ export class DevelopmentAppModifyComponent implements DoCheck {
             this.expiredDate = datePipe.transform(this.appInfo.expireTime, 'yyyy/MM/dd');
 
             console.log('expiredDate = ' , this.expiredDate);
+
+            this.appInfo.devices.forEach((device) => {
+              this.deviceList.find((_device, i, arr) => {
+                if (_device.deviceName === device.deviceName) {
+                  _device.isValid = false;
+                  return true;
+                }
+              });
+            });
           }
 
         })
@@ -69,6 +183,7 @@ export class DevelopmentAppModifyComponent implements DoCheck {
           console.log(error);
         });
     });
+
 
   }
 
@@ -99,18 +214,35 @@ export class DevelopmentAppModifyComponent implements DoCheck {
   }
 
   addDevice() {
-    const device = new Device();
-    device.deviceName = "BP5";
-    device.totalNumber = 100;
 
-    this.appInfo.devices.push(device);
+    for (let i = 0; i < this.deviceList.length; i++) {
+      if (this.deviceList[i].isValid) {
+
+        this.deviceList[i].isValid = false;
+        const device = new Device();
+        device.deviceName = this.deviceList[i].deviceName;
+        device.totalNumber = 100;
+
+        this.appInfo.devices.push(device);
+
+        return;
+      }
+    }
   }
 
   deleteDevice(index: number) {
     if (this.appInfo.devices.length === 1) {
 
     } else {
-      this.appInfo.devices.splice(index, 1);
+
+      const device_delete = this.appInfo.devices.splice(index, 1);
+
+      this.deviceList.find((device, i, arr) => {
+        if (device.deviceName === device_delete[0].deviceName) {
+          device.isValid = true;
+          return true;
+        }
+      });
     }
 
   }
@@ -262,6 +394,30 @@ export class DevelopmentAppModifyComponent implements DoCheck {
 
 
   selectDevice(index: number, deviceName: string) {
+
+    jQuery('#exampleModal' + index).modal('hide');
+
+
+    // 当已选择设备后，重新选择设备，则将之前的设备置成可选状态。
+    if (this.appInfo.devices[index].deviceName) {
+
+      this.deviceList.find((device, i, arr) => {
+        if (device.deviceName === this.appInfo.devices[index].deviceName) {
+          device.isValid = true;
+          return true;
+        }
+      });
+
+    }
+
+    this.deviceList.find((device, i, arr) => {
+      if (device.deviceName === deviceName) {
+        device.isValid = false;
+        return true;
+      }
+    });
+
+
     this.appInfo.devices[index].deviceName = deviceName;
 
   }
