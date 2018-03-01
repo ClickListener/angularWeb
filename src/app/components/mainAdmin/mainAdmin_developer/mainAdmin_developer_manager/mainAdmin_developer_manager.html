@@ -12,8 +12,8 @@
 
     <div class="form-custom-content">
       <div *ngFor="let developer of developerList, let i = index">
-        <div class="item-2">
-          <p style=" margin: 0; margin-left: 1rem; margin-top: 0.5rem; color: #007afa; overflow: hidden"><b>{{developer.username}}</b></p>
+        <div class="item-2" style="overflow: hidden">
+          <p style=" margin: 0; margin-left: 1rem; margin-top: 0.5rem; color: #007afa;"><b>{{developer.username}}</b></p>
           <p style="margin: 0; margin-left: 1rem; ">{{developer.email}}</p>
         </div>
         <p class="item-1" style="line-height: 5rem; text-align: center">{{developer.type}}</p>
