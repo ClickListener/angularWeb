@@ -19,6 +19,9 @@ export class IOSComponent {
   title: string;
   item: string;
 
+  isBeta: boolean;
+  permissionOfBeta: boolean;
+
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private schemeService: SchemeService) {
 
 
@@ -37,31 +40,71 @@ export class IOSComponent {
         this.item = 'Layered App_IOS';
       }
 
-      const fileInfo = {
-        "userId": userService.user._id,
-        "token": userService.token.token,
-        "appName": this.param,
-        "platform": "ios"
-      };
+      if (userService.user.type === 3) {
+        const userInfo = {
+          "userId": userService.user._id,
+          "token": userService.token.token
+        };
 
-      schemeService.queryScheme(fileInfo)
-        .then(res => {
+        userService.getUserAuth(userInfo)
+          .then(res => {
+            console.log('res = ', res);
+            if (res.success) {
+              this.parsePermission(res.data);
+            }
+          })
+          .catch(error => {
+            console.log('error = ', error);
+          });
+      }
 
-          console.log(res);
-          if (res.success) {
-            this.schemeList = res.data;
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      this.getSchemeList(0);
 
     });
 
+  }
+
+  private parsePermission(permission: any) {
+
+    console.log('permission = ', permission);
+
+    permission.forEach((item, index) => {
+      if (item.resourceId === '5a6580ca5e149e1dfdf27962') {
+        this.permissionOfBeta = (item.action.indexOf('R') !== -1);
+        console.log('beta = ', this.permissionOfBeta);
+        return;
+      }
+
+    });
+  }
 
 
+  getSchemeList(type: number) {
 
+    if (type === 0) {
+      this.isBeta = false;
+    } else {
+      this.isBeta = true;
+    }
 
+    const fileInfo = {
+      "userId": this.userService.user._id,
+      "token": this.userService.token.token,
+      "appName": this.param,
+      "platform": "ios",
+      "beta": type
+    };
 
+    this.schemeService.queryScheme(fileInfo)
+      .then(res => {
+
+        console.log(res);
+        if (res.success) {
+          this.schemeList = res.data;
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 }

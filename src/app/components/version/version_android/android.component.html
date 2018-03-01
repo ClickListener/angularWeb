@@ -1,7 +1,15 @@
-<div style="margin-left: 5rem; margin-right: 5rem" *ngIf="schemeList && schemeList.length !== 0">
+<div style="margin-left: 5rem; margin-right: 5rem" >
 
   <p style="margin-top: 3rem;font-size: 2rem">{{title}}</p>
-  <div class="form-custom">
+
+  <div style="overflow: hidden; margin-bottom: 2rem" *ngIf="permissionOfBeta">
+    <div class="version">
+      <a [class]="isBeta? 'version-a': 'version-a-active'" (click)="getSchemeList(0)">Official</a>
+      <a [class]="isBeta? 'version-a-active': 'version-a'" (click)="getSchemeList(1)">Beta</a>
+    </div>
+  </div>
+
+  <div class="form-custom" *ngIf="schemeList && schemeList.length !== 0">
     <div class="form-custom-head">
       <p>ID</p>
       <p>Items</p>
