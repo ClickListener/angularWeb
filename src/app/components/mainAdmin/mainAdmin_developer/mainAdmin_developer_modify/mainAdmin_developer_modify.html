@@ -1,2 +1,14 @@
-<h1>mainAdmin developer modify</h1>
-<h1>ID: {{param}}</h1>
+
+
+<h1 style="margin-top: 3rem">Permission:</h1>
+
+<div>
+  <p style="display: inline-block">beta:</p>
+  <select name="beta" [(ngModel)]="beta">
+    <option value="true">true</option>
+    <option value="false">false</option>
+  </select>
+</div>
+
+
+<button style="display: block" class="btn btn-primary" (click)="updateBetaPermission()">Update</button>
