@@ -260,7 +260,7 @@
         </ul>
       </li>
 
-      <li class="class-li" *ngIf="user && user.type != '1'">
+      <li class="class-li" *ngIf="user && user.type != '1'&& user.companyId">
         <a routerLink="/last-version" routerLinkActive="active">
           <b style="font-size: 16px">SDK Download</b>
         </a>

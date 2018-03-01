@@ -48,16 +48,16 @@ export class SignUpComponent {
         console.log(res);
         this.buttonDisable = false;
         if (res['success']) {
-          this.router.navigate(['/confirm-hint']);
+          // this.router.navigate(['/confirm-hint']);
           swal({
             position: 'center',
             type: 'success',
-            titleText: 'Sign up success',
-            showConfirmButton: false,
-            timer: 2000,
-            padding: 0,
-            width: 300
-          }).catch(swal.noop);
+            text: 'Please check your email to confirm.',
+            showConfirmButton: true,
+            allowOutsideClick: false
+          }).then(() => {
+            this.router.navigate(['/sign-in']);
+          });
         }
 
       })
