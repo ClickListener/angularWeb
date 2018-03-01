@@ -18,7 +18,7 @@
           <input required="required" class="form-control" id="name" name="name" type="text" [(ngModel)]="nameValue"
                  #name="ngModel" pattern="^[a-zA-Z_]{1}\w{0,99}$">
           <label for="name">Name</label>
-          <span *ngIf="!name.pristine&&name.invalid" style="color: #ee2200">Please input name.</span>
+          <span *ngIf="!name.pristine&&name.invalid" style="color: #ee2200">Please input name begin with a letter or an underscore.</span>
 
         </div>
         <div class="md-form">
@@ -50,8 +50,10 @@
 
         <div style="font-size: 15px">
           <input required type="checkbox" #agree="ngModel" [(ngModel)]="agreeValue" id="agree" name="agree">
-          <p style="display: inline">By creating an account your agree to our </p>
-          <a href="#">Terms & polices</a>
+          <p style="display: inline">I accept the </p>
+          <a href="https://es.ihealthlabs.com/about-us/terms-and-conditions/">Terms</a>
+          <p style="display: inline">&</p>
+          <a href="https://es.ihealthlabs.com/about-us/privacy-policy/">Policies</a>
 
         </div>
 
