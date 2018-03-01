@@ -17,11 +17,15 @@
           <p style="margin: 0; margin-left: 1rem; ">{{developer.email}}</p>
         </div>
         <p class="item-1" style="line-height: 5rem; text-align: center">{{developer.type}}</p>
-        <select class="item-1" style="line-height: 5rem; text-align: center" [name]="'beta' + i"
-                [(ngModel)]="developer.beta" *ngIf="developer.type === 3">
-          <option value=true>true</option>
-          <option value=false>false</option>
-        </select>
+
+        <div class="item-1" style="line-height: 5rem; text-align: center" *ngIf="developer.type === 3">
+          <select   [name]="'beta' + i"
+                  [(ngModel)]="developer.beta" *ngIf="developer.type === 3">
+            <option value=true>true</option>
+            <option value=false>false</option>
+          </select>
+        </div>
+
         <div class="item-1" style="line-height: 5rem; text-align: center" *ngIf="developer.type !== 3">
           ---
         </div>
