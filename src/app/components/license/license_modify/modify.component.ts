@@ -78,7 +78,7 @@ export class ModifyComponent implements OnInit, OnDestroy {
 
     for (const device of this.license.devices) {
       for (const device_module of this.devices) {
-        if (device.deviceName === device_module.deviceName) {
+        if (device.model === device_module.deviceName) {
           device_module.selected = false;
           device_module.out_selected = true;
         }
@@ -174,7 +174,7 @@ export class ModifyComponent implements OnInit, OnDestroy {
         device.out_selected = true;
         device.selected = false;
         const selectedDevice = {
-          deviceName: device.deviceName,
+          model: device.deviceName,
           totalNumber: this.deviceNumber,
           deviceUsedNumber: 0
         };
@@ -195,7 +195,7 @@ export class ModifyComponent implements OnInit, OnDestroy {
     console.log('deleteDevice = ' + JSON.stringify(deleteDevice));
 
     for (const device of this.devices) {
-      if (device.deviceName === deleteDevice[0].deviceName) {
+      if (device.deviceName === deleteDevice[0].model) {
         console.log('delete success');
         // 删除某一设备，将device的外部选择状态置为FALSE
         device.out_selected = false;

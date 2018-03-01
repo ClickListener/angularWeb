@@ -44,6 +44,10 @@
   border-bottom-color: transparent;
 }
 
-.nav-tabs > li > a:hover {
+.nav-tabs > li > a:not (focus) :hover {
   background-color: #bbbbbb;
+}
+
+.nav-tabs > li > a.active:hover {
+  cursor: default;
 }
