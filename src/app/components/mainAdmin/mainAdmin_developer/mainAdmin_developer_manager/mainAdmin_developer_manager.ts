@@ -74,6 +74,7 @@ export class MainAdminDeveloperManagerComponent {
   private parsePermission(permission: any, developer: any) {
 
     console.log('permission = ', permission);
+    developer.beta = false;
 
     permission.forEach((item, index) => {
       if (item.resourceId === '5a6580ca5e149e1dfdf27962') {
