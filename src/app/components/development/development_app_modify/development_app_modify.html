@@ -335,7 +335,11 @@
           <div class="custom-item1">
 
 
-            <input class="selectDevice-number" [name]="'devicetotalNumber' + i" [(ngModel)]="deviceSelected.totalNumber" type="number">
+            <!--<input class="selectDevice-number" [name]="'devicetotalNumber' + i" [(ngModel)]="deviceSelected.totalNumber" type="number">-->
+
+            <select [name]="'devicetotalNumber' + i" [(ngModel)]="deviceSelected.totalNumber">
+              <option *ngFor="let deviceNumber of deviceNumberList">{{deviceNumber}}</option>
+            </select>
           </div>
           <a class="custom-item4" (click)="deleteDevice(i)"><img src="../../../../assets/images/delete.png"></a>
         </div>
