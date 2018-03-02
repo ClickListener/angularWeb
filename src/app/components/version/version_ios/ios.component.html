@@ -1,4 +1,4 @@
-<div style="margin-left: 5rem; margin-right: 5rem">
+<div style="margin-left: 5rem; margin-right: 5rem" *ngIf="schemeList && schemeList.length !== 0">
 
 
 
@@ -35,3 +35,6 @@
   </div>
 </div>
 
+<div style="margin-left: 5rem; margin-right: 5rem" *ngIf="schemeList && schemeList.length === 0">
+  <p style="margin-top: 5rem; font-size: 1.5rem; color: #999999">There aren't any Schemes.</p>
+</div>
