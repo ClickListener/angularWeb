@@ -26,7 +26,7 @@ export class DevelopmentAppManagerComponent {
   create_App: boolean;
   edit_App: boolean;
   delete_App: boolean;
-  checkLicenseData: boolean;
+  checkLicenseData= true;
 
   user: any;
   token: any;
@@ -42,40 +42,6 @@ export class DevelopmentAppManagerComponent {
     this.token = userService.token.token;
 
 
-    userService.getUserInfo(userInfo)
-      .then(async res => {
-
-        if (res.success) {
-          const appInfo = {
-            "userId": res.user._id,
-            "token": userService.token.token,
-            "companyId": res.user.companyId
-          };
-
-          const response = await appService.findAllAppInfo(appInfo);
-
-          if (response.success) {
-            this.appList = response.data;
-          }
-
-          // 获得公司信息
-          const queryCompanyInfo = {
-            "userId": res.user._id,
-            "token": userService.token.token,
-            "cid": res.user.companyId
-          };
-          const companyResponse = await companyService.findCompany(queryCompanyInfo);
-
-          if (companyResponse.success) {
-            this.companyInfo = companyResponse.data;
-          }
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-
-
     // 获得用户权限，根据用户权限显示页面
     if (userService.user.type === 4) {
       userService.getUserAuth(userInfo)
@@ -83,6 +49,10 @@ export class DevelopmentAppManagerComponent {
           console.log('res = ', res);
           if (res.success) {
             this.parsePermission(res.data);
+
+            if (this.checkLicenseData) {
+              this.getAppList();
+            }
           }
         })
         .catch(error => {
@@ -93,7 +63,51 @@ export class DevelopmentAppManagerComponent {
       this.edit_App = true;
       this.delete_App = true;
       this.checkLicenseData = true;
-    }}
+
+      this.getAppList();
+    }
+
+
+  }
+
+  private getAppList() {
+    const userInfo = {
+      "userId": this.userService.user._id,
+      "token": this.userService.token.token
+    };
+    this.userService.getUserInfo(userInfo)
+      .then(async response => {
+
+        if (response.success) {
+          const appInfo = {
+            "userId": response.user._id,
+            "token": this.userService.token.token,
+            "companyId": response.user.companyId
+          };
+
+          const _response = await this.appService.findAllAppInfo(appInfo);
+
+          if (_response.success) {
+            this.appList = _response.data;
+          }
+
+          // 获得公司信息
+          const queryCompanyInfo = {
+            "userId": response.user._id,
+            "token": this.userService.token.token,
+            "cid": response.user.companyId
+          };
+          const companyResponse = await this.companyService.findCompany(queryCompanyInfo);
+
+          if (companyResponse.success) {
+            this.companyInfo = companyResponse.data;
+          }
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
 
 
