@@ -43,7 +43,7 @@
         <div class="md-form">
           <input required class="form-control" id="confirmPassword" name="confirmPassword" type="password" [(ngModel)]="confirmPasswordValue"
                  #confirmPassword="ngModel" [equalTo]="password">
-          <label for="confirmPassword">Retype Password</label>
+          <label for="confirmPassword">Retype password</label>
 
           <span *ngIf="!confirmPassword.pristine && confirmPassword.invalid" style="color: #ee2200">Retype password must equal with password.</span>
         </div>
