@@ -53,7 +53,7 @@ export class DevelopmentAppModifyComponent implements DoCheck {
     },
     {
       model: 'BP5',
-      isValid: false
+      isValid: true
     },
     {
       model: 'BP7',
@@ -399,7 +399,7 @@ export class DevelopmentAppModifyComponent implements DoCheck {
 
 
     // 当已选择设备后，重新选择设备，则将之前的设备置成可选状态。
-    if (this.appInfo.devices[index].deviceName) {
+    if (this.appInfo.devices[index].model) {
 
       this.deviceList.find((device, i, arr) => {
         if (device.model === this.appInfo.devices[index].model) {
