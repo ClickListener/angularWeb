@@ -18,7 +18,7 @@
           <input required="required" class="form-control" id="name" name="name" type="text" [(ngModel)]="nameValue"
                  #name="ngModel" pattern="^[a-zA-Z_]{1}\w{0,99}$">
           <label for="name">Name</label>
-          <span *ngIf="!name.pristine&&name.invalid" style="color: #ee2200">Please input name begin with a letter or an underscore.</span>
+          <span *ngIf="!name.pristine&&name.invalid" style="color: #ee2200">Please input name that begin with a letter or an underscore.</span>
 
         </div>
         <div class="md-form">
@@ -35,7 +35,7 @@
           <label for="password">Password</label>
 
           <span *ngIf="!password.pristine&&password.invalid" style="color: #ee2200">
-            Please input valid password: at least contain a upper letter, a lower letter, a number and a special character.
+            Please input 6-16 password: at least contain a upper letter, a lower letter, a number and a special character.
           </span>
 
         </div>
