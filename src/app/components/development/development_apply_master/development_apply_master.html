@@ -21,7 +21,7 @@
     <input style="display: block" id="id_corporate" name="id_corporate" type="text" [(ngModel)]="companyName"
            #corporate="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s]{1,100}$" required>
 
-    <p *ngIf="!corporate.pristine&&corporate.invalid" style="color: #ee2200">Please input valid corporate.</p>
+    <p *ngIf="!corporate.pristine&&corporate.invalid" style="color: #ee2200">Please input valid corporate no more than 100 characters.</p>
   </div>
 
   <div class="input-block">
