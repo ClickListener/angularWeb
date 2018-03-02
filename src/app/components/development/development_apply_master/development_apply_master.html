@@ -30,7 +30,7 @@
     <input style="display: block" id="id_address" name="id_address" type="text" [(ngModel)]="address"
            #addressValid="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s]{1,100}$" required>
 
-    <p *ngIf="!addressValid.pristine&&addressValid.invalid" style="color: #ee2200">Please input valid address.</p>
+    <p *ngIf="!addressValid.pristine&&addressValid.invalid" style="color: #ee2200">Please input valid address with 1-100 characters.</p>
   </div>
 
 
