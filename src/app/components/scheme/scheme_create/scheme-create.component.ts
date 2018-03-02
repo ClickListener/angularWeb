@@ -54,7 +54,7 @@ export class SchemeCreateComponent {
     });
 
 
-    this.fileSelectList.push(1);
+    this.fileSelectList.push(0);
 
   }
 
@@ -179,16 +179,22 @@ export class SchemeCreateComponent {
   }
 
 
-  addFile() {
+  addFile(index: number) {
 
-    this.fileSelectList.push(1);
+    const last = this.fileSelectList[this.fileSelectList.length-1];
+
+    this.fileSelectList.push(last + 1);
   }
 
   deleteFile(index: number) {
+
     if (this.fileSelectList.length === 1) {
 
     } else {
+      jQuery('#file' + this.fileSelectList[index]).remove();
       this.fileSelectList.splice(index, 1);
+
+
     }
 
   }

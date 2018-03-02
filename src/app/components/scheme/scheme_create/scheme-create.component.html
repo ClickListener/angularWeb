@@ -43,7 +43,7 @@
 
 
       <div id="inputView">
-        <div *ngFor="let file of fileSelectList, let i = index">
+        <div *ngFor="let file of fileSelectList, let i = index" [id]="'file' + fileSelectList[i]">
           <input type="file" name="thumbnail"/>
           <a class="add" (click)="addFile()"><i class="fa fa-plus"></i></a>
           <a class="delete" (click)="deleteFile(i)"><i class="fa fa-minus"></i></a>
