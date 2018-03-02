@@ -5,22 +5,27 @@
   <div class="form-custom" *ngIf="companyList && companyList.length !== 0">
     <div class="form-custom-head">
       <p class="item-2">CompanyName</p>
+      <p class="item-2">mDeveloper</p>
       <p class="item-1">Country</p>
       <p class="item-1">Origin</p>
       <p class="item-1">state</p>
-      <p class="item-2" >Operation</p>
+      <p class="item-1">Operation</p>
     </div>
 
     <div class="form-custom-content">
       <div *ngFor="let company of companyList">
 
         <p class="item-2" style="line-height: 5rem; text-align: center; overflow: hidden">{{company.companyName}}</p>
+        <div class="item-2" style="overflow: hidden" *ngIf="company.mDeveloper">
+          <p style=" margin: 0; margin-left: 1rem; margin-top: 0.5rem; color: #007afa;"><b>{{company.mDeveloper.username}}</b></p>
+          <p style="margin: 0; margin-left: 1rem; ">{{company.mDeveloper.email}}</p>
+        </div>
         <p class="item-1" style="line-height: 5rem; text-align: center">{{company.country}}</p>
         <p class="item-1" style="line-height: 5rem; text-align: center">{{company.orgin}}</p>
         <p class="item-1" style="line-height: 5rem; text-align: center">{{company.state}}</p>
 
 
-        <div class="item-2" style="line-height: 5rem; text-align: center">
+        <div class="item-1" style="line-height: 5rem; text-align: center">
           <a [routerLink]="['/company-modify',company._id]"><img src="../../../../assets/images/edit.png"></a>
         </div>
 

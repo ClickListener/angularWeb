@@ -23,11 +23,33 @@ export class MainAdminCompanyManagerComponent {
     };
 
     companyService.getCompanyList(userInfo)
-      .then(res => {
+      .then( res => {
         console.log(res);
 
         if (res.success) {
           this.companyList = res.data;
+
+          this.companyList.forEach((company) => {
+            const user_Info = {
+              "userId": userService.user._id,
+              "token": userService.token.token,
+              "uid": company.mDeveloperId
+            };
+
+            userService.getUserInfo(user_Info)
+              .then(response => {
+                const mDeveloper = {
+                  "email": response.user.email,
+                  "username": response.user.username
+                };
+
+                company.mDeveloper = mDeveloper;
+                console.log( this.companyList);
+              })
+              .catch(error => {
+                console.log(error);
+              });
+          });
         }
 
       })
