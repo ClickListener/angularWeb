@@ -26,15 +26,15 @@ export class SchemeModifyComponent {
   selectedScheme: any;
 
 
-  CN = true;
-  AS = true;
-  NA = true;
-  LA = true;
-  OA = true;
-  ME = true;
-  AF = true;
-  EU = true;
-  RU = true;
+  CN = false;
+  AS = false;
+  NA = false;
+  LA = false;
+  OA = false;
+  ME = false;
+  AF = false;
+  EU = false;
+  RU = false;
 
   fileSelectList = [];
 
@@ -54,6 +54,38 @@ export class SchemeModifyComponent {
       .then(res => {
         if (res.success) {
           this.selectedScheme = res.data;
+
+          this.selectedScheme.openRegion.forEach( region => {
+            switch (region) {
+              case 'CN':
+                this.CN = true;
+                break;
+              case 'AS':
+                this.AS = true;
+                break;
+              case 'NA':
+                this.NA = true;
+                break;
+              case 'LA':
+                this.LA = true;
+                break;
+              case 'OA':
+                this.OA = true;
+                break;
+              case 'ME':
+                this.ME = true;
+                break;
+              case 'AF':
+                this.AF = true;
+                break;
+              case 'EU':
+                this.EU = true;
+                break;
+              case 'RU':
+                this.RU = true;
+                break;
+            }
+          });
         }
       })
       .catch(error => {
