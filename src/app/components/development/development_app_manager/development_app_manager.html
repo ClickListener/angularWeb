@@ -4,6 +4,11 @@
     <a class="btn btn-primary" routerLink="/development-app-reg" routerLinkActive="active">Registered App</a>
   </div>
 
+
+  <div style="height: 3rem" *ngIf="!companyInfo || companyInfo.state != '3' || !create_App">
+
+  </div>
+
   <div class="card" *ngIf="appList && appList.length !== 0 && companyInfo && checkLicenseData">
 
     <div class="card-body">
@@ -50,7 +55,7 @@
                           <p class="item-1 custom-center-p">Use No.</p>
                         </div>
                         <div class="device-detail-form-head" style="border-top: 1px solid #e9ecef;" *ngFor="let device of app.devices">
-                          <div class="item-2 custom-center-p" style="margin-right: 15%;">
+                          <div class="item-2" style="margin: 0 0 0 10%; line-height: 3rem; text-align: left;">
                             <img src="../../../../assets/images/device_{{device.model | lowercase}}.png" style="width: 3rem; height: 3rem">
                             <p style="display: inline-block">{{device.model}}</p>
                           </div>
