@@ -115,10 +115,11 @@ export class DevelopmentAddMemberComponent {
     this.companyService.inviteUserToGroup(userInfo)
       .then(async res => {
 
+        this.buttonDisable = false;
+
         if (res.success) {
           const response = await this.userService.addUserAuth(permissionInfo);
 
-          this.buttonDisable = false;
           if (response.success) {
             this.router.navigate(['/development-main/development-group']);
           }
