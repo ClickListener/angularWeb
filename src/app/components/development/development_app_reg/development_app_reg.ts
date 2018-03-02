@@ -27,10 +27,10 @@ export class DevelopmentAppRegComponent implements OnInit {
 
 
   deviceNumberList = [
-    100,
-    200,
-    500,
-    1000
+    5,
+    10,
+    20,
+    100
   ];
 
   appName: string;

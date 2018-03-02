@@ -30,10 +30,10 @@ export class DevelopmentAppModifyComponent implements DoCheck {
   buttonDisable = false;  // 提交按钮状态
 
   deviceNumberList = [
-    100,
-    200,
-    500,
-    1000
+    5,
+    10,
+    20,
+    100
   ];
 
   expiredDate: string;
