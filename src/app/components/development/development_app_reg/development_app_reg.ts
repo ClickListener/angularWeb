@@ -179,7 +179,7 @@ export class DevelopmentAppRegComponent implements OnInit {
       selectMonths: true,
       selectYears: true,
       min: +1,
-      max: [2019, 0, 1],
+      max: [2099, 0, 1],
       formatSubmit: 'yyyy/mm/dd',
       onSet: context =>  {
 
