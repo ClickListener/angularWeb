@@ -24,7 +24,7 @@
         <div class="md-form">
           <input required="required" class="form-control" id="email" name="email" type="text" [(ngModel)]="emailValue"
                  #email="ngModel" pattern="^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$">
-          <label for="email">Email address</label>
+          <label for="email">Email</label>
           <span *ngIf="!email.pristine&&email.invalid" style="color: #ee2200">Please input valid email.</span>
 
         </div>
