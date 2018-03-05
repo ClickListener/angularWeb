@@ -19,7 +19,7 @@
   <div class="input-block">
     <label for="id_name">App Name</label>
     <input name="id_name" id="id_name" type="text" [(ngModel)]="appInfo.appName"
-           #appNameValid="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s]{1,100}$" required>
+           #appNameValid="ngModel" pattern="^[a-zA-Z_]{1}(?:(?=.*\s*))[\w\s]{0,99}$" required>
 
     <p *ngIf="!appNameValid.pristine&&appNameValid.invalid" style="color: #ee2200">Please input valid App name.</p>
   </div>
