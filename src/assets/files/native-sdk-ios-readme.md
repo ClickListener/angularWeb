@@ -42,7 +42,7 @@
 ### Support Update iHealth Device for iOS
 
 ```javascript
-    AM3 AM3S AM4 HS4 HS4S BP5S ABPM HS2 BG5S
+    AM3 AM3S AM4 HS4 HS4S ABPM HS2 BG5S
 ```
 
 ### Relevant files and frameworks
