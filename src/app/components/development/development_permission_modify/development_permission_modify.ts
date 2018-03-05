@@ -4,6 +4,7 @@
 import {Component} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../../services/user.service";
+import {Location} from "@angular/common";
 
 @Component({
   templateUrl: './development_permission_modify.html',
@@ -24,7 +25,8 @@ export class DevelopmentPermissionModifyComponent {
 
   sdkDownload: boolean;
 
-  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService,
+              private router: Router, private _location: Location) {
 
     activatedRoute.paramMap.subscribe(paramMap => {
       this.userId = paramMap['params'].param;
@@ -66,6 +68,11 @@ export class DevelopmentPermissionModifyComponent {
       });
 
 
+  }
+
+  // 使用Location Service 实现后退功能
+  cancel() {
+    this._location.back();
   }
 
 
