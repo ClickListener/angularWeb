@@ -7,7 +7,7 @@
       </div>
 
 
-      <p class="text-center header-state">Sign in to your Developer account</p>
+      <p class="text-center header-state">Create developer account</p>
 
       <form class="simple_form form-signIn" novalidate="novalidate" id="new_user"
             accept-charset="UTF-8" (submit)="signUp()" #myForm="ngForm">
@@ -58,7 +58,7 @@
         </div>
 
         <div style="margin-top: 20px">
-          <button type="submit" class="btn btn-primary btn-block" [disabled]="!myForm.form.valid || buttonDisable">Sign Up</button>
+          <button type="submit" class="btn btn-primary btn-block" [disabled]="!myForm.form.valid || buttonDisable">Create Account</button>
         </div>
 
 
@@ -68,7 +68,7 @@
       <div class="text-center" style="margin-bottom: 30px; margin-top: 10px; font-size: 15px">
 
         <a>Already have an account?</a>
-        <a routerLink="/sign-in">Sign in</a>
+        <a routerLink="/sign-in">Sign In</a>
 
       </div>
 
