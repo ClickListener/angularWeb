@@ -28,14 +28,70 @@ export class UserService {
 
   constructor(private http: HttpClient, private _cookieService: CookieService, private router: Router) {
     console.log('UserService--------constructor');
-    this.user = JSON.parse(sessionStorage.getItem('user'));
-    this.token = JSON.parse(sessionStorage.getItem('token'));
+    // this.user = JSON.parse(sessionStorage.getItem('user'));
+    // this.token = JSON.parse(sessionStorage.getItem('token'));
+
+    console.log('cookie-user = ', this._cookieService.get('user'));
+    console.log('cookie-token = ', this._cookieService.get('token'));
+
+    if (this._cookieService.get('user') && this._cookieService.get('token')) {
+      this.user = JSON.parse(this._cookieService.get('user'));
+      this.token = JSON.parse(this._cookieService.get('token'));
+    }
+
     console.log('UserService--------user = ' + this.user);
 
-    // _cookieService.put('name', 'nanme', {
-    //   expires: new Date(2017, 11 , 5)
-    // });
-    console.log('name = ' + _cookieService.get('name'));
+
+    // 判断标签页是否激活
+    const hiddenProperty = 'hidden' in document ? 'hidden' :
+      'webkitHidden' in document ? 'webkitHidden' :
+        'mozHidden' in document ? 'mozHidden' :
+          null;
+    const visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+    const onVisibilityChange = () => {
+      if (!document[hiddenProperty]) {
+
+        console.log('页面激活');
+
+        // 当本地用户不存在，但是cookie中有User时
+        if (!this.user && this._cookieService.get('user')) {
+          swal({
+            position: 'center',
+            type: 'info',
+            titleText: 'You signed in with another tab.',
+            allowOutsideClick: false
+          })
+            .then(() => {
+              this.user = JSON.parse(this._cookieService.get('user'));
+              this.token = JSON.parse(this._cookieService.get('token'));
+              this.router.navigate(['/']);
+            })
+            .catch(swal.noop);
+
+
+        }
+
+        // 当本地用户存在，但是cookie中没有用户时（其他页面登出，或者登录超时）
+        if (this.user && !this._cookieService.get('user')) {
+
+          swal({
+            position: 'center',
+            type: 'error',
+            titleText: 'You signed in timeout or signed out in another tab.',
+            allowOutsideClick: false
+            })
+            .then(() => {
+              this.signOut();
+            })
+            .catch(swal.noop);
+        }
+
+      } else {
+        console.log('页面非激活');
+      }
+    };
+    document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+
   }
 
   user: any;
@@ -43,6 +99,7 @@ export class UserService {
   token: Token;
 
   resourceList = [];
+
 
   private options = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -72,7 +129,7 @@ export class UserService {
       }),
       params: userInfo
     }).toPromise()
-      .then(res => {
+      .then(async res => {
 
         if (res['success']) {
           // 如果获得不是登录的用户信息，则不存
@@ -82,7 +139,41 @@ export class UserService {
 
           }
         } else {
-          this.hintError(res);
+          if (res['code'] === '1034') {
+            const response = await this.refreshToken();
+            if (response['success']) {
+              let userInfo_new;
+              if (userInfo.uid) {
+                userInfo_new = {
+                  "userId": this.user,
+                  "token": response.token,
+                  "uid": userInfo.uid
+                };
+              } else {
+                userInfo_new = {
+                  "userId": this.user,
+                  "token": response.token,
+                  "uid": userInfo.uid
+                };
+              }
+
+              const appResponse = await this.getUserInfo(userInfo_new);
+
+              if (appResponse['success']) {
+
+              } else {
+                this.hintError(appResponse);
+              }
+              return appResponse;
+
+            } else {
+              this.hintError(response);
+            }
+
+          } else {
+            this.hintError(res);
+          }
+
         }
 
         console.log('user = ' + JSON.stringify(this.user));
@@ -157,13 +248,47 @@ export class UserService {
       }),
       params: userInfo
     }).toPromise()
-      .then(res => {
+      .then(async res => {
         console.log(res);
 
         if (res['success']) {
 
         } else {
-          this.hintError(res);
+
+          if (res['code'] === '1034') {
+            const response = await this.refreshToken();
+            if (response['success']) {
+              let userInfo_new;
+              if (userInfo.uid) {
+                userInfo_new = {
+                  "userId": this.user,
+                  "token": response.token,
+                  "uid": userInfo.uid
+                };
+              } else {
+                userInfo_new = {
+                  "userId": this.user,
+                  "token": response.token,
+                  "uid": userInfo.uid
+                };
+              }
+
+              const appResponse = await this.getUserAuth(userInfo_new);
+
+              if (appResponse['success']) {
+
+              } else {
+                this.hintError(appResponse);
+              }
+              return appResponse;
+
+            } else {
+              this.hintError(response);
+            }
+
+          } else {
+            this.hintError(res);
+          }
         }
         return res;
       })
@@ -188,12 +313,34 @@ export class UserService {
         'Accept': 'application/json'
       })
     }).toPromise()
-      .then(res => {
+      .then(async res => {
         console.log(res);
         if (res['success']) {
 
         } else {
-          this.hintError(res);
+
+          if (res['code'] === '1034') {
+            const response = await this.refreshToken();
+            if (response['success']) {
+
+              perssionInfo.token = response.token;
+
+              const appResponse = await this.addUserAuth(perssionInfo);
+
+              if (appResponse['success']) {
+
+              } else {
+                this.hintError(appResponse);
+              }
+              return appResponse;
+
+            } else {
+              this.hintError(response);
+            }
+
+          } else {
+            this.hintError(res);
+          }
         }
         return res;
       })
@@ -243,12 +390,34 @@ export class UserService {
       }),
       params: queryInfo
     }).toPromise()
-      .then(res => {
+      .then(async res => {
         console.log(res);
         if (res['success']) {
 
         } else {
-          this.hintError(res);
+          if (res['code'] === '1034') {
+            const response = await this.refreshToken();
+            if (response['success']) {
+
+              queryInfo.token = response.token;
+
+              const appResponse = await this.getUserList(queryInfo);
+
+              if (appResponse['success']) {
+
+              } else {
+                this.hintError(appResponse);
+              }
+              return appResponse;
+
+            } else {
+              this.hintError(response);
+            }
+
+          } else {
+            this.hintError(res);
+          }
+
         }
         return res;
       })
@@ -351,9 +520,11 @@ export class UserService {
   signOut() {
 
     console.log("signOut()");
+    //
+    // sessionStorage.removeItem('user');
+    // sessionStorage.removeItem('token');
 
-    sessionStorage.removeItem('user');
-    sessionStorage.removeItem('token');
+    this._cookieService.removeAll();
 
     this.token = null;
     this.user = null;
@@ -399,8 +570,16 @@ export class UserService {
 
         if (res['success']) {
           this.token = res as Token;
-          sessionStorage.setItem('token', JSON.stringify(this.token));
-          sessionStorage.setItem('user', JSON.stringify(this.user));
+          // sessionStorage.setItem('token', JSON.stringify(this.token));
+          // sessionStorage.setItem('user', JSON.stringify(this.user));
+
+          const expires = new Date().getTime() + 24 * 60 * 60 * 1000;
+          this._cookieService.put('user', JSON.stringify(this.user), {
+            expires: new Date(expires)
+          });
+          this._cookieService.put('token', JSON.stringify(this.token), {
+            expires: new Date(expires)
+          });
         } else {
           this.hintError(res);
         }
@@ -428,6 +607,15 @@ export class UserService {
       .toPromise()
       .then(res => {
         this.token = res as Token;
+
+
+        const expires = new Date().getTime() + 24 * 60 * 60 * 1000;
+        this._cookieService.put('user', JSON.stringify(this.user), {
+          expires: new Date(expires)
+        });
+        this._cookieService.put('token', JSON.stringify(this.token), {
+          expires: new Date(expires)
+        });
 
         console.log(this.token);
         return res;

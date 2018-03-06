@@ -6,6 +6,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 import * as myGlobals from '../../environments/config';
 import {ErrorService} from "./error.service";
+import {UserService} from "./user.service";
 
 @Injectable()
 export class SchemeService {
@@ -17,7 +18,7 @@ export class SchemeService {
 
   url = myGlobals.url;
 
-  constructor(private http: HttpClient, private errorService: ErrorService) {
+  constructor(private http: HttpClient, private errorService: ErrorService, private userService: UserService) {
   }
 
   get schemeID(): string {
@@ -50,12 +51,33 @@ export class SchemeService {
       params: fileInfo
     })
       .toPromise()
-      .then(res => {
+      .then(async res => {
         console.log(res);
         if (res['success']) {
 
         } else {
-          this.errorService.hintError(res);
+
+          if (res['code'] === '1034') {
+            const response = await this.userService.refreshToken();
+            if (response['success']) {
+
+              fileInfo.token = response.token;
+              const appResponse = await this.queryScheme(fileInfo);
+
+              if (appResponse['success']) {
+
+              } else {
+                this.errorService.hintError(appResponse);
+              }
+              return appResponse;
+
+            } else {
+              this.errorService.hintError(response);
+            }
+
+          } else {
+            this.errorService.hintError(res);
+          }
         }
         return res;
       })
@@ -84,12 +106,33 @@ export class SchemeService {
       }),
       params: fileInfo
     }).toPromise()
-      .then(res => {
+      .then(async res => {
         console.log(res);
         if (res['success']) {
 
         } else {
-          this.errorService.hintError(res);
+
+          if (res['code'] === '1034') {
+            const response = await this.userService.refreshToken();
+            if (response['success']) {
+
+              fileInfo.token = response.token;
+              const appResponse = await this.findFileInfo(fileInfo);
+
+              if (appResponse['success']) {
+
+              } else {
+                this.errorService.hintError(appResponse);
+              }
+              return appResponse;
+
+            } else {
+              this.errorService.hintError(response);
+            }
+
+          } else {
+            this.errorService.hintError(res);
+          }
         }
         return res;
       })
@@ -119,12 +162,33 @@ export class SchemeService {
       }),
       params: schemeInfo
     }).toPromise()
-      .then(res => {
+      .then(async res => {
         console.log(res);
         if (res['success']) {
 
         } else {
-          this.errorService.hintError(res);
+
+          if (res['code'] === '1034') {
+            const response = await this.userService.refreshToken();
+            if (response['success']) {
+
+              schemeInfo.token = response.token;
+              const appResponse = await this.deleteScheme(schemeInfo);
+
+              if (appResponse['success']) {
+
+              } else {
+                this.errorService.hintError(appResponse);
+              }
+              return appResponse;
+
+            } else {
+              this.errorService.hintError(response);
+            }
+
+          } else {
+            this.errorService.hintError(res);
+          }
         }
         return res;
       })
@@ -146,12 +210,33 @@ export class SchemeService {
         'Accept': 'application/json'
       })
     }).toPromise()
-      .then(res => {
+      .then(async res => {
         console.log(res);
         if (res['success']) {
 
         } else {
-          this.errorService.hintError(res);
+
+          if (res['code'] === '1034') {
+            const response = await this.userService.refreshToken();
+            if (response['success']) {
+
+              body.token = response.token;
+              const appResponse = await this.deleteFile(body);
+
+              if (appResponse['success']) {
+
+              } else {
+                this.errorService.hintError(appResponse);
+              }
+              return appResponse;
+
+            } else {
+              this.errorService.hintError(response);
+            }
+
+          } else {
+            this.errorService.hintError(res);
+          }
         }
         return res;
       })

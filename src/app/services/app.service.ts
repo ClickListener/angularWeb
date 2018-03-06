@@ -7,6 +7,7 @@ import {promise} from "selenium-webdriver";
 
 import * as myGlobals from '../../environments/config';
 import {ErrorService} from "./error.service";
+import {UserService} from "./user.service";
 
 @Injectable()
 export class AppService {
@@ -15,7 +16,8 @@ export class AppService {
   url = myGlobals.url;
 
 
-  constructor(private http: HttpClient, private errorService: ErrorService) {
+  constructor(private http: HttpClient, private errorService: ErrorService,
+              private userService: UserService) {
   }
 
   private static handleError(error: any): Promise<any> {
@@ -41,12 +43,35 @@ export class AppService {
       }),
       params: appInfo
     }).toPromise()
-      .then(res => {
+      .then(async res => {
         console.log(res);
         if (res['success']) {
 
         } else {
-          this.errorService.hintError(res);
+          if (res['code'] === '1034') {
+            const response = await this.userService.refreshToken();
+            if (response['success']) {
+              const appInfo_new = {
+                "userId": appInfo.userId,
+                "token": response.token,
+                "appId": appInfo.appId
+              };
+              const appResponse = await this.findUerApp(appInfo_new);
+
+              if (appResponse['success']) {
+
+              } else {
+                this.errorService.hintError(appResponse);
+              }
+              return appResponse;
+
+            } else {
+              this.errorService.hintError(response);
+            }
+
+          } else {
+            this.errorService.hintError(res);
+          }
         }
         return res;
       })
@@ -74,12 +99,36 @@ export class AppService {
         'token': appInfo.token
       }
     }).toPromise()
-      .then(res => {
+      .then(async res => {
         console.log(res);
         if (res['success']) {
 
         } else {
-          this.errorService.hintError(res);
+
+          if (res['code'] === '1034') {
+            const response = await this.userService.refreshToken();
+            if (response['success']) {
+              const appInfo_new = {
+                "userId": appInfo.userId,
+                "token": response.token,
+                "appId": appInfo.appId
+              };
+              const appResponse = await this.deleteUserApp(appInfo_new);
+
+              if (appResponse['success']) {
+
+              } else {
+                this.errorService.hintError(appResponse);
+              }
+              return appResponse;
+
+            } else {
+              this.errorService.hintError(response);
+            }
+
+          } else {
+            this.errorService.hintError(res);
+          }
         }
         return res;
       })
@@ -103,12 +152,38 @@ export class AppService {
         'token': appInfo.token
       }
     }).toPromise()
-      .then(res => {
+      .then(async res => {
         console.log(res);
         if (res['success']) {
 
         } else {
-          this.errorService.hintError(res);
+
+          if (res['code'] === '1034') {
+            const response = await this.userService.refreshToken();
+            if (response['success']) {
+
+              const appInfo_new = {
+                "userId": appInfo.userId,
+                "token": response.token,
+                "companyId": appInfo.companyId
+              };
+              const appResponse = await this.findAllAppInfo(appInfo_new);
+
+              if (appResponse['success']) {
+
+              } else {
+                this.errorService.hintError(appResponse);
+              }
+              return appResponse;
+
+            } else {
+              this.errorService.hintError(response);
+            }
+
+          } else {
+            this.errorService.hintError(res);
+          }
+
         }
         return res;
       })

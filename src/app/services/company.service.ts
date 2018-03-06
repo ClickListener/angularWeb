@@ -7,6 +7,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import * as myGlobals from '../../environments/config';
 import {ErrorService} from "./error.service";
 import {toPromise} from "rxjs/operator/toPromise";
+import {UserService} from "./user.service";
 
 @Injectable()
 export class CompanyService {
@@ -15,7 +16,7 @@ export class CompanyService {
 
   url = myGlobals.url;
 
-  constructor(private http: HttpClient, private errorService: ErrorService) {}
+  constructor(private http: HttpClient, private errorService: ErrorService, private userService: UserService) {}
 
   private static handleError(error: any): Promise<any> {
     console.log('An error occurred', JSON.stringify(error)); // for demo purposes only
@@ -60,12 +61,33 @@ export class CompanyService {
         'Accept': 'application/json'
       })
     }).toPromise()
-      .then(res => {
+      .then(async res => {
         console.log(res);
         if (res['success']) {
 
         } else {
-          this.errorService.hintError(res);
+
+          if (res['code'] === '1034') {
+            const response = await this.userService.refreshToken();
+            if (response['success']) {
+
+              companyInfo.token = response.token;
+              const appResponse = await this.reviewCompany(companyInfo);
+
+              if (appResponse['success']) {
+
+              } else {
+                this.errorService.hintError(appResponse);
+              }
+              return appResponse;
+
+            } else {
+              this.errorService.hintError(response);
+            }
+
+          } else {
+            this.errorService.hintError(res);
+          }
         }
         return res;
       })
@@ -94,12 +116,33 @@ export class CompanyService {
         "token": companyInfo.token
       }
     }).toPromise()
-      .then(res => {
+      .then(async res => {
         console.log(res);
         if (res['success']) {
 
         } else {
-          this.errorService.hintError(res);
+
+          if (res['code'] === '1034') {
+            const response = await this.userService.refreshToken();
+            if (response['success']) {
+
+              companyInfo.token = response.token;
+              const appResponse = await this.findCompany(companyInfo);
+
+              if (appResponse['success']) {
+
+              } else {
+                this.errorService.hintError(appResponse);
+              }
+              return appResponse;
+
+            } else {
+              this.errorService.hintError(response);
+            }
+
+          } else {
+            this.errorService.hintError(res);
+          }
         }
         return res;
       })
@@ -151,12 +194,33 @@ export class CompanyService {
       }),
       params: invitedUser
     }).toPromise()
-      .then(res => {
+      .then(async res => {
         console.log(res);
         if (res['success']) {
 
         } else {
-          this.errorService.hintError(res);
+
+          if (res['code'] === '1034') {
+            const response = await this.userService.refreshToken();
+            if (response['success']) {
+
+              invitedUser.token = response.token;
+              const appResponse = await this.inviteUserToGroup(invitedUser);
+
+              if (appResponse['success']) {
+
+              } else {
+                this.errorService.hintError(appResponse);
+              }
+              return appResponse;
+
+            } else {
+              this.errorService.hintError(response);
+            }
+
+          } else {
+            this.errorService.hintError(res);
+          }
         }
         return res;
       })
@@ -180,12 +244,33 @@ export class CompanyService {
         "token": userInfo.token
       }
     }).toPromise()
-      .then(res => {
+      .then(async res => {
         console.log(res);
         if (res['success']) {
 
         } else {
-          this.errorService.hintError(res);
+
+          if (res['code'] === '1034') {
+            const response = await this.userService.refreshToken();
+            if (response['success']) {
+
+              userInfo.token = response.token;
+              const appResponse = await this.getCompanyList(userInfo);
+
+              if (appResponse['success']) {
+
+              } else {
+                this.errorService.hintError(appResponse);
+              }
+              return appResponse;
+
+            } else {
+              this.errorService.hintError(response);
+            }
+
+          } else {
+            this.errorService.hintError(res);
+          }
         }
         return res;
       })
@@ -207,12 +292,33 @@ export class CompanyService {
       }),
       params: userInfo
     }).toPromise()
-      .then(res => {
+      .then(async res => {
         console.log(res);
         if (res['success']) {
 
         } else {
-          this.errorService.hintError(res);
+
+          if (res['code'] === '1034') {
+            const response = await this.userService.refreshToken();
+            if (response['success']) {
+
+              userInfo.token = response.token;
+              const appResponse = await this.removeCompanyId(userInfo);
+
+              if (appResponse['success']) {
+
+              } else {
+                this.errorService.hintError(appResponse);
+              }
+              return appResponse;
+
+            } else {
+              this.errorService.hintError(response);
+            }
+
+          } else {
+            this.errorService.hintError(res);
+          }
         }
         return res;
       })
@@ -235,12 +341,33 @@ export class CompanyService {
       }),
       params: companyInfo
     }).toPromise()
-      .then(res => {
+      .then(async res => {
         console.log(res);
         if (res['success']) {
 
         } else {
-          this.errorService.hintError(res);
+
+          if (res['code'] === '1034') {
+            const response = await this.userService.refreshToken();
+            if (response['success']) {
+
+              companyInfo.token = response.token;
+              const appResponse = await this.checkCompanyName(companyInfo);
+
+              if (appResponse['success']) {
+
+              } else {
+                this.errorService.hintError(appResponse);
+              }
+              return appResponse;
+
+            } else {
+              this.errorService.hintError(response);
+            }
+
+          } else {
+            this.errorService.hintError(res);
+          }
         }
         return res;
       })
