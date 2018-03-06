@@ -28,14 +28,23 @@ export class MainAdminCompanyModifyComponent {
 
   url = myGlobals.url;
 
+  countryList: Array<any>;
+
   constructor(private activatedRoute: ActivatedRoute, private companyService: CompanyService,
               private userService: UserService, private appService: AppService) {
 
-    activatedRoute.paramMap.subscribe(paramMap => {
+    activatedRoute.paramMap.subscribe(async paramMap => {
 
       const cid = paramMap['params'].param;
 
       this.cid = cid;
+
+
+      if (companyService.countryList === undefined ) {
+        this.countryList = await companyService.getCountryList();
+      } else {
+        this.countryList = companyService.countryList;
+      }
 
       const companyInfo = {
         "userId": userService.user._id,
@@ -48,6 +57,31 @@ export class MainAdminCompanyModifyComponent {
           console.log(res);
 
           this.companyInfo = res.data;
+
+          const countryFind = this.countryList.find((country, index, arr) => {
+            return country.code === this.companyInfo.country;
+          });
+
+          this.companyInfo.country = countryFind.en;
+
+          const user_Info = {
+            "userId": userService.user._id,
+            "token": userService.token.token,
+            "uid": this.companyInfo.mDeveloperId
+          };
+
+          userService.getUserInfo(user_Info)
+            .then(response => {
+              const mDeveloper = {
+                "email": response.user.email,
+                "username": response.user.username
+              };
+
+              this.companyInfo.mDeveloper = mDeveloper;
+            })
+            .catch(error => {
+              console.log(error);
+            });
 
         }).catch(error => {
           console.log(error);
