@@ -19,7 +19,7 @@ declare const jQuery: any;
   styleUrls: ['./scheme-modify.component.css']
 })
 
-export class SchemeModifyComponent implements DoCheck{
+export class SchemeModifyComponent {
 
 
   url = myGlobals.url;
@@ -39,10 +39,6 @@ export class SchemeModifyComponent implements DoCheck{
 
   fileSelectList = [];
 
-  ngDoCheck(): void {
-
-    console.log('selectedScheme.beta', this.selectedScheme.beta);
-  }
 
   constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService, private router: Router,
               private userService: UserService) {
