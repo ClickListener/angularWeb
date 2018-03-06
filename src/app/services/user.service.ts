@@ -39,7 +39,7 @@ export class UserService {
       this.token = JSON.parse(this._cookieService.get('token'));
     }
 
-    console.log('UserService--------user = ' + this.user);
+    console.log('UserService--------user = ', this.user);
 
 
     // 判断标签页是否激活
