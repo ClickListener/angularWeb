@@ -69,7 +69,7 @@ export class DevelopmentApplyMasterComponent {
     jQuery('#applyForm').ajaxSubmit(options);
   }
 
-  private async beforeSubmit(formData) {
+  private beforeSubmit(formData) {
 
 
     const code = this.countryList.find((country, index, arr) => {

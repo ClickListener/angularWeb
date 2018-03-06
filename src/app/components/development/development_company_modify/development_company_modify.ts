@@ -94,7 +94,7 @@ export class DevelopmentCompanyModifyComponent {
   }
 
 
-  private async beforeSubmit(formData) {
+  private beforeSubmit(formData) {
 
 
     formData.splice(0, formData.length - 1);
