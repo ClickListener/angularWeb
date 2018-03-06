@@ -48,8 +48,22 @@
 
   <fieldset>
     <legend>Business License</legend>
-    <a><img id="preview" src="{{url}}{{companyInfo.avatar.description}}/{{companyInfo.avatar.fileName}}"
+    <a data-target="#imageModal" data-toggle="modal"><img id="preview" src="{{url}}{{companyInfo.avatar.description}}/{{companyInfo.avatar.fileName}}"
             style="width: 80px; height: 80px"></a>
+
+    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+      <div class="modal-dialog" role="document" style="width: 50%; max-width: 100%">
+        <div class="modal-content">
+          <div class="modal-body" style="padding: 0">
+            <img src="{{url}}{{companyInfo.avatar.description}}/{{companyInfo.avatar.fileName}}"
+                 style="width: 100%;">
+          </div>
+        </div>
+      </div>
+
+    </div>
   </fieldset>
 </form>
 
