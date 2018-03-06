@@ -48,7 +48,7 @@ export class DevelopmentAppModifyComponent implements DoCheck {
       isValid: true
     },
     {
-      model: 'BP3l',
+      model: 'BP3L',
       isValid: true
     },
     {

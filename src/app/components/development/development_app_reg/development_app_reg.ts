@@ -54,7 +54,7 @@ export class DevelopmentAppRegComponent implements OnInit {
       isValid: true
     },
     {
-      model: 'BP3l',
+      model: 'BP3L',
       isValid: true
     },
     {
