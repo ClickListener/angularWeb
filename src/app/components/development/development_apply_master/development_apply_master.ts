@@ -72,7 +72,16 @@ export class DevelopmentApplyMasterComponent implements DoCheck {
     jQuery('#applyForm').ajaxSubmit(options);
   }
 
-  private beforeSubmit(formData) {
+  private async beforeSubmit(formData) {
+
+    const companyInfo = {
+      "companyName": this.companyName
+    };
+
+    const response = await this.companyService.checkCompanyName(companyInfo);
+    if (!response.success) {
+      return;
+    }
 
     const code = this.countryList.find((country, index, arr) => {
         return country.en === this.country;

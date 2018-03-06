@@ -6,6 +6,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 import * as myGlobals from '../../environments/config';
 import {ErrorService} from "./error.service";
+import {toPromise} from "rxjs/operator/toPromise";
 
 @Injectable()
 export class CompanyService {
@@ -218,6 +219,32 @@ export class CompanyService {
       .catch(CompanyService.handleError);
 
 
+  }
+
+
+  checkCompanyName(companyInfo: any): Promise<any> {
+
+    console.log('companyInfo = ', companyInfo);
+
+    const url = this.url + "/company/compareCompany";
+
+    return this.http.get(url, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      params: companyInfo
+    }).toPromise()
+      .then(res => {
+        console.log(res);
+        if (res['success']) {
+
+        } else {
+          this.errorService.hintError(res);
+        }
+        return res;
+      })
+      .catch(CompanyService.handleError);
   }
 
 
