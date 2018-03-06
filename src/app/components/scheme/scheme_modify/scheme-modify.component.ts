@@ -1,7 +1,7 @@
 /**
  * Created by zhangxu on 2017/12/13.
  */
-import {Component} from "@angular/core";
+import {Component, DoCheck} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SchemeService} from "../../../services/scheme.service";
 import {FileUploaderCustom} from "../../../services/FileUploaderCustom";
@@ -19,7 +19,8 @@ declare const jQuery: any;
   styleUrls: ['./scheme-modify.component.css']
 })
 
-export class SchemeModifyComponent {
+export class SchemeModifyComponent implements DoCheck{
+
 
   url = myGlobals.url;
 
@@ -37,6 +38,11 @@ export class SchemeModifyComponent {
   RU = false;
 
   fileSelectList = [];
+
+  ngDoCheck(): void {
+
+    console.log('selectedScheme.beta', this.selectedScheme.beta);
+  }
 
   constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService, private router: Router,
               private userService: UserService) {
@@ -196,6 +202,13 @@ export class SchemeModifyComponent {
       "value": this.userService.user._id
     };
     formData.splice(0, 0, userId);
+    const beta = {
+      "name": "beta",
+      "value": this.selectedScheme.beta
+    };
+
+    formData.splice(0, 0, beta);
+
 
     console.log(formData);
     // 可以校验输入参数
