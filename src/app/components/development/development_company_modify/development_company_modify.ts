@@ -96,14 +96,6 @@ export class DevelopmentCompanyModifyComponent {
 
   private async beforeSubmit(formData) {
 
-    const companyInfo = {
-      "companyName": this.companyInfo.companyName
-    };
-
-    const response = await this.companyService.checkCompanyName(companyInfo);
-    if (!response.success) {
-      return;
-    }
 
     formData.splice(0, formData.length - 1);
 

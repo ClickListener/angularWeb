@@ -16,7 +16,7 @@ declare const jQuery: any;
   styleUrls: ['./development_apply_master.css']
 })
 
-export class DevelopmentApplyMasterComponent implements DoCheck {
+export class DevelopmentApplyMasterComponent {
 
 
   url = myGlobals.url;
@@ -37,9 +37,6 @@ export class DevelopmentApplyMasterComponent implements DoCheck {
   buttonDisable = false;  // 提交按钮状态
 
 
-  ngDoCheck(): void {
-    console.log("country = " + this.country);
-  }
 
   constructor(private userService: UserService, private companyService: CompanyService, private router: Router) {
 
@@ -74,14 +71,6 @@ export class DevelopmentApplyMasterComponent implements DoCheck {
 
   private async beforeSubmit(formData) {
 
-    const companyInfo = {
-      "companyName": this.companyName
-    };
-
-    const response = await this.companyService.checkCompanyName(companyInfo);
-    if (!response.success) {
-      return;
-    }
 
     const code = this.countryList.find((country, index, arr) => {
         return country.en === this.country;
