@@ -54,13 +54,14 @@ export class AndroidComponent {
             console.log('res = ', res);
             if (res.success) {
               this.parsePermission(res.data);
+              this.getSchemeList(0);
             }
           })
           .catch(error => {
             console.log('error = ', error);
           });
       }
-      this.getSchemeList(0);
+
 
     });
 

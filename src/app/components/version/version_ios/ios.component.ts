@@ -51,6 +51,7 @@ export class IOSComponent {
             console.log('res = ', res);
             if (res.success) {
               this.parsePermission(res.data);
+              this.getSchemeList(0);
             }
           })
           .catch(error => {
@@ -58,7 +59,7 @@ export class IOSComponent {
           });
       }
 
-      this.getSchemeList(0);
+
 
     });
 

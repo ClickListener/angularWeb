@@ -142,22 +142,10 @@ export class UserService {
           if (res['code'] === '1034') {
             const response = await this.refreshToken();
             if (response['success']) {
-              let userInfo_new;
-              if (userInfo.uid) {
-                userInfo_new = {
-                  "userId": this.user,
-                  "token": response.token,
-                  "uid": userInfo.uid
-                };
-              } else {
-                userInfo_new = {
-                  "userId": this.user,
-                  "token": response.token,
-                  "uid": userInfo.uid
-                };
-              }
 
-              const appResponse = await this.getUserInfo(userInfo_new);
+              userInfo.token = response.token;
+
+              const appResponse = await this.getUserInfo(userInfo);
 
               if (appResponse['success']) {
 
@@ -258,22 +246,9 @@ export class UserService {
           if (res['code'] === '1034') {
             const response = await this.refreshToken();
             if (response['success']) {
-              let userInfo_new;
-              if (userInfo.uid) {
-                userInfo_new = {
-                  "userId": this.user,
-                  "token": response.token,
-                  "uid": userInfo.uid
-                };
-              } else {
-                userInfo_new = {
-                  "userId": this.user,
-                  "token": response.token,
-                  "uid": userInfo.uid
-                };
-              }
+              userInfo.token = response.token;
 
-              const appResponse = await this.getUserAuth(userInfo_new);
+              const appResponse = await this.getUserAuth(userInfo);
 
               if (appResponse['success']) {
 
