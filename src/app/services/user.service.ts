@@ -19,6 +19,8 @@ import {ErrorService} from "./error.service";
 import swal from "sweetalert2";
 import {Router} from "@angular/router";
 
+import * as CryptoJS from 'crypto-js';
+
 @Injectable()
 export class UserService {
 
@@ -326,6 +328,10 @@ export class UserService {
 
     console.log('userInfo = ' + JSON.stringify(userInfo));
 
+    userInfo.user.password = this.md5Encrypt(userInfo.user.password);
+
+    console.log('userInfo = ' + JSON.stringify(userInfo));
+
     const url = this.url + "/user/update";
 
     return this.http.post(url, userInfo, {
@@ -408,6 +414,10 @@ export class UserService {
     const url = this.url + '/user/login';
     console.log(JSON.stringify(userInfo));
 
+    userInfo.password = this.md5Encrypt(userInfo.password);
+
+    console.log(JSON.stringify(userInfo));
+
     return this.http.post(url, JSON.stringify(userInfo), this.options)
       .toPromise()
       .then(async res => {
@@ -437,6 +447,11 @@ export class UserService {
    */
   signUp(userInfo: any): Promise<User> {
     const url = this.url + '/user/add';
+
+    console.log(JSON.stringify(userInfo));
+
+
+    userInfo.addUser.password = this.md5Encrypt(userInfo.addUser.password);
 
     console.log(JSON.stringify(userInfo));
 
@@ -612,6 +627,14 @@ export class UserService {
     });
 
     return ciphertext.toString();
+  }
+
+
+  private md5Encrypt(content) {
+
+    const md5 = CryptoJS.MD5(content).toString();
+
+    return md5;
   }
 
 

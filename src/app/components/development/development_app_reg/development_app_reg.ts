@@ -37,7 +37,7 @@ export class DevelopmentAppRegComponent implements OnInit {
   bundleIdOrPackageName: string;
   description: string;
   scheme = 'NativeSDK';
-  codeType = 'code1';
+  codeType = 'GDH';
   expiredDate = 10;
 
 
