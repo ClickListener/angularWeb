@@ -123,9 +123,7 @@ export class AppComponent implements OnInit, DoCheck {
 
   navigateDocument(schemeName: string) {
 
-    if (this.user) {
-      this.router.navigate(['/document-main', schemeName]);
-    } else {
+    if (!this.user) {
       swal({
         text: 'Please Sign in first.',
         showCancelButton: true,
@@ -137,8 +135,24 @@ export class AppComponent implements OnInit, DoCheck {
         this.router.navigate(['/sign-in']);
       })
         .catch(swal.noop);
-
     }
+
+    // if (this.user) {
+    //   this.router.navigate(['/document-main', schemeName]);
+    // } else {
+    //   swal({
+    //     text: 'Please Sign in first.',
+    //     showCancelButton: true,
+    //     confirmButtonText: 'Sign in',
+    //     cancelButtonText: 'Cancel',
+    //     allowOutsideClick: false,
+    //     reverseButtons: true
+    //   }).then( () => {
+    //     this.router.navigate(['/sign-in']);
+    //   })
+    //     .catch(swal.noop);
+    //
+    // }
   }
 
 

@@ -56,6 +56,7 @@ import {CustomFormsModule} from "ng2-validation";
 import {ErrorService} from "./services/error.service";
 import {MarkdownModule} from "ngx-markdown";
 import {LastListComponent} from "./components/version/version_lastList/lastList.component";
+import {AuthGuard} from "./services/auth-guard.service";
 
 @NgModule({
 
@@ -123,7 +124,7 @@ import {LastListComponent} from "./components/version/version_lastList/lastList.
 
   bootstrap: [AppComponent],
 
-  providers: [UserService, LicenseService, DevicesService, DatePipe, SchemeService, Location, CompanyService, AppService, LowerCasePipe, ErrorService]
+  providers: [UserService, LicenseService, DevicesService, DatePipe, SchemeService, Location, CompanyService, AppService, LowerCasePipe, ErrorService, AuthGuard]
 })
 
 export class AppModule {

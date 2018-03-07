@@ -39,6 +39,7 @@ import {UserHintComponent} from "./components/user/user_hint/user-hint.component
 import {UserResetPasswordComponent} from "./components/user/user_reset_password/user_reset_password.component";
 import {DevelopmentCompanyModifyComponent} from "./components/development/development_company_modify/development_company_modify";
 import {LastListComponent} from "./components/version/version_lastList/lastList.component";
+import {AuthGuard} from "./services/auth-guard.service";
 
 /**
  * 路由模块
@@ -189,7 +190,7 @@ const routes: Routes = [
   {
     path: 'document-main/:param',
     component: DocumentMainComponent,
-
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
