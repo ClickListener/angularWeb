@@ -31,7 +31,7 @@
 
         <div class="md-form">
           <input required="required" class="form-control" id="password" name="password" type="password" [(ngModel)]="passwordValue"
-                  #password="ngModel" pattern="^(?:(?=.*[0-9].*)(?=.*[a-z].*)(?=.*[A-Z].*)(?=.*[/!@#%\*&/^].*))[/!@#%\*&/^0-9A-Za-z]{6,16}$">
+                  #password="ngModel" pattern="^(?:(?=.*[0-9].*)(?=.*[a-z].*)(?=.*[A-Z].*)(?=.*[!@#$%\*&\^?].*))[!@#$%\*&\^?0-9A-Za-z]{6,16}$">
           <label for="password">Password</label>
 
           <span *ngIf="!password.pristine&&password.invalid" style="color: #ee2200">
