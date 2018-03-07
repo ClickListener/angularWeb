@@ -20,7 +20,7 @@
     <input style="display: block" id="id_corporate" name="id_corporate" type="text" [(ngModel)]="companyInfo.companyName"
            #corporate="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s]{1,100}$" required>
 
-    <p *ngIf="!corporate.pristine&&corporate.invalid" style="color: #ee2200">Please input valid corporate.</p>
+    <p *ngIf="!corporate.pristine&&corporate.invalid" style="color: #ee2200">Please input valid corporate no more than 100 characters.</p>
   </div>
 
   <div class="input-block">
@@ -29,7 +29,7 @@
     <input style="display: block" id="id_address" name="id_address" type="text" [(ngModel)]="companyInfo.address"
            #addressValid="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s]{1,100}$" required>
 
-    <p *ngIf="!addressValid.pristine&&addressValid.invalid" style="color: #ee2200">Please input valid address.</p>
+    <p *ngIf="!addressValid.pristine&&addressValid.invalid" style="color: #ee2200">Please input valid address with 1-100 characters.</p>
   </div>
 
 
@@ -39,7 +39,7 @@
     <textarea style="display: block" id="id_description" name="id_description" type="text" [(ngModel)]="companyInfo.description"
               #descriptionValid="ngModel" [rangeLength]="[20,100]" required></textarea>
 
-    <p *ngIf="!descriptionValid.pristine&&descriptionValid.invalid" style="color: #ee2200">You must input at least 20 character.</p>
+    <p *ngIf="!descriptionValid.pristine&&descriptionValid.invalid" style="color: #ee2200">You must input at least 20 and no more than 500 characters.</p>
   </div>
 
   <div class="license-block">
