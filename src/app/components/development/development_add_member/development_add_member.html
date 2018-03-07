@@ -51,6 +51,7 @@
   </div>
 
   <div class="submit-block">
+    <button class="btn" style="color: #111 !important;background-color: #f8f9fa;border-color: #f8f9fa;" (click)="cancel()">Cancel</button>
     <button class="btn btn-primary" (click)="inviteUserToGroup()" [disabled]="!myForm.form.valid || buttonDisable">Submit</button>
   </div>
 

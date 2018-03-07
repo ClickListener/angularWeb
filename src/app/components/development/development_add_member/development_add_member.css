@@ -84,7 +84,7 @@
 }
 
 .submit-block button {
-  margin-top: 5%;
+  margin: 5% 3rem 0 3rem;
   text-transform: none;
   width: 10rem;
   border-radius: 3px;

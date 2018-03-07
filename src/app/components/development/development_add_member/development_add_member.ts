@@ -5,7 +5,7 @@ import {Component, DoCheck} from "@angular/core";
 import {CompanyService} from "../../../services/company.service";
 import {UserService} from "../../../services/user.service";
 import {Router} from "@angular/router";
-import {LowerCasePipe} from "@angular/common";
+import {Location, LowerCasePipe} from "@angular/common";
 
 @Component({
   templateUrl: './development_add_member.html',
@@ -28,7 +28,7 @@ export class DevelopmentAddMemberComponent {
 
 
   constructor(private companyService: CompanyService, private userService: UserService, private router: Router
-    , private lowerCasePipe: LowerCasePipe) {
+    , private lowerCasePipe: LowerCasePipe, private _location: Location) {
 
 
     const userInfo = {
@@ -130,5 +130,10 @@ export class DevelopmentAddMemberComponent {
         console.log(error);
       });
 
+  }
+
+  // 使用Location Service 实现后退功能
+  cancel() {
+    this._location.back();
   }
 }
