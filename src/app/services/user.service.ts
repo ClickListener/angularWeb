@@ -88,6 +88,25 @@ export class UserService {
             .catch(swal.noop);
         }
 
+        // 当都存在，并且ID不一样时，将之前页面的 登录用户 置为 当前用户
+        if (this.user && this._cookieService.get('user') ) {
+          const user = JSON.parse(this._cookieService.get('user'));
+          if (this.user._id !== user._id) {
+            swal({
+              position: 'center',
+              type: 'info',
+              titleText: 'You signed in with another tab.',
+              allowOutsideClick: false
+            })
+              .then(() => {
+                this.user = JSON.parse(this._cookieService.get('user'));
+                this.token = JSON.parse(this._cookieService.get('token'));
+                this.router.navigate(['/']);
+              })
+              .catch(swal.noop);
+          }
+        }
+
       } else {
         console.log('页面非激活');
       }
