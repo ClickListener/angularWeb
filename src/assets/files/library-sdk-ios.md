@@ -13,24 +13,33 @@ The goal of Library SDK is to simplify the design and workflow from current laye
 
 Add a Device
 
-    The caller app asks the layered app to add a new device with a specific device model; once added, the layered app sends back the new device's MAC ID to the caller app.
+```markdown
+The caller app asks the layered app to add a new device with a specific device model; once added, the layered app sends back the new device's MAC ID to the caller app.
+```
 
 Measurement
 
-    The caller app asks the layered app to do a new measurement; once finished, the layered app sends back the measurement result. 
+```markdown
+The caller app asks the layered app to do a new measurement; once finished, the layered app sends back the measurement result. 
+```
 
 Sync Offline Results
 
-    The layered app can read offline records from a measurement device, such as BG5, BG Track, and send back to result list. 
+```markdown
+The layered app can read offline records from a measurement device, such as BG5, BG Track, and send back to result list. 
+```
      
 Customization
 
-    When needed, show a splash screen with caller app's brand.
+```markdown
+When needed, show a splash screen with caller app's brand.
+```
 
 
 # Parameter Type Introduction
 devicemodel
 
+```markdown
     Different Numbers represent different iHealth devices.
 
     typedef NS_ENUM(NSUInteger, IHLDeviceType) {
@@ -49,10 +58,12 @@ devicemodel
         IHLDeviceType_AM4,
         IHLDeviceType_Max
      };
+```
 
- 
+
 operation type(command)
 
+```markdown
      Different types of operations
 
      typedef NS_ENUM(NSUInteger, IHLAction) {
@@ -64,9 +75,11 @@ operation type(command)
       IHLActionSyncMeasure,      //sync history data + measure data(NA for KN550BT/BP7S)
       IHLActionMax                   //
     };
+```
 
 device add type
 
+```markdown
      typedef NS_ENUM(NSUInteger, IHLAddDeviceType) {
 
        IHLAddDeviceUnknown = 0,
@@ -75,10 +88,11 @@ device add type
        IHLAddDeviceWithMAC,//mac address
        IHLAddDeviceMax
      };
-
+```
 
 unit type
 
+```markdown
       typedef NS_ENUM(NSUInteger, IHLVitalUnit) {
 
         IHLUnitNA = 0,
@@ -95,9 +109,11 @@ unit type
         IHLAMUnitKilometer,        //10 kilometer
         IHLUnitMax
       };
+```
 
 result status of each operation
 
+```markdown
         typedef NS_ENUM(NSUInteger, IHLResultStatus) {
 
            IHLResultNA = 0,
@@ -105,7 +121,7 @@ result status of each operation
            IHLResultFailed,
            IHLResultCanceled,
         };
-
+```
 
 ## Functional Spec
 
@@ -114,6 +130,7 @@ In general, invoke the Library SDK with IHLRequestModel and get the result with 
 
 ### Input params structure
 
+```markdown
       @interface IHLRequestModel : NSObject
 
       @property (strong, nonatomic) UIImage* logoImage;
@@ -141,12 +158,13 @@ In general, invoke the Library SDK with IHLRequestModel and get the result with 
      unit            R(except PO3)       R(except PO3)       NR
      addtype         R                   R                   R
      godCodeR        R(only BG5)         NR                  NR
-
+```
 
 
 
 ### validate your app to use Library App
 
+```markdown
        @param clientID your clientID
       
        @param appSecret your appSecret
@@ -156,12 +174,12 @@ In general, invoke the Library SDK with IHLRequestModel and get the result with 
        @param userValideResultBlock a callback block to return you authen result
 
        + (void)userValidateWithClientID:(NSString*)clientID  appSecret:(NSString *)appSecret userAcount:(NSString*)userAccount resultBlock:(IHLValideResult)userValideResultBlock;
-
+```
 
 
 ### config request parameters, you can only use this method to initiate this class instance
 
-
+```markdown
         @param action request action
         @param addMethod add device type
         @param deviceType device type
@@ -178,29 +196,31 @@ In general, invoke the Library SDK with IHLRequestModel and get the result with 
 
         + (void)configModelWithAction:(IHLAction)action addMethod:(IHLAddDeviceType)addMethod forDevice:(IHLDeviceType)deviceType withMac:(NSString*)macAddress unit:(IHLVitalUnit)unit godCodeIfBG:(NSString*)godCode shouldPopAlertView:(BOOL)popAlertView;
 
-
+```
 
 
 ### use this method to get this class instance
 
+```markdown
        @return this class instance
 
        + (instancetype)sharedInstance;
-
+```
 
 
 ### request operation immediately, it will present a page
 
+```markdown
       @param delegate specify a instance which comply IHLRequestDelegate protocol, to get result
       @param animation show page with animation or not
 
       - (void)requestOpertationWithDelegate:(id<IHLRequestDelegate>)delegate withAnimation:(BOOL)animation;
-
+```
 
 
 ## Output params format
 
-
+```markdown
       #define RESULT_KEY_SYSTOLIC        @"systolic"       // integer
       #define RESULT_KEY_DIASTOLIC       @"diastolic"      // integer
       #define RESULT_KEY_ARRHYTHMIA      @"arrhythmia"     // 0/1
@@ -212,10 +232,11 @@ In general, invoke the Library SDK with IHLRequestModel and get the result with 
       #define RESULT_KEY_OXYGEN_SAT      @"oxygen_saturation"      // integer
       #define RESULT_KEY_PERFUSION_INDEX @"perfusion_index"        // float
       #define RESULT_KEY_HEART_RATE      @"heart_rate"
-
+```
 
 ### we will retrun result with this model
 
+```markdown
       @interface IHLResponseModel : NSObject
 
       @property (assign, nonatomic) IHLAction action;//request action
@@ -229,11 +250,12 @@ In general, invoke the Library SDK with IHLRequestModel and get the result with 
       @property (assign,nonatomic) IHLResultStatus measureStatus;//measure status
       @property (strong,nonatomic) NSArray* syncResult;//sync result
       @property (strong,nonatomic) NSArray* measureResult;//measure result
-
+```
 ### Color customization，You can customize the App colors you use
 
 Pass in the parameter Key
 
+```markdown
       #define SDKCOLOR_KEY_NAVIGATION_BAR      @"NavigationBarColor"       UIColor//Navigation bar: navigationBar.barTintColor
       #define SDKCOLOR_KEY_TITLE               @"TitleColor"               UIColor//Navigation Title
       #define SDKCOLOR_KEY_BACKBUTTON          @"BackButtonColor"          UIColor//Navigation Back
@@ -241,13 +263,14 @@ Pass in the parameter Key
       #define SDKCOLOR_KEY_SRTARTBUTTON        @"StartButtonColor"         UIColor//StartButton
       #define SDKCOLOR_KEY_THEME               @"ThemeColor"               UIColor//Theme Display Button
       #define SDKCOLOR_KEY_LOGOIMAGE           @"LogoImage"                UIImage//logo Image
-
+```
 Example：
 
+```markdown
     NSDictionary*myDic=[[NSDictionary alloc] initWithObjectsAndKeys:[UIColor yellowColor],SDKCOLOR_KEY_NAVIGATION_BAR, nil];
     
     [IHLRequestModel sharedInstance].setColorDic=myDic;
-
+```
 
 # Integration on iOS
 
@@ -260,6 +283,7 @@ Example：
 
 ## call SDK library to get data
 
+```markdown
       - (void)callLibraryAppViewController{ 
 
       [IHLRequestModel configModelWithAction:IHLActionMeasureData addMethod:IHLAddDeviceWithScan forDevice:IHLDeviceType_BG5 withMac:@"" unit:IHLBGUnitMMOLL godCodeIfBG:@"02396264396214322D1200A02B2A638EDA14428894E61901238305E712BC" shouldPopAlertView:YES ];
@@ -268,17 +292,20 @@ Example：
       [[IHLRequestModel sharedInstance] requestOpertationWithDelegate:self withAnimation:YES];
 
       }
+```
 
 ## data return from SDK library
 
+```markdown
      deleagte IHLResultDelegate
 
      - (void)responseForLibraryApp:(IHLResponseModel*)response{
       do custom operation with response
      }
+```
 ## Whether or not the result is shown
 
-
+```markdown
     blindResult
 
    YES：No measurement results are shown   NO：Display measurement results
@@ -286,6 +313,7 @@ Example：
 Example：
 
 [IHLRequestModel sharedInstance].blindResult = YES;
+```
 
 ## config plist file:
 
@@ -293,8 +321,9 @@ Example：
 
 2)  add ***Supported external accessory*** protocols:
 
-     "com.jiuan.BPV20","com.jiuan.BWSV01","com.jiuan.BPV23","com.jiuan.BGV31"
-
+```markdown
+"com.jiuan.BPV20","com.jiuan.BWSV01","com.jiuan.BPV23","com.jiuan.BGV31"
+```
 
 ## add ***-ObjC*** to ***Other Linker Flags*** in project settings
 

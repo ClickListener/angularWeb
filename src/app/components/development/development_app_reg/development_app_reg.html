@@ -27,7 +27,7 @@
   <div class="input-block">
     <label for="id_bundle">Bundled/Package Name</label>
     <input id="id_bundle" type="text" name="id_bundle" [(ngModel)]="bundleIdOrPackageName"
-           #bundleId="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s\.]{1,100}$" required>
+           #bundleId="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s\.]{3,100}$" required>
 
     <p *ngIf="!bundleId.pristine&&bundleId.invalid" style="color: #ee2200">Please input valid bundleId or package name.</p>
   </div>

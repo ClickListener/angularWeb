@@ -8,7 +8,8 @@ The goal of Library SDK is to simplify the design and workflow from current laye
 Spec as follows:
 
 ## Feature List
-```
+
+```markdown
 1.Add a Device
 
 The caller app asks the library to add a new device with a specific device model; once added, the library sends back the new device's MAC ID to the caller app.
@@ -28,7 +29,7 @@ When needed, show specific theme along with caller app's brand.
 
 ## Enums
 
-```
+```markdown
 // DEVICE_MODEL
 public enum IHLDeviceType {
     IHLDeviceType_UNKNOWN(0),
@@ -128,7 +129,7 @@ public enum IHScreenOrientation {
 
 ## Display customization (Color and logo )
 
-```
+```java
 public class CustomTheme{
     int navigationBarColor;
     int titleColor;          //Navigation Title
@@ -145,7 +146,7 @@ public class CustomTheme{
 In general, invoke the library with RequestModel and get the result with ResponseModel.
 
 #### 1. Input params format
-```
+```java
 class RequestModel{
     String apiVersion;
     IHLDeviceType deviceType;
@@ -169,7 +170,7 @@ class RequestModel{
 }
 ```
 #### 2.Output params format
-```
+```java
 class IHLOperationStatus{
     IHLActionStatus addStatus;
     IHLActionStatus syncStatus;

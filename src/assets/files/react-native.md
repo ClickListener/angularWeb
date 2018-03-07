@@ -10,13 +10,15 @@
 
 
 ## Install  
-```
+
+```markdown
  npm install @ihealth/ihealthlibrary-react-native  
 ```
 
 
 ## Configure module for Android
-```
+
+```java
 1. android/settings.gradle    
 
 	include ':ihealthlibrary-react-native'
@@ -44,7 +46,8 @@
 
 
 ## Configure module for iOS
-```
+
+```markdown
 1. Open your iOS project, add node_modules/@ihealth/ihealthlibrary-react-native/ios/ReactNativeIOSLibrary.xcodeproj to libraries
 
 2. Under 'Build Phases' --  'Link Binary With Libraries', add libReactNativeIOSLibrary.a
@@ -53,7 +56,8 @@
 
 
 ## Import module
-```
+
+```java
 import {
   iHealthDeviceManagerModule,
   BP5Module,
@@ -62,7 +66,8 @@ import {
 ```
 
 ## Work Flow
-```
+
+```markdown
 1. Use iHealthDeviceManagerModule to scan device, connect device, monitor connection status.
 
 2. Use devieModule (for example AM3SModule) to operate device function.
@@ -71,7 +76,8 @@ import {
 
 
 ## Demo Api
-```
+
+```markdown
 	Discovery:
 
 	//Add listener for event
@@ -83,7 +89,8 @@ import {
     //Call the api
 	iHealthDeviceManagerModule.startDiscovery(iHealthDeviceManagerModule.BP5)  
 ```
-```
+
+```markdown
 	Connect:
 
 	//Add listener for event
@@ -99,7 +106,7 @@ import {
     //Call the api
 	iHealthDeviceManagerModule.connectDevice(mac,type)  
 ```
-```
+```markdown
 	Start/Stop Measure:
 
 	//Add listener for event

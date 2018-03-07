@@ -1,4 +1,7 @@
 
 <div style="margin: 5% 5% 0 5%">
-  <markdown src="/assets/files/native-sdk-ios-readme.md"></markdown>
+  <markdown *ngIf="param === 'NativeSDK'" src="/assets/files/native-sdk-ios-readme.md"></markdown>
+  <markdown *ngIf="param === 'LibrarySDK'" src="/assets/files/library-sdk-ios.md"></markdown>
+  <markdown *ngIf="param === 'RNSDK'" src="/assets/files/react-native.md"></markdown>
+  <markdown *ngIf="param === 'LayerApp'" src="/assets/files/layer-app.md"></markdown>
 </div>
