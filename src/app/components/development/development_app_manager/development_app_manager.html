@@ -114,5 +114,9 @@
 
 
 <div style="margin-left: 3rem;margin-right: 3rem; margin-bottom: 3rem" *ngIf="!checkLicenseData">
-  <p style="margin-top: 5rem; font-size: 1.5rem">You don't have permission of check app information. If you want to obtain this permission, please contact master developer.</p>
+  <p style="margin-top: 3rem; font-size: 1.5rem">You don't have permission of check app information. If you want to obtain this permission, please contact master developer.</p>
+</div>
+
+<div style="margin-left: 3rem;margin-right: 3rem; margin-bottom: 3rem" *ngIf="companyInfo && companyInfo.state != '3'">
+  <p style="margin-top: 3rem; font-size: 1.5rem">Your application is not confirmed. Please wait.</p>
 </div>
