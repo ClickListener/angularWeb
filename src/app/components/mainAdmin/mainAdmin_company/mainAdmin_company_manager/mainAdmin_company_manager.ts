@@ -38,13 +38,16 @@ export class MainAdminCompanyManagerComponent {
 
             userService.getUserInfo(user_Info)
               .then(response => {
-                const mDeveloper = {
-                  "email": response.user.email,
-                  "username": response.user.username
-                };
+                if (response.success) {
+                  const mDeveloper = {
+                    "email": response.user.email,
+                    "username": response.user.username
+                  };
 
-                company.mDeveloper = mDeveloper;
-                console.log( this.companyList);
+                  company.mDeveloper = mDeveloper;
+                  console.log( this.companyList);
+                }
+
               })
               .catch(error => {
                 console.log(error);
