@@ -155,6 +155,7 @@ export class DevelopmentAppRegComponent implements OnInit {
     const device = new Device();
     device.model = "BP5";
     device.totalNumber = 100;
+    device.deviceUsedNumber = 0;
 
     this.deviceSelectList.push(device);
 
@@ -201,6 +202,7 @@ export class DevelopmentAppRegComponent implements OnInit {
         const device = new Device();
         device.model = this.deviceList[i].model;
         device.totalNumber = 100;
+        device.deviceUsedNumber = 0;
 
         this.deviceSelectList.push(device);
 

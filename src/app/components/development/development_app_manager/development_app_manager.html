@@ -71,7 +71,7 @@
 
 
               </div>
-              <p class="item-1">0</p>
+              <p class="item-1">{{app.installedPhoneNumber? app.installedPhoneNumber: 0}}</p>
 
               <div class="item-2" *ngIf="companyInfo.state == '3' && (edit_App || delete_App)">
                 <!--<a (click)="downloadLicense(app._id)"><img src="../../../../assets/images/download.png" *ngIf="app.state == '3'"></a>-->
