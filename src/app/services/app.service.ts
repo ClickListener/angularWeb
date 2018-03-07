@@ -8,6 +8,7 @@ import {promise} from "selenium-webdriver";
 import * as myGlobals from '../../environments/config';
 import {ErrorService} from "./error.service";
 import {UserService} from "./user.service";
+import swal from "sweetalert2";
 
 @Injectable()
 export class AppService {
@@ -21,7 +22,17 @@ export class AppService {
   }
 
   private static handleError(error: any): Promise<any> {
-    console.log('An error occurred', JSON.stringify(error)); // for demo purposes only
+    console.log(error); // for demo purposes only
+
+    if (error.status === 0) {
+      swal({
+        position: 'center',
+        type: 'error',
+        titleText: "Connection Refused",
+        showConfirmButton: false,
+        timer: 2000
+      }).catch(swal.noop);
+    }
     return Promise.reject(error.message || error);
   }
 

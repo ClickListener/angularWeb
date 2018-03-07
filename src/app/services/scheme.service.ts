@@ -7,6 +7,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import * as myGlobals from '../../environments/config';
 import {ErrorService} from "./error.service";
 import {UserService} from "./user.service";
+import swal from "sweetalert2";
 
 @Injectable()
 export class SchemeService {
@@ -27,6 +28,20 @@ export class SchemeService {
 
   set schemeID(value: string) {
     this._schemeID = value;
+  }
+
+  private static handleError(error: any): Promise<any> {
+    console.log(error); // for demo purposes only
+    if (error.status === 0) {
+      swal({
+        position: 'center',
+        type: 'error',
+        titleText: "Connection Refused",
+        showConfirmButton: false,
+        timer: 2000
+      }).catch(swal.noop);
+    }
+    return Promise.reject(error.message || error);
   }
 
 
@@ -81,10 +96,7 @@ export class SchemeService {
         }
         return res;
       })
-      .catch(error => {
-        console.log(error);
-        return error;
-      });
+      .catch(SchemeService.handleError);
   }
 
 
@@ -136,10 +148,7 @@ export class SchemeService {
         }
         return res;
       })
-      .catch(error => {
-        console.log(error);
-        return error;
-      });
+      .catch(SchemeService.handleError);
   }
 
 
@@ -192,9 +201,7 @@ export class SchemeService {
         }
         return res;
       })
-      .catch(error => {
-        console.log("error = " + error.toString());
-      });
+      .catch(SchemeService.handleError);
   }
 
 
@@ -240,9 +247,6 @@ export class SchemeService {
         }
         return res;
       })
-      .catch(error => {
-        console.log(error);
-        return error;
-      });
+      .catch(SchemeService.handleError);
   }
 }

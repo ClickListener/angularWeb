@@ -128,7 +128,17 @@ export class UserService {
 
 
   private static handleError(error: any): Promise<any> {
-    console.log('An error occurred', error.toString());// for demo purposes only
+    console.log(error);// for demo purposes only
+
+    if (error.status === 0) {
+      swal({
+        position: 'center',
+        type: 'error',
+        titleText: "Connection Refused",
+        showConfirmButton: false,
+        timer: 2000
+      }).catch(swal.noop);
+    }
     return Promise.reject(error.message || error);
   }
 
