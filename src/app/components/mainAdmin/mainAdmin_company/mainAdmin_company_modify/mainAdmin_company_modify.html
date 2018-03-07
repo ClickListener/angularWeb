@@ -127,7 +127,7 @@
                             <p style="display: inline-block">{{device.model}}</p>
                           </div>
                           <p class="item-1 custom-center-p">{{device.totalNumber}}</p>
-                          <p class="item-1 custom-center-p">0</p>
+                          <p class="item-1 custom-center-p">{{device.deviceUsedNumber}}</p>
                         </div>
                       </div>
                     </div>
@@ -138,7 +138,7 @@
 
 
               </div>
-              <p class="item-1">0</p>
+              <p class="item-1">{{app.installedPhoneNumber? app.installedPhoneNumber: 0}}</p>
 
               <div class="item-2">
                 <a class="btn btn-primary" (click)="updateAppState(app)">Update app state</a>
