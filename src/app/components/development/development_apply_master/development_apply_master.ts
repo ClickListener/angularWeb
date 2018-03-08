@@ -21,7 +21,7 @@ export class DevelopmentApplyMasterComponent {
 
   url = myGlobals.url;
 
-  country = "China";
+  country = "Afghanistan";
   companyName: string;
 
   address: string;
