@@ -17,7 +17,7 @@ import {AES, enc, mode, pad} from "crypto-js";
 import * as myGlobals from '../../environments/config';
 import {ErrorService} from "./error.service";
 import swal from "sweetalert2";
-import {Router} from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
 
 import * as CryptoJS from 'crypto-js';
 
@@ -113,6 +113,13 @@ export class UserService {
     };
     document.addEventListener(visibilityChangeEvent, onVisibilityChange);
 
+    this.router.events
+      .filter(event => event instanceof NavigationEnd)
+      .subscribe(e => {
+        console.log('prev:', e.url);
+        this.preUrl = e.url;
+      });
+
   }
 
   user: any;
@@ -120,6 +127,8 @@ export class UserService {
   token: Token;
 
   resourceList = [];
+
+  preUrl: string;
 
 
   private options = {

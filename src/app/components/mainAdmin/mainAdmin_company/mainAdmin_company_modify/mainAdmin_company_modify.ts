@@ -4,7 +4,7 @@
 import {Component} from "@angular/core";
 import {CompanyService} from "../../../../services/company.service";
 import {UserService} from "../../../../services/user.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import swal from "sweetalert2";
 import {AppService} from "../../../../services/app.service";
 
@@ -31,7 +31,13 @@ export class MainAdminCompanyModifyComponent {
   countryList: Array<any>;
 
   constructor(private activatedRoute: ActivatedRoute, private companyService: CompanyService,
-              private userService: UserService, private appService: AppService) {
+              private userService: UserService, private appService: AppService,
+              private router: Router) {
+
+    if (!userService.user) {
+      this.router.navigate(['/sign-in']);
+      return;
+    }
 
     activatedRoute.paramMap.subscribe(async paramMap => {
 
@@ -179,7 +185,7 @@ export class MainAdminCompanyModifyComponent {
       "userId": this.userService.user._id,
       "token": this.userService.token.token,
       "appId": appId
-    }
+    };
     this.appService.downloadLicense(userInfo)
       .then(res => {
         console.log(res);

@@ -3,7 +3,7 @@
  */
 import {Component} from "@angular/core";
 import {UserService} from "../../../services/user.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../../../model/User";
 import {License} from "../../../model/License";
 import swal from "sweetalert2";
@@ -26,6 +26,8 @@ export class SignInComponent {
     if (this.user) {
       this.router.navigate(['/']);
     }
+
+    this.preUrl = userService.preUrl;
   }
 
   user: any;
@@ -35,6 +37,8 @@ export class SignInComponent {
   password: string;
 
   buttonDisable = false;  // 提交按钮状态
+
+  preUrl: string;
 
   signIn(): void {
 
@@ -65,7 +69,13 @@ export class SignInComponent {
           }).catch(swal.noop);
 
 
-          this.router.navigate(['/']);
+          if (this.preUrl) {
+            this.router.navigate([this.preUrl]);
+          } else {
+            this.router.navigate(['/']);
+          }
+
+
         }
 
 
