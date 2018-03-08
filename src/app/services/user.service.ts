@@ -116,8 +116,8 @@ export class UserService {
     this.router.events
       .filter(event => event instanceof NavigationEnd)
       .subscribe(e => {
-        console.log('prev:', e.url);
-        this.preUrl = e.url;
+        console.log('prev:', e['url']);
+        this.preUrl = e['url'];
       });
 
   }
