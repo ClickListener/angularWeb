@@ -4,6 +4,7 @@
 import {Component} from "@angular/core";
 import {CompanyService} from "../../../../services/company.service";
 import {UserService} from "../../../../services/user.service";
+import swal from "sweetalert2";
 
 @Component({
   templateUrl: './mainAdmin_company_manager.html',
@@ -13,6 +14,8 @@ import {UserService} from "../../../../services/user.service";
 export class MainAdminCompanyManagerComponent {
 
   companyList: Array<any>;
+
+  searchCompanyName: string;
 
   constructor(private companyService: CompanyService, private userService: UserService) {
 
@@ -60,4 +63,79 @@ export class MainAdminCompanyManagerComponent {
         console.log(error);
       });
   }
+
+
+  inputChange() {
+
+    const companyInfo = {
+      "userId": this.userService.user._id,
+      "token": this.userService.token.token,
+      "rule": {
+        "companyName": this.searchCompanyName
+      }
+
+    };
+
+    this.companyService.searchCompany(companyInfo)
+      .then(res => {
+        console.log(res);
+        if (res.success) {
+          this.companyList = res.data;
+          if (this.companyList.length !== 0) {
+            this.companyList.forEach((company) => {
+              const user_Info = {
+                "userId": this.userService.user._id,
+                "token": this.userService.token.token,
+                "uid": company.mDeveloperId
+              };
+
+              this.userService.getUserInfo(user_Info)
+                .then(response => {
+                  if (response.success) {
+                    const mDeveloper = {
+                      "email": response.user.email,
+                      "username": response.user.username
+                    };
+
+                    company.mDeveloper = mDeveloper;
+                    console.log( this.companyList);
+                  }
+
+                })
+                .catch(error => {
+                  console.log(error);
+                });
+            });
+          }
+        }
+      })
+      .catch(error => {
+        console.log('error = ', error);
+      });
+
+
+  }
+
+  checkCompanyName(companyName) {
+    const companyInfo = {
+      "companyName": companyName
+    }
+    this.companyService.checkCompanyName(companyInfo)
+      .then(res => {
+        console.log(res);
+        if (res.success) {
+          swal({
+            position: 'center',
+            type: 'success',
+            title: 'CompanyName is not repeated.',
+            showConfirmButton: false,
+            timer: 2000
+          }).catch(swal.noop);
+        }
+      })
+      .catch(error => {
+        console.log('error', error);
+      });
+  }
+
 }

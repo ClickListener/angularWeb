@@ -361,7 +361,6 @@ export class CompanyService {
             const response = await this.userService.refreshToken();
             if (response['success']) {
 
-              companyInfo.token = response.token;
               const appResponse = await this.checkCompanyName(companyInfo);
 
               if (appResponse['success']) {
@@ -385,7 +384,53 @@ export class CompanyService {
   }
 
 
+  searchCompany(companyInfo: any): Promise<any> {
 
+
+    console.log('companyInfo = ', companyInfo);
+
+    const url = this.url + "/company/find";
+
+    return this.http.post(url, companyInfo, {
+      headers: {
+        "Content-Type": 'application/json',
+        'Accept': 'application/json'
+      }
+    }).toPromise()
+      .then(async res => {
+        console.log(res);
+
+        if (res['success']) {
+
+        } else {
+
+          if (res['code'] === '1034') {
+            const response = await this.userService.refreshToken();
+            if (response['success']) {
+
+              companyInfo.token = response.token;
+              const appResponse = await this.searchCompany(companyInfo);
+
+              if (appResponse['success']) {
+
+              } else {
+                this.errorService.hintError(appResponse);
+              }
+              return appResponse;
+
+            } else {
+              this.errorService.hintError(response);
+            }
+
+          } else {
+            this.errorService.hintError(res);
+          }
+        }
+
+        return res;
+      })
+      .catch(CompanyService.handleError);
+  }
 
 
 
