@@ -28,7 +28,7 @@
     <label style="display: inline-block" for="id_address">Address</label>
     <a style="display: inline-block"><img src="../../../../assets/images/star.png"></a>
     <input style="display: block" id="id_address" name="id_address" type="text" [(ngModel)]="address"
-           #addressValid="ngModel" pattern="^(?:(?=\S))[\u4e00-\u9fa5_a-zA-Z0-9\.,，。\s]{1,100}$" required>
+           #addressValid="ngModel" pattern="^(?:(?=\S))[\u4e00-\u9fa5_a-zA-Z0-9\.,，。_-\s]{1,100}$" required>
 
     <p *ngIf="!addressValid.pristine&&addressValid.invalid" style="color: #ee2200">Please input valid address with 1-100 characters.</p>
   </div>
