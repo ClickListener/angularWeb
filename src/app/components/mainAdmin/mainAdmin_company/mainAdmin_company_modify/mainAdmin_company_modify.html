@@ -13,7 +13,7 @@
 
 <a class="btn btn-primary btn-sm" (click)="updateCompanyInfo()">Update company state</a>
 
-<form *ngIf="companyInfo">
+<form *ngIf="companyInfo" style="margin-left: 3rem;margin-right: 3rem; margin-bottom: 3rem">
   <fieldset>
     <legend>Base Info</legend>
     <table class="table table-borderLess ">
@@ -29,6 +29,10 @@
       <tr>
         <th>Origin</th>
         <td>{{companyInfo.orgin}}</td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td>{{companyInfo.address}}</td>
       </tr>
       <tr>
         <th>Master Developer</th>
