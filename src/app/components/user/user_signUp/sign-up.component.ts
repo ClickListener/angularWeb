@@ -26,6 +26,9 @@ export class SignUpComponent {
   buttonDisable = false;  // 提交按钮状态
 
   constructor(private userService: UserService, private router: Router, private lowerCasePipe: LowerCasePipe) {
+    if (this.userService.user) {
+      this.router.navigate(['/']);
+    }
   }
 
   signUp() {
