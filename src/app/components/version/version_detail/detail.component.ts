@@ -69,9 +69,9 @@ export class DetailComponent {
             }
           } else if (this.schemeSelected.resourceName === 'LayerApp') {
             if (this.schemeSelected.platform === 'android') {
-              this.title = 'Layered App_Android';
+              this.title = 'Layer App_Android';
             } else {
-              this.title = 'Layered App_IOS';
+              this.title = 'Layer App_IOS';
             }
           }
         }

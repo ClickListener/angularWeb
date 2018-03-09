@@ -78,9 +78,9 @@ export class LastListComponent {
                 }
               } else if (lastVersion.resourceName === 'LayerApp') {
                 if(lastVersion.platform === 'android') {
-                  this.LayerAppLastVersion_android = 'Layered App_Android ' + lastVersion.version;
+                  this.LayerAppLastVersion_android = 'Layer App_Android ' + lastVersion.version;
                 } else {
-                  this.LayerAppLastVersion_ios = 'Layered App_IOS ' + lastVersion.version;
+                  this.LayerAppLastVersion_ios = 'Layer App_IOS ' + lastVersion.version;
                 }
               }
             }
