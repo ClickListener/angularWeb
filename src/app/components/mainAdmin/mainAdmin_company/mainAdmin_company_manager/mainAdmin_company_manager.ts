@@ -81,6 +81,13 @@ export class MainAdminCompanyManagerComponent {
 
     };
 
+
+    if (this.searchCompanyName === '') {
+      companyInfo.rule = null;
+    }
+
+
+
     this.companyService.searchCompany(companyInfo)
       .then(res => {
         console.log(res);

@@ -5,7 +5,7 @@
 
   <input class="form-control my-0 py-1 grey-border" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="searchCompanyName" (ngModelChange)="inputChange()">
 
-  <div class="form-custom" *ngIf="companyList && companyList.length !== 0">
+  <div class="form-custom" style="margin-top: 2rem" *ngIf="companyList && companyList.length !== 0">
     <div class="form-custom-head">
       <p class="item-2">CompanyName</p>
       <p class="item-2">mDeveloper</p>

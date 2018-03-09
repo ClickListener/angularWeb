@@ -38,8 +38,8 @@ export class AndroidComponent {
         this.title = 'Library SDK';
         this.item = 'Library SDK_Android';
       } else if (this.param === 'LayerApp') {
-        this.title = 'Layered App';
-        this.item = 'Layered App_Android';
+        this.title = 'Layer App';
+        this.item = 'Layer App_Android';
       }
 
 

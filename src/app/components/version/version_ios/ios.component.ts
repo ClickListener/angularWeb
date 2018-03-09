@@ -36,8 +36,8 @@ export class IOSComponent {
         this.title = 'Library SDK';
         this.item = 'Library SDK_IOS';
       } else if (this.param === 'LayerApp') {
-        this.title = 'Layered App';
-        this.item = 'Layered App_IOS';
+        this.title = 'Layer App';
+        this.item = 'Layer App_IOS';
       }
 
       if (userService.user.type === 3) {
