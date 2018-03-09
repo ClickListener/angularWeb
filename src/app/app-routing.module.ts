@@ -184,13 +184,14 @@ const routes: Routes = [
       {
         path: 'ios-version',
         component: IOSComponent
+      },
+      {
+        path: 'detail/:param',
+        component: DetailComponent
       }
     ]
   },
-  {
-    path: 'detail/:param',
-    component: DetailComponent
-  },
+
 
   {
     path: 'document-main/:param',
