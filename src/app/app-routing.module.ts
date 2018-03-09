@@ -40,6 +40,7 @@ import {UserResetPasswordComponent} from "./components/user/user_reset_password/
 import {DevelopmentCompanyModifyComponent} from "./components/development/development_company_modify/development_company_modify";
 import {LastListComponent} from "./components/version/version_lastList/lastList.component";
 import {AuthGuard} from "./services/auth-guard.service";
+import {SignConfirmComponent} from "./components/user/user_signConfirm/sign_confirm.component";
 
 /**
  * 路由模块
@@ -55,6 +56,10 @@ const routes: Routes = [
   {
     path: 'sign-in',
     component: SignInComponent
+  },
+  {
+    path: 'sign-up-confirm',
+    component: SignConfirmComponent
   },
   {
     path: 'sign-up',

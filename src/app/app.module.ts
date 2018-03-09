@@ -57,6 +57,7 @@ import {ErrorService} from "./services/error.service";
 import {MarkdownModule} from "ngx-markdown";
 import {LastListComponent} from "./components/version/version_lastList/lastList.component";
 import {AuthGuard} from "./services/auth-guard.service";
+import {SignConfirmComponent} from "./components/user/user_signConfirm/sign_confirm.component";
 
 @NgModule({
 
@@ -76,6 +77,7 @@ import {AuthGuard} from "./services/auth-guard.service";
 
     SignInComponent,
     SignUpComponent,
+    SignConfirmComponent,
     UserHintComponent,
     UserResetPasswordComponent,
 

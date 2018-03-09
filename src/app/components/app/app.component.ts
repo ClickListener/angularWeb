@@ -5,9 +5,10 @@
 import {Component, OnInit, Input, OnChanges, SimpleChanges, DoCheck} from "@angular/core";
 import {User} from "../../model/User";
 import {UserService} from "../../services/user.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {isUndefined} from "util";
 import swal from "sweetalert2";
+import {Location} from "@angular/common";
 
 declare const jQuery: any;
 
@@ -24,11 +25,15 @@ export class AppComponent implements OnInit, DoCheck {
   user: any;
   private sideNav: any;
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private router: Router,
+              private _location: Location) {
+
     userService.getResourceList();
 
+    console.log('url ========', _location.path());
 
-    if (userService.user) {
+
+    if (userService.user && _location.path() !== '/sign-up-confirm') {
 
       const userInfo = {
         "userId": userService.user._id,
@@ -43,6 +48,7 @@ export class AppComponent implements OnInit, DoCheck {
 
   ngDoCheck(): void {
     this.user = this.userService.user;
+    console.log('this.user = ', this.user);
 
     if (this.user && this.user.companyId) {
       jQuery('#development_primary').attr('data-target', '#development_collapse');
