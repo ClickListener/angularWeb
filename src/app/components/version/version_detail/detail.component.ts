@@ -28,6 +28,8 @@ export class DetailComponent {
 
   token: string;
 
+  title: string;
+
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private schemeService: SchemeService) {
 
     activatedRoute.paramMap.subscribe(paramMap => {
@@ -35,6 +37,8 @@ export class DetailComponent {
 
       console.log('schemeId = ', this.schemeId);
     });
+
+
 
     this.user = userService.user;
     this.token = userService.token.token;
@@ -50,6 +54,26 @@ export class DetailComponent {
         console.log(res);
         if (res.success) {
           this.schemeSelected = res.data;
+
+          if (this.schemeSelected.resourceName === 'SDK') {
+            if (this.schemeSelected.platform === 'android') {
+              this.title = 'Native SDK_Android';
+            } else {
+              this.title = 'Native SDK_IOS';
+            }
+          } else if (this.schemeSelected.resourceName === 'Library') {
+            if (this.schemeSelected.platform === 'android') {
+              this.title = 'Library SDK_Android';
+            } else {
+              this.title = 'Library SDK_IOS';
+            }
+          } else if (this.schemeSelected.resourceName === 'LayerApp') {
+            if (this.schemeSelected.platform === 'android') {
+              this.title = 'Layered App_Android';
+            } else {
+              this.title = 'Layered App_IOS';
+            }
+          }
         }
       })
       .catch(error => {
