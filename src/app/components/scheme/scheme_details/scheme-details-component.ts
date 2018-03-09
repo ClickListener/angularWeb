@@ -2,7 +2,7 @@
  * Created by zhangxu on 2017/12/13.
  */
 import {Component} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {SchemeService} from "../../../services/scheme.service";
 import swal from "sweetalert2";
 import {UserService} from "../../../services/user.service";
@@ -29,10 +29,16 @@ export class SchemeDetailsComponent {
   token: string;
 
 
-  constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService, private userService: UserService) {
+  constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService,
+              private userService: UserService, private router: Router) {
 
     this.user = userService.user;
     this.token = userService.token.token;
+
+    if (!userService.user) {
+      this.router.navigate(['/sign-in']);
+      return;
+    }
 
     const schemeID = activatedRoute.snapshot.paramMap['params'].schemeID;
     schemeService.schemeID = schemeID;

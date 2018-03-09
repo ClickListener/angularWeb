@@ -47,6 +47,12 @@ export class SchemeCreateComponent {
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
               private http: HttpClient, private userService: UserService) {
 
+
+    if (!userService.user) {
+      this.router.navigate(['/sign-in']);
+      return;
+    }
+
     // 通过 parent 属性获得父组件，通过父组件的paramMap获得参数
     this.activatedRoute.parent.paramMap.subscribe(paramMap => {
       this.resourceName = paramMap['params'].param;

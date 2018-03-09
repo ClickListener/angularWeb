@@ -5,6 +5,7 @@ import {Component} from "@angular/core";
 import {CompanyService} from "../../../../services/company.service";
 import {UserService} from "../../../../services/user.service";
 import swal from "sweetalert2";
+import {Router} from "@angular/router";
 
 @Component({
   templateUrl: './mainAdmin_company_manager.html',
@@ -17,9 +18,13 @@ export class MainAdminCompanyManagerComponent {
 
   searchCompanyName: string;
 
-  constructor(private companyService: CompanyService, private userService: UserService) {
+  constructor(private companyService: CompanyService, private userService: UserService, private router: Router) {
 
 
+    if (!userService.user) {
+      this.router.navigate(['/sign-in']);
+      return;
+    }
     const userInfo = {
       "userId": userService.user._id,
       "token": userService.token.token

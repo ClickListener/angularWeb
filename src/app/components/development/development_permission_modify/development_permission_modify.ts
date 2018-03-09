@@ -28,6 +28,12 @@ export class DevelopmentPermissionModifyComponent {
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService,
               private router: Router, private _location: Location) {
 
+
+    if (!userService.user) {
+      this.router.navigate(['/sign-in']);
+      return;
+    }
+
     activatedRoute.paramMap.subscribe(paramMap => {
       this.userId = paramMap['params'].param;
     });

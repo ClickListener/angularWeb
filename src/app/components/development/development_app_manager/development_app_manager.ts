@@ -8,6 +8,7 @@ import swal from "sweetalert2";
 
 import * as myGlobals from '../../../../environments/config';
 import {CompanyService} from "../../../services/company.service";
+import {Router} from "@angular/router";
 @Component({
   templateUrl: './development_app_manager.html',
   styleUrls: ['./development_app_manager.css']
@@ -31,7 +32,13 @@ export class DevelopmentAppManagerComponent {
   user: any;
   token: any;
 
-  constructor(private appService: AppService, private userService: UserService, private companyService: CompanyService) {
+  constructor(private appService: AppService, private userService: UserService, private companyService: CompanyService,
+              private router: Router) {
+
+    if (!userService.user) {
+      this.router.navigate(['/sign-in']);
+      return;
+    }
 
     const userInfo = {
       "userId": userService.user._id,

@@ -5,6 +5,7 @@ import {Component} from "@angular/core";
 import {UserService} from "../../../services/user.service";
 import swal from "sweetalert2";
 import {LowerCasePipe} from "@angular/common";
+import {Router} from "@angular/router";
 
 @Component({
   templateUrl: './forgot-password.component.html',
@@ -15,7 +16,15 @@ export class ForgotPasswordComponent {
 
   email: string;
 
-  constructor(private userService: UserService, private lowerCasePipe: LowerCasePipe) {}
+  constructor(private userService: UserService, private lowerCasePipe: LowerCasePipe, private router: Router) {
+
+    if (!userService.user) {
+      this.router.navigate(['/sign-in']);
+      return;
+    }
+  }
+
+
 
 
   buttonDisable = false;  // 提交按钮状态

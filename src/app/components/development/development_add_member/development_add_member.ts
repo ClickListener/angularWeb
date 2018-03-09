@@ -31,6 +31,10 @@ export class DevelopmentAddMemberComponent {
     , private lowerCasePipe: LowerCasePipe, private _location: Location) {
 
 
+    if (!userService.user) {
+      this.router.navigate(['/sign-in']);
+      return;
+    }
     const userInfo = {
       "userId": userService.user._id,
       "token": userService.token.token

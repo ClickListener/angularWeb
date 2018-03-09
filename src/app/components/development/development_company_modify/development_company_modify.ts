@@ -34,6 +34,12 @@ export class DevelopmentCompanyModifyComponent {
   constructor(private activateRoute: ActivatedRoute, private companyService: CompanyService, private userService: UserService,
               private _location: Location, private router: Router) {
 
+
+    if (!userService.user) {
+      this.router.navigate(['/sign-in']);
+      return;
+    }
+
     activateRoute.paramMap.subscribe(paramMap => {
       this.companyId = paramMap['params'].param;
 

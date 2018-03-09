@@ -40,6 +40,11 @@ export class DevelopmentApplyMasterComponent {
 
   constructor(private userService: UserService, private companyService: CompanyService, private router: Router) {
 
+    if (!userService.user) {
+      this.router.navigate(['/sign-in']);
+      return;
+    }
+
     if (companyService.countryList === undefined ) {
       companyService.getCountryList()
         .then(res => {

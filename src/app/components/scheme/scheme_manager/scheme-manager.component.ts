@@ -2,7 +2,7 @@
  * Created by zhangxu on 2017/12/13.
  */
 import {Component, DoCheck, OnChanges, OnInit, SimpleChanges, ViewChild} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {PaginationComponent} from "../../tools/pagination/pagination.component";
 import {SchemeService} from "../../../services/scheme.service";
 import swal from "sweetalert2";
@@ -41,7 +41,13 @@ export class SchemeManagerComponent {
 
   }
 
-  constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService, private userService: UserService) {
+  constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService,
+              private userService: UserService, private router: Router) {
+
+    if (!userService.user) {
+      this.router.navigate(['/sign-in']);
+      return;
+    }
 
     // 如果同一个页面，使用同样的url，但是参数不同，只有第一次加载的时候，会走constructor(),和ngOnInit()方法，快照版式无法实时的获取新的参数
     // stackoverflow 中问题：

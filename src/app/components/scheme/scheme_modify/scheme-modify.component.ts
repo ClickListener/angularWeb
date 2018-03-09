@@ -43,6 +43,11 @@ export class SchemeModifyComponent {
   constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService, private router: Router,
               private userService: UserService) {
 
+    if (!userService.user) {
+      this.router.navigate(['/sign-in']);
+      return;
+    }
+
     const schemeID = activatedRoute.snapshot.paramMap['params'].schemeID;
 
 

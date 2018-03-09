@@ -151,6 +151,12 @@ export class DevelopmentAppRegComponent implements OnInit {
 
 
   constructor(private userService: UserService, private router: Router) {
+
+    if (!userService.user) {
+      this.router.navigate(['/sign-in']);
+      return;
+    }
+
     this.deviceSelectList = new Array();
     const device = new Device();
     device.model = "BP5";

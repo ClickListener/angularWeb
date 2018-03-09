@@ -148,6 +148,10 @@ export class DevelopmentAppModifyComponent implements DoCheck {
               private userService: UserService, private router: Router,
               private datePipe: DatePipe) {
 
+    if (!userService.user) {
+      this.router.navigate(['/sign-in']);
+      return;
+    }
     this.activatedRoute.paramMap.subscribe(paramMap => {
       const appId = paramMap['params'].param;
       console.log('appId = ', appId);
