@@ -48,7 +48,6 @@ export class AppComponent implements OnInit, DoCheck {
 
   ngDoCheck(): void {
     this.user = this.userService.user;
-    console.log('this.user = ', this.user);
 
     if (this.user && this.user.companyId) {
       jQuery('#development_primary').attr('data-target', '#development_collapse');
