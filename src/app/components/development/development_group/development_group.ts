@@ -5,6 +5,7 @@ import {Component, OnInit} from "@angular/core";
 import {CompanyService} from "../../../services/company.service";
 import {UserService} from "../../../services/user.service";
 import {User} from "../../../model/User";
+import {Router} from "@angular/router";
 
 @Component({
   templateUrl: './development_group.html',
@@ -36,8 +37,12 @@ export class DevelopmentGroupComponent {
 
   countryList: Array<any>;
 
-  constructor(private companyService: CompanyService, private userService: UserService) {
+  constructor(private companyService: CompanyService, private userService: UserService, private router: Router) {
 
+    if (!userService.user) {
+      this.router.navigate(['/sign-in']);
+      return;
+    }
 
 
     const userInfo = {
