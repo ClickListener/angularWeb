@@ -1,13 +1,15 @@
-<div style="margin-left: 10%; margin-right: 10%" *ngIf="schemeSelected">
+<div style="margin-left: 10%; margin-right: 10%; margin-top: 3rem" *ngIf="schemeSelected">
   <div class="title-custom">
     <p>{{title}} {{schemeSelected.version}}</p>
   </div>
   <div class="subhead">
     <p class="title">Description</p>
+    <div class="divider"></div>
     <P class="content">{{schemeSelected.description}}</P>
   </div>
   <div class="subhead">
     <p class="title">Essential Information</p>
+    <div class="divider"></div>
     <div class="form-custom">
       <p class="item-narrow-custom">Items</p>
       <p class="item-wide-custom">{{title}}</p>
@@ -23,8 +25,9 @@
   </div>
   <div class="subhead">
     <p class="title">Enclosure</p>
-    <div *ngFor="let url_private of schemeSelected.urls">
-      <a href="{{url}}/api/app/download?userId={{user._id}}&token={{token}}&description={{url_private.description}}&fileName={{url_private.fileName}}"><img src="../../../../assets/images/annex.png">{{url_private.fileName}}</a>
+    <div class="divider"></div>
+    <div *ngFor="let url_private of schemeSelected.urls" style="margin-top: 1rem">
+      <a href="{{url}}/api/app/download?userId={{user._id}}&token={{token}}&description={{url_private.description}}&fileName={{url_private.fileName}}&resourceName={{schemeSelected.resourceName}}"><img src="../../../../assets/images/annex.png">{{url_private.fileName}}</a>
     </div>
   </div>
 </div>

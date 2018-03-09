@@ -97,6 +97,7 @@
   overflow-y: auto;
   background: #fff;
   transform: translateX(-100%);
+  background: #f6f8fa;
 }
 
 .slide-out > ul {

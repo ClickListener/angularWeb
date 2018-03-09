@@ -29,7 +29,7 @@
     <legend>Files</legend>
     <ul>
       <li *ngFor="let url_private of schemeSelected.urls" [attr.id]="url_private.fileName.replace('.', '_')">
-        <a href="{{url}}/api/app/download?userId={{user._id}}&token={{token}}&description={{url_private.description}}&fileName={{url_private.fileName}}">{{url_private.fileName}}</a>
+        <a href="{{url}}/api/app/download?userId={{user._id}}&token={{token}}&description={{url_private.description}}&fileName={{url_private.fileName}}&resourceName={{schemeSelected.resourceName}}">{{url_private.fileName}}</a>
         <a (click)="deleteFile(url_private.fileName, url_private.description, schemeSelected._id)"><i class="fa fa-times-circle" ></i></a>
       </li>
     </ul>
