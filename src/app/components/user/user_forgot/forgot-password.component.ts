@@ -17,11 +17,6 @@ export class ForgotPasswordComponent {
   email: string;
 
   constructor(private userService: UserService, private lowerCasePipe: LowerCasePipe, private router: Router) {
-
-    if (!userService.user) {
-      this.router.navigate(['/sign-in']);
-      return;
-    }
   }
 
 
