@@ -54,6 +54,46 @@ export class DevelopmentAppManagerComponent {
           this.user = userService.user;
           this.token = userService.token.token;
 
+
+          const authResponse = await userService.getUserAuth(userInfo);
+
+          if (authResponse.success) {
+            this.parsePermission(authResponse.data);
+
+            if (this.user.type === 4 && this.checkLicenseData) {
+              const appInfo = {
+                "userId": response.user._id,
+                "token": this.userService.token.token,
+                "companyId": response.user.companyId
+              };
+
+              const _response = await this.appService.findAllAppInfo(appInfo);
+
+              if (_response.success) {
+                this.appList = _response.data;
+              }
+            } else if (this.user.type === 3) {
+
+
+              this.create_App = true;
+              this.edit_App = true;
+              this.delete_App = true;
+              this.checkLicenseData = true;
+
+              const appInfo = {
+                "userId": response.user._id,
+                "token": this.userService.token.token,
+                "companyId": response.user.companyId
+              };
+
+              const _response = await this.appService.findAllAppInfo(appInfo);
+
+              if (_response.success) {
+                this.appList = _response.data;
+              }
+            }
+          }
+
           // 获得公司信息
           const queryCompanyInfo = {
             "userId": response.user._id,
@@ -64,48 +104,6 @@ export class DevelopmentAppManagerComponent {
 
           if (companyResponse.success) {
             this.companyInfo = companyResponse.data;
-
-            if (this.companyInfo.state === 3) {
-              const authResponse = await userService.getUserAuth(userInfo);
-
-              if (authResponse.success) {
-                this.parsePermission(authResponse.data);
-
-                if (this.user.type === 4 && this.checkLicenseData) {
-                  const appInfo = {
-                    "userId": response.user._id,
-                    "token": this.userService.token.token,
-                    "companyId": response.user.companyId
-                  };
-
-                  const _response = await this.appService.findAllAppInfo(appInfo);
-
-                  if (_response.success) {
-                    this.appList = _response.data;
-                  }
-                } else if (this.user.type === 3) {
-
-
-                  this.create_App = true;
-                  this.edit_App = true;
-                  this.delete_App = true;
-                  this.checkLicenseData = true;
-
-                  const appInfo = {
-                    "userId": response.user._id,
-                    "token": this.userService.token.token,
-                    "companyId": response.user.companyId
-                  };
-
-                  const _response = await this.appService.findAllAppInfo(appInfo);
-
-                  if (_response.success) {
-                    this.appList = _response.data;
-                  }
-                }
-              }
-
-            }
           }
 
 
@@ -127,6 +125,13 @@ export class DevelopmentAppManagerComponent {
 
   private parsePermission(permission: any) {
 
+    if (permission.length === 0) {
+      this.create_App = false;
+      this.edit_App = false;
+      this.delete_App = false;
+      this.checkLicenseData = false;
+      return;
+    }
 
     permission.forEach((item, index) => {
       if (item.resourceId === '5a6585df5e149e1dfdf27964') {
