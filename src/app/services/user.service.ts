@@ -629,7 +629,7 @@ export class UserService {
       "refresh_token": this.token.refresh_token
     };
 
-    const url = this.url + '/token/getAccessToken';
+    const url = this.url + '/api/token/getAccessToken';
 
     return this.http.post(url, JSON.stringify(refreshTokenInfo), this.options)
       .toPromise()
