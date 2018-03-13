@@ -293,7 +293,7 @@ export class CompanyService {
 
     console.log('userInfo = ', userInfo);
 
-    const url = this.url + "/compnay/removeCompanyId";
+    const url = this.url + "/api/compnay/removeCompanyId";
 
     return this.http.get(url, {
       headers: new HttpHeaders({
@@ -342,7 +342,7 @@ export class CompanyService {
 
     console.log('companyInfo = ', companyInfo);
 
-    const url = this.url + "/company/compareCompany";
+    const url = this.url + "/api/company/compareCompany";
 
     return this.http.get(url, {
       headers: new HttpHeaders({
@@ -389,7 +389,7 @@ export class CompanyService {
 
     console.log('companyInfo = ', companyInfo);
 
-    const url = this.url + "/company/find";
+    const url = this.url + "/api/company/find";
 
     return this.http.post(url, companyInfo, {
       headers: {

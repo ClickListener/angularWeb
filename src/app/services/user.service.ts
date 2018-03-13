@@ -161,7 +161,7 @@ export class UserService {
 
     console.log('userInfo = ', userInfo);
 
-    const url = this.url + "/user/userInfo";
+    const url = this.url + "/api/user/userInfo";
     return this.http.get(url, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -215,7 +215,7 @@ export class UserService {
 
   getResourceList():Promise<any> {
 
-    const url = this.url + "/auth/getAuthList";
+    const url = this.url + "/api/auth/getAuthList";
 
     return this.http.get(url, {
       headers: new HttpHeaders({
@@ -244,7 +244,7 @@ export class UserService {
 
     console.log('userInfo = ' + JSON.stringify(userInfo));
 
-    const url = this.url + "/user/changeValid";
+    const url = this.url + "/api/user/changeValid";
 
     return this.http.post(url, userInfo, {
       headers: new HttpHeaders({
@@ -267,7 +267,7 @@ export class UserService {
 
     console.log('userInfo = ' + JSON.stringify(userInfo));
 
-    const url =  this.url + "/auth/getUserAuth";
+    const url =  this.url + "/api/auth/getUserAuth";
 
     return this.http.get(url, {
       headers: new HttpHeaders({
@@ -320,7 +320,7 @@ export class UserService {
 
     console.log("perssionInfo = " + JSON.stringify(perssionInfo));
 
-    const url = this.url + "/user/userAuth";
+    const url = this.url + "/api/user/userAuth";
 
     return this.http.post(url, perssionInfo, {
       headers: new HttpHeaders({
@@ -370,7 +370,7 @@ export class UserService {
 
     console.log('userInfo = ' + JSON.stringify(userInfo));
 
-    const url = this.url + "/user/update";
+    const url = this.url + "/api/user/update";
 
     return this.http.post(url, userInfo, {
       headers: new HttpHeaders({
@@ -400,7 +400,7 @@ export class UserService {
   getUserList(queryInfo): Promise<any> {
     console.log(JSON.stringify(queryInfo));
 
-    const url = this.url + '/user/getUserList';
+    const url = this.url + '/api/user/getUserList';
 
     return this.http.get(url, {
       headers: new HttpHeaders({
@@ -449,7 +449,7 @@ export class UserService {
    * @param userInfo
    */
   signIn(userInfo: any): Promise<User> {
-    const url = this.url + '/user/login';
+    const url = this.url + '/api/user/login';
     console.log(JSON.stringify(userInfo));
 
     userInfo.password = this.md5Encrypt(userInfo.password);
@@ -484,7 +484,7 @@ export class UserService {
    *
    */
   signUp(userInfo: any): Promise<User> {
-    const url = this.url + '/user/add';
+    const url = this.url + '/api/user/add';
 
     console.log(JSON.stringify(userInfo));
 
@@ -520,7 +520,7 @@ export class UserService {
     console.log('userInfo = ', userInfo);
 
 
-    const url = myGlobals.url + '/user/forgotPassword';
+    const url = myGlobals.url + '/api/user/forgotPassword';
     return this.http.get(url, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -587,7 +587,7 @@ export class UserService {
     };
 
 
-    const url = this.url + '/token/getAccessToken';
+    const url = this.url + '/api/token/getAccessToken';
 
     console.log(tokenInfo);
 
