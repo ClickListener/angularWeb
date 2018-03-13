@@ -27,7 +27,7 @@ export class DevelopmentAppManagerComponent {
   create_App: boolean;
   edit_App: boolean;
   delete_App: boolean;
-  checkLicenseData= true;
+  checkLicenseData = true;
 
   user: any;
   token: any;
@@ -45,58 +45,14 @@ export class DevelopmentAppManagerComponent {
       "token": userService.token.token
     };
 
-    this.user = userService.user;
-    this.token = userService.token.token;
 
-
-    // 获得用户权限，根据用户权限显示页面
-    if (userService.user.type === 4) {
-      userService.getUserAuth(userInfo)
-        .then(res => {
-          console.log('res = ', res);
-          if (res.success) {
-            this.parsePermission(res.data);
-
-            if (this.checkLicenseData) {
-              this.getAppList();
-            }
-          }
-        })
-        .catch(error => {
-          console.log('error = ', error);
-        });
-    } else if (userService.user.type === 3) {
-      this.create_App = true;
-      this.edit_App = true;
-      this.delete_App = true;
-      this.checkLicenseData = true;
-
-      this.getAppList();
-    }
-
-
-  }
-
-  private getAppList() {
-    const userInfo = {
-      "userId": this.userService.user._id,
-      "token": this.userService.token.token
-    };
     this.userService.getUserInfo(userInfo)
       .then(async response => {
 
         if (response.success) {
-          const appInfo = {
-            "userId": response.user._id,
-            "token": this.userService.token.token,
-            "companyId": response.user.companyId
-          };
 
-          const _response = await this.appService.findAllAppInfo(appInfo);
-
-          if (_response.success) {
-            this.appList = _response.data;
-          }
+          this.user = userService.user;
+          this.token = userService.token.token;
 
           // 获得公司信息
           const queryCompanyInfo = {
@@ -108,12 +64,61 @@ export class DevelopmentAppManagerComponent {
 
           if (companyResponse.success) {
             this.companyInfo = companyResponse.data;
+
+            if (this.companyInfo.state === 3) {
+              const authResponse = await userService.getUserAuth(userInfo);
+
+              if (authResponse.success) {
+                this.parsePermission(authResponse.data);
+
+                if (this.user.type === 4 && this.checkLicenseData) {
+                  const appInfo = {
+                    "userId": response.user._id,
+                    "token": this.userService.token.token,
+                    "companyId": response.user.companyId
+                  };
+
+                  const _response = await this.appService.findAllAppInfo(appInfo);
+
+                  if (_response.success) {
+                    this.appList = _response.data;
+                  }
+                } else if (this.user.type === 3) {
+
+
+                  this.create_App = true;
+                  this.edit_App = true;
+                  this.delete_App = true;
+                  this.checkLicenseData = true;
+
+                  const appInfo = {
+                    "userId": response.user._id,
+                    "token": this.userService.token.token,
+                    "companyId": response.user.companyId
+                  };
+
+                  const _response = await this.appService.findAllAppInfo(appInfo);
+
+                  if (_response.success) {
+                    this.appList = _response.data;
+                  }
+                }
+              }
+
+            }
           }
+
+
+
+
         }
       })
       .catch(error => {
         console.log(error);
       });
+
+
+
   }
 
 
