@@ -25,7 +25,7 @@
   </div>
 
   <div class="input-block">
-    <label for="id_bundle">Bundled/Package Name</label>
+    <label for="id_bundle">BundleId/Package Name</label>
     <input id="id_bundle" type="text" name="id_bundle" [(ngModel)]="bundleIdOrPackageName"
            #bundleId="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s\.]{3,100}$" required>
 
@@ -69,6 +69,7 @@
       <select class="mdb-select" name="BG_TYPE" [(ngModel)]="codeType">
         <option value="GDH">GDH</option>
         <option value="GOD">GOD</option>
+        <option value="GOD&GDH">GOD&GDH</option>
       </select>
 
     </div>
