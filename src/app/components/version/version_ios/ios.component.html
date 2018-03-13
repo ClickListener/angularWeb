@@ -1,4 +1,4 @@
-<div style="margin-left: 5rem; margin-right: 5rem">
+<div style="margin-left: 5rem; margin-right: 5rem" *ngIf="permissionOfCheck">
 
 
 
@@ -39,4 +39,6 @@
   </div>
 </div>
 
-
+<div style="margin-left: 5rem; margin-right: 5rem; margin-top: 5rem; font-size: 2rem; color: #999999" *ngIf="!permissionOfCheck">
+  You don't have permission of check this scheme because of you haven't register relevant app or your app's state is not via.
+</div>

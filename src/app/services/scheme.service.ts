@@ -82,13 +82,18 @@ export class SchemeService {
               if (appResponse['success']) {
 
               } else {
-                this.errorService.hintError(appResponse);
+                if (appResponse['code'] !== '1062') {
+                  this.errorService.hintError(appResponse);
+                }
+
               }
               return appResponse;
 
             } else {
               this.errorService.hintError(response);
             }
+
+          } else if (res['code'] === '1062') {
 
           } else {
             this.errorService.hintError(res);

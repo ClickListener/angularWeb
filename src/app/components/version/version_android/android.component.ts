@@ -23,6 +23,7 @@ export class AndroidComponent {
 
   isBeta: boolean;
   permissionOfBeta: boolean;
+  permissionOfCheck = true;
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private schemeService: SchemeService) {
 
@@ -104,7 +105,10 @@ export class AndroidComponent {
 
         console.log(res);
         if (res.success) {
+          this.permissionOfCheck = true;
           this.schemeList = res.data;
+        } else if (res['code'] === '1062') {
+          this.permissionOfCheck = false;
         }
       })
       .catch(error => {
