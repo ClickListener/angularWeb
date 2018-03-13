@@ -15,19 +15,19 @@ export class LastListComponent {
 
   project = [
     {
-      'appName': 'SDK',
+      'appName': 'NativeSDK',
       'platform': 'android'
     },
     {
-      'appName': 'SDK',
+      'appName': 'NativeSDK',
       'platform': 'ios'
     },
     {
-      'appName': 'Library',
+      'appName': 'LibrarySDK',
       'platform': 'android'
     },
     {
-      'appName': 'Library',
+      'appName': 'LibrarySDK',
       'platform': 'ios'
     },
     {
@@ -64,13 +64,13 @@ export class LastListComponent {
           if (res.success) {
             const lastVersion = this.findLastVersionScheme(res.data);
             if (lastVersion) {
-              if (lastVersion.resourceName === 'SDK') {
+              if (lastVersion.resourceName === 'NativeSDK') {
                 if(lastVersion.platform === 'android') {
                   this.SDKLastVersion_android = 'Native SDK_Android ' + lastVersion.version;
                 } else {
                   this.SDKLastVersion_android = 'Native SDK_IOS ' + lastVersion.version;
                 }
-              } else if (lastVersion.resourceName === 'Library') {
+              } else if (lastVersion.resourceName === 'LibrarySDK') {
                 if(lastVersion.platform === 'android') {
                   this.LibraryLastVersion_android = 'Library SDK_Android ' + lastVersion.version;
                 } else {

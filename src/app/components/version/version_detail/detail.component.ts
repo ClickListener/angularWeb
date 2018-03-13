@@ -55,13 +55,13 @@ export class DetailComponent {
         if (res.success) {
           this.schemeSelected = res.data;
 
-          if (this.schemeSelected.resourceName === 'SDK') {
+          if (this.schemeSelected.resourceName === 'NativeSDK') {
             if (this.schemeSelected.platform === 'android') {
               this.title = 'Native SDK_Android';
             } else {
               this.title = 'Native SDK_IOS';
             }
-          } else if (this.schemeSelected.resourceName === 'Library') {
+          } else if (this.schemeSelected.resourceName === 'LibrarySDK') {
             if (this.schemeSelected.platform === 'android') {
               this.title = 'Library SDK_Android';
             } else {
