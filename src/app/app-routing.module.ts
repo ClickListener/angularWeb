@@ -215,7 +215,13 @@ const routes: Routes = [
   },
   {
     path: 'last-version',
-    component: LastListComponent
+    component: LastListComponent,
+    children: [
+      {
+        path: 'detail/:param',
+        component: DetailComponent
+      }
+    ]
   },
 
   {

@@ -1,6 +1,6 @@
 
 
-<div class="all-block">
+<div class="all-block" *ngIf="url.indexOf('detail') === -1">
   <p class="total-title">SDK Download</p>
 
 
@@ -8,8 +8,8 @@
     <p class="sub-title">Native SDK</p>
     <div class="divider"></div>
 
-    <p class="project-title" *ngIf="SDKLastVersion_android">{{SDKLastVersion_android}}</p>
-    <p class="project-title" *ngIf="SDKLastVersion_ios">{{SDKLastVersion_ios}}</p>
+    <p class="project-title" *ngIf="SDKLastVersion_android" [routerLink]="['./detail',SDKLastVersion_url_android]">{{SDKLastVersion_android}}</p>
+    <p class="project-title" *ngIf="SDKLastVersion_ios" [routerLink]="['./detail',SDKLastVersion_url_ios]">{{SDKLastVersion_ios}}</p>
   </div>
 
 
@@ -17,8 +17,8 @@
     <p class="sub-title">Library SDK</p>
     <div class="divider"></div>
 
-    <p class="project-title" *ngIf="LibraryLastVersion_android">{{LibraryLastVersion_android}}</p>
-    <p class="project-title" *ngIf="LibraryLastVersion_ios">{{LibraryLastVersion_ios}}</p>
+    <p class="project-title" *ngIf="LibraryLastVersion_android" [routerLink]="['./detail',LibraryLastVersion_url_android]">{{LibraryLastVersion_android}}</p>
+    <p class="project-title" *ngIf="LibraryLastVersion_ios" [routerLink]="['./detail',LibraryLastVersion_url_ios]">{{LibraryLastVersion_ios}}</p>
   </div>
 
 
@@ -26,9 +26,12 @@
     <p class="sub-title">Layered APP</p>
     <div class="divider"></div>
 
-    <p class="project-title" *ngIf="LayerAppLastVersion_android">{{LayerAppLastVersion_android}}</p>
-    <p class="project-title" *ngIf="LayerAppLastVersion_ios">{{LayerAppLastVersion_ios}}</p>
+    <p class="project-title" *ngIf="LayerAppLastVersion_android" [routerLink]="['./detail',LayerAppLastVersion_url_android]">{{LayerAppLastVersion_android}}</p>
+    <p class="project-title" *ngIf="LayerAppLastVersion_ios" [routerLink]="['./detail',LayerAppLastVersion_url_ios]">{{LayerAppLastVersion_ios}}</p>
   </div>
 
 
 </div>
+
+<router-outlet></router-outlet>
+
