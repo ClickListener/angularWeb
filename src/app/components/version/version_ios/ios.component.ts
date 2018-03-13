@@ -29,10 +29,10 @@ export class IOSComponent {
       this.param = paramMap['params'].param;
       console.log('param = ', this.param);
 
-      if (this.param === 'SDK') {
+      if (this.param === 'NativeSDK') {
         this.title = 'Native SDK';
         this.item = 'Native SDK_IOS';
-      } else if (this.param === 'Library') {
+      } else if (this.param === 'LibrarySDK') {
         this.title = 'Library SDK';
         this.item = 'Library SDK_IOS';
       } else if (this.param === 'LayerApp') {
