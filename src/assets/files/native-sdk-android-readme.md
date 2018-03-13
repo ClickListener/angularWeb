@@ -3,9 +3,9 @@
 **Before you use SDK, please get permission from iHealth team, otherwise you will not be able to use SDK (connect failed)**      
 **Contact for more information:**
 
-1. <yuchen.wang@ihealthlabs.com>(US)  
-2. <noah@ihealthlabs.com>(Europe)  
-3. <enterprise@ihealthlabs.com>(Other)
+1. <enterprise@ihealthlabs.com>(US)  
+2. <contact_b2B@ihealthlabs.eu>(Europe)  
+3. <sdk@ihealthlabs.com.cn>(Other)
 
 **After received a invitation, you will be able to register your application for iOS and Android platform. **
 
@@ -17,7 +17,7 @@ This document describes how to use the iHealth Device SDK to accomplish the majo
 
 ### Latest version
 
-2.4.0
+2.3.5
 
 ### Support iHealth Device for Android
 ```java
