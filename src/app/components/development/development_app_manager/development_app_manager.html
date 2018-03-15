@@ -121,3 +121,6 @@
 && companyInfo.mDeveloperId === user._id && user && user.type == 4">
   <p style="margin-top: 3rem; font-size: 1.5rem">Your application is not confirmed. Please wait.</p>
 </div>
+
+
+<div id="loading" class="loading" *ngIf="!(user && companyInfo)"></div>
