@@ -1,6 +1,6 @@
 
 
-<div class="all-block" *ngIf="url.indexOf('detail') === -1">
+<div class="all-block" *ngIf="url.indexOf('detail') === -1 && !loading">
   <p class="total-title">SDK Download</p>
 
 
@@ -34,4 +34,6 @@
 </div>
 
 <router-outlet></router-outlet>
+
+<div id="loading" class="loading" *ngIf="loading"></div>
 

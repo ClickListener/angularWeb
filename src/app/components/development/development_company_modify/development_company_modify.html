@@ -1,5 +1,5 @@
 
-<p style="margin-left: 10%; margin-top: 15px; margin-bottom: 30px;font-size: 30px">
+<p style="margin-left: 10%; margin-top: 15px; margin-bottom: 30px;font-size: 30px" *ngIf="companyInfo">
   Company Information</p>
 
 <form id="applyForm" novalidate enctype="multipart/form-data" *ngIf="companyInfo" #myForm="ngForm">
@@ -67,3 +67,6 @@
 
 
 </form>
+
+
+<div id="loading" class="loading" *ngIf="!companyInfo"></div>

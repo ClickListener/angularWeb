@@ -25,12 +25,20 @@ export class AndroidComponent {
   permissionOfBeta: boolean;
   permissionOfCheck = true;
 
+  loading = true;
+
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private schemeService: SchemeService) {
 
 
     activatedRoute.parent.paramMap.subscribe( paramMap => {
       this.param = paramMap['params'].param;
       console.log('param = ', this.param);
+
+      this.schemeList = null;
+      this.isBeta = null;
+      this.permissionOfBeta = null;
+      this.permissionOfCheck = true;
+      this.loading = true;
 
       if (this.param === 'NativeSDK') {
         this.title = 'Native SDK';
@@ -56,6 +64,8 @@ export class AndroidComponent {
             if (res.success) {
               this.parsePermission(res.data);
               this.getSchemeList(0);
+            } else {
+              this.loading = false;
             }
           })
           .catch(error => {
@@ -106,9 +116,11 @@ export class AndroidComponent {
         console.log(res);
         if (res.success) {
           this.permissionOfCheck = true;
+          this.loading = false;
           this.schemeList = res.data;
         } else if (res['code'] === '1062') {
           this.permissionOfCheck = false;
+          this.loading = false;
         }
       })
       .catch(error => {

@@ -55,6 +55,8 @@ export class LastListComponent {
   LayerAppLastVersion_url_ios: string;
 
   url: string;
+
+  loading = true;
   constructor(private schemeService: SchemeService, private userService: UserService,
               private router: Router) {
 
@@ -63,7 +65,7 @@ export class LastListComponent {
       .subscribe(e => {
         this.url = e['url'];
       });
-    this.project.forEach((project) => {
+    this.project.forEach((project, index) => {
 
       const fileInfo = {
         "userId": userService.user._id,
@@ -77,13 +79,14 @@ export class LastListComponent {
           console.log(res);
           if (res.success) {
             const lastVersion = this.findLastVersionScheme(res.data);
+            console.log('lastVersion = ', lastVersion);
             if (lastVersion) {
               if (lastVersion.resourceName === 'NativeSDK') {
                 if(lastVersion.platform === 'android') {
                   this.SDKLastVersion_android = 'Native SDK_Android ' + lastVersion.version;
                   this.SDKLastVersion_url_android = lastVersion._id;
                 } else {
-                  this.SDKLastVersion_android = 'Native SDK_IOS ' + lastVersion.version;
+                  this.SDKLastVersion_ios = 'Native SDK_IOS ' + lastVersion.version;
                   this.SDKLastVersion_url_ios = lastVersion._id;
                 }
               } else if (lastVersion.resourceName === 'LibrarySDK') {
@@ -104,6 +107,12 @@ export class LastListComponent {
                 }
               }
             }
+          } else {
+            this.loading = false;
+          }
+
+          if (this.project.length - 1 === index) {
+            this.loading = false;
           }
 
         })
