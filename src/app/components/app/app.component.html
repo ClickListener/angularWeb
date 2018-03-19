@@ -235,6 +235,19 @@
 
     <ul class="accoraccordiondion" id="accordionId">
 
+
+      <li *ngIf="user && user.type != '1'">
+        <a id="development_primary" data-toggle="collapse"
+           aria-expanded="true" [routerLink]="(user && user.companyId)?  null : '/development-primary'" routerLinkActive="active">
+          <b style="font-size: 16px">Enterprise Development</b>
+        </a>
+
+        <ul style="font-size: 14px" *ngIf="user.companyId">
+          <li><a routerLinkActive="active" routerLink='/development-main/development-group'>Development Group</a></li>
+          <li><a routerLinkActive="active" routerLink='/development-main/development-app-manager'>App Manager</a></li>
+        </ul>
+      </li>
+
       <li class="class-li">
         <a>
           <b style="font-size: 16px">SDK Document</b>
@@ -248,17 +261,6 @@
         </ul>
       </li>
 
-      <li *ngIf="user && user.type != '1'">
-        <a id="development_primary" data-toggle="collapse"
-           aria-expanded="true" [routerLink]="(user && user.companyId)?  null : '/development-primary'" routerLinkActive="active">
-          <b style="font-size: 16px">Enterprise Development</b>
-        </a>
-
-        <ul style="font-size: 14px" *ngIf="user.companyId">
-          <li><a routerLinkActive="active" routerLink='/development-main/development-group'>Development Group</a></li>
-          <li><a routerLinkActive="active" routerLink='/development-main/development-app-manager'>App Manager</a></li>
-        </ul>
-      </li>
 
       <li class="class-li" *ngIf="user && user.type != '1'&& user.companyId">
         <a routerLink="/last-version" routerLinkActive="active">

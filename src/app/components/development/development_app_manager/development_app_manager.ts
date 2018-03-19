@@ -35,6 +35,9 @@ export class DevelopmentAppManagerComponent {
   constructor(private appService: AppService, private userService: UserService, private companyService: CompanyService,
               private router: Router) {
 
+
+    console.log('`.routerState = ', router.routerState);
+
     if (!userService.user) {
       this.router.navigate(['/sign-in']);
       return;
