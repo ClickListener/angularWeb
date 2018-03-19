@@ -33,17 +33,17 @@
     <p *ngIf="!descriptionValid.pristine&&descriptionValid.invalid" style="color: #ee2200">You must input at least 20 and no more than 500 characters.</p>
   </div>
 
-  <div class="license-block">
-    <p style="display: inline-block">Business license</p>
-    <a style="display: inline-block"><img src="../../../../assets/images/star.png"></a>
-    <a style="position: absolute; display: block"><img id="preview" src="{{url}}/{{companyInfo.avatar.description}}/{{companyInfo.avatar.fileName}}" style="width: 80px; height: 80px"></a>
-    <div>
-      <input type="file" name="image" style="width: 80px;height: 80px;opacity: 0;" (change)="previewImg($event)" accept="image/*">
+  <!--<div class="license-block">-->
+    <!--<p style="display: inline-block">Business license</p>-->
+    <!--<a style="display: inline-block"><img src="../../../../assets/images/star.png"></a>-->
+    <!--<a style="position: absolute; display: block"><img id="preview" src="{{url}}/{{companyInfo.avatar.description}}/{{companyInfo.avatar.fileName}}" style="width: 80px; height: 80px"></a>-->
+    <!--<div>-->
+      <!--<input type="file" name="image" style="width: 80px;height: 80px;opacity: 0;" (change)="previewImg($event)" accept="image/*">-->
 
-      <p *ngIf="!business" style="color: #ee2200">You must input business license.</p>
-    </div>
+      <!--<p *ngIf="!business" style="color: #ee2200">You must input business license.</p>-->
+    <!--</div>-->
 
-  </div>
+  <!--</div>-->
 
 
 
