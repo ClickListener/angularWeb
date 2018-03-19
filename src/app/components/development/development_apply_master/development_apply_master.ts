@@ -86,7 +86,6 @@ export class DevelopmentApplyMasterComponent {
 
     const companyValue = {
       "companyName": this.companyName,
-      "address": this.address,
       "description": this.description,
       "country": code.code
     };
