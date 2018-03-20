@@ -36,7 +36,7 @@ export class DevelopmentAppModifyComponent implements DoCheck {
     100
   ];
 
-  expiredDate: string;
+  // expiredDate: string;
 
   deviceList = [
     {
@@ -168,9 +168,9 @@ export class DevelopmentAppModifyComponent implements DoCheck {
 
             this.appInfo = res.data;
 
-            this.expiredDate = datePipe.transform(this.appInfo.expireTime, 'yyyy/MM/dd');
-
-            console.log('expiredDate = ' , this.expiredDate);
+            // this.expiredDate = datePipe.transform(this.appInfo.expireTime, 'yyyy/MM/dd');
+            //
+            // console.log('expiredDate = ' , this.expiredDate);
 
             this.appInfo.devices.forEach((device) => {
               this.deviceList.find((_device, i, arr) => {
@@ -195,24 +195,24 @@ export class DevelopmentAppModifyComponent implements DoCheck {
 
   ngDoCheck(): void {
 
-    if (this.appInfo !== null) {
-      jQuery('.datapicker').pickadate({
-        labelMonthNext: 'Go to the next month',
-        labelMonthPrev: 'Go to the previous month',
-        labelMonthSelect: 'Pick a month from the dropdown',
-        labelYearSelect: 'Pick a year from the dropdown',
-        selectMonths: true,
-        selectYears: true,
-        min: +1,
-        max: [2099, 0, 1],
-        formatSubmit: 'yyyy/mm/dd',
-        format: 'yyyy/mm/dd',
-        onSet: context =>  {
-          this.appInfo.expireTime = context.select;
-          console.log('this.appInfo.expireTime = ',this.appInfo.expireTime);
-        }
-      });
-    }
+    // if (this.appInfo !== null) {
+    //   jQuery('.datapicker').pickadate({
+    //     labelMonthNext: 'Go to the next month',
+    //     labelMonthPrev: 'Go to the previous month',
+    //     labelMonthSelect: 'Pick a month from the dropdown',
+    //     labelYearSelect: 'Pick a year from the dropdown',
+    //     selectMonths: true,
+    //     selectYears: true,
+    //     min: +1,
+    //     max: [2099, 0, 1],
+    //     formatSubmit: 'yyyy/mm/dd',
+    //     format: 'yyyy/mm/dd',
+    //     onSet: context =>  {
+    //       this.appInfo.expireTime = context.select;
+    //       console.log('this.appInfo.expireTime = ',this.appInfo.expireTime);
+    //     }
+    //   });
+    // }
 
 
   }
@@ -345,10 +345,10 @@ export class DevelopmentAppModifyComponent implements DoCheck {
       "bundleIdOrPackageName": this.appInfo.bundleIdOrPackageName,
       "description": this.appInfo.description,
       "scheme": this.appInfo.scheme,
-      "codeType": this.appInfo.codeType,
-      "devices": this.appInfo.devices,
+      // "codeType": this.appInfo.codeType,
+      // "devices": this.appInfo.devices,
       "licenseType": 3,
-      "expireTime": this.appInfo.expireTime,
+      // "expireTime": this.appInfo.expireTime,
       "companyId": this.appInfo.companyId,
       "avatar": this.appInfo.avatar
     };

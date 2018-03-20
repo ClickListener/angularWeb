@@ -37,8 +37,8 @@ export class DevelopmentAppRegComponent implements OnInit {
   bundleIdOrPackageName: string;
   description: string;
   scheme = 'NativeSDK';
-  codeType = 'GDH';
-  expiredDate = 10;
+  // codeType = 'GDH';
+  // expiredDate = 10;
 
 
   buttonDisable = false;  // 提交按钮状态
@@ -178,23 +178,23 @@ export class DevelopmentAppRegComponent implements OnInit {
 
 
   ngOnInit(): void {
-    jQuery('.datapicker').pickadate({
-      labelMonthNext: 'Go to the next month',
-      labelMonthPrev: 'Go to the previous month',
-      labelMonthSelect: 'Pick a month from the dropdown',
-      labelYearSelect: 'Pick a year from the dropdown',
-      selectMonths: true,
-      selectYears: true,
-      min: +1,
-      max: [2099, 0, 1],
-      formatSubmit: 'yyyy/mm/dd',
-      onSet: context =>  {
-
-        this.expiredDate = context.select;
-        console.log('expiredDateValid = ', this.expiredDate);
-
-      }
-    });
+    // jQuery('.datapicker').pickadate({
+    //   labelMonthNext: 'Go to the next month',
+    //   labelMonthPrev: 'Go to the previous month',
+    //   labelMonthSelect: 'Pick a month from the dropdown',
+    //   labelYearSelect: 'Pick a year from the dropdown',
+    //   selectMonths: true,
+    //   selectYears: true,
+    //   min: +1,
+    //   max: [2099, 0, 1],
+    //   formatSubmit: 'yyyy/mm/dd',
+    //   onSet: context =>  {
+    //
+    //     this.expiredDate = context.select;
+    //     console.log('expiredDateValid = ', this.expiredDate);
+    //
+    //   }
+    // });
 
   }
 
@@ -328,10 +328,10 @@ export class DevelopmentAppRegComponent implements OnInit {
       "bundleIdOrPackageName": this.bundleIdOrPackageName,
       "description": this.description,
       "scheme": this.scheme,
-      "codeType": this.codeType,
-      "devices": this.deviceSelectList,
+      // "codeType": this.codeType,
+      // "devices": this.deviceSelectList,
       "licenseType": 3,
-      "expireTime": this.expiredDate,
+      // "expireTime": this.expiredDate,
       "companyId": this.userService.user.companyId
     };
 
