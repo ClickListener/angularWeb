@@ -5,9 +5,9 @@
   <p style="display: inline-block">Company state: </p>
 
   <select name="state" [(ngModel)]="companyInfo.state">
-    <option value="0">申请</option>
-    <option value="2">禁用</option>
-    <option value="3">批准</option>
+    <option value="0">Not Audit</option>
+    <option value="2">Disabled</option>
+    <option value="3">Active</option>
   </select>
 </div>
 
@@ -98,9 +98,9 @@
                                      src="{{url}}{{app.avatar.description}}/{{app.avatar.fileName}}"></a>
               <p class="item-1">
                 <select name="state" [(ngModel)]="app.state">
-                  <option value="0">申请</option>
-                  <option value="2">禁用</option>
-                  <option value="3">批准</option>
+                  <option value="0">Not Audit</option>
+                  <option value="2">Disabled</option>
+                  <option value="3">Active</option>
                 </select>
               </p>
               <p class="item-1">{{app.platform}}</p>
