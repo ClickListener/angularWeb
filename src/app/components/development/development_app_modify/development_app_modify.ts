@@ -36,7 +36,7 @@ export class DevelopmentAppModifyComponent implements DoCheck {
     100
   ];
 
-  // expiredDate: string;
+  expiredDate = new Date().getTime() + 30 * 24 * 60 * 60 * 1000;
 
   deviceList = [
     {
@@ -346,9 +346,9 @@ export class DevelopmentAppModifyComponent implements DoCheck {
       "description": this.appInfo.description,
       "scheme": this.appInfo.scheme,
       // "codeType": this.appInfo.codeType,
-      // "devices": this.appInfo.devices,
+      "devices": this.appInfo.devices,
       "licenseType": 3,
-      // "expireTime": this.appInfo.expireTime,
+      "expireTime": this.expiredDate,
       "companyId": this.appInfo.companyId,
       "avatar": this.appInfo.avatar
     };

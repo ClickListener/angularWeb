@@ -23,6 +23,9 @@ export class DevelopmentAppRegComponent implements OnInit {
 
   deviceSelectList: Array<Device>;
 
+
+  deviceSelectedList: Array<Device>;
+
   appIcon = false;
 
 
@@ -38,7 +41,7 @@ export class DevelopmentAppRegComponent implements OnInit {
   description: string;
   scheme = 'NativeSDK';
   // codeType = 'GDH';
-  // expiredDate = 10;
+  expiredDate = new Date().getTime() + 30 * 24 * 60 * 60 * 1000;
 
 
   buttonDisable = false;  // 提交按钮状态
@@ -171,6 +174,135 @@ export class DevelopmentAppRegComponent implements OnInit {
     };
 
     this.userService.getUserInfo(userInfo);
+
+    this.deviceSelectedList = [
+      {
+        model: "BP3",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "BP3M",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "BP3L",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "BP5",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "BP7",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "BP7S",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "BPM1",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "KN-550BT",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "ABI",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "ABP100",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "AM3",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "AM3S",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "AM4",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "PO3",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "HS2",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "HS3",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "HS4",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "HS4S",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "HS5",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "HS5S",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "HS6",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "BG1",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "BG5",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "BG5S",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "ECG3",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      }
+
+    ];
 
 
 
@@ -329,9 +461,9 @@ export class DevelopmentAppRegComponent implements OnInit {
       "description": this.description,
       "scheme": this.scheme,
       // "codeType": this.codeType,
-      // "devices": this.deviceSelectList,
+      "devices": this.deviceSelectedList,
       "licenseType": 3,
-      // "expireTime": this.expiredDate,
+      "expireTime": this.expiredDate,
       "companyId": this.userService.user.companyId
     };
 
