@@ -76,7 +76,7 @@
 
               <div class="item-2" *ngIf="companyInfo.state == '3' && (edit_App || delete_App)">
                 <!--<a (click)="downloadLicense(app._id)"><img src="../../../../assets/images/download.png" *ngIf="app.state == '3'"></a>-->
-                <a href="{{url}}/api/license/{{app._id}}?userId={{user._id}}&token={{token}}"><img src="../../../../assets/images/download.png" *ngIf="app.state == '3' && app.scheme === 'NativeSDK'"></a>
+                <a id="download" data-toggle="tooltip" title="You can download license file for using SDK." href="{{url}}/api/license/{{app._id}}?userId={{user._id}}&token={{token}}"><img src="../../../../assets/images/download.png" *ngIf="app.state == '3' && app.scheme === 'NativeSDK'"></a>
                 <a [routerLink]= '["/development-app-modify", app._id]' *ngIf="edit_App"><img src="../../../../assets/images/edit.png"></a>
 
                 <a class="collapsed" style="position: relative" [style.z-index]="100 - i" data-toggle="collapse" [attr.data-target]="'#confirm' + i"
