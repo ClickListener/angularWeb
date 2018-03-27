@@ -37,12 +37,15 @@ export class DevelopmentAppRegComponent implements OnInit {
   ];
 
   appName: string;
-  bundleIdOrPackageName: string;
   description: string;
   scheme = 'NativeSDK';
   // codeType = 'GDH';
   expiredDate = new Date().getTime() + 30 * 24 * 60 * 60 * 1000;
 
+  packageName: string;
+  bundleId: string;
+
+  platform = "android";
 
   buttonDisable = false;  // 提交按钮状态
 
@@ -415,14 +418,137 @@ export class DevelopmentAppRegComponent implements OnInit {
 
     this.buttonDisable = true;
 
-    const option = {
-      url: this.url + "/api/useApp/addApp",
-      type: "POST",
-      beforeSubmit: this.beforeSubmit.bind(this),
-      success: this.success.bind(this)
+    if (this.platform === 'both') {
+      const option = {
+        url: this.url + "/api/useApp/addApp",
+        type: "POST",
+        beforeSubmit: this.beforeSubmit_android.bind(this),
+        success: this.success_android.bind(this)
+      };
+
+      jQuery('#registerAppForm').ajaxSubmit(option);
+    } else {
+      const option = {
+        url: this.url + "/api/useApp/addApp",
+        type: "POST",
+        beforeSubmit: this.beforeSubmit.bind(this),
+        success: this.success.bind(this)
+      };
+
+      jQuery('#registerAppForm').ajaxSubmit(option);
+    }
+
+
+  }
+
+  private beforeSubmit_android(formData) {
+
+    const file = formData.splice(5, 1);
+
+    formData.splice(0, formData.length);
+
+    const action = {
+      name: 'action',
+      value: 'C'
     };
 
-    jQuery('#registerAppForm').ajaxSubmit(option);
+    formData.push(action);
+
+    const userId = {
+      name: 'userId',
+      value: this.userService.user._id,
+      type: 'text'
+    };
+
+    formData.push(userId);
+
+    const token = {
+      name: 'token',
+      value: this.userService.token.token,
+      type: 'text'
+    };
+
+    formData.push(token);
+
+    const app = {
+      "platform": "android",
+      "appName": this.appName,
+      "bundleIdOrPackageName": this.packageName,
+      "description": this.description,
+      "scheme": this.scheme,
+      // "codeType": this.codeType,
+      "devices": this.deviceSelectedList,
+      "licenseType": 3,
+      "expireTime": this.expiredDate,
+      "companyId": this.userService.user.companyId
+    };
+
+    const appInfo = {
+      name: 'appInfo',
+      value: JSON.stringify(app)
+    };
+
+    formData.push(appInfo);
+
+
+    formData.push(file[0]);
+
+    console.log(formData);
+  }
+
+  private beforeSubmit_ios(formData) {
+
+    const file = formData.splice(5, 1);
+
+    formData.splice(0, formData.length);
+
+    const action = {
+      name: 'action',
+      value: 'C'
+    };
+
+    formData.push(action);
+
+    const userId = {
+      name: 'userId',
+      value: this.userService.user._id,
+      type: 'text'
+    };
+
+    formData.push(userId);
+
+    const token = {
+      name: 'token',
+      value: this.userService.token.token,
+      type: 'text'
+    };
+
+    formData.push(token);
+
+    const app = {
+      "platform": "ios",
+      "appName": this.appName,
+      "bundleIdOrPackageName": this.packageName,
+      "description": this.description,
+      "scheme": this.scheme,
+      // "codeType": this.codeType,
+      "devices": this.deviceSelectedList,
+      "licenseType": 3,
+      "expireTime": this.expiredDate,
+      "companyId": this.userService.user.companyId
+    };
+
+    const appInfo = {
+      name: 'appInfo',
+      value: JSON.stringify(app)
+    };
+
+    formData.push(appInfo);
+
+
+    formData.push(file[0]);
+
+    console.log(formData);
   }
 
   private beforeSubmit(formData) {
@@ -455,9 +581,9 @@ export class DevelopmentAppRegComponent implements OnInit {
     formData.push(token);
 
     const app = {
-      "platform": jQuery("input:radio:checked").val(),
+      "platform": this.platform,
       "appName": this.appName,
-      "bundleIdOrPackageName": this.bundleIdOrPackageName,
+      "bundleIdOrPackageName": this.platform === 'android'? this.packageName: this.bundleId,
       "description": this.description,
       "scheme": this.scheme,
       // "codeType": this.codeType,
@@ -498,6 +624,34 @@ export class DevelopmentAppRegComponent implements OnInit {
         padding: 0,
         width: 300
       }).catch(swal.noop);
+    } else {
+      swal({
+        position: 'center',
+        type: 'error',
+        titleText: res.message,
+        showConfirmButton: false,
+        timer: 2000,
+        padding: 0,
+        width: 300
+      }).catch(swal.noop);
+    }
+  }
+
+  private success_android(res) {
+
+    this.buttonDisable = false;
+
+    console.log(res);
+
+    if (res.success) {
+      const option = {
+        url: this.url + "/api/useApp/addApp",
+        type: "POST",
+        beforeSubmit: this.beforeSubmit_ios.bind(this),
+        success: this.success.bind(this)
+      };
+
+      jQuery('#registerAppForm').ajaxSubmit(option);
     } else {
       swal({
         position: 'center',

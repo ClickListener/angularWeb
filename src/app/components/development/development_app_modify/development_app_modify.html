@@ -14,10 +14,6 @@
       <input name="platform" type="radio" value="ios" [(ngModel)]="appInfo.platform"/> IOS
     </label>
 
-    <label>
-      <input name="platform" type="radio" value="both" [(ngModel)]="appInfo.platform"/> Both
-    </label>
-
   </div>
 
   <div class="input-block">
@@ -30,12 +26,20 @@
 
 
 
-  <div class="input-block">
-    <label for="id_bundle">BundleId/Package Name</label>
+  <div class="input-block" *ngIf="appInfo.platform === 'android'">
+    <label for="id_package">Package Name</label>
+    <input id="id_package" type="text" name="id_bundle" [(ngModel)]="appInfo.bundleIdOrPackageName"
+           #package="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s\.]{1,100}$" required>
+
+    <p *ngIf="!package.pristine&&package.invalid" style="color: #ee2200">Please input valid package name.</p>
+  </div>
+
+  <div class="input-block" *ngIf="appInfo.platform === 'ios'">
+    <label for="id_bundle">BundleId</label>
     <input id="id_bundle" type="text" name="id_bundle" [(ngModel)]="appInfo.bundleIdOrPackageName"
            #bundleId="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s\.]{1,100}$" required>
 
-    <p *ngIf="!bundleId.pristine&&bundleId.invalid" style="color: #ee2200">Please input valid bundleId or package name.</p>
+    <p *ngIf="!bundleId.pristine&&bundleId.invalid" style="color: #ee2200">Please input valid bundleId.</p>
   </div>
 
 
