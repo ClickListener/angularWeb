@@ -28,7 +28,7 @@
 
           <div class="form-custom-content">
             <div>
-              <a class="item-1" *ngIf="app.avatar"><img style="width: 80px;height: 80px;" src="{{url}}{{app.avatar.description}}/{{app.avatar.fileName}}"></a>
+              <a class="item-1" *ngIf="app.avatar"><img style="width: 80px;height: 80px; cursor: default" src="{{url}}{{app.avatar.description}}/{{app.avatar.fileName}}"></a>
               <a class="item-1" *ngIf="!app.avatar"><img style="width: 80px;height: 80px;" src="../../../../assets/images/addPic.png"></a>
               <p class="item-1" *ngIf="app.state === 0" style="color: #007afa">Not Audit</p>
               <p class="item-1" *ngIf="app.state === 1" style="color: #007afa">Approved</p>
