@@ -70,9 +70,9 @@ Specific configuration as shown below:
 [Click this link](https://github.com/iHealthDeviceLabs/iHealthDeviceLabs-Android/blob/master/doc/Developer_Registration_Application_Instruction.md)   
 
 Contact for more information:  
-<yuchen.wang@ihealthlabs.com>(US)  
-<noah@ihealthlabs.com>(Europe)  
-<enterprise@ihealthlabs.com>(Other)
+1. <enterprise@ihealthlabs.com>(US)  
+2. <contact_b2B@ihealthlabs.eu>(Europe)  
+3. <sdk@ihealthlabs.com.cn>(Other)
 
 ### How to use the iHealth SDK
 
