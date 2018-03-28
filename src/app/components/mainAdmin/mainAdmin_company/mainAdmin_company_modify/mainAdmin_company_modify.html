@@ -1,5 +1,3 @@
-<h1>mainAdmin company modify</h1>
-
 
 <div *ngIf="companyInfo">
   <p style="display: inline-block">Company state: </p>
@@ -94,8 +92,8 @@
               <a class="item-1"><img style="width: 80px;height: 80px;"
                                      src="{{url}}{{app.avatar.description}}/{{app.avatar.fileName}}"></a>
               <p class="item-1" *ngIf="app.state === 0">Not Audit</p>
-              <p class="item-1" *ngIf="app.state === 1">Disabled</p>
-              <p class="item-1" *ngIf="app.state === 2">Active</p>
+              <p class="item-1" *ngIf="app.state === 2">Disabled</p>
+              <p class="item-1" *ngIf="app.state === 3">Active</p>
               <p class="item-1">{{app.platform}}</p>
               <p class="item-2">{{app.expireTime | date: 'yyyy-MM-dd'}}</p>
               <div class="item-1">{{app.devices.length}}
