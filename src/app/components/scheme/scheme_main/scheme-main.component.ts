@@ -22,12 +22,19 @@ export class SchemeMainComponent {
 
   schemeID: any;
 
+  param: string;
+
 
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
               private _location: Location, private schemeService: SchemeService, private userService: UserService) {
 
 
+    activatedRoute.paramMap.subscribe( paramMap => {
+      console.log('this.param = ' + paramMap['params'].param);
+
+      this.param = paramMap['params'].param;
+    })
     // 还没弄懂，https://segmentfault.com/a/1190000009971757
     router.events
       .filter(event => event instanceof NavigationEnd)
@@ -37,6 +44,7 @@ export class SchemeMainComponent {
           route = route.firstChild;
         }
         this.schemeID = route.snapshot.params.schemeID;
+        console.log('schemeID = ', this.schemeID);
 
         return route;
       })
@@ -56,7 +64,7 @@ export class SchemeMainComponent {
 
   // 当查看scheme详细时，编辑的点击事件
   private navigationTo():void {
-    this.router.navigate(['/scheme-main/'+ this.title + '/scheme-modify', this.schemeService.schemeID]);
+    this.router.navigate(['/scheme-main/'+ this.param + '/scheme-modify', this.schemeService.schemeID]);
   }
 
   // 当查看scheme详细时，删除的点击事件
