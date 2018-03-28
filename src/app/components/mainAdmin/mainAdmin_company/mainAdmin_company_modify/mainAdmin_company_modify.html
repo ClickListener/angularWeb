@@ -1,16 +1,4 @@
 
-<div *ngIf="companyInfo">
-  <p style="display: inline-block">Company state: </p>
-
-  <select name="state" [(ngModel)]="companyInfo.state">
-    <option value="0">Not Audit</option>
-    <option value="2">Disabled</option>
-    <option value="3">Active</option>
-  </select>
-</div>
-
-<a class="btn btn-primary btn-sm" (click)="updateCompanyInfo()">Update company state</a>
-
 <form *ngIf="companyInfo" style="margin-left: 3rem;margin-right: 3rem; margin-bottom: 3rem">
   <fieldset>
     <legend>Base Info</legend>
@@ -23,6 +11,22 @@
       <tr>
         <th>Country</th>
         <td>{{companyInfo.country}}</td>
+      </tr>
+      <tr>
+        <th>Company state</th>
+        <!--<ng-container [ngSwitch]="companyInfo.state">-->
+          <!--<td *ngSwitchCase="0">Not Audit</td>-->
+          <!--<td *ngSwitchCase="2">Disable</td>-->
+          <!--<td *ngSwitchCase="3">Active</td>-->
+        <!--</ng-container>-->
+        <td>
+          <select name="state" [(ngModel)]="companyInfo.state">
+            <option value="0">Not Audit</option>
+            <option value="2">Disabled</option>
+            <option value="3">Active</option>
+          </select>
+          <a style="margin-left: 20%; text-transform: none" class="btn btn-primary btn-sm" (click)="updateCompanyInfo()">Update</a>
+        </td>
       </tr>
       <tr>
         <th>Origin</th>
@@ -44,26 +48,26 @@
     <pre>{{companyInfo.description}}</pre>
   </fieldset>
 
-  <fieldset>
-    <legend>Business License</legend>
-    <a data-target="#imageModal" data-toggle="modal"><img id="preview"
-                                                          src="{{url}}{{companyInfo.avatar.description}}/{{companyInfo.avatar.fileName}}"
-                                                          style="width: 80px; height: 80px"></a>
+  <!--<fieldset>-->
+    <!--<legend>Business License</legend>-->
+    <!--<a data-target="#imageModal" data-toggle="modal"><img id="preview"-->
+                                                          <!--src="{{url}}{{companyInfo.avatar.description}}/{{companyInfo.avatar.fileName}}"-->
+                                                          <!--style="width: 80px; height: 80px"></a>-->
 
-    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog"
-         aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!--<div class="modal fade" id="imageModal" tabindex="-1" role="dialog"-->
+         <!--aria-labelledby="exampleModalLabel" aria-hidden="true">-->
 
-      <div class="modal-dialog" role="document" style="width: 50%; max-width: 100%">
-        <div class="modal-content">
-          <div class="modal-body" style="padding: 0">
-            <img src="{{url}}{{companyInfo.avatar.description}}/{{companyInfo.avatar.fileName}}"
-                 style="width: 100%;">
-          </div>
-        </div>
-      </div>
+      <!--<div class="modal-dialog" role="document" style="width: 50%; max-width: 100%">-->
+        <!--<div class="modal-content">-->
+          <!--<div class="modal-body" style="padding: 0">-->
+            <!--<img src="{{url}}{{companyInfo.avatar.description}}/{{companyInfo.avatar.fileName}}"-->
+                 <!--style="width: 100%;">-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
 
-    </div>
-  </fieldset>
+    <!--</div>-->
+  <!--</fieldset>-->
 </form>
 
 
@@ -72,10 +76,14 @@
 
   <div class="card" *ngIf="appList && appList.length !== 0">
 
+
+    <div style="background-color: #e9ecef; height: 50px">
+      <p style="line-height: 50px; font-size: 1.5rem; text-align: center">Company Apps</p>
+    </div>
     <div class="card-body">
 
       <div *ngFor="let app of appList; let i = index">
-        <p>{{app.appName}}</p>
+        <p style="margin-top: 15px; font-weight: bold">{{app.appName}}</p>
         <div class="form-custom">
           <div class="form-custom-head">
             <p class="item-1">App icon</p>
