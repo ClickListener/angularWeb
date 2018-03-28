@@ -70,12 +70,22 @@
 
     <div>
       <label>SDK Scheme</label>
-      <select class="mdb-select" name="SDK_Scheme" [(ngModel)]="appInfo.scheme">
+      <select class="mdb-select" name="SDK_Scheme" [(ngModel)]="appInfo.sdkType">
         <option value="NativeSDK">Native SDK</option>
         <option value="RNSDK">RN SDK</option>
         <option value="LibrarySDK">Library SDK</option>
         <option value="LayerApp">Layer APP</option>
       </select>
+    </div>
+
+
+    <div class="url-block" *ngIf="appInfo.sdkType === 'LayerApp'">
+      <label>Url</label>
+
+      <input style="padding: 0 10px 0 10px;" name="id_name" id="id_layeredUrl" type="text" [(ngModel)]="appInfo.scheme"
+             #_layered_url="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s\.]{3,100}$" required placeholder="layered url">
+
+      <p *ngIf="!_layered_url.pristine&&_layered_url.invalid" style="color: #ee2200">Please input valid url.</p>
     </div>
 
     <!--<div>-->

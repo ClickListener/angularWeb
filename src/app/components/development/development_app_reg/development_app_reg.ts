@@ -38,7 +38,7 @@ export class DevelopmentAppRegComponent implements OnInit {
 
   appName: string;
   description: string;
-  scheme = 'NativeSDK';
+  sdkType = 'NativeSDK';
   // codeType = 'GDH';
   expiredDate = new Date().getTime() + 30 * 24 * 60 * 60 * 1000;
 
@@ -48,6 +48,9 @@ export class DevelopmentAppRegComponent implements OnInit {
   platform = "android";
 
   buttonDisable = false;  // 提交按钮状态
+
+
+  layered_url: string;
 
 
   deviceList = [
@@ -475,7 +478,8 @@ export class DevelopmentAppRegComponent implements OnInit {
       "appName": this.appName,
       "bundleIdOrPackageName": this.packageName,
       "description": this.description,
-      "scheme": this.scheme,
+      "sdkType": this.sdkType,
+      "scheme": this.layered_url,
       // "codeType": this.codeType,
       "devices": this.deviceSelectedList,
       "licenseType": 3,
@@ -530,7 +534,8 @@ export class DevelopmentAppRegComponent implements OnInit {
       "appName": this.appName,
       "bundleIdOrPackageName": this.packageName,
       "description": this.description,
-      "scheme": this.scheme,
+      "sdkType": this.sdkType,
+      "scheme": this.layered_url,
       // "codeType": this.codeType,
       "devices": this.deviceSelectedList,
       "licenseType": 3,
@@ -585,7 +590,8 @@ export class DevelopmentAppRegComponent implements OnInit {
       "appName": this.appName,
       "bundleIdOrPackageName": this.platform === 'android'? this.packageName: this.bundleId,
       "description": this.description,
-      "scheme": this.scheme,
+      "sdkType": this.sdkType,
+      "scheme": this.layered_url,
       // "codeType": this.codeType,
       "devices": this.deviceSelectedList,
       "licenseType": 3,

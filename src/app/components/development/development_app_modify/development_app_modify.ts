@@ -344,6 +344,7 @@ export class DevelopmentAppModifyComponent implements DoCheck {
       "appName": this.appInfo.appName,
       "bundleIdOrPackageName": this.appInfo.bundleIdOrPackageName,
       "description": this.appInfo.description,
+      "sdkType": this.appInfo.sdkType,
       "scheme": this.appInfo.scheme,
       // "codeType": this.appInfo.codeType,
       "devices": this.appInfo.devices,
