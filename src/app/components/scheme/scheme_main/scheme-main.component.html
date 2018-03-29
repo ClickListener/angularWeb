@@ -3,7 +3,7 @@
   <div class="navbar-brand">
     <a (click)="backClicked()"><i *ngIf="title !== 'manager'" class=" fa fa-arrow-left fa-2x"></i></a>
     <div *ngIf="title !== 'manager'" class="divider"></div>
-    <div style="display: inline-block ">{{title}}</div>
+    <div style="display: inline-block; font-weight: bold; font-size: 1.5rem">{{title}}</div>
   </div>
 
   <div *ngIf="title === 'detail'">

@@ -42,7 +42,8 @@
 
 
 .url-block {
-  margin: 0;
+  margin: 15px 0 0 0;
+  width: 100%;
 }
 
 .url-block input {
@@ -106,7 +107,7 @@
   padding-left: 15px;
 
 
-  background: url("../../../../assets/images/down.png") no-repeat scroll right transparent;
+  background: url("../../../../../assets/images/down.png") no-repeat scroll right transparent;
 
   background-origin: content-box;
 }
@@ -127,7 +128,7 @@ select {
   padding-right: 10px;
   padding-left: 10px;
 
-  background: url("../../../../assets/images/down.png") no-repeat scroll right transparent;
+  background: url("../../../../../assets/images/down.png") no-repeat scroll right transparent;
   background-origin: content-box;
 
 }
@@ -255,7 +256,7 @@ select:hover {
   padding-right: 15px;
   padding-left: 15px;
 
-  background: url("../../../../assets/images/down.png") no-repeat scroll right transparent;
+  background: url("../../../../../assets/images/down.png") no-repeat scroll right transparent;
   background-origin: content-box;
 
   text-align: left;
@@ -278,7 +279,7 @@ select:hover {
   padding-right: 15px;
   padding-left: 15px;
 
-  background: url("../../../../assets/images/down.png") no-repeat scroll right transparent;
+  background: url("../../../../../assets/images/down.png") no-repeat scroll right transparent;
   background-origin: content-box;
 
   text-align: left;

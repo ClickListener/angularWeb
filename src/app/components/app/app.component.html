@@ -235,18 +235,6 @@
 
     <ul class="accoraccordiondion" id="accordionId">
 
-      <li class="class-li">
-        <a>
-          <b style="font-size: 16px">SDK Document</b>
-        </a>
-
-        <ul id="document_collapse" style="font-size: 14px">
-          <li><a routerLinkActive="active" routerLink="document-main/NativeSDK" (click)="navigateDocument('NativeSDK')">Native SDK Document</a></li>
-          <li><a routerLinkActive="active" routerLink="document-main/LibrarySDK" (click)="navigateDocument('LibrarySDK')">Library SDK Document</a></li>
-          <li><a routerLinkActive="active" routerLink="document-main/RNSDK" (click)="navigateDocument('RNSDK')">RN SDK Document</a></li>
-          <li><a routerLinkActive="active" routerLink="document-main/LayerApp" (click)="navigateDocument('LayerApp')">Layer App Document</a></li>
-        </ul>
-      </li>
 
       <li *ngIf="user && user.type != '1'">
         <a id="development_primary" data-toggle="collapse"
@@ -259,6 +247,20 @@
           <li><a routerLinkActive="active" routerLink='/development-main/development-app-manager'>App Manager</a></li>
         </ul>
       </li>
+
+      <li class="class-li">
+        <a>
+          <b style="font-size: 16px">SDK Document</b>
+        </a>
+
+        <ul id="document_collapse" style="font-size: 14px">
+          <li><a routerLinkActive="active" routerLink="document-main/NativeSDK" (click)="navigateDocument('NativeSDK')">Native SDK Document</a></li>
+          <li><a routerLinkActive="active" routerLink="document-main/LibrarySDK" (click)="navigateDocument('LibrarySDK')">Library SDK Document</a></li>
+          <li><a routerLinkActive="active" routerLink="document-main/RNSDK" (click)="navigateDocument('RNSDK')">RN SDK Document</a></li>
+          <li><a routerLinkActive="active" routerLink="document-main/LayerApp" (click)="navigateDocument('LayerApp')">Layered App Document</a></li>
+        </ul>
+      </li>
+
 
       <li class="class-li" *ngIf="user && user.type != '1'&& user.companyId">
         <a routerLink="/last-version" routerLinkActive="active">
@@ -297,7 +299,7 @@
         <ul id="authority_collapse" style="font-size: 14px">
           <!--<li><a routerLinkActive="active" routerLink='/scheme-main/SDK'>Secondary administrator</a></li>-->
           <li><a routerLinkActive="active" routerLink='/developer-manager'>Developers</a></li>
-          <li><a routerLinkActive="active" routerLink='/company-manager'>Companies</a></li>
+          <li><a routerLinkActive="active" [routerLink]="['company']">Companies</a></li>
         </ul>
       </li>
 

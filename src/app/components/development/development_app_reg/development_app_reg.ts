@@ -23,6 +23,9 @@ export class DevelopmentAppRegComponent implements OnInit {
 
   deviceSelectList: Array<Device>;
 
+
+  deviceSelectedList: Array<Device>;
+
   appIcon = false;
 
 
@@ -34,14 +37,20 @@ export class DevelopmentAppRegComponent implements OnInit {
   ];
 
   appName: string;
-  bundleIdOrPackageName: string;
   description: string;
-  scheme = 'NativeSDK';
-  codeType = 'GDH';
-  expiredDate = 10;
+  sdkType = 'NativeSDK';
+  // codeType = 'GDH';
+  expiredDate = new Date().getTime() + 30 * 24 * 60 * 60 * 1000;
 
+  packageName: string;
+  bundleId: string;
+
+  platform = "android";
 
   buttonDisable = false;  // 提交按钮状态
+
+
+  layered_url: string;
 
 
   deviceList = [
@@ -172,29 +181,158 @@ export class DevelopmentAppRegComponent implements OnInit {
 
     this.userService.getUserInfo(userInfo);
 
+    this.deviceSelectedList = [
+      {
+        model: "BP3",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "BP3M",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "BP3L",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "BP5",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "BP7",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "BP7S",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "BPM1",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "KN-550BT",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "ABI",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "ABP100",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "AM3",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "AM3S",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "AM4",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "PO3",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "HS2",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "HS3",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "HS4",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "HS4S",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "HS5",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "HS5S",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "HS6",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "BG1",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "BG5",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "BG5S",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "ECG3",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      }
+
+    ];
+
 
 
   }
 
 
   ngOnInit(): void {
-    jQuery('.datapicker').pickadate({
-      labelMonthNext: 'Go to the next month',
-      labelMonthPrev: 'Go to the previous month',
-      labelMonthSelect: 'Pick a month from the dropdown',
-      labelYearSelect: 'Pick a year from the dropdown',
-      selectMonths: true,
-      selectYears: true,
-      min: +1,
-      max: [2099, 0, 1],
-      formatSubmit: 'yyyy/mm/dd',
-      onSet: context =>  {
-
-        this.expiredDate = context.select;
-        console.log('expiredDateValid = ', this.expiredDate);
-
-      }
-    });
+    // jQuery('.datapicker').pickadate({
+    //   labelMonthNext: 'Go to the next month',
+    //   labelMonthPrev: 'Go to the previous month',
+    //   labelMonthSelect: 'Pick a month from the dropdown',
+    //   labelYearSelect: 'Pick a year from the dropdown',
+    //   selectMonths: true,
+    //   selectYears: true,
+    //   min: +1,
+    //   max: [2099, 0, 1],
+    //   formatSubmit: 'yyyy/mm/dd',
+    //   onSet: context =>  {
+    //
+    //     this.expiredDate = context.select;
+    //     console.log('expiredDateValid = ', this.expiredDate);
+    //
+    //   }
+    // });
 
   }
 
@@ -283,14 +421,139 @@ export class DevelopmentAppRegComponent implements OnInit {
 
     this.buttonDisable = true;
 
-    const option = {
-      url: this.url + "/api/useApp/addApp",
-      type: "POST",
-      beforeSubmit: this.beforeSubmit.bind(this),
-      success: this.success.bind(this)
+    if (this.platform === 'both') {
+      const option = {
+        url: this.url + "/api/useApp/addApp",
+        type: "POST",
+        beforeSubmit: this.beforeSubmit_android.bind(this),
+        success: this.success_android.bind(this)
+      };
+
+      jQuery('#registerAppForm').ajaxSubmit(option);
+    } else {
+      const option = {
+        url: this.url + "/api/useApp/addApp",
+        type: "POST",
+        beforeSubmit: this.beforeSubmit.bind(this),
+        success: this.success.bind(this)
+      };
+
+      jQuery('#registerAppForm').ajaxSubmit(option);
+    }
+
+
+  }
+
+  private beforeSubmit_android(formData) {
+
+    const file = formData.splice(5, 1);
+
+    formData.splice(0, formData.length);
+
+    const action = {
+      name: 'action',
+      value: 'C'
     };
 
-    jQuery('#registerAppForm').ajaxSubmit(option);
+    formData.push(action);
+
+    const userId = {
+      name: 'userId',
+      value: this.userService.user._id,
+      type: 'text'
+    };
+
+    formData.push(userId);
+
+    const token = {
+      name: 'token',
+      value: this.userService.token.token,
+      type: 'text'
+    };
+
+    formData.push(token);
+
+    const app = {
+      "platform": "android",
+      "appName": this.appName,
+      "bundleIdOrPackageName": this.packageName,
+      "description": this.description,
+      "sdkType": this.sdkType,
+      "scheme": this.layered_url,
+      // "codeType": this.codeType,
+      "devices": this.deviceSelectedList,
+      "licenseType": 3,
+      "expireTime": this.expiredDate,
+      "companyId": this.userService.user.companyId
+    };
+
+    const appInfo = {
+      name: 'appInfo',
+      value: JSON.stringify(app)
+    };
+
+    formData.push(appInfo);
+
+
+    formData.push(file[0]);
+
+    console.log(formData);
+  }
+
+  private beforeSubmit_ios(formData) {
+
+    const file = formData.splice(5, 1);
+
+    formData.splice(0, formData.length);
+
+    const action = {
+      name: 'action',
+      value: 'C'
+    };
+
+    formData.push(action);
+
+    const userId = {
+      name: 'userId',
+      value: this.userService.user._id,
+      type: 'text'
+    };
+
+    formData.push(userId);
+
+    const token = {
+      name: 'token',
+      value: this.userService.token.token,
+      type: 'text'
+    };
+
+    formData.push(token);
+
+    const app = {
+      "platform": "ios",
+      "appName": this.appName,
+      "bundleIdOrPackageName": this.packageName,
+      "description": this.description,
+      "sdkType": this.sdkType,
+      "scheme": this.layered_url,
+      // "codeType": this.codeType,
+      "devices": this.deviceSelectedList,
+      "licenseType": 3,
+      "expireTime": this.expiredDate,
+      "companyId": this.userService.user.companyId
+    };
+
+    const appInfo = {
+      name: 'appInfo',
+      value: JSON.stringify(app)
+    };
+
+    formData.push(appInfo);
+
+
+    formData.push(file[0]);
+
+    console.log(formData);
   }
 
   private beforeSubmit(formData) {
@@ -323,13 +586,14 @@ export class DevelopmentAppRegComponent implements OnInit {
     formData.push(token);
 
     const app = {
-      "platform": jQuery("input:radio:checked").val(),
+      "platform": this.platform,
       "appName": this.appName,
-      "bundleIdOrPackageName": this.bundleIdOrPackageName,
+      "bundleIdOrPackageName": this.platform === 'android'? this.packageName: this.bundleId,
       "description": this.description,
-      "scheme": this.scheme,
-      "codeType": this.codeType,
-      "devices": this.deviceSelectList,
+      "sdkType": this.sdkType,
+      "scheme": this.layered_url,
+      // "codeType": this.codeType,
+      "devices": this.deviceSelectedList,
       "licenseType": 3,
       "expireTime": this.expiredDate,
       "companyId": this.userService.user.companyId
@@ -366,6 +630,34 @@ export class DevelopmentAppRegComponent implements OnInit {
         padding: 0,
         width: 300
       }).catch(swal.noop);
+    } else {
+      swal({
+        position: 'center',
+        type: 'error',
+        titleText: res.message,
+        showConfirmButton: false,
+        timer: 2000,
+        padding: 0,
+        width: 300
+      }).catch(swal.noop);
+    }
+  }
+
+  private success_android(res) {
+
+    this.buttonDisable = false;
+
+    console.log(res);
+
+    if (res.success) {
+      const option = {
+        url: this.url + "/api/useApp/addApp",
+        type: "POST",
+        beforeSubmit: this.beforeSubmit_ios.bind(this),
+        success: this.success.bind(this)
+      };
+
+      jQuery('#registerAppForm').ajaxSubmit(option);
     } else {
       swal({
         position: 'center',

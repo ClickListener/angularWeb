@@ -1,25 +1,24 @@
 /**
- * Created by zhangxu on 2018/2/5.
+ * Created by zhangxu on 2018/3/28.
  */
-import {Component, DoCheck, OnInit} from "@angular/core";
+import {Component, DoCheck} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AppService} from "../../../services/app.service";
-import {UserService} from "../../../services/user.service";
-import {Device} from "../../../model/Device";
+import * as myGlobals from "../../../../../environments/config";
+import {UserService} from "../../../../services/user.service";
+import {AppService} from "../../../../services/app.service";
 import swal from "sweetalert2";
+import {Device} from "../../../../model/Device";
 import {DatePipe} from "@angular/common";
-
-import * as myGlobals from '../../../../environments/config';
+import {CompanyService} from "../../../../services/company.service";
 
 declare const jQuery: any;
 
 @Component({
-  templateUrl: './development_app_modify.html',
-  styleUrls: ['./development_app_modify.css']
+  templateUrl: './mainAdmin_company_app.html',
+  styleUrls: ['./mainAdmin_company_app.css']
 })
 
-export class DevelopmentAppModifyComponent implements DoCheck {
-
+export class MainAdminCompanyAppComponent implements DoCheck {
 
   url = myGlobals.url;
 
@@ -29,14 +28,14 @@ export class DevelopmentAppModifyComponent implements DoCheck {
 
   buttonDisable = false;  // 提交按钮状态
 
+  expiredDate: string;
+
   deviceNumberList = [
     5,
     10,
     20,
     100
   ];
-
-  expiredDate = new Date().getTime() + 30 * 24 * 60 * 60 * 1000;
 
   deviceList = [
     {
@@ -146,7 +145,7 @@ export class DevelopmentAppModifyComponent implements DoCheck {
 
   constructor(private activatedRoute: ActivatedRoute, private appService: AppService,
               private userService: UserService, private router: Router,
-              private datePipe: DatePipe) {
+              private datePipe: DatePipe, private companyService: CompanyService) {
 
     if (!userService.user) {
       this.router.navigate(['/sign-in']);
@@ -168,9 +167,9 @@ export class DevelopmentAppModifyComponent implements DoCheck {
 
             this.appInfo = res.data;
 
-            // this.expiredDate = datePipe.transform(this.appInfo.expireTime, 'yyyy/MM/dd');
-            //
-            // console.log('expiredDate = ' , this.expiredDate);
+            this.expiredDate = datePipe.transform(this.appInfo.expireTime, 'yyyy/MM/dd');
+
+            console.log('expiredDate = ' , this.expiredDate);
 
             this.appInfo.devices.forEach((device) => {
               this.deviceList.find((_device, i, arr) => {
@@ -195,24 +194,24 @@ export class DevelopmentAppModifyComponent implements DoCheck {
 
   ngDoCheck(): void {
 
-    // if (this.appInfo !== null) {
-    //   jQuery('.datapicker').pickadate({
-    //     labelMonthNext: 'Go to the next month',
-    //     labelMonthPrev: 'Go to the previous month',
-    //     labelMonthSelect: 'Pick a month from the dropdown',
-    //     labelYearSelect: 'Pick a year from the dropdown',
-    //     selectMonths: true,
-    //     selectYears: true,
-    //     min: +1,
-    //     max: [2099, 0, 1],
-    //     formatSubmit: 'yyyy/mm/dd',
-    //     format: 'yyyy/mm/dd',
-    //     onSet: context =>  {
-    //       this.appInfo.expireTime = context.select;
-    //       console.log('this.appInfo.expireTime = ',this.appInfo.expireTime);
-    //     }
-    //   });
-    // }
+    if (this.appInfo !== null) {
+      jQuery('.datapicker').pickadate({
+        labelMonthNext: 'Go to the next month',
+        labelMonthPrev: 'Go to the previous month',
+        labelMonthSelect: 'Pick a month from the dropdown',
+        labelYearSelect: 'Pick a year from the dropdown',
+        selectMonths: true,
+        selectYears: true,
+        min: +1,
+        max: [2099, 0, 1],
+        formatSubmit: 'yyyy/mm/dd',
+        format: 'yyyy/mm/dd',
+        onSet: context =>  {
+          this.appInfo.expireTime = context.select;
+          console.log('this.appInfo.expireTime = ',this.appInfo.expireTime);
+        }
+      });
+    }
 
 
   }
@@ -346,10 +345,10 @@ export class DevelopmentAppModifyComponent implements DoCheck {
       "description": this.appInfo.description,
       "sdkType": this.appInfo.sdkType,
       "scheme": this.appInfo.scheme,
-      // "codeType": this.appInfo.codeType,
+      "codeType": this.appInfo.codeType,
       "devices": this.appInfo.devices,
       "licenseType": 3,
-      "expireTime": this.expiredDate,
+      "expireTime": this.appInfo.expireTime,
       "companyId": this.appInfo.companyId,
       "avatar": this.appInfo.avatar
     };
@@ -375,16 +374,9 @@ export class DevelopmentAppModifyComponent implements DoCheck {
     console.log(res);
 
     if (res.success) {
-      this.router.navigate(['/development-main/development-app-manager']);
-      swal({
-        position: 'center',
-        type: 'success',
-        titleText: 'Create success',
-        showConfirmButton: false,
-        timer: 2000,
-        padding: 0,
-        width: 300
-      }).catch(swal.noop);
+
+      this.updateAppState();
+
     } else {
       swal({
         position: 'center',
@@ -396,6 +388,40 @@ export class DevelopmentAppModifyComponent implements DoCheck {
         width: 300
       }).catch(swal.noop);
     }
+  }
+
+  // 更新APP 状态
+  private updateAppState() {
+
+    const companyInfo = {
+      "userId": this.userService.user._id,
+      "token": this.userService.token.token,
+      "cid": this.appInfo.companyId,
+      "state": this.appInfo.state,
+      "aid": this.appInfo._id
+    };
+
+
+    this.companyService.reviewCompany(companyInfo)
+      .then(res => {
+        console.log(res);
+        if (res.success) {
+
+          this.router.navigate(['/company/company-modify', this.appInfo.companyId]);
+          swal({
+            position: 'center',
+            type: 'success',
+            titleText: 'Update success',
+            showConfirmButton: false,
+            timer: 2000,
+            padding: 0,
+            width: 300
+          }).catch(swal.noop);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
 
@@ -427,6 +453,5 @@ export class DevelopmentAppModifyComponent implements DoCheck {
     this.appInfo.devices[index].model = deviceName;
 
   }
-
 
 }

@@ -58,6 +58,8 @@ import {MarkdownModule} from "ngx-markdown";
 import {LastListComponent} from "./components/version/version_lastList/lastList.component";
 import {AuthGuard} from "./services/auth-guard.service";
 import {SignConfirmComponent} from "./components/user/user_signConfirm/sign_confirm.component";
+import {MainAdminCompanyAppComponent} from "./components/mainAdmin/mainAdmin_company/mainAdmin_company_app/mainAdmin_company_app";
+import {MainAdminCompanyMainComponent} from "./components/mainAdmin/mainAdmin_company/mainAdmin_company_main/mainAdmin_company_main";
 
 @NgModule({
 
@@ -121,7 +123,9 @@ import {SignConfirmComponent} from "./components/user/user_signConfirm/sign_conf
     MainAdminDeveloperManagerComponent,
     MainAdminDeveloperModifyComponent,
     MainAdminCompanyModifyComponent,
-    MainAdminCompanyManagerComponent
+    MainAdminCompanyManagerComponent,
+    MainAdminCompanyAppComponent,
+    MainAdminCompanyMainComponent
   ],
 
   bootstrap: [AppComponent],

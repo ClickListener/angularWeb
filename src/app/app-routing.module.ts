@@ -41,6 +41,8 @@ import {DevelopmentCompanyModifyComponent} from "./components/development/develo
 import {LastListComponent} from "./components/version/version_lastList/lastList.component";
 import {AuthGuard} from "./services/auth-guard.service";
 import {SignConfirmComponent} from "./components/user/user_signConfirm/sign_confirm.component";
+import {MainAdminCompanyAppComponent} from "./components/mainAdmin/mainAdmin_company/mainAdmin_company_app/mainAdmin_company_app";
+import {MainAdminCompanyMainComponent} from "./components/mainAdmin/mainAdmin_company/mainAdmin_company_main/mainAdmin_company_main";
 
 /**
  * 路由模块
@@ -233,14 +235,32 @@ const routes: Routes = [
     component: MainAdminDeveloperModifyComponent
 
   },
+
   {
-    path: 'company-manager',
-    component: MainAdminCompanyManagerComponent
+    path: 'company',
+    component: MainAdminCompanyMainComponent,
+
+    children: [
+      {
+        path: '',
+        redirectTo: 'company-manager',
+        pathMatch: 'full'
+      },
+      {
+        path: 'company-manager',
+        component: MainAdminCompanyManagerComponent
+      },
+      {
+        path: 'company-modify/:param',
+        component: MainAdminCompanyModifyComponent,
+      },
+      {
+        path: 'company-app-modify/:param',
+        component: MainAdminCompanyAppComponent
+      }
+    ]
   },
-  {
-    path: 'company-modify/:param',
-    component: MainAdminCompanyModifyComponent
-  }
+
 
 
 ];

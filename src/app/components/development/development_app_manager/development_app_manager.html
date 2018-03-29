@@ -21,61 +21,62 @@
             <p class="item-1">State</p>
             <p class="item-1">Platform</p>
             <p class="item-2">License Expired Date</p>
-            <p class="item-1">Device No.</p>
-            <p class="item-1">Phone No.</p>
+            <!--<p class="item-1">Device No.</p>-->
+            <!--<p class="item-1">Phone No.</p>-->
             <p class="item-2" *ngIf="companyInfo.state == '3' && (edit_App || delete_App)">Operation</p>
           </div>
 
           <div class="form-custom-content">
             <div>
-              <a class="item-1" *ngIf="app.avatar"><img style="width: 80px;height: 80px;" src="{{url}}{{app.avatar.description}}/{{app.avatar.fileName}}"></a>
+              <a class="item-1" *ngIf="app.avatar"><img style="width: 80px;height: 80px; cursor: default" src="{{url}}{{app.avatar.description}}/{{app.avatar.fileName}}"></a>
               <a class="item-1" *ngIf="!app.avatar"><img style="width: 80px;height: 80px;" src="../../../../assets/images/addPic.png"></a>
-              <p class="item-1" *ngIf="app.state === 0" style="color: #007afa">Apply</p>
+              <p class="item-1" *ngIf="app.state === 0" style="color: #007afa">Not Audit</p>
               <p class="item-1" *ngIf="app.state === 1" style="color: #007afa">Approved</p>
               <p class="item-1" *ngIf="app.state === 2" style="color: #007afa">Disable</p>
-              <p class="item-1" *ngIf="app.state === 3" style="color: #007afa">Via</p>
+              <p class="item-1" *ngIf="app.state === 3" style="color: #007afa">Active</p>
               <p class="item-1">{{app.platform}}</p>
-              <p class="item-2">{{app.expireTime | date: 'yyyy-MM-dd'}}</p>
-              <div class="item-1">{{app.devices.length}}
+              <p class="item-2" *ngIf="app.state === 0">{{app.expireTime | date: 'yyyy-MM-dd'}}</p>
+              <p class="item-2" *ngIf="app.state === 3">NA</p>
+              <!--<div class="item-1">{{app.devices.length}}-->
 
-                <a class="collapsed" style="position: relative;" [style.z-index]="100 - i"
-                   data-toggle="collapse" [attr.data-target]="'#detail' + i"
-                   aria-expanded="false" aria-controls="devices-detail" *ngIf="app.devices.length !== 0">
-                  <img src="../../../../assets/images/down.png">
+                <!--<a class="collapsed" style="position: relative;" [style.z-index]="100 - i"-->
+                   <!--data-toggle="collapse" [attr.data-target]="'#detail' + i"-->
+                   <!--aria-expanded="false" aria-controls="devices-detail" *ngIf="app.devices.length !== 0">-->
+                  <!--<img src="../../../../assets/images/down.png">-->
 
-                  <div class="triangle-big"></div>
-                  <div class="triangle-small">
+                  <!--<div class="triangle-big"></div>-->
+                  <!--<div class="triangle-small">-->
 
-                    <div class="collapse device-detail" [attr.id]="'detail' + i">
+                    <!--<div class="collapse device-detail" [attr.id]="'detail' + i">-->
 
-                      <div class="device-detail-form">
-                        <div class="device-detail-form-head">
-                          <p class="item-2 custom-center-p" style="margin-right: 10%">Device Model</p>
-                          <p class="item-1 custom-center-p">Device No.</p>
-                          <p class="item-1 custom-center-p">Use No.</p>
-                        </div>
-                        <div class="device-detail-form-head" style="border-top: 1px solid #e9ecef;" *ngFor="let device of app.devices">
-                          <div class="item-2" style="margin: 0 0 0 10%; line-height: 3rem; text-align: left;">
-                            <img src="../../../../assets/images/device_{{device.model | lowercase}}.png" style="width: 3rem; height: 3rem">
-                            <p style="display: inline-block">{{device.model}}</p>
-                          </div>
-                          <p class="item-1 custom-center-p">{{device.totalNumber}}</p>
-                          <p class="item-1 custom-center-p">{{device.deviceUsedNumber? device.deviceUsedNumber: 0}}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-
-                </a>
+                      <!--<div class="device-detail-form">-->
+                        <!--<div class="device-detail-form-head">-->
+                          <!--<p class="item-2 custom-center-p" style="margin-right: 10%">Device Model</p>-->
+                          <!--<p class="item-1 custom-center-p">Device No.</p>-->
+                          <!--<p class="item-1 custom-center-p">Use No.</p>-->
+                        <!--</div>-->
+                        <!--<div class="device-detail-form-head" style="border-top: 1px solid #e9ecef;" *ngFor="let device of app.devices">-->
+                          <!--<div class="item-2" style="margin: 0 0 0 10%; line-height: 3rem; text-align: left;">-->
+                            <!--<img src="../../../../assets/images/device_{{device.model | lowercase}}.png" style="width: 3rem; height: 3rem">-->
+                            <!--<p style="display: inline-block">{{device.model}}</p>-->
+                          <!--</div>-->
+                          <!--<p class="item-1 custom-center-p">{{device.totalNumber}}</p>-->
+                          <!--<p class="item-1 custom-center-p">{{device.deviceUsedNumber? device.deviceUsedNumber: 0}}</p>-->
+                        <!--</div>-->
+                      <!--</div>-->
+                    <!--</div>-->
+                  <!--</div>-->
 
 
-              </div>
-              <p class="item-1">{{app.installedPhoneNumber? app.installedPhoneNumber: 0}}</p>
+                <!--</a>-->
+
+
+              <!--</div>-->
+              <!--<p class="item-1">{{app.installedPhoneNumber? app.installedPhoneNumber: 0}}</p>-->
 
               <div class="item-2" *ngIf="companyInfo.state == '3' && (edit_App || delete_App)">
                 <!--<a (click)="downloadLicense(app._id)"><img src="../../../../assets/images/download.png" *ngIf="app.state == '3'"></a>-->
-                <a href="{{url}}/api/license/{{app._id}}?userId={{user._id}}&token={{token}}"><img src="../../../../assets/images/download.png" *ngIf="app.state == '3' && app.scheme === 'NativeSDK'"></a>
+                <a id="download" data-toggle="tooltip" title="You can download license file for using SDK." href="{{url}}/api/license/{{app._id}}?userId={{user._id}}&token={{token}}"><img src="../../../../assets/images/download.png" *ngIf="app.state == '3' && app.scheme === 'NativeSDK'"></a>
                 <a [routerLink]= '["/development-app-modify", app._id]' *ngIf="edit_App"><img src="../../../../assets/images/edit.png"></a>
 
                 <a class="collapsed" style="position: relative" [style.z-index]="100 - i" data-toggle="collapse" [attr.data-target]="'#confirm' + i"

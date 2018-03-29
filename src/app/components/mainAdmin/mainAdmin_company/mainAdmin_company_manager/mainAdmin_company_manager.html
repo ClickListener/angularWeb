@@ -25,14 +25,14 @@
         </div>
         <p class="item-1" style="line-height: 5rem; text-align: center">{{company.country}}</p>
         <p class="item-1" style="line-height: 5rem; text-align: center">{{company.orgin}}</p>
-        <p class="item-1" style="line-height: 4rem; text-align: center; color: #007afa" *ngIf="company.state === 0">Apply</p>
+        <p class="item-1" style="line-height: 4rem; text-align: center; color: #007afa" *ngIf="company.state === 0">Not Audit</p>
         <p class="item-1" style="line-height: 4rem; text-align: center; color: #007afa" *ngIf="company.state === 1">Approved</p>
         <p class="item-1" style="line-height: 4rem; text-align: center; color: #007afa" *ngIf="company.state === 2">Disable</p>
-        <p class="item-1" style="line-height: 4rem; text-align: center; color: #007afa" *ngIf="company.state === 3">Via</p>
+        <p class="item-1" style="line-height: 4rem; text-align: center; color: #007afa" *ngIf="company.state === 3">Active</p>
 
 
         <div class="item-1" style="line-height: 5rem; text-align: center">
-          <a [routerLink]="['/company-modify',company._id]"><img src="../../../../assets/images/edit.png"></a>
+          <a [routerLink]="['/company/company-modify',company._id]"><img src="../../../../assets/images/edit.png"></a>
           <a (click)="checkCompanyName(company.companyName)"><i class="fa fa-search"></i></a>
         </div>
 

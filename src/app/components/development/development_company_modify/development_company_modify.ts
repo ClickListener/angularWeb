@@ -108,7 +108,6 @@ export class DevelopmentCompanyModifyComponent {
     const companyValue = {
       "_id": this.companyInfo._id,
       "companyName": this.companyInfo.companyName,
-      "address": this.companyInfo.address,
       "description": this.companyInfo.description,
       "country": this.companyInfo.country
     };

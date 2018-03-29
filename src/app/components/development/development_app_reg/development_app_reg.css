@@ -41,6 +41,22 @@
 }
 
 
+.url-block {
+  margin: 0;
+}
+
+.url-block input {
+  border: 1px solid #bbbbbb;
+  padding: 0px;
+  border-radius: 3px;
+}
+
+.url-block input:focus {
+  border: 1px solid #007afa;
+  box-shadow: none;
+}
+
+
 /*business license*/
 .license-block {
   margin-top: 15px;

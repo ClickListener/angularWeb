@@ -16,7 +16,7 @@
   </div>
 
   <div class="input-block">
-    <label style="display: inline-block" for="id_corporate">Corporate Name</label>
+    <label style="display: inline-block" for="id_corporate">Company Name</label>
     <a style="display: inline-block"><img src="../../../../assets/images/star.png"></a>
     <input style="display: block" id="id_corporate" name="id_corporate" type="text" [(ngModel)]="companyName"
            #corporate="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s]{1,100}$" required>
@@ -43,22 +43,22 @@
     <p *ngIf="!descriptionValid.pristine&&descriptionValid.invalid" style="color: #ee2200">You must input at least 20 and no more than 500 characters.</p>
   </div>
 
-  <div class="license-block">
-    <p style="display: inline-block">Business license</p>
-    <a style="display: inline-block"><img src="../../../../assets/images/star.png"></a>
-    <a style="position: absolute; display: block"><img id="preview" src="../../../../assets/images/addPic.png" style="width: 80px; height: 80px"></a>
-    <div>
-      <input type="file" id="image" name="image" style="width: 80px;height: 80px;opacity: 0;" (change)="previewImg($event)" accept="image/*">
+  <!--<div class="license-block">-->
+    <!--<p style="display: inline-block">Business license</p>-->
+    <!--<a style="display: inline-block"><img src="../../../../assets/images/star.png"></a>-->
+    <!--<a style="position: absolute; display: block"><img id="preview" src="../../../../assets/images/addPic.png" style="width: 80px; height: 80px"></a>-->
+    <!--<div>-->
+      <!--<input type="file" id="image" name="image" style="width: 80px;height: 80px;opacity: 0;" (change)="previewImg($event)" accept="image/*">-->
 
-      <p *ngIf="!business" style="color: #ee2200">You must input business license.</p>
+      <!--<p *ngIf="!business" style="color: #ee2200">You must input business license.</p>-->
 
-    </div>
+    <!--</div>-->
 
-  </div>
+  <!--</div>-->
 
 
   <div class="submit-block">
-    <button class="btn btn-primary" (click)="applyMasterDeveloper()" [disabled]="(myForm.form.invalid || !business) || buttonDisable">Submit</button>
+    <button class="btn btn-primary" (click)="applyMasterDeveloper()" [disabled]="(myForm.form.invalid) || buttonDisable">Submit</button>
   </div>
 
 
