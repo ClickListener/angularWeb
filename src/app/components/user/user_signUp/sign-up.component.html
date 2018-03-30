@@ -16,36 +16,96 @@
 
         <div class="md-form">
           <input required="required" class="form-control" id="name" name="name" type="text" [(ngModel)]="nameValue"
-                 #name="ngModel" pattern="^[a-zA-Z_]{1}\w{0,99}$">
+                 #name="ngModel" maxlength="10" [regex-name]='{"BeginRegex": "^[a-zA-Z_]{1}\\w{0,}$"}'>
           <label for="name">Name</label>
-          <span *ngIf="!name.pristine&&name.invalid" style="color: #ee2200">Please input name that begin with a letter or an underscore.</span>
+          <!--<span *ngIf="!name.pristine&&name.invalid" style="color: #ee2200">Please input name that begin with a letter or an underscore.</span>-->
+
+          <div *ngIf="name.invalid && (name.dirty || name.touched)"
+               class="alert alert-danger">
+
+            <div *ngIf="name.errors.required">
+              Name is required
+            </div>
+
+            <div *ngIf="name.errors.BeginRegex">
+              You must begin with letter or underline.
+            </div>
+
+            <div *ngIf="name.errors.UpperRegex">
+              Name must contain one upper letter.
+            </div>
+
+            <div *ngIf="name.errors.lowerRegex">
+              Name must contain one lower letter.
+            </div>
+          </div>
 
         </div>
         <div class="md-form">
           <input required="required" class="form-control" id="email" name="email" type="text" [(ngModel)]="emailValue"
                  #email="ngModel" pattern="^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" [maxlength]="40">
           <label for="email">Email</label>
-          <span *ngIf="!email.pristine&&email.invalid" style="color: #ee2200">Please input valid email.</span>
+
+          <div *ngIf="email.invalid && (email.dirty || email.touched)"
+               class="alert alert-danger">
+            <span>Please input valid email.</span>
+          </div>
+
 
         </div>
 
         <div class="md-form">
-          <input required="required" class="form-control" id="password" name="password" type="password" [(ngModel)]="passwordValue"
-                  #password="ngModel" pattern="^(?:(?=.*[0-9].*)(?=.*[a-z].*)(?=.*[A-Z].*)(?=.*[!@#$%\*&\^?].*))[!@#$%\*&\^?0-9A-Za-z]{6,16}$">
+          <input required="required" class="form-control" id="password" name="password" type="password"
+                 [(ngModel)]="passwordValue"
+                 #password="ngModel" minlength="6" maxlength="16"
+                 [regex-name]='{"upperRegex": "[A-Z]", "lowerRegex": "[a-z]", "numberRegex": "[0-9]", "specharsRegex": "[\!\@\#\$\%\\*\&\\^\?]"}'>
           <label for="password">Password</label>
 
           <span *ngIf="!password.pristine&&password.invalid" style="color: #ee2200">
             Please input 6-16 password: at least contain a upper letter, a lower letter, a number and a special character.
           </span>
 
+          <div *ngIf="password.invalid && (password.dirty || password.touched)"
+               class="alert alert-danger">
+
+            <div *ngIf="password.errors.required">
+              Password is required
+            </div>
+
+            <div *ngIf="password.errors.minlength">
+              Password's length must longer than 6.
+            </div>
+
+            <div *ngIf="password.errors.numberRegex">
+              Password must contain at least one number.
+            </div>
+
+            <div *ngIf="password.errors.upperRegex">
+              Password must contain at least one upper letter.
+            </div>
+
+            <div *ngIf="password.errors.lowerRegex">
+              Password must contain at least one lower letter.
+            </div>
+
+            <div *ngIf="password.errors.specharsRegex">
+              Password must contain at least one spechars.
+            </div>
+          </div>
+
         </div>
 
         <div class="md-form">
-          <input required class="form-control" id="confirmPassword" name="confirmPassword" type="password" [(ngModel)]="confirmPasswordValue"
+          <input required class="form-control" id="confirmPassword" name="confirmPassword" type="password"
+                 [(ngModel)]="confirmPasswordValue"
                  #confirmPassword="ngModel" [equalTo]="password">
           <label for="confirmPassword">Retype password</label>
 
-          <span *ngIf="!confirmPassword.pristine && confirmPassword.invalid" style="color: #ee2200">Retype password must equal with password.</span>
+
+          <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"
+               class="alert alert-danger">
+            <span>Retype password must equal with password.</span>
+          </div>
         </div>
 
         <div style="font-size: 15px">
@@ -58,7 +118,9 @@
         </div>
 
         <div style="margin-top: 20px">
-          <button type="submit" class="btn btn-primary btn-block" [disabled]="!myForm.form.valid || buttonDisable">Create Account</button>
+          <button type="submit" class="btn btn-primary btn-block" [disabled]="!myForm.form.valid || buttonDisable">
+            Create Account
+          </button>
         </div>
 
 

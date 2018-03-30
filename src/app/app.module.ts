@@ -60,6 +60,7 @@ import {AuthGuard} from "./services/auth-guard.service";
 import {SignConfirmComponent} from "./components/user/user_signConfirm/sign_confirm.component";
 import {MainAdminCompanyAppComponent} from "./components/mainAdmin/mainAdmin_company/mainAdmin_company_app/mainAdmin_company_app";
 import {MainAdminCompanyMainComponent} from "./components/mainAdmin/mainAdmin_company/mainAdmin_company_main/mainAdmin_company_main";
+import {RegexNameDirective} from "./directive/regex-name.directive";
 
 @NgModule({
 
@@ -125,12 +126,26 @@ import {MainAdminCompanyMainComponent} from "./components/mainAdmin/mainAdmin_co
     MainAdminCompanyModifyComponent,
     MainAdminCompanyManagerComponent,
     MainAdminCompanyAppComponent,
-    MainAdminCompanyMainComponent
+    MainAdminCompanyMainComponent,
+
+    RegexNameDirective
   ],
 
   bootstrap: [AppComponent],
 
-  providers: [UserService, LicenseService, DevicesService, DatePipe, SchemeService, Location, CompanyService, AppService, LowerCasePipe, ErrorService, AuthGuard]
+  providers: [
+    UserService,
+    LicenseService,
+    DevicesService,
+    DatePipe,
+    SchemeService,
+    Location,
+    CompanyService,
+    AppService,
+    LowerCasePipe,
+    ErrorService,
+    AuthGuard
+  ]
 })
 
 export class AppModule {
