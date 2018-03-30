@@ -27,6 +27,7 @@ export class DevelopmentAppRegComponent implements OnInit {
   deviceSelectedList: Array<Device>;
 
   appIcon = false;
+  appIconChange = false;
 
 
   deviceNumberList = [
@@ -379,6 +380,8 @@ export class DevelopmentAppRegComponent implements OnInit {
   // 使用FileReader 将图片读取为base64字符串形式，实现图片预览
   private previewImg(event) {
     const file = event.target.files[0];
+
+    this.appIconChange = true;
 
 
     if (!file) {

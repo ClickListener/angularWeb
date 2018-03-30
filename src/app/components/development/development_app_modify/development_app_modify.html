@@ -19,9 +19,13 @@
   <div class="input-block">
     <label for="id_name">App Name</label>
     <input name="id_name" id="id_name" type="text" [(ngModel)]="appInfo.appName"
-           #appNameValid="ngModel" pattern="^[a-zA-Z_]{1}(?:(?=.*\s*))[\w\s]{0,99}$" required>
+           #appNameValid="ngModel" [regex-name]='{"pattern": "^[a-zA-Z_]{1}(?:(?=.*\\s*))[\\w\\s]{0,}$"}' maxlength="100" required>
 
-    <p *ngIf="!appNameValid.pristine&&appNameValid.invalid" style="color: #ee2200">Please input valid App name.</p>
+    <div *ngIf="appNameValid.invalid && (appNameValid.dirty || appNameValid.touched)"
+         class="alert alert-danger">
+      Please input valid App name.
+    </div>
+
   </div>
 
 
@@ -29,17 +33,47 @@
   <div class="input-block" *ngIf="appInfo.platform === 'android'">
     <label for="id_package">Package Name</label>
     <input id="id_package" type="text" name="id_bundle" [(ngModel)]="appInfo.bundleIdOrPackageName"
-           #package="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s\.]{1,100}$" required>
+           #package="ngModel" minlength="3" maxlength="100"
+           required [regex-name]='{"pattern": "^(?:(?=.*\\w.*)(?=.*\\s*))[\\w\\s\\.]{1,}$"}'>
 
-    <p *ngIf="!package.pristine&&package.invalid" style="color: #ee2200">Please input valid package name.</p>
+
+    <div *ngIf="package.invalid && (package.dirty || package.touched)"
+         class="alert alert-danger">
+      <div *ngIf="package.errors.pattern">
+        Please input valid package name.
+      </div>
+      <div *ngIf="package.errors.minlength">
+        Min length is 3.
+      </div>
+      <div *ngIf="package.errors.required">
+        Package name is required.
+      </div>
+
+    </div>
+
   </div>
 
   <div class="input-block" *ngIf="appInfo.platform === 'ios'">
     <label for="id_bundle">BundleId</label>
     <input id="id_bundle" type="text" name="id_bundle" [(ngModel)]="appInfo.bundleIdOrPackageName"
-           #bundleId="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s\.]{1,100}$" required>
+           #bundleId="ngModel" minlength="3" maxlength="100"
+           required [regex-name]='{"pattern": "^(?:(?=.*\\w.*)(?=.*\\s*))[\\w\\s\\.]{1,}$"}'>
 
-    <p *ngIf="!bundleId.pristine&&bundleId.invalid" style="color: #ee2200">Please input valid bundleId.</p>
+
+    <div *ngIf="bundleId.invalid && (bundleId.dirty || bundleId.touched)"
+         class="alert alert-danger">
+      <div *ngIf="bundleId.errors.pattern">
+        Please input valid bundleId.
+      </div>
+      <div *ngIf="bundleId.errors.minlength">
+        Min length is 3.
+      </div>
+      <div *ngIf="bundleId.errors.required">
+        BundleId is required.
+      </div>
+
+    </div>
+
   </div>
 
 
@@ -47,9 +81,24 @@
   <div class="input-block">
     <label for="id_description">Description</label>
     <textarea id="id_description" type="text" name="id_description" [(ngModel)]="appInfo.description"
-              #descriptionValid="ngModel" [rangeLength]="[20,100]" required></textarea>
+              #descriptionValid="ngModel"  minlength="20" maxlength="100" required></textarea>
 
-    <p *ngIf="!descriptionValid.pristine&&descriptionValid.invalid" style="color: #ee2200">Please input valid description.</p>
+
+    <div *ngIf="descriptionValid.invalid && (descriptionValid.dirty || descriptionValid.touched)"
+         class="alert alert-danger">
+
+      <div *ngIf="descriptionValid.errors.required">
+        Description is required.
+      </div>
+
+      <div *ngIf="descriptionValid.errors.minlength">
+        You must input at least 20 characters.
+      </div>
+
+      <div *ngIf="descriptionValid.errors.maxlength">
+        You must input no more than 100 characters.
+      </div>
+    </div>
   </div>
 
 
@@ -82,10 +131,29 @@
     <div class="url-block" *ngIf="appInfo.sdkType === 'LayerApp'">
       <label>Url</label>
 
-      <input style="padding: 0 10px 0 10px;" name="id_name" id="id_layeredUrl" type="text" [(ngModel)]="appInfo.scheme"
-             #_layered_url="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s\.]{3,100}$" required placeholder="layered url">
+      <input style="padding: 0 10px 0 10px;" name="name_url" id="id_layeredUrl" type="text" [(ngModel)]="appInfo.scheme"
+             #_layered_url="ngModel" minlength="3" maxlength="100"
+             required placeholder="layered url" [regex-name]='{"pattern": "^(?:(?=.*\\w.*)(?=.*\\s*))[\\w\\s\\.]{1,}$"}'>
 
-      <p *ngIf="!_layered_url.pristine&&_layered_url.invalid" style="color: #ee2200">Please input valid url.</p>
+      <div *ngIf="_layered_url.invalid && (_layered_url.dirty || _layered_url.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="_layered_url.errors.required">
+          Description is required.
+        </div>
+
+        <div *ngIf="_layered_url.errors.minlength">
+          You must input at least 3 characters.
+        </div>
+
+        <div *ngIf="_layered_url.errors.maxlength">
+          You must input no more than 100 characters.
+        </div>
+
+        <div *ngIf="_layered_url.errors.pattern">
+          Please input valid url.
+        </div>
+      </div>
     </div>
 
     <!--<div>-->
