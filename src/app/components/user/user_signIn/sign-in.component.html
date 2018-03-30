@@ -1,6 +1,5 @@
-
 <div class="d-flex justify-content-center" style="margin-top: 60px">
-  <div class="card card-width" >
+  <div class="card card-width">
     <div class="card-body">
 
       <div class="d-flex justify-content-center header-img">
@@ -14,16 +13,22 @@
             accept-charset="UTF-8" (submit)="signIn()" #myForm="ngForm">
 
         <div class="md-form">
-          <input required="required" class="form-control" id="email" name="email" type="text" [(ngModel)]="emailOrUserName"
+          <input required="required" class="form-control" id="email" name="email" type="text"
+                 [(ngModel)]="emailOrUserName"
                  #email="ngModel">
           <label for="email">Email</label>
 
-          <span *ngIf="!email.pristine&&email.invalid" style="color: #ee2200">Please input valid email or userName.</span>
+
+          <div *ngIf="email.invalid && (email.dirty || email.touched)"
+               class="alert alert-danger">
+            <span style="color: #ee2200">Please input valid email or userName.</span>
+          </div>
 
         </div>
 
         <div class="md-form">
-          <input required="required" class="form-control" id="password" name="password" type="password"  [(ngModel)]="password">
+          <input required="required" class="form-control" id="password" name="password" type="password"
+                 [(ngModel)]="password">
           <label for="password">Password</label>
 
         </div>
@@ -31,15 +36,17 @@
         <div class="d-flex justify-content-end">
 
           <!--<div>-->
-            <!--<input type="checkbox">-->
-            <!--<p style="display: inline">Remember me</p>-->
+          <!--<input type="checkbox">-->
+          <!--<p style="display: inline">Remember me</p>-->
           <!--</div>-->
 
           <p class="font-small"><a routerLink="/forgot-password" class="blue-text ml-1">Forgot Password?</a></p>
         </div>
 
         <div style="margin-top: 20px">
-          <button type="submit" class="btn btn-primary btn-block" [disabled]="!myForm.form.valid || buttonDisable" >Sign In</button>
+          <button type="submit" class="btn btn-primary btn-block" [disabled]="!myForm.form.valid || buttonDisable">Sign
+            In
+          </button>
         </div>
 
       </form>
@@ -51,8 +58,6 @@
         <a routerLink="/sign-up">Sign up</a>
 
       </div>
-
-
 
 
     </div>

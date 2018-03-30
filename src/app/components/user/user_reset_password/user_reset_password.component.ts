@@ -27,10 +27,7 @@ export class UserResetPasswordComponent {
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router) {
 
-    if (!userService.user) {
-      this.router.navigate(['/sign-in']);
-      return;
-    }
+
 
     activatedRoute.paramMap.subscribe(paramMap => {
       this.userId = paramMap['params'].userId;

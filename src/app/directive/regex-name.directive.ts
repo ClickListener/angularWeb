@@ -40,13 +40,13 @@ export class RegexNameDirective implements Validator {
       for (const regexName in regex) {
 
 
-        console.log('control.value = ', control.value);
-
-        console.log('regexName = ', regexName);
-        console.log('regexName = ', regex[regexName]);
-        console.log('regexName = ', new RegExp(regex[regexName]));
-
-        console.log('match = ', new RegExp(regex[regexName]).test(control.value));
+        // console.log('control.value = ', control.value);
+        //
+        // console.log('regexName = ', regexName);
+        // console.log('regexName = ', regex[regexName]);
+        // console.log('regexName = ', new RegExp(regex[regexName]));
+        //
+        // console.log('match = ', new RegExp(regex[regexName]).test(control.value));
 
         if (!new RegExp(regex[regexName]).test(control.value)) {
           return {

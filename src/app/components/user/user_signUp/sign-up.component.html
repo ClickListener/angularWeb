@@ -61,9 +61,6 @@
                  [regex-name]='{"upperRegex": "[A-Z]", "lowerRegex": "[a-z]", "numberRegex": "[0-9]", "specharsRegex": "[\!\@\#\$\%\\*\&\\^\?]"}'>
           <label for="password">Password</label>
 
-          <span *ngIf="!password.pristine&&password.invalid" style="color: #ee2200">
-            Please input 6-16 password: at least contain a upper letter, a lower letter, a number and a special character.
-          </span>
 
           <div *ngIf="password.invalid && (password.dirty || password.touched)"
                class="alert alert-danger">
