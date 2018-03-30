@@ -69,7 +69,9 @@ export class SignInComponent {
           }).catch(swal.noop);
 
 
-          if (this.preUrl) {
+          console.log('this.preUrl', this.preUrl);
+
+          if (this.preUrl && this.preUrl !== '/this.preUrl') {
             this.router.navigate([this.preUrl]);
           } else {
             this.router.navigate(['/']);
