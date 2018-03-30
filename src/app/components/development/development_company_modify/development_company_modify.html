@@ -18,9 +18,14 @@
     <label style="display: inline-block" for="id_corporate">Company Name</label>
     <a style="display: inline-block"><img src="../../../../assets/images/star.png"></a>
     <input style="display: block" id="id_corporate" name="id_corporate" type="text" [(ngModel)]="companyInfo.companyName"
-           #corporate="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s]{1,100}$" required>
+           #corporate="ngModel" maxlength="100" [regex-name]='{"pattern": "^[\\w\\s]{1,}"}' required>
 
-    <p *ngIf="!corporate.pristine&&corporate.invalid" style="color: #ee2200">Please input valid corporate no more than 100 characters.</p>
+
+    <div *ngIf="corporate.invalid && (corporate.dirty || corporate.touched)"
+         class="alert alert-danger" style="width: 70%">
+
+      Please input valid Company name.
+    </div>
   </div>
 
 
@@ -28,7 +33,25 @@
     <label style="display: inline-block" for="id_description">Description</label>
     <a style="display: inline-block"><img src="../../../../assets/images/star.png"></a>
     <textarea style="display: block" id="id_description" name="id_description" type="text" [(ngModel)]="companyInfo.description"
-              #descriptionValid="ngModel" [rangeLength]="[20,500]" required></textarea>
+              #descriptionValid="ngModel" minlength="20" maxlength="500" required></textarea>
+
+
+    <div *ngIf="descriptionValid.invalid && (descriptionValid.dirty || descriptionValid.touched)"
+         class="alert alert-danger" style="width: 70%">
+
+      <div *ngIf="descriptionValid.errors.required">
+        Description is required.
+      </div>
+
+      <div *ngIf="descriptionValid.errors.minlength">
+        You must input at least 20 characters.
+      </div>
+
+      <div *ngIf="descriptionValid.errors.maxlength">
+        You must input no more than 500 characters.
+      </div>
+
+    </div>
 
     <p *ngIf="!descriptionValid.pristine&&descriptionValid.invalid" style="color: #ee2200">You must input at least 20 and no more than 500 characters.</p>
   </div>
