@@ -71,7 +71,7 @@ export class SignInComponent {
 
           console.log('this.preUrl', this.preUrl);
 
-          if (this.preUrl && this.preUrl !== '/this.preUrl') {
+          if (this.preUrl && this.preUrl !== '/sign-up-confirm') {
             this.router.navigate([this.preUrl]);
           } else {
             this.router.navigate(['/']);
