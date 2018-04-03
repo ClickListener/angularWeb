@@ -43,6 +43,10 @@ import {AuthGuard} from "./services/auth-guard.service";
 import {SignConfirmComponent} from "./components/user/user_signConfirm/sign_confirm.component";
 import {MainAdminCompanyAppComponent} from "./components/mainAdmin/mainAdmin_company/mainAdmin_company_app/mainAdmin_company_app";
 import {MainAdminCompanyMainComponent} from "./components/mainAdmin/mainAdmin_company/mainAdmin_company_main/mainAdmin_company_main";
+import {MainAdminSecondMasterManagerComponent} from "./components/mainAdmin/mainAdmin_developer/mainAdmin_secondMaster_manager/mainAdmin_secondMaster_manager";
+import {MainAdminSecondMasterMainComponent} from "./components/mainAdmin/mainAdmin_developer/mainAdmin_secondMaster_main/mainAdmin_secondMaster_main";
+import {MainAdminSecondMasterCreateComponent} from "./components/mainAdmin/mainAdmin_developer/mainAdmin_secondMaster_create/mainAdmin_secondMaster_create";
+import {MainAdminSecondMasterModifyComponent} from "./components/mainAdmin/mainAdmin_developer/mainAdmin_secondMaster_modify/mainAdmin_secondMaster_modify";
 
 /**
  * 路由模块
@@ -234,6 +238,30 @@ const routes: Routes = [
     path: 'developer-modify/:id/:companyId',
     component: MainAdminDeveloperModifyComponent
 
+  },
+
+  {
+    path: 'secondMaster',
+    component: MainAdminSecondMasterMainComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'secondMaster-manager',
+        pathMatch: 'full'
+      },
+      {
+        path: 'secondMaster-manager',
+        component: MainAdminSecondMasterManagerComponent
+      },
+      {
+        path: 'secondMaster-create',
+        component: MainAdminSecondMasterCreateComponent
+      },
+      {
+        path: 'secondMaster-modify/:param',
+        component: MainAdminSecondMasterModifyComponent
+      }
+    ]
   },
 
   {

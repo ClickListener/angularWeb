@@ -236,7 +236,7 @@
     <ul class="accoraccordiondion" id="accordionId">
 
 
-      <li *ngIf="user && user.type != '1'">
+      <li *ngIf="user && user.type >= 3">
         <a id="development_primary" data-toggle="collapse"
            aria-expanded="true" [routerLink]="(user && user.companyId)?  null : '/development-primary'" routerLinkActive="active">
           <b style="font-size: 16px">Enterprise Development</b>
@@ -262,7 +262,7 @@
       </li>
 
 
-      <li class="class-li" *ngIf="user && user.type != '1'&& user.companyId">
+      <li class="class-li" *ngIf="user && ((user.type > 2 && user.companyId) || user.type === 2)">
         <a routerLink="/last-version" routerLinkActive="active">
           <b style="font-size: 16px">SDK Download</b>
         </a>
@@ -291,7 +291,7 @@
         </ul>
       </li>
 
-      <li *ngIf="user && user.type == '1'">
+      <li *ngIf="user && user.type < 3">
         <a>
           <b style="font-size: 16px">Authority</b>
         </a>
@@ -300,6 +300,7 @@
           <!--<li><a routerLinkActive="active" routerLink='/scheme-main/SDK'>Secondary administrator</a></li>-->
           <li><a routerLinkActive="active" routerLink='/developer-manager'>Developers</a></li>
           <li><a routerLinkActive="active" [routerLink]="['company']">Companies</a></li>
+          <li *ngIf="user.type !== 2"><a routerLinkActive="active" [routerLink]="['secondMaster']">Second master</a></li>
         </ul>
       </li>
 

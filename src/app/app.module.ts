@@ -61,6 +61,10 @@ import {SignConfirmComponent} from "./components/user/user_signConfirm/sign_conf
 import {MainAdminCompanyAppComponent} from "./components/mainAdmin/mainAdmin_company/mainAdmin_company_app/mainAdmin_company_app";
 import {MainAdminCompanyMainComponent} from "./components/mainAdmin/mainAdmin_company/mainAdmin_company_main/mainAdmin_company_main";
 import {RegexNameDirective} from "./directive/regex-name.directive";
+import {MainAdminSecondMasterManagerComponent} from "./components/mainAdmin/mainAdmin_developer/mainAdmin_secondMaster_manager/mainAdmin_secondMaster_manager";
+import {MainAdminSecondMasterMainComponent} from "./components/mainAdmin/mainAdmin_developer/mainAdmin_secondMaster_main/mainAdmin_secondMaster_main";
+import {MainAdminSecondMasterCreateComponent} from "./components/mainAdmin/mainAdmin_developer/mainAdmin_secondMaster_create/mainAdmin_secondMaster_create";
+import {MainAdminSecondMasterModifyComponent} from "./components/mainAdmin/mainAdmin_developer/mainAdmin_secondMaster_modify/mainAdmin_secondMaster_modify";
 
 @NgModule({
 
@@ -127,6 +131,11 @@ import {RegexNameDirective} from "./directive/regex-name.directive";
     MainAdminCompanyManagerComponent,
     MainAdminCompanyAppComponent,
     MainAdminCompanyMainComponent,
+
+    MainAdminSecondMasterMainComponent,
+    MainAdminSecondMasterManagerComponent,
+    MainAdminSecondMasterCreateComponent,
+    MainAdminSecondMasterModifyComponent,
 
     RegexNameDirective
   ],
