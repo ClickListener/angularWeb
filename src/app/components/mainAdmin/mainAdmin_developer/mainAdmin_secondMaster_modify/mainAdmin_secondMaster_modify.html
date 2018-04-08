@@ -4,37 +4,33 @@
   <p style="font-weight: bold; font-size: 1.6rem; text-align: center">Modify second master information</p>
 </div>
 
-<form style="margin-left:25%; margin-right: 25%; margin-top: 5%">
+<form style="margin-left:25%; margin-right: 25%; margin-top: 5%" *ngIf="admin">
 
   <div style="margin-top: 15px">
     <label for="name" style="display: block; font-size: 1rem; font-weight: bold"> Name</label>
-    <input style="width: 100%" name="name" id="name" placeholder="name"/>
+    <input style="width: 100%" name="name" id="name" placeholder="name" [(ngModel)]="admin.username"/>
   </div>
 
   <div style="margin-top: 15px">
     <label for="name" style="display: block; font-size: 1rem; font-weight: bold">Email</label>
-    <input style="width: 100%" name="email" id="email" placeholder="Email"/>
+    <input style="width: 100%" name="email" id="email" placeholder="Email" [(ngModel)]="admin.email"/>
   </div>
 
-  <div style="margin-top: 15px">
-    <label for="name" style="display: block; font-size: 1rem; font-weight: bold"> Password</label>
-    <input style="width: 100%" name="password" id="password" placeholder="Password"/>
-  </div>
 
   <div style="margin-top: 15px">
     <label for="name" style="display: block; font-size: 1rem; font-weight: bold"> Region</label>
-    <input type="checkbox" value="true" name="CN" checked [(ngModel)]="CN">中国
-    <input type="checkbox" value="true" name="AS" checked [(ngModel)]="AS">亚太
-    <input type="checkbox" value="true" name="NA" checked [(ngModel)]="NA">北美
-    <input type="checkbox" value="true" name="LA" checked [(ngModel)]="LA">南美
-    <input type="checkbox" value="true" name="OA" checked [(ngModel)]="OA">南非
-    <input type="checkbox" value="true" name="ME" checked [(ngModel)]="ME">中东
-    <input type="checkbox" value="true" name="AF" checked [(ngModel)]="AF">非洲
-    <input type="checkbox" value="true" name="EU" checked [(ngModel)]="EU">欧洲
-    <input type="checkbox" value="true" name="RU" checked [(ngModel)]="RU">俄罗斯
+    <input type="radio" value="CN" checked name="origin" [(ngModel)]="admin.orgin">中国
+    <input type="radio" value="AS" name="origin" [(ngModel)]="admin.orgin">亚太
+    <input type="radio" value="NA" name="origin" [(ngModel)]="admin.orgin">北美
+    <input type="radio" value="LA" name="origin" [(ngModel)]="admin.orgin">南美
+    <input type="radio" value="OA" name="origin" [(ngModel)]="admin.orgin">南非
+    <input type="radio" value="ME" name="origin" [(ngModel)]="admin.orgin">中东
+    <input type="radio" value="AF" name="origin" [(ngModel)]="admin.orgin">非洲
+    <input type="radio" value="EU" name="origin" [(ngModel)]="admin.orgin">欧洲
+    <input type="radio" value="RU" name="origin" [(ngModel)]="admin.orgin">俄罗斯
   </div>
 
 
-  <a class="btn btn-primary" style="text-transform: none" (click)="createNewSecondMaster()">Create secondMaster</a>
+  <a class="btn btn-primary" style="text-transform: none" (click)="updateSecondMaster()">Update</a>
 
 </form>

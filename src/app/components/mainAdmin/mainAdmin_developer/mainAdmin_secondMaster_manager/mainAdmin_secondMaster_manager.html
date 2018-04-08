@@ -1,8 +1,9 @@
 
-<a class="btn btn-primary" routerLink="../secondMaster-create">Create SecondMaster</a>
-<a class="btn btn-primary" [routerLink]='["../secondMaster-modify", 1]'>Modify SecondMaster</a>
+<div style="float: right; margin-right: 20px; margin-top: 20px;">
+  <a class="btn btn-primary" style="text-transform: none" routerLink="../secondMaster-create">Create SecondMaster</a>
+</div>
 
-<div style="margin: 5rem 5rem 0 5rem">
+<div style="margin: 5rem 5rem 0 5rem; margin-bottom: 50px">
 
   <div class="form-custom" *ngIf="adminList && adminList.length !== 0">
     <div class="form-custom-head">
@@ -26,11 +27,13 @@
         </div>
 
         <div class="item-1" style="line-height: 5rem; text-align: center">
-          <a [routerLink]='["../secondMaster-modify", 1]'><img src="../../../../../assets/images/edit.png"></a>
+          <a [routerLink]='["../secondMaster-modify", admin._id]'><img src="../../../../../assets/images/edit.png"></a>
         </div>
 
       </div>
     </div>
   </div>
 </div>
+
+
 
