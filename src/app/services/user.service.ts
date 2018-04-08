@@ -444,6 +444,65 @@ export class UserService {
 
   }
 
+
+  /**
+   * 超级管理员获得二季管理员列表
+   * @param queryInfo
+   * @returns {Promise<any>}
+   */
+  getAdminList(queryInfo): Promise<any> {
+
+    console.log(JSON.stringify(queryInfo));
+
+    const url = this.url + '/api/user/getAdminList';
+
+    return this.http.get(url, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      params: queryInfo
+    }).toPromise()
+      .then(async res => {
+
+        console.log(res);
+
+        console.log(res);
+        if (res['success']) {
+
+        } else {
+          if (res['code'] === '1034') {
+            const response = await this.refreshToken();
+            if (response['success']) {
+
+              queryInfo.token = response.token;
+
+              const appResponse = await this.getAdminList(queryInfo);
+
+              if (appResponse['success']) {
+
+              } else {
+                this.hintError(appResponse);
+              }
+              return appResponse;
+
+            } else {
+              this.hintError(response);
+            }
+
+          } else {
+            this.hintError(res);
+          }
+
+        }
+        return res;
+
+      })
+      .catch(UserService.handleError);
+
+
+  }
+
   /**
    * 登录服务3
    * @param userInfo
@@ -483,7 +542,7 @@ export class UserService {
    * @param userInfo
    *
    */
-  signUp(userInfo: any): Promise<User> {
+  signUp(userInfo: any): Promise<any> {
     const url = this.url + '/api/user/add';
 
     console.log(JSON.stringify(userInfo));

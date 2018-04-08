@@ -323,7 +323,8 @@ export class SignUpComponent {
         "username": this.lowerCasePipe.transform(this.nameValue),
         "email": this.emailValue,
         "password": this.passwordValue,
-        "type": 4
+        "type": 4,
+        "country": this.country.code
       }
     };
 

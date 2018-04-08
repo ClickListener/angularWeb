@@ -1,43 +1,32 @@
-<h1>MainAdmin_secondMaster_manager</h1>
 
 <a class="btn btn-primary" routerLink="../secondMaster-create">Create SecondMaster</a>
 <a class="btn btn-primary" [routerLink]='["../secondMaster-modify", 1]'>Modify SecondMaster</a>
 
 <div style="margin: 5rem 5rem 0 5rem">
 
-  <div class="form-custom" *ngIf="developerList && developerList.length !== 0">
+  <div class="form-custom" *ngIf="adminList && adminList.length !== 0">
     <div class="form-custom-head">
       <p class="item-2">People</p>
       <p class="item-1">Role</p>
-      <p class="item-1">Beta</p>
+      <p class="item-1">Origin</p>
       <p class="item-1" >Operation</p>
     </div>
 
     <div class="form-custom-content">
-      <div *ngFor="let developer of developerList, let i = index">
+      <div *ngFor="let admin of adminList, let i = index">
         <div class="item-2" style="overflow: hidden">
-          <p style=" margin: 0; margin-left: 1rem; margin-top: 0.5rem; color: #007afa;"><b>{{developer.username}}</b></p>
-          <p style="margin: 0; margin-left: 1rem; ">{{developer.email}}</p>
+          <p style=" margin: 0; margin-left: 1rem; margin-top: 0.5rem; color: #007afa;"><b>{{admin.username}}</b></p>
+          <p style="margin: 0; margin-left: 1rem; ">{{admin.email}}</p>
         </div>
-        <p class="item-1" style="line-height: 5rem; text-align: center">{{developer.type}}</p>
+        <p class="item-1" style="line-height: 5rem; text-align: center">{{admin.type}}</p>
 
-        <div class="item-1" style="line-height: 5rem; text-align: center" *ngIf="developer.type === 3">
-          <select   [name]="'beta' + i"
-                    [(ngModel)]="developer.beta" *ngIf="developer.type === 3">
-            <option value=true>true</option>
-            <option value=false>false</option>
-          </select>
+
+        <div class="item-1" style="line-height: 5rem; text-align: center">
+          {{admin.orgin}}
         </div>
 
-        <div class="item-1" style="line-height: 5rem; text-align: center" *ngIf="developer.type !== 3">
-          ---
-        </div>
-
-        <div class="item-1" style="line-height: 5rem; text-align: center" *ngIf="developer.type === 3">
-          <a style="text-transform: none" class="btn btn-primary btn-sm" (click)="updateBetaPermission(developer)">Update</a>
-        </div>
-        <div class="item-1" style="line-height: 5rem; text-align: center" *ngIf="developer.type !== 3">
-          ---
+        <div class="item-1" style="line-height: 5rem; text-align: center">
+          <a [routerLink]='["../secondMaster-modify", 1]'><img src="../../../../../assets/images/edit.png"></a>
         </div>
 
       </div>

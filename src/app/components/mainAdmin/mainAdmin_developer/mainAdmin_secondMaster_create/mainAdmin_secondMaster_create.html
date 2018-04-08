@@ -8,30 +8,30 @@
 
   <div style="margin-top: 15px">
     <label for="name" style="display: block; font-size: 1rem; font-weight: bold"> Name</label>
-    <input style="width: 100%" name="name" id="name" placeholder="name"/>
+    <input style="width: 100%" name="name" id="name" placeholder="name" [(ngModel)]="name"/>
   </div>
 
   <div style="margin-top: 15px">
     <label for="name" style="display: block; font-size: 1rem; font-weight: bold">Email</label>
-    <input style="width: 100%" name="email" id="email" placeholder="Email"/>
+    <input style="width: 100%" name="email" id="email" placeholder="Email" [(ngModel)]="email"/>
   </div>
 
   <div style="margin-top: 15px">
     <label for="name" style="display: block; font-size: 1rem; font-weight: bold"> Password</label>
-    <input style="width: 100%" name="password" id="password" placeholder="Password"/>
+    <input style="width: 100%" name="password" id="password" placeholder="Password" [(ngModel)]="password"/>
   </div>
 
   <div style="margin-top: 15px">
     <label for="name" style="display: block; font-size: 1rem; font-weight: bold"> Region</label>
-    <input type="checkbox" value="true" name="CN" checked [(ngModel)]="CN">中国
-    <input type="checkbox" value="true" name="AS" checked [(ngModel)]="AS">亚太
-    <input type="checkbox" value="true" name="NA" checked [(ngModel)]="NA">北美
-    <input type="checkbox" value="true" name="LA" checked [(ngModel)]="LA">南美
-    <input type="checkbox" value="true" name="OA" checked [(ngModel)]="OA">南非
-    <input type="checkbox" value="true" name="ME" checked [(ngModel)]="ME">中东
-    <input type="checkbox" value="true" name="AF" checked [(ngModel)]="AF">非洲
-    <input type="checkbox" value="true" name="EU" checked [(ngModel)]="EU">欧洲
-    <input type="checkbox" value="true" name="RU" checked [(ngModel)]="RU">俄罗斯
+    <input type="radio" value="CN" checked name="origin" [(ngModel)]="origin">中国
+    <input type="radio" value="AS" name="origin" [(ngModel)]="origin">亚太
+    <input type="radio" value="NA" name="origin" [(ngModel)]="origin">北美
+    <input type="radio" value="LA" name="origin" [(ngModel)]="origin">南美
+    <input type="radio" value="OA" name="origin" [(ngModel)]="origin">南非
+    <input type="radio" value="ME" name="origin" [(ngModel)]="origin">中东
+    <input type="radio" value="AF" name="origin" [(ngModel)]="origin">非洲
+    <input type="radio" value="EU" name="origin" [(ngModel)]="origin">欧洲
+    <input type="radio" value="RU" name="origin" [(ngModel)]="origin">俄罗斯
   </div>
 
 
