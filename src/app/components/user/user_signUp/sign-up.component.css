@@ -49,3 +49,21 @@
     padding: 10px;
     font-size: 16px;
 }
+
+.selectDevice-title {
+  border-bottom: 1px solid #e9ecef;
+  height: 2.5rem;
+  text-align: center;
+}
+
+.selectDevice-title p {
+  line-height: 2.5rem;
+}
+
+.selectDevice-title a {
+  position: fixed;
+  right: 0;
+  line-height: 2.5rem;
+  margin-right: 1rem
+}
+
