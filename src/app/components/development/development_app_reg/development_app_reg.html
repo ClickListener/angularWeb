@@ -34,7 +34,7 @@
 
   <div class="input-block" *ngIf="platform === 'both' || platform === 'android'">
     <label for="id_package">Package Name</label>
-    <input id="id_package" type="text" name="id_bundle" [(ngModel)]="packageName"
+    <input id="id_package" type="text" name="id_package" [(ngModel)]="packageName"
            #_packageName="ngModel"  minlength="3" maxlength="100"
            required [regex-name]='{"pattern": "^(?:(?=.*\\w.*)(?=.*\\s*))[\\w\\s\\.]{1,}$"}'>
 
