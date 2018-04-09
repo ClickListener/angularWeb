@@ -20,7 +20,7 @@
     <a style="display: inline-block"><img src="../../../../assets/images/star.png"></a>
     <input style="display: block" id="id_corporate" name="id_corporate" type="text" [(ngModel)]="companyName"
            #corporate="ngModel" required
-           maxlength="100" [regex-name]='{"pattern": "^[\\w\\s]{1,}"}'>
+           maxlength="100" [regex-name]='{"pattern": "^[a-zA-Z_]{1}(?:(?=.*\\s*))[\\w\\s]{0,}$"}'>
 
     <div *ngIf="corporate.invalid && (corporate.dirty || corporate.touched)"
          class="alert alert-danger" style="width: 70%">
