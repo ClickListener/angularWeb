@@ -16,7 +16,7 @@
 
         <div class="md-form">
           <input required="required" class="form-control" id="name" name="name" type="text" [(ngModel)]="nameValue"
-                 #name="ngModel" maxlength="10" [regex-name]='{"BeginRegex": "^[a-zA-Z_]{1}\\w{0,}$"}'>
+                 #name="ngModel" maxlength="10" [regex-name]='{"BeginRegex": "^[a-zA-Z_]{1}[\\w\\s]{0,}$", "NoSpace": "^[a-zA-Z_]{1}[\\w]{0,}$"}'>
           <label for="name">Name</label>
           <!--<span *ngIf="!name.pristine&&name.invalid" style="color: #ee2200">Please input name that begin with a letter or an underscore.</span>-->
 
@@ -29,6 +29,10 @@
 
             <div *ngIf="name.errors.BeginRegex">
               You must begin with letter or underline.
+            </div>
+
+            <div *ngIf="name.errors.NoSpace">
+              Name can't contain space.
             </div>
 
           </div>
