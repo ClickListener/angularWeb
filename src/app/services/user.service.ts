@@ -620,6 +620,24 @@ export class UserService {
 
   }
 
+  /**
+   * 登出服务
+   * @returns {Promise<TResult|T>}
+   */
+  signOutWithoutNavigate() {
+
+    console.log("signOut()");
+    //
+    // sessionStorage.removeItem('user');
+    // sessionStorage.removeItem('token');
+
+    this._cookieService.removeAll();
+
+    this.token = null;
+    this.user = null;
+
+  }
+
 
   /**
    * 获取Token，并保存到session中，用于每个接口的调用

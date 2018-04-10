@@ -33,7 +33,7 @@ export class AppComponent implements OnInit, DoCheck {
     console.log('url ========', _location.path());
 
 
-    if (userService.user && _location.path() !== '/sign-up-confirm') {
+    if (userService.user && _location.path() !== '/sign-up-confirm' && _location.path().indexOf('/reset-password') === -1) {
 
       const userInfo = {
         "userId": userService.user._id,
@@ -41,6 +41,9 @@ export class AppComponent implements OnInit, DoCheck {
       };
 
       userService.getUserInfo(userInfo);
+    }
+    if (userService.user && _location.path().indexOf('/reset-password') !== -1) {
+      userService.signOutWithoutNavigate();
     }
 
 
