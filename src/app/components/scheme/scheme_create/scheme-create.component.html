@@ -5,7 +5,7 @@
     <form id="createForm" novalidate="novalidate" enctype="multipart/form-data">
 
       <div class="md-form">
-        <input name="version" id="version" required class="form-control" type="text" [(ngModel)]="version">
+        <input name="version" id="version" required class="form-control" type="number" [(ngModel)]="version" maxlength="10">
         <label for="version">Version</label>
       </div>
 
