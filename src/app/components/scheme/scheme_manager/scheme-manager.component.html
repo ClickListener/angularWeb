@@ -46,7 +46,7 @@
         <th>{{scheme.platform}}</th>
         <th>{{scheme.version}}</th>
         <th>{{scheme.beta}}</th>
-        <th>{{scheme.createTime | date: 'yyyy-MM-dd hh:mm:ss'}}</th>
+        <th>{{scheme.createTime | date: 'yyyy-MM-dd HH:mm:ss '}}</th>
         <th>
           <div (click)="stop_Propagation($event)">
             <a class="btn btn-primary" [routerLink]="['./scheme-modify', scheme._id]">修改</a>
