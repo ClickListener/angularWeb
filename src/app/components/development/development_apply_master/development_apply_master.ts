@@ -57,6 +57,8 @@ export class DevelopmentApplyMasterComponent {
       this.countryList = companyService.countryList;
     }
 
+    console.log('------- = ', this.userService.user);
+
   }
 
 
@@ -77,9 +79,9 @@ export class DevelopmentApplyMasterComponent {
   private beforeSubmit(formData) {
 
 
-    const code = this.countryList.find((country, index, arr) => {
-        return country.en === this.country;
-    });
+    // const code = this.countryList.find((country, index, arr) => {
+    //     return country.en === this.country;
+    // });
 
 
     formData.splice(0, formData.length - 1);
@@ -87,7 +89,7 @@ export class DevelopmentApplyMasterComponent {
     const companyValue = {
       "companyName": this.companyName,
       "description": this.description,
-      "country": code.code
+      "country": this.userService.user.country
     };
 
     const company = {
