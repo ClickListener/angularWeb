@@ -47,6 +47,9 @@ import {MainAdminSecondMasterManagerComponent} from "./components/mainAdmin/main
 import {MainAdminSecondMasterMainComponent} from "./components/mainAdmin/mainAdmin_developer/mainAdmin_secondMaster_main/mainAdmin_secondMaster_main";
 import {MainAdminSecondMasterCreateComponent} from "./components/mainAdmin/mainAdmin_developer/mainAdmin_secondMaster_create/mainAdmin_secondMaster_create";
 import {MainAdminSecondMasterModifyComponent} from "./components/mainAdmin/mainAdmin_developer/mainAdmin_secondMaster_modify/mainAdmin_secondMaster_modify";
+import {MainAdminCompanyDeveloperComponent} from "./components/mainAdmin/mainAdmin_company/mainAdmin_company_developer/mainAdmin_company_developer";
+import {MainAdminCompanyApplistComponent} from "./components/mainAdmin/mainAdmin_company/mainAdmin_company_appList/mainAdmin_company_applist";
+import {MainAdminCompanyDetailComponent} from "./components/mainAdmin/mainAdmin_company/mainAdmin_company_detail/mainAdmin_company_detail";
 
 /**
  * 路由模块
@@ -281,6 +284,20 @@ const routes: Routes = [
       {
         path: 'company-modify/:param',
         component: MainAdminCompanyModifyComponent,
+        children: [
+          {
+            path: '',
+            component: MainAdminCompanyDetailComponent
+          },
+          {
+            path: 'developers',
+            component: MainAdminCompanyDeveloperComponent
+          },
+          {
+            path: 'apps',
+            component: MainAdminCompanyApplistComponent
+          }
+        ]
       },
       {
         path: 'company-app-modify/:param',

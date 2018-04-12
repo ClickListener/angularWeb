@@ -65,6 +65,9 @@ import {MainAdminSecondMasterManagerComponent} from "./components/mainAdmin/main
 import {MainAdminSecondMasterMainComponent} from "./components/mainAdmin/mainAdmin_developer/mainAdmin_secondMaster_main/mainAdmin_secondMaster_main";
 import {MainAdminSecondMasterCreateComponent} from "./components/mainAdmin/mainAdmin_developer/mainAdmin_secondMaster_create/mainAdmin_secondMaster_create";
 import {MainAdminSecondMasterModifyComponent} from "./components/mainAdmin/mainAdmin_developer/mainAdmin_secondMaster_modify/mainAdmin_secondMaster_modify";
+import {MainAdminCompanyDeveloperComponent} from "./components/mainAdmin/mainAdmin_company/mainAdmin_company_developer/mainAdmin_company_developer";
+import {MainAdminCompanyApplistComponent} from "./components/mainAdmin/mainAdmin_company/mainAdmin_company_appList/mainAdmin_company_applist";
+import {MainAdminCompanyDetailComponent} from "./components/mainAdmin/mainAdmin_company/mainAdmin_company_detail/mainAdmin_company_detail";
 
 @NgModule({
 
@@ -131,6 +134,9 @@ import {MainAdminSecondMasterModifyComponent} from "./components/mainAdmin/mainA
     MainAdminCompanyManagerComponent,
     MainAdminCompanyAppComponent,
     MainAdminCompanyMainComponent,
+    MainAdminCompanyDeveloperComponent,
+    MainAdminCompanyApplistComponent,
+    MainAdminCompanyDetailComponent,
 
     MainAdminSecondMasterMainComponent,
     MainAdminSecondMasterManagerComponent,

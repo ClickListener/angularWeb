@@ -1,139 +1,61 @@
 
-/*reg app style*/
-
-.reg-app {
-  overflow: hidden;
+.nav {
+  margin-top: 2rem;
+  padding-left: 5rem;
+  margin-bottom: 0;
+  list-style: none;
 }
-
-.reg-app a {
-  text-transform: none;
-  margin-right: 0;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  float: right;
-  border-radius: 4px;
-}
-
-
-/*小三角*/
-
-.triangle-big, .triangle-small {
-  content: "";  /*:before和:after必带技能，重要性为满5颗星*/
-  display: block;
-  position: absolute;  /*日常绝对定位*/
-
-  left: -4px;
-  width: 0;
-  height: 0;
-  border:10px solid transparent;
-
-}
-
-.triangle-big {
-  bottom: -22px;
-}
-.triangle-small {
-  bottom: -20px;
-}
-a:not(.collapsed) .triangle-big {
-  border-bottom-color: #FFFFFF;
-  z-index:1;
-}
-
-a:not(.collapsed) .triangle-small {
-  border-bottom-color: #e9ecef;
-  z-index: 0;
-}
-
-
-/*Device detail*/
-.device-detail {
-  position: absolute;
-  z-index: 5;
-  left: -15rem;
-  width: 30rem;
-  top: 10px;
-  border: 1px solid #e9ecef;
-  background: #FFFFFF;
-  margin-bottom: 3rem;
-}
-
-.device-detail-form {
+.nav > li {
   position: relative;
-  margin-left: 10%;
-  margin-right: 10%;
-}
-
-.device-detail-form-head {
-  display: flex;
-  height: 3rem;
-}
-.custom-center-p {
-  margin: 0;
-  line-height: 3rem;
+  display: block;
+  width: 10rem;
   text-align: center;
 }
-
-
-
-
-/*自定义表单*/
-.form-custom {
-  border: 1px solid #e9ecef;
-}
-
-.form-custom-head {
-  border-bottom: 1px solid #e9ecef;
-  display: flex;
-  height: 3rem;
-  background: #f2f2f2;
-}
-.form-custom-head p {
-  margin: 0;
-  line-height: 3rem;
+.nav > li > a {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
   text-align: center;
+  color: #000000;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid #ddd;
+}
+.nav-tabs > li {
+  float: left;
+  margin-bottom: -1px;
+}
+.nav-tabs > li > a {
+  margin-right: 2px;
+  line-height: 1.42857143;
+  border: 1px solid transparent;
+  border-radius: 4px 4px 0 0;
+  background-color: #bbbbbb;
+}
+.nav-tabs > li > a:hover {
+  border-color: #eee #eee #ddd;
+}
+.nav-tabs > li > a.active,
+
+.nav-tabs > li > a:focus {
+  color: #000000;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+}
+
+.nav-tabs > li > a:not (focus) :hover {
+  background-color: #bbbbbb;
+}
+
+.nav-tabs > li > a.active:hover {
+  cursor: default;
 }
 
 
-.item-2 {
-  flex: 2;
-  /*line-height: 2.1rem;*/
-  /*text-align: center;*/
-}
-
-.item-1 {
-  flex: 1;
-  /*line-height: 2.1rem;*/
-  /*text-align: center;*/
-}
-
-.form-custom-content {
-  margin: 0;
-}
-
-.form-custom-content > div {
-  display: flex;
-  height: 5.5rem;
-  line-height: 5.5rem;
-  text-align: center;
-}
 
 
-fieldset {
-  padding: .35em .625em .75em;
-  margin: 0 2px;
-  border: 1px solid silver
-}
-
-legend {
-  padding: .5em;
-  border: 0;
-  width: auto
-}
-
-.table-borderLess {
-  border: none!important;
-}
 
 
 

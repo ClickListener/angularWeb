@@ -1,0 +1,70 @@
+<form *ngIf="companyInfo" style="margin-left: 3rem;margin-right: 3rem; margin-bottom: 3rem">
+  <fieldset>
+    <legend>Base Info</legend>
+    <table class="table table-borderLess ">
+      <tbody>
+      <tr>
+        <th>Corporate Name</th>
+        <td>{{companyInfo.companyName}}</td>
+      </tr>
+      <tr>
+        <th>Country</th>
+        <td>{{companyInfo.country}}</td>
+      </tr>
+      <tr>
+        <th>Company state</th>
+        <!--<ng-container [ngSwitch]="companyInfo.state">-->
+        <!--<td *ngSwitchCase="0">Not Audit</td>-->
+        <!--<td *ngSwitchCase="2">Disable</td>-->
+        <!--<td *ngSwitchCase="3">Active</td>-->
+        <!--</ng-container>-->
+        <td>
+          <select name="state" [(ngModel)]="companyInfo.state">
+            <option value="0">Not Audit</option>
+            <option value="2">Disabled</option>
+            <option value="3">Active</option>
+          </select>
+          <a style="margin-left: 20%; text-transform: none" class="btn btn-primary btn-sm" (click)="updateCompanyInfo()">Update</a>
+        </td>
+      </tr>
+      <tr>
+        <th>Origin</th>
+        <td>{{companyInfo.orgin}}</td>
+      </tr>
+      <tr>
+        <th>Master Developer</th>
+        <td *ngIf="companyInfo.mDeveloper">
+          <p>{{companyInfo.mDeveloper.username}}</p>
+          <p>{{companyInfo.mDeveloper.email}}</p>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </fieldset>
+
+  <fieldset>
+    <legend>Description</legend>
+    <pre>{{companyInfo.description}}</pre>
+  </fieldset>
+
+  <!--<fieldset>-->
+  <!--<legend>Business License</legend>-->
+  <!--<a data-target="#imageModal" data-toggle="modal"><img id="preview"-->
+  <!--src="{{url}}{{companyInfo.avatar.description}}/{{companyInfo.avatar.fileName}}"-->
+  <!--style="width: 80px; height: 80px"></a>-->
+
+  <!--<div class="modal fade" id="imageModal" tabindex="-1" role="dialog"-->
+  <!--aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+
+  <!--<div class="modal-dialog" role="document" style="width: 50%; max-width: 100%">-->
+  <!--<div class="modal-content">-->
+  <!--<div class="modal-body" style="padding: 0">-->
+  <!--<img src="{{url}}{{companyInfo.avatar.description}}/{{companyInfo.avatar.fileName}}"-->
+  <!--style="width: 100%;">-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+
+  <!--</div>-->
+  <!--</fieldset>-->
+</form>

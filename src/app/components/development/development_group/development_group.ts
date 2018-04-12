@@ -81,11 +81,7 @@ export class DevelopmentGroupComponent {
 
           }
 
-          if (companyService.countryList === undefined ) {
-            this.countryList = await companyService.getCountryList();
-          } else {
-            this.countryList = companyService.countryList;
-          }
+          this.countryList = companyService.countryList;
 
           // 获得公司信息
           const queryCompanyInfo = {

@@ -407,7 +407,7 @@ export class MainAdminCompanyAppComponent implements DoCheck {
         console.log(res);
         if (res.success) {
 
-          this.router.navigate(['/company/company-modify', this.appInfo.companyId]);
+          this.router.navigate(['/company/company-modify', this.appInfo.companyId, 'apps']);
           swal({
             position: 'center',
             type: 'success',

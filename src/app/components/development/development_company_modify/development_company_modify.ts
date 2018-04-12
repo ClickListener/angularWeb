@@ -46,17 +46,8 @@ export class DevelopmentCompanyModifyComponent {
       console.log('companyId = ', this.companyId);
     });
 
-    if (companyService.countryList === undefined ) {
-      companyService.getCountryList()
-        .then(res => {
-          this.countryList = res;
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    } else {
-      this.countryList = companyService.countryList;
-    }
+
+    this.countryList = companyService.countryList;
 
 
     const companyInfo = {
