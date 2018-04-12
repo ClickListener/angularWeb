@@ -366,7 +366,11 @@ export class UserService {
 
     console.log('userInfo = ' + JSON.stringify(userInfo));
 
-    userInfo.user.password = this.md5Encrypt(userInfo.user.password);
+    if (userInfo.user.password) {
+
+      userInfo.user.password = this.md5Encrypt(userInfo.user.password);
+    }
+
 
     console.log('userInfo = ' + JSON.stringify(userInfo));
 
