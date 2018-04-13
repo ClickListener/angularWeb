@@ -1,6 +1,6 @@
 <div style="margin-left: 5rem; margin-right: 5rem" *ngIf="user && companyInfo">
 
-  <p class="title" style=" white-space: pre">{{companyInfo.companyName}}</p>
+  <p class="title" style=" white-space: pre; overflow: hidden; text-overflow: ellipsis">{{companyInfo.companyName}}</p>
 
   <div class="form-custom">
     <div class="form-custom-head">
@@ -13,18 +13,18 @@
 
     <div class="form-custom-content">
       <div>
-        <div class="item-2" style="overflow: hidden">
-          <p style=" margin: 0; margin-left: 1rem; margin-top: 0.5rem; color: #007afa"><b>{{user.username}}</b></p>
-          <p style="margin: 0; margin-left: 1rem;">{{user.email}}</p>
+        <div class="item-2" style="overflow: hidden;">
+          <p style=" margin: 0; margin-left: 1rem; margin-top: 0.5rem; color: #007afa; overflow: hidden; text-overflow: ellipsis" ><b>{{user.username}}</b></p>
+          <p style="margin: 0; margin-left: 1rem; overflow: hidden; text-overflow: ellipsis">{{user.email}}</p>
         </div>
-        <p class="item-1" style="line-height: 4rem; text-align: center" *ngIf="user.type === 3">Administrator</p>
-        <p class="item-1" style="line-height: 4rem; text-align: center" *ngIf="user.type === 4">Member</p>
-        <p class="item-1" style="line-height: 4rem; text-align: center">{{companyInfo.country}}</p>
-        <p class="item-1" style="line-height: 4rem; text-align: center; color: #007afa" *ngIf="companyInfo.state === 0">Not Audit</p>
-        <p class="item-1" style="line-height: 4rem; text-align: center; color: #007afa" *ngIf="companyInfo.state === 1">Approved</p>
-        <p class="item-1" style="line-height: 4rem; text-align: center; color: #007afa" *ngIf="companyInfo.state === 2">Disabled</p>
-        <p class="item-1" style="line-height: 4rem; text-align: center; color: #007afa" *ngIf="companyInfo.state === 3">Active</p>
-        <a class="item-1" style="line-height: 4rem; text-align: center" *ngIf="user.type !== 4" [routerLink]="['/development-company-modify', companyInfo._id]"><img src="../../../../assets/images/edit.png"></a>
+        <p class="item-1" style="line-height: 4rem; text-align: center; overflow: hidden; text-overflow: ellipsis" *ngIf="user.type === 3">Administrator</p>
+        <p class="item-1" style="line-height: 4rem; text-align: center; overflow: hidden; text-overflow: ellipsis" *ngIf="user.type === 4">Member</p>
+        <p class="item-1" style="line-height: 4rem; text-align: center; overflow: hidden; text-overflow: ellipsis">{{companyInfo.country}}</p>
+        <p class="item-1" style="line-height: 4rem; text-align: center; color: #007afa; overflow: hidden; text-overflow: ellipsis" *ngIf="companyInfo.state === 0">Not Audit</p>
+        <p class="item-1" style="line-height: 4rem; text-align: center; color: #007afa; overflow: hidden; text-overflow: ellipsis" *ngIf="companyInfo.state === 1">Approved</p>
+        <p class="item-1" style="line-height: 4rem; text-align: center; color: #007afa; overflow: hidden; text-overflow: ellipsis" *ngIf="companyInfo.state === 2">Disabled</p>
+        <p class="item-1" style="line-height: 4rem; text-align: center; color: #007afa; overflow: hidden; text-overflow: ellipsis" *ngIf="companyInfo.state === 3">Active</p>
+        <a class="item-1" style="line-height: 4rem; text-align: center; overflow: hidden; text-overflow: ellipsis" *ngIf="user.type !== 4" [routerLink]="['/development-company-modify', companyInfo._id]"><img src="../../../../assets/images/edit.png"></a>
       </div>
     </div>
   </div>
