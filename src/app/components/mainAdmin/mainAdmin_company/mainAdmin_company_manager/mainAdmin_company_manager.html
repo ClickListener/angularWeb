@@ -18,10 +18,10 @@
     <div class="form-custom-content">
       <div *ngFor="let company of companyList">
 
-        <p class="item-2" style="line-height: 5rem; text-align: center; overflow: hidden;  white-space: pre">{{company.companyName}}</p>
+        <p class="item-2" style="line-height: 5rem; text-align: center; overflow: hidden;  white-space: pre; text-overflow:ellipsis">{{company.companyName}}</p>
         <div class="item-2" style="overflow: hidden" *ngIf="company.mDeveloper">
-          <p style=" margin: 0; margin-left: 1rem; margin-top: 0.5rem; color: #007afa;"><b>{{company.mDeveloper.username}}</b></p>
-          <p style="margin: 0; margin-left: 1rem; ">{{company.mDeveloper.email}}</p>
+          <p style=" margin: 0; margin-left: 1rem; margin-top: 0.5rem; color: #007afa; overflow: hidden; text-overflow: ellipsis"><b>{{company.mDeveloper.username}}</b></p>
+          <p style="margin: 0; margin-left: 1rem; overflow: hidden; text-overflow: ellipsis">{{company.mDeveloper.email}}</p>
         </div>
         <p class="item-1" style="line-height: 5rem; text-align: center">{{company.country}}</p>
         <p class="item-1" style="line-height: 5rem; text-align: center">{{company.orgin}}</p>
