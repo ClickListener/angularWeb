@@ -333,7 +333,6 @@ export class SignUpComponent {
         return 1;
       }
     });
-    console.log('AS_countries = ', this.AS_countries);
   }
 
   signUp() {
