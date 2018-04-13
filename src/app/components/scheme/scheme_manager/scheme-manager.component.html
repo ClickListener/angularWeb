@@ -27,7 +27,7 @@
     <table class="table table-striped table-hover">
 
       <!--Table head-->
-      <thead>
+      <thead style="background: #999999; border-radius: 5px; text-align: center">
       <tr>
         <th>Project</th>
         <th>Platform</th>
@@ -41,7 +41,7 @@
 
       <!--Table body-->
       <tbody>
-      <tr *ngFor="let scheme of singlePage" [routerLink]="['./scheme-details',scheme._id]" style="cursor: pointer">
+      <tr *ngFor="let scheme of singlePage" [routerLink]="['./scheme-details',scheme._id]" style="cursor: pointer; text-align: center">
         <th>{{scheme.resourceName}}</th>
         <th>{{scheme.platform}}</th>
         <th>{{scheme.version}}</th>
