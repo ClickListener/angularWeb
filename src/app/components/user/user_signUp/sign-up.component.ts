@@ -312,6 +312,28 @@ export class SignUpComponent {
     if (this.userService.user) {
       this.router.navigate(['/']);
     }
+
+    this.sort(this.AS_countries);
+    this.sort(this.NA_countries);
+    this.sort(this.LA_countries);
+    this.sort(this.OA_countries);
+    this.sort(this.ME_countries);
+    this.sort(this.AF_countries);
+    this.sort(this.EU_countries);
+
+
+  }
+
+
+  private sort(arr: any) {
+    arr.sort((a, b) => {
+      if (a.en < b.en) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+    console.log('AS_countries = ', this.AS_countries);
   }
 
   signUp() {

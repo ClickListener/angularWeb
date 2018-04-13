@@ -136,21 +136,6 @@
                   <p>Choose your country or region</p>
                 </div>
 
-                <div>
-
-                  <div style="border-bottom: 1px solid #999999; font-size: 1.2rem; margin-top: 10px">
-                    <p>China</p>
-                  </div>
-                  <div>
-                    <ul style="display: flex; justify-content: space-between; flex-wrap: wrap">
-                      <li *ngFor="let country of CN_countries" (click)="chooseCountry(country.en, country.origin)"
-                          style="display: inline-block; list-style: none; width: 200px; height: 60px; margin-top: 10px">
-                        <img src="../../../../assets/images/countries/{{country.code | lowercase}}.png"/>
-                        <a>{{country.en}}</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
 
                 <div>
                   <div style="border-bottom: 1px solid #999999; font-size: 1.2rem; margin-top: 10px">
@@ -159,68 +144,6 @@
                   <div>
                     <ul style="display: flex; justify-content: space-between; flex-wrap: wrap">
                       <li *ngFor="let country of AS_countries" (click)="chooseCountry(country.en, country.origin)"
-                          style="display: inline-block; list-style: none; width: 200px; height: 60px; margin-top: 10px">
-                        <img src="../../../../assets/images/countries/{{country.code | lowercase}}.png"/>
-                        <a>{{country.en}}</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div>
-
-                  <div style="border-bottom: 1px solid #999999; font-size: 1.2rem; margin-top: 10px">
-                    <p>North America</p>
-                  </div>
-                  <div>
-                    <ul style="display: flex; justify-content: space-between; flex-wrap: wrap">
-                      <li *ngFor="let country of NA_countries" (click)="chooseCountry(country.en, country.origin)"
-                          style="display: inline-block; list-style: none; width: 200px; height: 60px; margin-top: 10px">
-                        <img src="../../../../assets/images/countries/{{country.code | lowercase}}.png"/>
-                        <a>{{country.en}}</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div>
-                  <div style="border-bottom: 1px solid #999999; font-size: 1.2rem; margin-top: 10px">
-                    <p>South America</p>
-                  </div>
-                  <div>
-                    <ul style="display: flex; justify-content: space-between; flex-wrap: wrap">
-                      <li *ngFor="let country of LA_countries" (click)="chooseCountry(country.en, country.origin)"
-                          style="display: inline-block; list-style: none; width: 200px; height: 60px; margin-top: 10px">
-                        <img src="../../../../assets/images/countries/{{country.code | lowercase}}.png"/>
-                        <a>{{country.en}}</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div>
-
-                  <div style="border-bottom: 1px solid #999999; font-size: 1.2rem; margin-top: 10px">
-                    <p>Oceania Pacific</p>
-                  </div>
-                  <div>
-                    <ul style="display: flex; justify-content: space-between; flex-wrap: wrap">
-                      <li *ngFor="let country of OA_countries" (click)="chooseCountry(country.en, country.origin)"
-                          style="display: inline-block; list-style: none; width: 200px; height: 60px; margin-top: 10px">
-                        <img src="../../../../assets/images/countries/{{country.code | lowercase}}.png"/>
-                        <a>{{country.en}}</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div>
-                  <div style="border-bottom: 1px solid #999999; font-size: 1.2rem; margin-top: 10px">
-                    <p>Middle East</p>
-                  </div>
-                  <div>
-                    <ul style="display: flex; justify-content: space-between; flex-wrap: wrap">
-                      <li *ngFor="let country of ME_countries" (click)="chooseCountry(country.en, country.origin)"
                           style="display: inline-block; list-style: none; width: 200px; height: 60px; margin-top: 10px">
                         <img src="../../../../assets/images/countries/{{country.code | lowercase}}.png"/>
                         <a>{{country.en}}</a>
@@ -245,6 +168,22 @@
                 </div>
 
                 <div>
+
+                  <div style="border-bottom: 1px solid #999999; font-size: 1.2rem; margin-top: 10px">
+                    <p>China</p>
+                  </div>
+                  <div>
+                    <ul style="display: flex; justify-content: space-between; flex-wrap: wrap">
+                      <li *ngFor="let country of CN_countries" (click)="chooseCountry(country.en, country.origin)"
+                          style="display: inline-block; list-style: none; width: 200px; height: 60px; margin-top: 10px">
+                        <img src="../../../../assets/images/countries/{{country.code | lowercase}}.png"/>
+                        <a>{{country.en}}</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div>
                   <div style="border-bottom: 1px solid #999999; font-size: 1.2rem; margin-top: 10px">
                     <p>Europe</p>
                   </div>
@@ -258,6 +197,73 @@
                     </ul>
                   </div>
                 </div>
+
+                <div>
+                  <div style="border-bottom: 1px solid #999999; font-size: 1.2rem; margin-top: 10px">
+                    <p>South America</p>
+                  </div>
+                  <div>
+                    <ul style="display: flex; justify-content: space-between; flex-wrap: wrap">
+                      <li *ngFor="let country of LA_countries" (click)="chooseCountry(country.en, country.origin)"
+                          style="display: inline-block; list-style: none; width: 200px; height: 60px; margin-top: 10px">
+                        <img src="../../../../assets/images/countries/{{country.code | lowercase}}.png"/>
+                        <a>{{country.en}}</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div>
+                  <div style="border-bottom: 1px solid #999999; font-size: 1.2rem; margin-top: 10px">
+                    <p>Middle East</p>
+                  </div>
+                  <div>
+                    <ul style="display: flex; justify-content: space-between; flex-wrap: wrap">
+                      <li *ngFor="let country of ME_countries" (click)="chooseCountry(country.en, country.origin)"
+                          style="display: inline-block; list-style: none; width: 200px; height: 60px; margin-top: 10px">
+                        <img src="../../../../assets/images/countries/{{country.code | lowercase}}.png"/>
+                        <a>{{country.en}}</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+
+
+                <div>
+
+                  <div style="border-bottom: 1px solid #999999; font-size: 1.2rem; margin-top: 10px">
+                    <p>North America</p>
+                  </div>
+                  <div>
+                    <ul style="display: flex; justify-content: space-between; flex-wrap: wrap">
+                      <li *ngFor="let country of NA_countries" (click)="chooseCountry(country.en, country.origin)"
+                          style="display: inline-block; list-style: none; width: 200px; height: 60px; margin-top: 10px">
+                        <img src="../../../../assets/images/countries/{{country.code | lowercase}}.png"/>
+                        <a>{{country.en}}</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+
+
+                <div>
+
+                  <div style="border-bottom: 1px solid #999999; font-size: 1.2rem; margin-top: 10px">
+                    <p>Oceania Pacific</p>
+                  </div>
+                  <div>
+                    <ul style="display: flex; justify-content: space-between; flex-wrap: wrap">
+                      <li *ngFor="let country of OA_countries" (click)="chooseCountry(country.en, country.origin)"
+                          style="display: inline-block; list-style: none; width: 200px; height: 60px; margin-top: 10px">
+                        <img src="../../../../assets/images/countries/{{country.code | lowercase}}.png"/>
+                        <a>{{country.en}}</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
 
                 <div>
                   <div style="border-bottom: 1px solid #999999; font-size: 1.2rem; margin-top: 10px">
