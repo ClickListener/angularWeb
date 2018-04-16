@@ -111,8 +111,28 @@
     <label for="id_layeredUrl">Url</label>
 
     <input name="id_name" id="id_layeredUrl" type="text" [(ngModel)]="appInfo.scheme"
-           #_layered_url="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s\.]{3,100}$" required
-           placeholder="layered url">
+           #_layered_url="ngModel"minlength="3" maxlength="100" required
+           placeholder="layered url" [regex-name]='{"pattern": "^(?:(?=.*\\w.*)(?=.*\\s*))[\\w\\s\\.]{1,}$"}'>
+
+    <div *ngIf="_layered_url.invalid && (_layered_url.dirty || _layered_url.touched)"
+         class="alert alert-danger">
+
+      <div *ngIf="_layered_url.errors.required">
+        Description is required.
+      </div>
+
+      <div *ngIf="_layered_url.errors.minlength">
+        You must input at least 3 characters.
+      </div>
+
+      <div *ngIf="_layered_url.errors.maxlength">
+        You must input no more than 100 characters.
+      </div>
+
+      <div *ngIf="_layered_url.errors.pattern">
+        Please input valid url.
+      </div>
+    </div>
 
     <p *ngIf="!_layered_url.pristine&&_layered_url.invalid" style="color: #ee2200">Please input valid url.</p>
   </div>
