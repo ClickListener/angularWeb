@@ -3,7 +3,10 @@
 <div style="margin: 5rem 5rem 0 5rem">
 
 
-  <input class="form-control my-0 py-1 grey-border" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="searchCompanyName" (ngModelChange)="inputChange()">
+  <div class="search">
+    <input class="form-control my-0 py-1 " type="text" placeholder="Search" aria-label="Search" [(ngModel)]="searchCompanyName" (ngModelChange)="inputChange()">
+  </div>
+
 
   <div class="form-custom" style="margin-top: 2rem" *ngIf="companyList && companyList.length !== 0">
     <div class="form-custom-head">
