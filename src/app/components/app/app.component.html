@@ -301,13 +301,9 @@
           <li><a routerLinkActive="active" routerLink='/developer-manager'>Developers</a></li>
           <li><a routerLinkActive="active" [routerLink]="['company']">Companies</a></li>
           <li *ngIf="user.type !== 2"><a routerLinkActive="active" [routerLink]="['secondMaster']">Second master</a></li>
+          <li><a style="opacity: 0">Second master</a></li>
         </ul>
       </li>
-
-
-      <!--<li>-->
-      <!--<div class="divider"></div>-->
-      <!--</li>-->
 
 
     </ul>
