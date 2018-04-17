@@ -26,7 +26,7 @@ export class SignUpComponent {
   agreeValue: boolean;
 
   country = {
-    "cn": "中国", "code": "CN", "en": "China"
+    "cn": "中国", "code": "CN", "en": "China", "origin": "CN"
   };
 
   buttonDisable = false;  // 提交按钮状态
