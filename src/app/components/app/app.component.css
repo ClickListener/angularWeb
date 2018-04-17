@@ -93,7 +93,8 @@
   z-index: 1000;
   position: fixed;
   width: 250px;
-  height: 100%;
+  bottom: 0;
+  top: 62px;
   overflow-y: auto;
   background: #fff;
   transform: translateX(-100%);
