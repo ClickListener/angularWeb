@@ -44,12 +44,15 @@ export class IOSComponent {
       } else if (this.param === 'LibrarySDK') {
         this.title = 'Library SDK';
         this.item = 'Library SDK_IOS';
-      } else if (this.param === 'LayerApp') {
-        this.title = 'Layer App';
-        this.item = 'Layer App_IOS';
+      } else if (this.param === 'LayeredApp') {
+        this.title = 'Layered App';
+        this.item = 'Layered App_IOS';
       }
 
-      if (userService.user.type === 3) {
+      if (userService.user.type === 2) {
+        this.getSchemeList(0);
+        this.permissionOfBeta = true;
+      } else {
         const userInfo = {
           "userId": userService.user._id,
           "token": userService.token.token
@@ -93,11 +96,7 @@ export class IOSComponent {
 
   getSchemeList(type: number) {
 
-    if (type === 0) {
-      this.isBeta = false;
-    } else {
-      this.isBeta = true;
-    }
+
 
     const fileInfo = {
       "userId": this.userService.user._id,
@@ -115,6 +114,11 @@ export class IOSComponent {
           this.permissionOfCheck = true;
           this.schemeList = res.data;
           this.loading = false;
+          if (type === 0) {
+            this.isBeta = false;
+          } else {
+            this.isBeta = true;
+          }
         } else if (res.code === '1062') {
           this.permissionOfCheck = false;
           this.loading = false;
