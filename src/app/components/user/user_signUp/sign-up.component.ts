@@ -283,7 +283,7 @@ export class SignUpComponent {
     {"cn": "黑山", "code": "ME", "en": "Montenegro", "origin": "EU"},
     {"cn": "马其顿", "code": "MK", "en": "Macedonia, the former Yugoslav Republic of", "origin": "EU"},
     {"cn": "马耳他", "code": "MT", "en": "Malta", "origin": "EU"},
-    {"cn": "荷兰", "code": "NL", "en": "Netherlands", "origin": "Eu"},
+    {"cn": "荷兰", "code": "NL", "en": "Netherlands", "origin": "EU"},
     {"cn": "挪威", "code": "NO", "en": "Norway", "origin": "EU"},
     {"cn": "波兰", "code": "PL", "en": "Poland", "origin": "EU"},
     {"cn": "圣皮埃尔和密克隆", "code": "PM", "en": "Saint Pierre and Miquelon", "origin": "EU"},

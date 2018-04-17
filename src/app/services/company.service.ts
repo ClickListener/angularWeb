@@ -243,7 +243,7 @@ export class CompanyService {
     {"cn": "黑山", "code": "ME", "en": "Montenegro", "orgin": "EU"},
     {"cn": "马其顿", "code": "MK", "en": "Macedonia, the former Yugoslav Republic of", "orgin": "EU"},
     {"cn": "马耳他", "code": "MT", "en": "Malta", "orgin": "EU"},
-    {"cn": "荷兰", "code": "NL", "en": "Netherlands", "orgin": "Eu"},
+    {"cn": "荷兰", "code": "NL", "en": "Netherlands", "orgin": "EU"},
     {"cn": "挪威", "code": "NO", "en": "Norway", "orgin": "EU"},
     {"cn": "波兰", "code": "PL", "en": "Poland", "orgin": "EU"},
     {"cn": "圣皮埃尔和密克隆", "code": "PM", "en": "Saint Pierre and Miquelon", "orgin": "EU"},
