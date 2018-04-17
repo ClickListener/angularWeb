@@ -3,7 +3,7 @@
   <a class="btn btn-primary" style="text-transform: none" routerLink="../secondMaster-create">Create SecondMaster</a>
 </div>
 
-<div style="margin: 5rem 5rem 0 5rem; margin-bottom: 50px">
+<div style="margin: 5rem 5rem 0 5rem; margin-bottom: 50px" *ngIf="adminList">
 
   <div class="form-custom" *ngIf="adminList && adminList.length !== 0">
     <div class="form-custom-head">
@@ -34,6 +34,8 @@
     </div>
   </div>
 </div>
+
+<div id="loading" class="loading" *ngIf="!adminList"></div>
 
 
 
