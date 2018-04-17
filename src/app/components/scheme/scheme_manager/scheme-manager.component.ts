@@ -57,6 +57,8 @@ export class SchemeManagerComponent {
     activatedRoute.paramMap.subscribe(paramMap => {
       this.param = paramMap['params'].param;
 
+      this.searchVersion = '';
+
       const fileInfo = {
         "userId": userService.user._id,
         "token": userService.token.token,
