@@ -6,6 +6,7 @@ import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../../../../services/user.service";
 import {AppService} from "../../../../services/app.service";
 
+import * as myGlobals from '../../../../../environments/config';
 @Component({
   templateUrl: './mainAdmin_company_applist.html',
   styleUrls: ['./mainAdmin_company_applist.css']
@@ -15,6 +16,7 @@ export class MainAdminCompanyApplistComponent {
 
   cid: string;
   appList: Array<any>;
+  url = myGlobals.url;
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private appService: AppService) {
 
