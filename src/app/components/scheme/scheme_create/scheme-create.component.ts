@@ -22,6 +22,7 @@ declare const jQuery: any;
 export class SchemeCreateComponent {
 
 
+
   url = myGlobals.url;
 
   resourceName: string;
@@ -42,6 +43,7 @@ export class SchemeCreateComponent {
 
 
   fileSelectList = [];
+
 
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
@@ -203,6 +205,26 @@ export class SchemeCreateComponent {
 
     }
 
+  }
+
+  onlyNumber(obj: any) {
+
+    let t;
+    if (obj.version) {
+      // 得到第一个字符是否为负号
+      t = obj.version.charAt(0);
+    }
+
+    // 先把非数字的都替换掉，除了数字和.
+    obj.version = obj.version.replace(/[^\d\.]/g, '');
+    // 必须保证第一个为数字而不是.
+    obj.version = obj.version.replace(/^\./g, '');
+    // 保证只有出现一个.而没有多个.
+    obj.version = obj.version.replace(/\.{2,}/g, '.');
+    // 如果第一位是负号，则允许添加
+    if (t === '-') {
+      obj.version = '-' + obj.version;
+    }
   }
 
 
