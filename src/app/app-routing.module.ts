@@ -50,6 +50,8 @@ import {MainAdminSecondMasterModifyComponent} from "./components/mainAdmin/mainA
 import {MainAdminCompanyDeveloperComponent} from "./components/mainAdmin/mainAdmin_company/mainAdmin_company_developer/mainAdmin_company_developer";
 import {MainAdminCompanyApplistComponent} from "./components/mainAdmin/mainAdmin_company/mainAdmin_company_appList/mainAdmin_company_applist";
 import {MainAdminCompanyDetailComponent} from "./components/mainAdmin/mainAdmin_company/mainAdmin_company_detail/mainAdmin_company_detail";
+import {TermEuComponent} from "./components/terms/term-eu/term-eu.component";
+import {PoliciesEuComponent} from "./components/policies/policies-eu/policies-eu.component";
 
 /**
  * 路由模块
@@ -305,6 +307,15 @@ const routes: Routes = [
       }
     ]
   },
+
+  {
+    path: 'term_eu',
+    component: TermEuComponent
+  },
+  {
+    path: 'policies_eu',
+    component: PoliciesEuComponent
+  }
 
 
 
