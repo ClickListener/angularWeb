@@ -67,11 +67,11 @@ export class DetailComponent {
             } else {
               this.title = 'Library SDK_IOS';
             }
-          } else if (this.schemeSelected.resourceName === 'LayerApp') {
+          } else if (this.schemeSelected.resourceName === 'LayeredApp') {
             if (this.schemeSelected.platform === 'android') {
-              this.title = 'Layer App_Android';
+              this.title = 'Layered App_Android';
             } else {
-              this.title = 'Layer App_IOS';
+              this.title = 'Layered App_IOS';
             }
           }
         }

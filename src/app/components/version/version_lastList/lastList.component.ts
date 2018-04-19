@@ -33,11 +33,11 @@ export class LastListComponent {
       'platform': 'ios'
     },
     {
-      'appName': 'LayerApp',
+      'appName': 'LayeredApp',
       'platform': 'android'
     },
     {
-      'appName': 'LayerApp',
+      'appName': 'LayeredApp',
       'platform': 'ios'
     }
   ];
@@ -98,12 +98,12 @@ export class LastListComponent {
                   this.LibraryLastVersion_ios = 'Library SDK_IOS ' + lastVersion.version;
                   this.LibraryLastVersion_url_ios = lastVersion._id;
                 }
-              } else if (lastVersion.resourceName === 'LayerApp') {
+              } else if (lastVersion.resourceName === 'LayeredApp') {
                 if(lastVersion.platform === 'android') {
-                  this.LayerAppLastVersion_android = 'Layer App_Android ' + lastVersion.version;
+                  this.LayerAppLastVersion_android = 'Layered App_Android ' + lastVersion.version;
                   this.LayerAppLastVersion_url_android = lastVersion._id;
                 } else {
-                  this.LayerAppLastVersion_ios = 'Layer App_IOS ' + lastVersion.version;
+                  this.LayerAppLastVersion_ios = 'Layered App_IOS ' + lastVersion.version;
                   this.LayerAppLastVersion_url_ios = lastVersion._id;
                 }
               }
