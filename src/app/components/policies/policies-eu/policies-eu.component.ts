@@ -4,7 +4,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   selector: 'app-policies-eu',
   templateUrl: './policies-eu.component.html',
   styleUrls: ['./policies-eu.component.css'],
-  encapsulation: ViewEncapsulation.None
+  // encapsulation: ViewEncapsulation.None
 })
 export class PoliciesEuComponent implements OnInit {
 
