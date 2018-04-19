@@ -5,6 +5,7 @@ import {Component} from "@angular/core";
 import {SchemeService} from "../../../services/scheme.service";
 import {UserService} from "../../../services/user.service";
 import {NavigationEnd, Router} from "@angular/router";
+import {version} from "punycode";
 
 @Component({
   templateUrl: './lastList.component.html',
@@ -130,19 +131,14 @@ export class LastListComponent {
     if (schemeList.length !== 0) {
       console.log(schemeList);
 
-      schemeList.sort(function (m, n) {
+      schemeList.sort( (m, n) => {
 
 
         const version1 = m.version;
         const version2 = n.version;
 
-        if (version1 < version2) {
-          return 1;
-        } else if (version1 > version2) {
-          return -1;
-        } else {
-          return 0;
-        }
+        return this.versionCompare(version1, version2);
+
       });
 
       console.log(schemeList);
@@ -150,9 +146,35 @@ export class LastListComponent {
       return schemeList[0];
     }
 
-
-
   }
+
+   versionCompare(version1,version2) {
+
+    const arr1 = version1.split('.');
+    const arr2 = version2.split('.');
+    // 将两个版本号拆成数字
+    const minL = Math.min(arr1.length, arr2.length);
+    let pos = 0;        // 当前比较位
+    let diff = 0;        // 当前为位比较是否相等
+
+    // 逐个比较如果当前位相等则继续比较下一位
+    while (pos < minL) {
+      diff = parseInt(arr1[pos]) - parseInt(arr2[pos]);
+      if (diff !== 0) {
+        break;
+      }
+      pos++;
+    }
+
+    if (diff > 0) {
+      return -1;
+    } else if (diff === 0) {
+      return 0;
+    } else {
+      return 1;
+    }
+  }
+
 
 
 
