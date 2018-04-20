@@ -9,7 +9,8 @@
     <div class="form-custom-head">
       <p class="item-2">People</p>
       <p class="item-1">Role</p>
-      <p class="item-1">Origin</p>
+      <p class="item-2">Origin</p>
+      <p class="item-1">IsValid</p>
       <p class="item-1" >Operation</p>
     </div>
 
@@ -22,12 +23,16 @@
         <p class="item-1" style="line-height: 5rem; text-align: center">{{admin.type}}</p>
 
 
+        <div class="item-2" style="line-height: 5rem; text-align: center; overflow: hidden;  text-overflow:ellipsis">
+          {{admin.openRegion}}
+        </div>
         <div class="item-1" style="line-height: 5rem; text-align: center">
-          {{admin.orgin}}
+          {{admin.isValid}}
         </div>
 
         <div class="item-1" style="line-height: 5rem; text-align: center">
           <a [routerLink]='["../secondMaster-modify", admin._id]'><img src="../../../../../assets/images/edit.png"></a>
+          <a (click)="deleteAdmin(admin._id)"><img src="../../../../../assets/images/delete.png"></a>
         </div>
 
       </div>

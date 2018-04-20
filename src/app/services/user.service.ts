@@ -733,6 +733,56 @@ export class UserService {
   }
 
 
+  deleteAdmin(adminInfo: any): Promise<any> {
+
+    console.log("adminInfo = ", adminInfo);
+
+    const url = myGlobals.url + '/api/user/deleteAdmin';
+
+    return this.http.get(url, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'Application/json'
+      }),
+      params: adminInfo
+    }).toPromise()
+      .then(async res => {
+        console.log(res);
+
+        if (res['success']) {
+
+        } else {
+          if (res['code'] === '1034') {
+            const response = await this.refreshToken();
+            if (response['success']) {
+
+              adminInfo.token = response.token;
+
+              const appResponse = await this.deleteAdmin(adminInfo);
+
+              if (appResponse['success']) {
+
+              } else {
+                this.hintError(appResponse);
+              }
+              return appResponse;
+
+            } else {
+              this.hintError(response);
+            }
+
+          } else {
+            this.hintError(res);
+          }
+
+        }
+        return res;
+      })
+      .catch(UserService.handleError);
+
+  }
+
+
   /**
    * 加密内容
    * @param content user id , password, 时间戳

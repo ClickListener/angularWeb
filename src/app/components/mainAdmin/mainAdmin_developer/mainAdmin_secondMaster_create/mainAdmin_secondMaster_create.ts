@@ -23,10 +23,58 @@ export class MainAdminSecondMasterCreateComponent {
 
   password: string;
 
+  CN = true;
+  AS = true;
+  NA = true;
+  LA = true;
+  OA = true;
+  ME = true;
+  AF = true;
+  EU = true;
+  RU = true;
+
   constructor(private userService: UserService, private lowerCasePipe: LowerCasePipe, private router: Router) {}
 
   createNewSecondMaster() {
     console.log('createNewSecondMaster()');
+
+    const regionArr = [];
+
+    if (this.CN) {
+      regionArr.push('CN');
+    }
+
+    if (this.AS) {
+      regionArr.push('AS');
+    }
+
+    if (this.NA) {
+      regionArr.push('NA');
+    }
+
+    if (this.LA) {
+      regionArr.push('LA');
+    }
+
+    if (this.OA) {
+      regionArr.push('OA');
+    }
+
+    if (this.ME) {
+      regionArr.push('ME');
+    }
+
+    if (this.AF) {
+      regionArr.push('AF');
+    }
+
+    if (this.EU) {
+      regionArr.push('EU');
+    }
+
+    if (this.RU) {
+      regionArr.push('RU');
+    }
 
     const signUp_info = {
       userId: this.userService.user._id,
@@ -36,7 +84,7 @@ export class MainAdminSecondMasterCreateComponent {
         "email": this.email,
         "password": this.password,
         "type": 2,
-        "orgin": this.origin
+        "openRegion": regionArr
       }
     };
 

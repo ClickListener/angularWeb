@@ -34,4 +34,37 @@ export class MainAdminSecondMasterManagerComponent {
         console.log(error);
       });
   }
+
+  deleteAdmin(adminId: string) {
+
+    const adminInfo = {
+      "userId": this.userService.user._id,
+      "token": this.userService.token.token,
+      "adminId": adminId
+    };
+
+    this.userService.deleteAdmin(adminInfo)
+      .then(async res => {
+        console.log(res);
+
+        if (res.success) {
+          const queryInfo = {
+            userId: this.userService.user._id,
+            token: this.userService.token.token
+          };
+
+          const response = await this.userService.getAdminList(queryInfo);
+
+          if (response.success) {
+            this.adminList = response.data;
+            console.log('adminList = ', this.adminList);
+          }
+        }
+      })
+      .catch(error => {
+        console.log('error = ', error);
+      });
+
+  }
+
 }

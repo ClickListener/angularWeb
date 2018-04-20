@@ -13,13 +13,19 @@
     </div>
 
     <div style="margin-top: 15px">
-      <label for="name" style="display: block; font-size: 1rem; font-weight: bold">Email</label>
+      <label for="email" style="display: block; font-size: 1rem; font-weight: bold">Email</label>
       <p style="width: 100%" name="email" id="email">{{admin.email}}</p>
+    </div>
+
+    <div style="margin-top: 15px">
+      <label style="display: block; font-size: 1rem; font-weight: bold">isValid</label>
+      <input type="radio" [value]="true" checked name="isValid" [(ngModel)]="admin.isValid">true
+      <input type="radio" [value]="false" name="isValid" [(ngModel)]="admin.isValid">false
     </div>
 
 
     <div style="margin-top: 15px">
-      <label for="name" style="display: block; font-size: 1rem; font-weight: bold">Origin</label>
+      <label style="display: block; font-size: 1rem; font-weight: bold">Origin</label>
       <input type="radio" value="CN" checked name="origin" [(ngModel)]="admin.orgin">China
       <input type="radio" value="AS" name="origin" [(ngModel)]="admin.orgin">Asia Pacific
       <input type="radio" value="NA" name="origin" [(ngModel)]="admin.orgin">North America
