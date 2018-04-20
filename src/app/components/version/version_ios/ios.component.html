@@ -17,14 +17,14 @@
         <p>ID</p>
         <p>Items</p>
         <p>Version</p>
-        <p>Packing Date</p>
+        <p class="text-overflow">Packing Date</p>
         <p>Detail</p>
       </div>
 
 
       <div class="form-custom-content" *ngFor="let scheme of schemeList; let i = index">
         <p>00{{i + 1}}</p>
-        <p>{{item}}</p>
+        <p class="text-overflow">{{item}}</p>
         <p>{{scheme.version}}</p>
         <p>{{scheme.createTime | date: 'yyyy/MM/dd'}}</p>
         <p>
