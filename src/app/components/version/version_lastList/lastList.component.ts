@@ -66,6 +66,10 @@ export class LastListComponent {
       .subscribe(e => {
         this.url = e['url'];
       });
+    if (!userService.user) {
+      router.navigate(['/sign-in']);
+      return;
+    }
     this.project.forEach((project, index) => {
 
       const fileInfo = {
