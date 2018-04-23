@@ -20,7 +20,7 @@
 
         <div class="item-1" style="line-height: 5rem; text-align: center" *ngIf="developer.type === 3">
           <select   [name]="'beta' + i"
-                    [(ngModel)]="developer.beta" *ngIf="developer.type === 3">
+                    [(ngModel)]="developer.beta" *ngIf="developer.type === 3" [disabled]="user.type === 2" >
             <option value=true>true</option>
             <option value=false>false</option>
           </select>
@@ -31,7 +31,7 @@
         </div>
 
         <div class="item-1" style="line-height: 5rem; text-align: center" *ngIf="developer.type === 3">
-          <a style="text-transform: none" class="btn btn-primary btn-sm" (click)="updateBetaPermission(developer)">Update</a>
+          <button style="text-transform: none" class="btn btn-primary btn-sm" (click)="updateBetaPermission(developer)" [disabled]="user.type === 2">Update</button>
         </div>
         <div class="item-1" style="line-height: 5rem; text-align: center" *ngIf="developer.type !== 3">
           ---

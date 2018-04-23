@@ -15,10 +15,16 @@ export class MainAdminCompanyDeveloperComponent {
 
   cid: string;
   developerList: Array<any>;
+
+  user: any;
+
+
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService) {
 
     activatedRoute.parent.paramMap.subscribe(paramMap => {
       this.cid = paramMap['params'].param;
+
+      this.user = userService.user;
 
       // 获得该公司下的所有开发者
       const queryDeveloperList = {
@@ -66,14 +72,21 @@ export class MainAdminCompanyDeveloperComponent {
     console.log('permission = ', permission);
     developer.beta = false;
 
+
     permission.forEach((item, index) => {
       if (item.resourceId === '5a6580ca5e149e1dfdf27962') {
         developer.beta = (item.action.indexOf('R') !== -1);
-        console.log('beta = ', developer.beta);
         return;
       }
 
     });
+
+    developer.originalState = developer.beta;
+
+    console.log('beta = ', developer.beta);
+    console.log('originalState = ', developer.originalState);
+
+
   }
 
 
@@ -107,15 +120,31 @@ export class MainAdminCompanyDeveloperComponent {
     this.userService.addUserAuth(permissionInfo)
       .then(res => {
         console.log(res);
-        swal({
-          position: 'center',
-          type: 'success',
-          titleText: 'Update success',
-          showConfirmButton: false,
-          timer: 1500,
-          padding: 0,
-          width: 300
-        }).catch(swal.noop);
+        if (res.success) {
+
+          developer.originState = developer.beta;
+
+          swal({
+            position: 'center',
+            type: 'success',
+            titleText: 'Update success',
+            showConfirmButton: false,
+            timer: 1500,
+            padding: 0,
+            width: 300
+          }).catch(swal.noop);
+        } else {
+          developer.beta = developer.originState;
+          swal({
+            position: 'center',
+            type: 'error',
+            titleText: res.message,
+            showConfirmButton: false,
+            timer: 2000,
+            padding: 0,
+            width: 300
+          }).catch(swal.noop);
+        }
       })
       .catch(error => {
         console.log(error);
