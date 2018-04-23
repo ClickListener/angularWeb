@@ -17,6 +17,16 @@ export class MainAdminSecondMasterModifyComponent {
   id: string;
   admin: any;
 
+  CN = false;
+  AS = false;
+  NA = false;
+  LA = false;
+  OA = false;
+  ME = false;
+  AF = false;
+  EU = false;
+  RU = false;
+
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router) {
     activatedRoute.paramMap.subscribe((paramMap) => {
       this.id = paramMap['params'].param;
@@ -32,6 +42,48 @@ export class MainAdminSecondMasterModifyComponent {
           console.log(res);
           if (res.success) {
             this.admin = res.user;
+
+            this.admin.openRegion.forEach( region => {
+              switch (region) {
+                case 'CN':
+                  this.CN = true;
+                  break;
+                case 'AS':
+                  this.AS = true;
+                  break;
+                case 'NA':
+                  this.NA = true;
+                  break;
+                case 'LA':
+                  this.LA = true;
+                  break;
+                case 'OA':
+                  this.OA = true;
+                  break;
+                case 'ME':
+                  this.ME = true;
+                  break;
+                case 'AF':
+                  this.AF = true;
+                  break;
+                case 'EU':
+                  this.EU = true;
+                  break;
+                case 'RU':
+                  this.RU = true;
+                  break;
+              }
+            });
+
+            console.log('CN= ', this.CN);
+            console.log('AS= ', this.AS);
+            console.log('NA= ', this.NA);
+            console.log('LA= ', this.LA);
+            console.log('OA= ', this.OA);
+            console.log('ME= ', this.ME);
+            console.log('AF= ', this.AF);
+            console.log('EU= ', this.EU);
+            console.log('RU= ', this.RU);
           }
         })
         .catch(error => {
