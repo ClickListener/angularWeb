@@ -429,7 +429,8 @@ export class DevelopmentAppRegComponent implements OnInit {
         url: this.url + "/api/useApp/addApp",
         type: "POST",
         beforeSubmit: this.beforeSubmit_android.bind(this),
-        success: this.success_android.bind(this)
+        success: this.success_android.bind(this),
+        error: this.error.bind(this)
       };
 
       jQuery('#registerAppForm').ajaxSubmit(option);
@@ -438,7 +439,8 @@ export class DevelopmentAppRegComponent implements OnInit {
         url: this.url + "/api/useApp/addApp",
         type: "POST",
         beforeSubmit: this.beforeSubmit.bind(this),
-        success: this.success.bind(this)
+        success: this.success.bind(this),
+        error: this.error.bind(this)
       };
 
       jQuery('#registerAppForm').ajaxSubmit(option);
@@ -672,6 +674,21 @@ export class DevelopmentAppRegComponent implements OnInit {
         width: 300
       }).catch(swal.noop);
     }
+  }
+
+  private error(error) {
+    console.log('reg_app error = ', error);
+    this.buttonDisable = false;
+
+    if (error.status === 0) {
+    }
+      swal({
+        position: 'center',
+        type: 'error',
+        titleText: "Connection Refused",
+        showConfirmButton: false,
+        timer: 2000
+      }).catch(swal.noop);
   }
 
 
