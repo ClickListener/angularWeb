@@ -280,7 +280,7 @@ export class CompanyService {
         timer: 2000
       }).catch(swal.noop);
     }
-    return Promise.reject(error.message || error);
+    return Promise.reject(error);
   }
 
 

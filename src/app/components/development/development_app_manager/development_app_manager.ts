@@ -32,6 +32,8 @@ export class DevelopmentAppManagerComponent {
   user: any;
   token: any;
 
+  connectionTimeout = false;
+
   constructor(private appService: AppService, private userService: UserService, private companyService: CompanyService,
               private router: Router) {
 
@@ -116,6 +118,7 @@ export class DevelopmentAppManagerComponent {
       })
       .catch(error => {
         console.log(error);
+        this.connectionTimeout = true;
       });
 
 

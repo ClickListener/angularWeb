@@ -29,11 +29,11 @@ export class AppService {
         position: 'center',
         type: 'error',
         titleText: "Connection Refused",
-        showConfirmButton: false,
-        timer: 2000
+        showConfirmButton: true,
+        // timer: 2000
       }).catch(swal.noop);
     }
-    return Promise.reject(error.message || error);
+    return Promise.reject(error);
   }
 
 

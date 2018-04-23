@@ -37,6 +37,8 @@ export class DevelopmentGroupComponent {
 
   countryList: Array<any>;
 
+  connectionTimeout = false;
+
   constructor(private companyService: CompanyService, private userService: UserService,
               private router: Router, private activatedRoute: ActivatedRoute) {
 
@@ -143,6 +145,7 @@ export class DevelopmentGroupComponent {
       })
       .catch(error => {
         console.log(error);
+        this.connectionTimeout = true;
       });
 
   }

@@ -124,4 +124,4 @@
 </div>
 
 
-<div id="loading" class="loading" *ngIf="!(user && companyInfo)"></div>
+<div id="loading" class="loading" *ngIf="!((user && companyInfo) || connectionTimeout)"></div>

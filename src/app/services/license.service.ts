@@ -148,7 +148,7 @@ export class LicenseService {
 
   private static handleError(error: any): Promise<any> {
     console.log('An error occurred', JSON.stringify(error)); // for demo purposes only
-    return Promise.reject(error.message || error);
+    return Promise.reject(error);
   }
 
 
