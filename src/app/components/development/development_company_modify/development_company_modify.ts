@@ -144,7 +144,7 @@ export class DevelopmentCompanyModifyComponent {
     this.buttonDisable = false;
 
     if (response.success) {
-      this.router.navigate(['/development-main/development-group']);
+      this.router.navigate(['/development-main/development-group', this.userService.user._id]);
       swal({
         position: 'center',
         type: 'success',

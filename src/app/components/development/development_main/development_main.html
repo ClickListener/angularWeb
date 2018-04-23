@@ -1,5 +1,5 @@
 <ul class="nav nav-tabs">
-  <li role="presentation"><a routerLink="./development-group" routerLinkActive="active">Development Group</a></li>
+  <li role="presentation"><a [routerLink]="['./development-group', user._id]" routerLinkActive="active">Development Group</a></li>
   <li role="presentation"><a routerLink="./development-app-manager" routerLinkActive="active">App Manage</a></li>
 </ul>
 <!-- Tab panels -->

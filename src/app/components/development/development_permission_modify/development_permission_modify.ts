@@ -157,7 +157,7 @@ export class DevelopmentPermissionModifyComponent {
     this.userService.addUserAuth(permissionInfo)
       .then(res => {
         console.log(res);
-        this.router.navigate(['/development-main/development-group']);
+        this.router.navigate(['/development-main/development-group', this.userService.user._id]);
       })
       .catch(error => {
         console.log(error);

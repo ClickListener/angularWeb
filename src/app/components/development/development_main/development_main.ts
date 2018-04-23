@@ -2,6 +2,7 @@
  * Created by zhangxu on 10/01/2018.
  */
 import {Component} from "@angular/core";
+import {UserService} from "../../../services/user.service";
 
 @Component({
   templateUrl: './development_main.html',
@@ -10,5 +11,9 @@ import {Component} from "@angular/core";
 
 
 export class DevelopmentMainComponent {
-  constructor() {}
+
+  user: any;
+  constructor(private userService: UserService) {
+    this.user = userService.user;
+  }
 }

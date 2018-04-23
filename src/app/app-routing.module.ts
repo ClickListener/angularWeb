@@ -151,7 +151,7 @@ const routes: Routes = [
         component: DevelopmentAppManagerComponent,
       },
       {
-        path: 'development-group',
+        path: 'development-group/:userId',
         component: DevelopmentGroupComponent
       }
     ]

@@ -33,7 +33,8 @@ export class AppComponent implements OnInit, DoCheck {
     console.log('url ========', _location.path());
 
 
-    if (userService.user && _location.path() !== '/sign-up-confirm' && _location.path().indexOf('/reset-password') === -1) {
+    if (userService.user && _location.path() !== '/sign-up-confirm'
+      && _location.path().indexOf('/reset-password') === -1 && _location.path().indexOf('/development-main/development-group') === -1) {
 
       const userInfo = {
         "userId": userService.user._id,

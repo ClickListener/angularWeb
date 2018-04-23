@@ -243,7 +243,7 @@
         </a>
 
         <ul style="font-size: 14px" *ngIf="user.companyId">
-          <li><a routerLinkActive="active" routerLink='/development-main/development-group'>Development Group</a></li>
+          <li><a routerLinkActive="active" [routerLink]='["/development-main/development-group", user._id]'>Development Group</a></li>
           <li><a routerLinkActive="active" routerLink='/development-main/development-app-manager'>App Manager</a></li>
         </ul>
       </li>

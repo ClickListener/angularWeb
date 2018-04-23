@@ -125,7 +125,7 @@ export class DevelopmentAddMemberComponent {
           const response = await this.userService.addUserAuth(permissionInfo);
 
           if (response.success) {
-            this.router.navigate(['/development-main/development-group']);
+            this.router.navigate(['/development-main/development-group', this.userService.user._id]);
           }
         }
       })

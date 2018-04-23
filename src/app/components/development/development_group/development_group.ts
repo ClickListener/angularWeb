@@ -5,7 +5,7 @@ import {Component, OnInit} from "@angular/core";
 import {CompanyService} from "../../../services/company.service";
 import {UserService} from "../../../services/user.service";
 import {User} from "../../../model/User";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   templateUrl: './development_group.html',
@@ -37,7 +37,18 @@ export class DevelopmentGroupComponent {
 
   countryList: Array<any>;
 
-  constructor(private companyService: CompanyService, private userService: UserService, private router: Router) {
+  constructor(private companyService: CompanyService, private userService: UserService,
+              private router: Router, private activatedRoute: ActivatedRoute) {
+
+    activatedRoute.paramMap.subscribe( paramMap => {
+      const userId = paramMap['params'].userId;
+      console.log('--------------userID = ', userId);
+      if (userId !== userService.user._id) {
+        console.log('213213123213213213213213');
+        this.userService.signOut();
+        return;
+      }
+    });
 
     if (!userService.user) {
       this.router.navigate(['/sign-in']);
