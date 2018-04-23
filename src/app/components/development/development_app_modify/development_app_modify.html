@@ -4,7 +4,10 @@
 
   <div class="radio-block">
 
-    <p>Platform</p>
+    <div>
+      <p style="display: inline-block">Platform</p>
+      <a style="display: inline-block"><img src="../../../../assets/images/star.png"></a>
+    </div>
 
     <label>
       <input name="platform" type="radio" value="android" [(ngModel)]="appInfo.platform"/> Android
@@ -17,7 +20,10 @@
   </div>
 
   <div class="input-block">
-    <label for="id_name">App Name</label>
+    <div>
+      <label for="id_name" style="display: inline-block">App Name</label>
+      <a style="display: inline-block"><img src="../../../../assets/images/star.png"></a>
+    </div>
     <input name="id_name" id="id_name" type="text" [(ngModel)]="appInfo.appName"
            #appNameValid="ngModel" [regex-name]='{"pattern": "^[a-zA-Z_]{1}(?:(?=.*\\s*))[\\w\\s]{0,}$"}' maxlength="100" required>
 
@@ -31,7 +37,10 @@
 
 
   <div class="input-block" *ngIf="appInfo.platform === 'android'">
-    <label for="id_package">Package Name</label>
+    <div>
+      <label for="id_package" style="display: inline-block">Package Name</label>
+      <a style="display: inline-block"><img src="../../../../assets/images/star.png"></a>
+    </div>
     <input id="id_package" type="text" name="id_package" [(ngModel)]="appInfo.bundleIdOrPackageName"
            #package="ngModel" minlength="3" maxlength="100"
            required [regex-name]='{"pattern": "^(?:(?=.*\\w.*)(?=.*\\s*))[\\w\\s\\.]{1,}$"}'>
@@ -54,7 +63,11 @@
   </div>
 
   <div class="input-block" *ngIf="appInfo.platform === 'ios'">
-    <label for="id_bundle">BundleId</label>
+    <div>
+
+      <label for="id_bundle" style="display: inline-block">BundleId</label>
+      <a style="display: inline-block"><img src="../../../../assets/images/star.png"></a>
+    </div>
     <input id="id_bundle" type="text" name="id_bundle" [(ngModel)]="appInfo.bundleIdOrPackageName"
            #bundleId="ngModel" minlength="3" maxlength="100"
            required [regex-name]='{"pattern": "^(?:(?=.*\\w.*)(?=.*\\s*))[\\w\\s\\.]{1,}$"}'>
@@ -79,7 +92,11 @@
 
 
   <div class="input-block">
-    <label for="id_description">Description</label>
+    <div>
+
+      <label for="id_description" style="display: inline-block">Description</label>
+      <a style="display: inline-block"><img src="../../../../assets/images/star.png"></a>
+    </div>
     <textarea id="id_description" type="text" name="id_description" [(ngModel)]="appInfo.description"
               #descriptionValid="ngModel"  minlength="20" maxlength="100" required></textarea>
 
@@ -104,7 +121,11 @@
 
 
   <div class="license-block">
-    <p>App icon</p>
+    <div>
+
+      <p style="display: inline-block">App icon</p>
+      <a style="display: inline-block"><img src="../../../../assets/images/star.png"></a>
+    </div>
     <a style="position: absolute"><img id="preview" src="{{url}}{{appInfo.avatar.description}}/{{appInfo.avatar.fileName}}"
                                        style="width: 80px; height: 80px"></a>
     <div>
@@ -118,7 +139,11 @@
   <div class="dropdown-block">
 
     <div>
-      <label>SDK Scheme</label>
+      <div>
+
+        <label style="display: inline-block">SDK Scheme</label>
+        <a style="display: inline-block"><img src="../../../../assets/images/star.png"></a>
+      </div>
       <select class="mdb-select" name="SDK_Scheme" [(ngModel)]="appInfo.sdkType">
         <option value="NativeSDK">Native SDK</option>
         <option value="RNSDK">RN SDK</option>
