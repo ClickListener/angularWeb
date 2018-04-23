@@ -19,7 +19,7 @@ export class ForgotPasswordComponent {
   constructor(private userService: UserService, private lowerCasePipe: LowerCasePipe, private router: Router) {
 
     if (userService.user) {
-      this.router.navigate(['/']);
+      userService.signOutWithoutNavigate();
       return;
     }
   }
