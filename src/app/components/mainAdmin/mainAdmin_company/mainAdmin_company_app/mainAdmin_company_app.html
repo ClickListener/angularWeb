@@ -36,6 +36,7 @@
     <input name="id_name" id="id_name" type="text" [(ngModel)]="appInfo.appName"
            #appNameValid="ngModel" pattern="^[a-zA-Z_]{1}(?:(?=.*\s*))[\w\s]{0,99}$" required>
 
+
     <p *ngIf="!appNameValid.pristine&&appNameValid.invalid" style="color: #ee2200">Please input valid App name.</p>
   </div>
 
@@ -110,7 +111,7 @@
   <div class="input-block" *ngIf="appInfo.sdkType === 'LayeredApp'">
     <label for="id_layeredUrl">Url</label>
 
-    <input name="id_name" id="id_layeredUrl" type="text" [(ngModel)]="appInfo.scheme"
+    <input name="id_layeredUrl" id="id_layeredUrl" type="text" [(ngModel)]="appInfo.scheme"
            #_layered_url="ngModel"minlength="3" maxlength="100" required
            placeholder="layered url" [regex-name]='{"pattern": "^(?:(?=.*\\w.*)(?=.*\\s*))[\\w\\s\\.]{1,}$"}'>
 
@@ -134,7 +135,6 @@
       </div>
     </div>
 
-    <p *ngIf="!_layered_url.pristine&&_layered_url.invalid" style="color: #ee2200">Please input valid url.</p>
   </div>
 
 
