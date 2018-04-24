@@ -173,7 +173,13 @@ export class LastListComponent {
     if (diff > 0) {
       return -1;
     } else if (diff === 0) {
-      return 0;
+      if (arr1.length > arr2.length) {
+        return -1;
+      } else if (arr1.length < arr2.length) {
+        return 1;
+      } else {
+        return 0;
+      }
     } else {
       return 1;
     }
