@@ -70,6 +70,8 @@ import {MainAdminCompanyApplistComponent} from "./components/mainAdmin/mainAdmin
 import {MainAdminCompanyDetailComponent} from "./components/mainAdmin/mainAdmin_company/mainAdmin_company_detail/mainAdmin_company_detail";
 import { TermEuComponent } from './components/terms/term-eu/term-eu.component';
 import { PoliciesEuComponent } from './components/policies/policies-eu/policies-eu.component';
+import { StartNativeSdkComponent } from './components/start/start-native-sdk/start-native-sdk.component';
+import { StartLayeredAppComponent } from './components/start/start-layered-app/start-layered-app.component';
 
 @NgModule({
 
@@ -150,7 +152,13 @@ import { PoliciesEuComponent } from './components/policies/policies-eu/policies-
     TermEuComponent,
 
 
-    PoliciesEuComponent
+    PoliciesEuComponent,
+
+
+    StartNativeSdkComponent,
+
+
+    StartLayeredAppComponent
   ],
 
   bootstrap: [AppComponent],
