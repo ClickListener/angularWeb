@@ -71,7 +71,8 @@ export class SchemeCreateComponent {
       url: this.url + "/api/app/upload",           // 默认是form的action，如果声明，则会覆盖
       type: 'POST',                                          // 默认是form的method，如果声明，则会覆盖
       beforeSubmit: this.beforeSubmit.bind(this),            // 提交前的回调函数
-      success: this.success.bind(this)                       // 提交后的回调函数
+      success: this.success.bind(this),                       // 提交后的回调函数
+      error: this.error.bind(this)
 
     };
     jQuery('#createForm').ajaxSubmit(options);
@@ -185,6 +186,19 @@ export class SchemeCreateComponent {
       }).catch(swal.noop);
     }
   }
+
+  private error(error) {
+    console.log(error);
+
+    swal({
+      position: 'center',
+      type: 'error',
+      titleText: "Connection Refused",
+      showConfirmButton: false,
+      timer: 2000
+    }).catch(swal.noop);
+  }
+
 
 
   addFile(index: number) {

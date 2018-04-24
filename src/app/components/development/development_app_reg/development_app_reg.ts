@@ -312,7 +312,6 @@ export class DevelopmentAppRegComponent implements OnInit {
     ];
 
 
-
   }
 
 
@@ -366,15 +365,14 @@ export class DevelopmentAppRegComponent implements OnInit {
 
 
       this.deviceList.find((device, i, arr) => {
-          if (device.model === device_delete[0].model) {
-            device.isValid = true;
-            return true;
-          }
+        if (device.model === device_delete[0].model) {
+          device.isValid = true;
+          return true;
+        }
       });
     }
 
   }
-
 
 
   // 使用FileReader 将图片读取为base64字符串形式，实现图片预览
@@ -593,7 +591,7 @@ export class DevelopmentAppRegComponent implements OnInit {
     const app = {
       "platform": this.platform,
       "appName": this.appName,
-      "bundleIdOrPackageName": this.platform === 'android'? this.packageName: this.bundleId,
+      "bundleIdOrPackageName": this.platform === 'android' ? this.packageName : this.bundleId,
       "description": this.description,
       "sdkType": this.sdkType,
       "scheme": this.layered_url,
@@ -680,15 +678,13 @@ export class DevelopmentAppRegComponent implements OnInit {
     console.log('reg_app error = ', error);
     this.buttonDisable = false;
 
-    if (error.status === 0) {
-    }
-      swal({
-        position: 'center',
-        type: 'error',
-        titleText: "Connection Refused",
-        showConfirmButton: false,
-        timer: 2000
-      }).catch(swal.noop);
+    swal({
+      position: 'center',
+      type: 'error',
+      titleText: "Connection Refused",
+      showConfirmButton: false,
+      timer: 2000
+    }).catch(swal.noop);
   }
 
 
@@ -720,10 +716,6 @@ export class DevelopmentAppRegComponent implements OnInit {
 
 
   }
-
-
-
-
 
 
 }
