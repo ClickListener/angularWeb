@@ -1,11 +1,11 @@
 <form *ngIf="companyInfo" style="margin-left: 3rem;margin-right: 3rem; margin-bottom: 3rem">
   <fieldset>
     <legend>Base Info</legend>
-    <table class="table table-borderLess ">
+    <table class="table table-borderLess " style="table-layout: fixed">
       <tbody>
       <tr>
         <th>Company Name</th>
-        <td><pre style="white-space: pre; overflow: hidden; text-overflow: ellipsis">{{companyInfo.companyName}}</pre></td>
+        <td><pre>{{companyInfo.companyName}}</pre></td>
       </tr>
       <tr>
         <th>Country</th>
