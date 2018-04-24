@@ -10,7 +10,7 @@
     <div class="card-body">
 
       <div *ngFor="let app of appList; let i = index">
-        <p style="margin-top: 15px; font-weight: bold">{{app.appName}}</p>
+        <p style="margin-top: 15px; font-weight: bold; white-space: pre; overflow: hidden; text-overflow: ellipsis">{{app.appName}}</p>
         <div class="form-custom">
           <div class="form-custom-head">
             <p class="item-1">App icon</p>
