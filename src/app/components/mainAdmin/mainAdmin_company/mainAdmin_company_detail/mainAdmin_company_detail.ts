@@ -2,7 +2,7 @@
  * Created by zhangxu on 2018/4/12.
  */
 import {Component} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {CompanyService} from "../../../../services/company.service";
 import {UserService} from "../../../../services/user.service";
 import swal from "sweetalert2";
@@ -20,7 +20,20 @@ export class MainAdminCompanyDetailComponent {
 
   companyInfo: any;
 
-  constructor(private activatedRoute: ActivatedRoute, private companyService: CompanyService, private userService: UserService) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute,
+              private companyService: CompanyService, private userService: UserService) {
+
+
+    if (userService.user && userService.user.type > 2) {
+      router.navigate(['/']);
+      return;
+    }
+
+    if (!userService.user) {
+      router.navigate(['/sign-in']);
+      return;
+    }
+
 
     activatedRoute.parent.paramMap.subscribe(paramMap => {
       this.cid = paramMap['params'].param;
