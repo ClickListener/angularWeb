@@ -28,10 +28,19 @@ export class UserResetPasswordComponent {
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router) {
 
 
-
     activatedRoute.paramMap.subscribe(paramMap => {
       this.userId = paramMap['params'].userId;
       this.random = paramMap['params'].random;
+
+      if (userService.user) {
+        if (userService.user._id === this.userId ) {
+          this.router.navigate(['/']);
+          return;
+        } else {
+          userService.signOutWithoutNavigate();
+        }
+
+      }
 
       console.log('userId = ', this.userId);
       console.log('random = ', this.random);
