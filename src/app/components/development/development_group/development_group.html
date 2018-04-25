@@ -17,7 +17,7 @@
           <p style=" margin: 0; margin-left: 1rem; margin-top: 0.5rem; color: #007afa; overflow: hidden; text-overflow: ellipsis" ><b>{{user.username}}</b></p>
           <p style="margin: 0; margin-left: 1rem; overflow: hidden; text-overflow: ellipsis">{{user.email}}</p>
         </div>
-        <p class="item-1" style="line-height: 4rem; text-align: center; overflow: hidden; text-overflow: ellipsis" *ngIf="user.type === 3">Administrator</p>
+        <p class="item-1" style="line-height: 4rem; text-align: center; overflow: hidden; text-overflow: ellipsis" *ngIf="user.type === 3">Master</p>
         <p class="item-1" style="line-height: 4rem; text-align: center; overflow: hidden; text-overflow: ellipsis" *ngIf="user.type === 4">Member</p>
         <p class="item-1" style="line-height: 4rem; text-align: center; overflow: hidden; text-overflow: ellipsis">{{companyInfo.country}}</p>
         <p class="item-1" style="line-height: 4rem; text-align: center; color: #007afa; overflow: hidden; text-overflow: ellipsis" *ngIf="companyInfo.state === 0">Not Audit</p>
@@ -53,7 +53,7 @@
           <p style="margin: 0; margin-left: 1rem; ">{{developer.email}}</p>
         </div>
         <p class="item-1" style="line-height: 5rem; text-align: center" *ngIf="developer.type === 4">Member</p>
-        <p class="item-1" style="line-height: 5rem; text-align: center" *ngIf="developer.type === 3">Administrator</p>
+        <p class="item-1" style="line-height: 5rem; text-align: center" *ngIf="developer.type === 3">Master</p>
         <div class="item-2" *ngIf="developer.type === 4">
           <p style="margin: 1rem 0 1rem 0; text-align: center">{{developer.permission}}</p>
         </div>
