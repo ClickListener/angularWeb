@@ -24,14 +24,14 @@ export class LastListComponent {
       'appName': 'NativeSDK',
       'platform': 'ios'
     },
-    {
-      'appName': 'LibrarySDK',
-      'platform': 'android'
-    },
-    {
-      'appName': 'LibrarySDK',
-      'platform': 'ios'
-    },
+    // {
+    //   'appName': 'LibrarySDK',
+    //   'platform': 'android'
+    // },
+    // {
+    //   'appName': 'LibrarySDK',
+    //   'platform': 'ios'
+    // },
     {
       'appName': 'LayeredApp',
       'platform': 'android'
