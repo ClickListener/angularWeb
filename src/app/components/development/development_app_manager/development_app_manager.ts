@@ -76,6 +76,7 @@ export class DevelopmentAppManagerComponent {
 
               if (_response.success) {
                 this.appList = _response.data;
+                this.appList = this.appList.reverse();
               }
             } else if (this.user.type === 3) {
 
@@ -95,6 +96,7 @@ export class DevelopmentAppManagerComponent {
 
               if (_response.success) {
                 this.appList = _response.data;
+                this.appList = this.appList.reverse();
               }
             }
           }

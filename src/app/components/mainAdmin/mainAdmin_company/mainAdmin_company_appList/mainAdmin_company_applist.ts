@@ -45,6 +45,8 @@ export class MainAdminCompanyApplistComponent {
           console.log(res);
           if (res.success) {
             this.appList = res.data;
+            this.appList = this.appList.reverse();
+
           }
 
         })

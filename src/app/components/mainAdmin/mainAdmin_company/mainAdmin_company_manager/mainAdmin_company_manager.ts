@@ -36,6 +36,7 @@ export class MainAdminCompanyManagerComponent {
 
         if (res.success) {
           this.companyList = res.data;
+          this.companyList = this.companyList.reverse();
 
           this.companyList.forEach((company) => {
             const user_Info = {

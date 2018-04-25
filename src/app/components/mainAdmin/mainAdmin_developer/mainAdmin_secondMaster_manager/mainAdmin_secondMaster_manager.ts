@@ -28,6 +28,7 @@ export class MainAdminSecondMasterManagerComponent {
 
         if (res.success) {
           this.adminList = res.data;
+          this.adminList = this.adminList.reverse();
         }
       })
       .catch(error => {
@@ -57,6 +58,7 @@ export class MainAdminSecondMasterManagerComponent {
 
           if (response.success) {
             this.adminList = response.data;
+            this.adminList = this.adminList.reverse();
             console.log('adminList = ', this.adminList);
           }
         }

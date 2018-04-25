@@ -33,6 +33,7 @@ export class MainAdminDeveloperManagerComponent {
 
         if (res.success) {
           this.developerList = res.data;
+          this.developerList = this.developerList.reverse();
 
           this.developerList.find((developer, index, arr) => {
             if (developer._id === userService.user._id) {
