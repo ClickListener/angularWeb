@@ -95,6 +95,46 @@ export class MainAdminSecondMasterModifyComponent {
 
   updateSecondMaster() {
 
+    const regionArr = [];
+
+    if (this.CN) {
+      regionArr.push('CN');
+    }
+
+    if (this.AS) {
+      regionArr.push('AS');
+    }
+
+    if (this.NA) {
+      regionArr.push('NA');
+    }
+
+    if (this.LA) {
+      regionArr.push('LA');
+    }
+
+    if (this.OA) {
+      regionArr.push('OA');
+    }
+
+    if (this.ME) {
+      regionArr.push('ME');
+    }
+
+    if (this.AF) {
+      regionArr.push('AF');
+    }
+
+    if (this.EU) {
+      regionArr.push('EU');
+    }
+
+    if (this.RU) {
+      regionArr.push('RU');
+    }
+
+    this.admin.openRegion = regionArr;
+
     const updateInfo = {
       'userId': this.userService.user._id,
       'token': this.userService.token.token,
