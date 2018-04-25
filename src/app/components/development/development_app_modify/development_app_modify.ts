@@ -139,6 +139,10 @@ export class DevelopmentAppModifyComponent implements DoCheck {
     {
       model: 'ECG3',
       isValid: true
+    },
+    {
+      model: 'ECGUSB',
+      isValid: true
     }
 
   ];

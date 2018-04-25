@@ -29,8 +29,25 @@
     </div>
   </div>
 
-  <div class="add-member" *ngIf="user.type !== 4 && companyInfo.state == '3'">
-    <a class="btn btn-primary" routerLink="/development-add-member" routerLinkActive="active">Add Members</a>
+  <div style="overflow: hidden" *ngIf="user.type !== 4 && companyInfo.state == '3'">
+    <div class="add-member">
+      <a class="btn btn-primary"  routerLink="/development-add-member" routerLinkActive="active">Add Members</a>
+      <div style="display: inline-block; cursor: pointer" data-toggle="collapse" data-target="#collapse_explain" aria-expanded="false"
+           aria-controls="collapse_explain"><img src="../../../../assets/images/info.png"></div>
+    </div>
+
+  </div>
+
+  <div class="collapse" id="collapse_explain">
+    <div style="border: 1px solid #e9ecef;
+    -webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;padding-left: 1rem">
+      <p style="margin-top: 1rem; font-size: 1.2rem">If necessary, you can add development team members.</p>
+      <p style="margin-left: 1rem">This can facilitate teamwork and improve work efficiency.</p>
+      <p style="margin-top: 1rem; font-size: 1.2rem">Add member requirements?</p>
+      <p style="margin-left: 1rem">First, members should register for an account on this site. </p>
+      <p style="margin-left: 1rem">Then, click "Add members" button to type the member account and set the relevant permissions to complete.</p>
+    </div>
+
   </div>
 
   <div style="height: 3rem" *ngIf="user.type === 4 || companyInfo.state != '3'">

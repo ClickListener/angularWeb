@@ -384,9 +384,9 @@
                         </div>
                       </div>
 
-                      <div style="flex: 1; margin-bottom: 2rem">
+                      <div style="flex: 2; margin-bottom: 2rem">
                         <div class="selectDevice-deviceTile">
-                          Oxygen
+                          Rhythm
                         </div>
                         <div class="selectDevice-deviceBlock" style="margin: 0">
                           <div (click)="deviceList[24].isValid? selectDevice(i, 'ECG3'): null"
@@ -394,6 +394,13 @@
                             <img src="../../../../../assets/images/device_ecg3.png">
                             <p>Rhythm</p>
                             <p>(ECG3)</p>
+                          </div>
+
+                          <div (click)="deviceList[25].isValid? selectDevice(i, 'ECGUSB'): null"
+                               [class]="deviceList[25].isValid? 'selectDevice-device': 'selectedDevice-device'">
+                            <img src="../../../../../assets/images/device_ecg3.png">
+                            <p>Rhythm</p>
+                            <p>(ECGUSB)</p>
                           </div>
 
                         </div>

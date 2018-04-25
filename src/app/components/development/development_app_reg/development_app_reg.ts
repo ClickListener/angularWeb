@@ -155,6 +155,10 @@ export class DevelopmentAppRegComponent implements OnInit {
     {
       model: 'ECG3',
       isValid: true
+    },
+    {
+      model: 'ECGUSB',
+      isValid: true
     }
 
   ];
@@ -305,6 +309,11 @@ export class DevelopmentAppRegComponent implements OnInit {
       },
       {
         model: "ECG3",
+        totalNumber: 100,
+        deviceUsedNumber: 0
+      },
+      {
+        model: "ECGUSB",
         totalNumber: 100,
         deviceUsedNumber: 0
       }

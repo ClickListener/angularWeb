@@ -138,6 +138,10 @@ export class MainAdminCompanyAppComponent implements DoCheck {
     {
       model: 'ECG3',
       isValid: true
+    },
+    {
+      model: 'ECGUSB',
+      isValid: true
     }
 
   ];
