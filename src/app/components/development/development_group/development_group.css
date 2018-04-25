@@ -79,12 +79,25 @@
 }
 a:not(.collapsed) .triangle-big {
   border-bottom-color: #FFFFFF;
-  z-index:1;
+  z-index:300;
 }
 
 a:not(.collapsed) .triangle-small {
   border-bottom-color: #e9ecef;
-  z-index: 0;
+  z-index: 200;
+}
+
+a:not(.collapsed) > a::before {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  display: block;
+  cursor: default;
+  content: " ";
+  background-color: transparent;
 }
 
 /*Device detail*/

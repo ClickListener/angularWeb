@@ -79,9 +79,13 @@
                 <a id="download" data-toggle="tooltip" title="You can download license file for using SDK." href="{{url}}/api/license/{{app._id}}?userId={{user._id}}&token={{token}}"><img src="../../../../assets/images/download.png" *ngIf="app.state == '3' && app.sdkType === 'NativeSDK'"></a>
                 <a [routerLink]= '["/development-app-modify", app._id]' *ngIf="edit_App"><img src="../../../../assets/images/edit.png"></a>
 
-                <a class="collapsed" style="position: relative" [style.z-index]="100 - i" data-toggle="collapse" [attr.data-target]="'#confirm' + i"
+                <a class="collapsed" style="position: relative"  data-toggle="collapse" [attr.data-target]="'#confirm' + i"
                    aria-expanded="false" aria-controls="devices-detail" *ngIf="delete_App">
-                  <img src="../../../../assets/images/delete.png">
+
+                  <a>
+                    <img src="../../../../assets/images/delete.png">
+                  </a>
+
 
                   <div class="triangle-big" style="left: 4px"></div>
                   <div class="triangle-small" style="left: 4px">
