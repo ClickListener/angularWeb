@@ -33,7 +33,6 @@ export class SchemeService {
   }
 
   private static handleError(error: any): Promise<any> {
-    this.logger.debug(error); // for demo purposes only
     if (error.status === 0) {
       swal({
         position: 'center',
