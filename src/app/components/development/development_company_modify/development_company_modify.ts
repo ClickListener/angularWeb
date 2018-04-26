@@ -149,9 +149,9 @@ export class DevelopmentCompanyModifyComponent {
       swal({
         position: 'center',
         type: 'success',
-        titleText: 'Create success',
+        titleText: 'Update successfully',
         showConfirmButton: false,
-        timer: 2000,
+        timer: 1500,
         padding: 0,
         width: 300
       }).catch(swal.noop);

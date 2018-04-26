@@ -7,6 +7,7 @@ import {UserService} from "../../../services/user.service";
 import {Router} from "@angular/router";
 import {Location, LowerCasePipe} from "@angular/common";
 import {NGXLogger} from "ngx-logger";
+import swal from "sweetalert2";
 
 @Component({
   templateUrl: './development_add_member.html',
@@ -126,7 +127,16 @@ export class DevelopmentAddMemberComponent {
           const response = await this.userService.addUserAuth(permissionInfo);
 
           if (response.success) {
-            this.router.navigate(['/development-main/development-group', this.userService.user._id]);
+
+            swal({
+              position: 'center',
+              type: 'success',
+              text: 'Please remind member to confirm your invitation',
+              showConfirmButton: true,
+              allowOutsideClick: false
+            }).then(() => {
+              this.router.navigate(['/development-main/development-group', this.userService.user._id]);
+            });
           }
         }
       })

@@ -63,7 +63,7 @@ export class SignInComponent {
           swal({
             position: 'center',
             type: 'success',
-            titleText: 'Sign in success',
+            titleText: 'Sign in successfully',
             showConfirmButton: false,
             timer: 2000,
             padding: 0,
