@@ -47,7 +47,7 @@ export class UserResetPasswordComponent {
               position: 'center',
               type: 'error',
               title: res.message,
-              text: 'Please resend a new password reset link ',
+              text: 'Please resend a new request',
               showConfirmButton: true,
               // timer: 2000
             }).then(() => {
