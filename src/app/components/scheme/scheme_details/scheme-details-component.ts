@@ -64,7 +64,7 @@ export class SchemeDetailsComponent {
   }
 
 
-  deleteFile(fileName:string, description: string, _id: string): void {
+  deleteFile(fileName:string, description: string, _id: string, index: number): void {
     const body = {
       "userId": this.user._id,
       "token": this.token,
@@ -85,7 +85,7 @@ export class SchemeDetailsComponent {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!'
-    }).then(function () {
+    }).then( () => {
 
       self.schemeService.deleteFile(body)
         .then(res => {
@@ -95,7 +95,7 @@ export class SchemeDetailsComponent {
               'Your file has been deleted.',
               'success'
             );
-            jQuery('#' + fileName.replace('.', '_')).remove();
+            jQuery('#' + index).remove();
           }
         })
         .catch(error => {
