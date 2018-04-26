@@ -46,3 +46,5 @@ export class RegexNumberDirective implements Validator {
 
     };
   }
+
+}
