@@ -5,6 +5,7 @@ import {Component} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../../../services/user.service";
 import swal from "sweetalert2";
+import {NGXLogger} from "ngx-logger";
 
 @Component({
   templateUrl: './mainAdmin_secondMaster_modify.html',
@@ -27,7 +28,8 @@ export class MainAdminSecondMasterModifyComponent {
   EU = false;
   RU = false;
 
-  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService,
+              private router: Router, private logger: NGXLogger) {
     activatedRoute.paramMap.subscribe((paramMap) => {
       this.id = paramMap['params'].param;
 
@@ -39,7 +41,7 @@ export class MainAdminSecondMasterModifyComponent {
 
       this.userService.getUserInfo(userInfo)
         .then(res => {
-          console.log(res);
+          this.logger.debug(res);
           if (res.success) {
             this.admin = res.user;
 
@@ -75,19 +77,19 @@ export class MainAdminSecondMasterModifyComponent {
               }
             });
 
-            console.log('CN= ', this.CN);
-            console.log('AS= ', this.AS);
-            console.log('NA= ', this.NA);
-            console.log('LA= ', this.LA);
-            console.log('OA= ', this.OA);
-            console.log('ME= ', this.ME);
-            console.log('AF= ', this.AF);
-            console.log('EU= ', this.EU);
-            console.log('RU= ', this.RU);
+            this.logger.debug('CN= ', this.CN);
+            this.logger.debug('AS= ', this.AS);
+            this.logger.debug('NA= ', this.NA);
+            this.logger.debug('LA= ', this.LA);
+            this.logger.debug('OA= ', this.OA);
+            this.logger.debug('ME= ', this.ME);
+            this.logger.debug('AF= ', this.AF);
+            this.logger.debug('EU= ', this.EU);
+            this.logger.debug('RU= ', this.RU);
           }
         })
         .catch(error => {
-          console.log(error);
+          this.logger.debug(error);
         });
 
     });
@@ -144,7 +146,7 @@ export class MainAdminSecondMasterModifyComponent {
     this.userService.updateUser(updateInfo)
       .then(res => {
 
-        console.log(res);
+        this.logger.debug(res);
 
         if (res.success) {
           this.router.navigate(['/secondMaster/secondMaster-manager']);
@@ -170,7 +172,7 @@ export class MainAdminSecondMasterModifyComponent {
         }
       })
       .catch(error => {
-        console.log(error);
+        this.logger.debug(error);
       });
 
   }

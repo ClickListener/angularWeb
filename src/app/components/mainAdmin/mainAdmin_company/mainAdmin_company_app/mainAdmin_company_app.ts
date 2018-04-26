@@ -10,6 +10,7 @@ import swal from "sweetalert2";
 import {Device} from "../../../../model/Device";
 import {DatePipe} from "@angular/common";
 import {CompanyService} from "../../../../services/company.service";
+import {NGXLogger} from "ngx-logger";
 
 declare const jQuery: any;
 
@@ -149,7 +150,7 @@ export class MainAdminCompanyAppComponent implements DoCheck {
 
   constructor(private activatedRoute: ActivatedRoute, private appService: AppService,
               private userService: UserService, private router: Router,
-              private datePipe: DatePipe, private companyService: CompanyService) {
+              private datePipe: DatePipe, private companyService: CompanyService, private logger: NGXLogger) {
 
     if (!userService.user) {
       this.router.navigate(['/sign-in']);
@@ -157,7 +158,7 @@ export class MainAdminCompanyAppComponent implements DoCheck {
     }
     this.activatedRoute.paramMap.subscribe(paramMap => {
       const appId = paramMap['params'].param;
-      console.log('appId = ', appId);
+      this.logger.debug('appId = ', appId);
 
       const appInfo = {
         "userId": userService.user._id,
@@ -166,14 +167,14 @@ export class MainAdminCompanyAppComponent implements DoCheck {
       };
       appService.findUerApp(appInfo)
         .then(res => {
-          console.log(res);
+          this.logger.debug(res);
           if (res.success) {
 
             this.appInfo = res.data;
 
             this.expiredDate = datePipe.transform(this.appInfo.expireTime, 'yyyy/MM/dd');
 
-            console.log('expiredDate = ' , this.expiredDate);
+            this.logger.debug('expiredDate = ' , this.expiredDate);
 
             this.appInfo.devices.forEach((device) => {
               this.deviceList.find((_device, i, arr) => {
@@ -187,7 +188,7 @@ export class MainAdminCompanyAppComponent implements DoCheck {
 
         })
         .catch(error => {
-          console.log(error);
+          this.logger.debug(error);
         });
     });
 
@@ -212,7 +213,7 @@ export class MainAdminCompanyAppComponent implements DoCheck {
         format: 'yyyy/mm/dd',
         onSet: context =>  {
           this.appInfo.expireTime = context.select;
-          console.log('this.appInfo.expireTime = ',this.appInfo.expireTime);
+          this.logger.debug('this.appInfo.expireTime = ',this.appInfo.expireTime);
         }
       });
     }
@@ -271,22 +272,22 @@ export class MainAdminCompanyAppComponent implements DoCheck {
 
     const reader = new FileReader();
 
-    reader.onloadstart = function (e) {
-      console.log("开始读取....");
+    reader.onloadstart =  (e) => {
+      this.logger.debug("开始读取....");
     };
 
-    reader.onprogress = function (e) {
-      console.log("正在读取中....");
+    reader.onprogress =  (e) => {
+      this.logger.debug("正在读取中....");
     };
 
-    reader.onabort = function (e) {
-      console.log("中断读取....");
+    reader.onabort =  (e) => {
+      this.logger.debug("中断读取....");
     };
-    reader.onerror = function (e) {
-      console.log("读取异常....");
+    reader.onerror =  (e) => {
+      this.logger.debug("读取异常....");
     };
-    reader.onload = function (e) {
-      console.log("成功读取....");
+    reader.onload =  (e) => {
+      this.logger.debug("成功读取....");
 
       const img = document.getElementById("preview");
       img['src'] = e.target['result'];
@@ -367,7 +368,7 @@ export class MainAdminCompanyAppComponent implements DoCheck {
 
     formData.push(file[0]);
 
-    console.log(formData);
+    this.logger.debug(formData);
   }
 
 
@@ -375,7 +376,7 @@ export class MainAdminCompanyAppComponent implements DoCheck {
 
     this.buttonDisable = false;
 
-    console.log(res);
+    this.logger.debug(res);
 
     if (res.success) {
 
@@ -408,7 +409,7 @@ export class MainAdminCompanyAppComponent implements DoCheck {
 
     this.companyService.reviewCompany(companyInfo)
       .then(res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res.success) {
 
           this.router.navigate(['/company/company-modify', this.appInfo.companyId, 'apps']);
@@ -424,7 +425,7 @@ export class MainAdminCompanyAppComponent implements DoCheck {
         }
       })
       .catch(error => {
-        console.log(error);
+        this.logger.debug(error);
       });
   }
 

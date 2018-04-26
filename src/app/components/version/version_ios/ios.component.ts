@@ -5,6 +5,7 @@ import {Component} from "@angular/core";
 import {SchemeService} from "../../../services/scheme.service";
 import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../../../services/user.service";
+import {NGXLogger} from "ngx-logger";
 
 @Component({
   templateUrl: './ios.component.html',
@@ -25,12 +26,13 @@ export class IOSComponent {
 
   loading = true;
 
-  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private schemeService: SchemeService) {
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService,
+              private schemeService: SchemeService, private logger: NGXLogger) {
 
 
     activatedRoute.parent.paramMap.subscribe( paramMap => {
       this.param = paramMap['params'].param;
-      console.log('param = ', this.param);
+      this.logger.debug('param = ', this.param);
 
       this.schemeList = null;
       this.isBeta = null;
@@ -60,7 +62,7 @@ export class IOSComponent {
 
         userService.getUserAuth(userInfo)
           .then(res => {
-            console.log('res = ', res);
+            this.logger.debug('res = ', res);
             if (res.success) {
               this.parsePermission(res.data);
               this.getSchemeList(0);
@@ -69,7 +71,7 @@ export class IOSComponent {
             }
           })
           .catch(error => {
-            console.log('error = ', error);
+            this.logger.debug('error = ', error);
           });
       }
 
@@ -81,12 +83,12 @@ export class IOSComponent {
 
   private parsePermission(permission: any) {
 
-    console.log('permission = ', permission);
+    this.logger.debug('permission = ', permission);
 
     permission.forEach((item, index) => {
       if (item.resourceId === '5a6580ca5e149e1dfdf27962') {
         this.permissionOfBeta = (item.action.indexOf('R') !== -1);
-        console.log('beta = ', this.permissionOfBeta);
+        this.logger.debug('beta = ', this.permissionOfBeta);
         return;
       }
 
@@ -109,7 +111,7 @@ export class IOSComponent {
     this.schemeService.queryScheme(fileInfo)
       .then(res => {
 
-        console.log(res);
+        this.logger.debug(res);
         if (res.success) {
           this.permissionOfCheck = true;
           this.schemeList = res.data;
@@ -125,7 +127,7 @@ export class IOSComponent {
         }
       })
       .catch(error => {
-        console.log(error);
+        this.logger.debug(error);
       });
   }
 }

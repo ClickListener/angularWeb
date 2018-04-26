@@ -7,6 +7,7 @@ import {UserService} from "../../../services/user.service";
 import {Router} from '@angular/router';
 import swal from "sweetalert2";
 import {LowerCasePipe} from "@angular/common";
+import {NGXLogger} from "ngx-logger";
 
 declare const jQuery: any;
 
@@ -308,7 +309,8 @@ export class SignUpComponent {
   ];
 
 
-  constructor(private userService: UserService, private router: Router, private lowerCasePipe: LowerCasePipe) {
+  constructor(private userService: UserService, private router: Router,
+              private lowerCasePipe: LowerCasePipe, private logger: NGXLogger) {
     if (this.userService.user) {
       this.router.navigate(['/']);
     }
@@ -349,11 +351,11 @@ export class SignUpComponent {
       }
     };
 
-    console.log('signUp_info: ', signUp_info);
+    this.logger.debug('signUp_info: ', signUp_info);
 
     this.userService.signUp(signUp_info)
       .then((res) => {
-        console.log(res);
+        this.logger.debug(res);
         this.buttonDisable = false;
         if (res['success']) {
           // this.router.navigate(['/confirm-hint']);
@@ -371,7 +373,7 @@ export class SignUpComponent {
       })
       .catch(error => {
         this.buttonDisable = false;
-        console.log("error = " + JSON.stringify(error));
+        this.logger.debug("error = " + JSON.stringify(error));
       });
 
   }

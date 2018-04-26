@@ -3,6 +3,7 @@
  */
 import {Component} from "@angular/core";
 import {NavigationEnd, Router} from "@angular/router";
+import {NGXLogger} from "ngx-logger";
 
 @Component({
   templateUrl: './manager-main.component.html',
@@ -12,11 +13,11 @@ import {NavigationEnd, Router} from "@angular/router";
 export class ManagerMainComponent {
 
   url: string;
-  constructor(private router: Router) {
+  constructor(private router: Router, private logger: NGXLogger) {
 
     router.events.filter(event => event instanceof NavigationEnd)
       .subscribe(e => {
-        console.log('prev:', e['url']);
+        this.logger.debug('prev:', e['url']);
         this.url = e['url'];
       });
   }

@@ -8,6 +8,7 @@ import swal from "sweetalert2";
 import {Router} from "@angular/router";
 
 import * as myGlobals from '../../../../environments/config';
+import {NGXLogger} from "ngx-logger";
 
 declare const jQuery: any;
 
@@ -164,7 +165,7 @@ export class DevelopmentAppRegComponent implements OnInit {
   ];
 
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private router: Router, private logger: NGXLogger) {
 
     if (!userService.user) {
       this.router.navigate(['/sign-in']);
@@ -338,7 +339,7 @@ export class DevelopmentAppRegComponent implements OnInit {
     //   onSet: context =>  {
     //
     //     this.expiredDate = context.select;
-    //     console.log('expiredDateValid = ', this.expiredDate);
+    //     this.logger.debug('expiredDateValid = ', this.expiredDate);
     //
     //   }
     // });
@@ -402,22 +403,22 @@ export class DevelopmentAppRegComponent implements OnInit {
 
     const reader = new FileReader();
 
-    reader.onloadstart = function (e) {
-      console.log("开始读取....");
+    reader.onloadstart =  (e) => {
+      this.logger.debug("开始读取....");
     };
 
-    reader.onprogress = function (e) {
-      console.log("正在读取中....");
+    reader.onprogress =  (e) => {
+      this.logger.debug("正在读取中....");
     };
 
-    reader.onabort = function (e) {
-      console.log("中断读取....");
+    reader.onabort =  (e) => {
+      this.logger.debug("中断读取....");
     };
-    reader.onerror = function (e) {
-      console.log("读取异常....");
+    reader.onerror =  (e) => {
+      this.logger.debug("读取异常....");
     };
-    reader.onload = function (e) {
-      console.log("成功读取....");
+    reader.onload =  (e) => {
+      this.logger.debug("成功读取....");
 
       const img = document.getElementById("preview");
       img['src'] = e.target['result'];
@@ -509,7 +510,7 @@ export class DevelopmentAppRegComponent implements OnInit {
 
     formData.push(file[0]);
 
-    console.log(formData);
+    this.logger.debug(formData);
   }
 
   private beforeSubmit_ios(formData) {
@@ -565,7 +566,7 @@ export class DevelopmentAppRegComponent implements OnInit {
 
     formData.push(file[0]);
 
-    console.log(formData);
+    this.logger.debug(formData);
   }
 
   private beforeSubmit(formData) {
@@ -621,7 +622,7 @@ export class DevelopmentAppRegComponent implements OnInit {
 
     formData.push(file[0]);
 
-    console.log(formData);
+    this.logger.debug(formData);
   }
 
 
@@ -629,7 +630,7 @@ export class DevelopmentAppRegComponent implements OnInit {
 
     this.buttonDisable = false;
 
-    console.log(res);
+    this.logger.debug(res);
 
     if (res.success) {
       this.router.navigate(['/development-main/development-app-manager']);
@@ -659,7 +660,7 @@ export class DevelopmentAppRegComponent implements OnInit {
 
     this.buttonDisable = false;
 
-    console.log(res);
+    this.logger.debug(res);
 
     if (res.success) {
       const option = {
@@ -684,7 +685,7 @@ export class DevelopmentAppRegComponent implements OnInit {
   }
 
   private error(error) {
-    console.log('reg_app error = ', error);
+    this.logger.debug('reg_app error = ', error);
     this.buttonDisable = false;
 
     swal({

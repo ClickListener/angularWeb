@@ -8,6 +8,7 @@ import {SchemeService} from "../../../services/scheme.service";
 import swal from "sweetalert2";
 import {Input} from "@angular/compiler/src/core";
 import {UserService} from "../../../services/user.service";
+import {NGXLogger} from "ngx-logger";
 
 @Component({
   selector: 'scheme-manager',
@@ -42,7 +43,7 @@ export class SchemeManagerComponent {
   }
 
   constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService,
-              private userService: UserService, private router: Router) {
+              private userService: UserService, private router: Router, private logger: NGXLogger) {
 
     if (!userService.user) {
       this.router.navigate(['/sign-in']);
@@ -73,7 +74,7 @@ export class SchemeManagerComponent {
           }
         })
         .catch(error => {
-          console.log('error = ' + error.toString());
+          this.logger.debug('error = ' + error.toString());
         });
     });
 
@@ -120,7 +121,7 @@ export class SchemeManagerComponent {
                 self.paginationComponent.deleteItem(self.findBySearch());
               })
               .catch(error => {
-                console.log('error => ' + error.toString());
+                this.logger.debug('error => ' + error.toString());
               });
             swal(
               'Deleted!',
@@ -130,7 +131,7 @@ export class SchemeManagerComponent {
           }
         })
         .catch(error => {
-          console.log('ManagerComponent--error = ' + JSON.stringify(error));
+          this.logger.debug('ManagerComponent--error = ' + JSON.stringify(error));
         });
     }).catch(swal.noop);
   }

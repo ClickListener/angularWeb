@@ -4,6 +4,7 @@
 import {Component} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../../../services/user.service";
+import {NGXLogger} from "ngx-logger";
 
 @Component({
   templateUrl: './mainAdmin_developer_modify.html',
@@ -19,7 +20,8 @@ export class MainAdminDeveloperModifyComponent {
 
   beta = false;
 
-  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService,
+              private router: Router, private logger: NGXLogger) {
 
     activatedRoute.paramMap.subscribe(paramMap => {
 
@@ -35,11 +37,11 @@ export class MainAdminDeveloperModifyComponent {
 
    userService.getUserAuth(user_Info)
      .then(res => {
-        console.log('res = ', res);
+        this.logger.debug('res = ', res);
         this.parsePermission(res.data);
      })
      .catch(error => {
-       console.log('error = ', error);
+       this.logger.debug('error = ', error);
      });
 
 
@@ -48,12 +50,12 @@ export class MainAdminDeveloperModifyComponent {
 
   private parsePermission(permission: any) {
 
-    console.log('permission = ', permission);
+    this.logger.debug('permission = ', permission);
 
     permission.forEach((item, index) => {
       if (item.resourceId === '5a6580ca5e149e1dfdf27962') {
         this.beta = (item.action.indexOf('R') !== -1);
-        console.log('beta = ', this.beta);
+        this.logger.debug('beta = ', this.beta);
         return;
       }
 
@@ -88,11 +90,11 @@ export class MainAdminDeveloperModifyComponent {
 
     this.userService.addUserAuth(permissionInfo)
       .then(res => {
-        console.log(res);
+        this.logger.debug(res);
         this.router.navigate(['/developer-manager']);
       })
       .catch(error => {
-        console.log(error);
+        this.logger.debug(error);
       });
   }
 }

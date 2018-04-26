@@ -10,6 +10,7 @@ import {HttpClient} from "@angular/common/http";
 import {UserService} from "../../../services/user.service";
 
 import * as myGlobals from '../../../../environments/config';
+import {NGXLogger} from "ngx-logger";
 
 declare const jQuery: any;
 
@@ -47,7 +48,7 @@ export class SchemeCreateComponent {
 
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
-              private http: HttpClient, private userService: UserService) {
+              private http: HttpClient, private userService: UserService, private logger: NGXLogger) {
 
 
     if (!userService.user) {
@@ -58,7 +59,7 @@ export class SchemeCreateComponent {
     // 通过 parent 属性获得父组件，通过父组件的paramMap获得参数
     this.activatedRoute.parent.paramMap.subscribe(paramMap => {
       this.resourceName = paramMap['params'].param;
-      console.log('this.param = ' + this.resourceName);
+      this.logger.debug('this.param = ' + this.resourceName);
     });
 
 
@@ -80,8 +81,8 @@ export class SchemeCreateComponent {
 
   private beforeSubmit(formData, form, options) {
 
-    console.log('form = ', form);
-    console.log('options = ', options);
+    this.logger.debug('form = ', form);
+    this.logger.debug('options = ', options);
 
     const regionArr = [];
 
@@ -121,7 +122,7 @@ export class SchemeCreateComponent {
       regionArr.push('RU');
     }
 
-    console.log('regionArr = ', regionArr);
+    this.logger.debug('regionArr = ', regionArr);
 
     const origin = {
       name: "openRegion",
@@ -159,12 +160,12 @@ export class SchemeCreateComponent {
     };
 
     formData.splice(0, 0, resourceName);
-    console.log(formData);
+    this.logger.debug(formData);
 
   }
 
   private success(response) {
-    console.log('res = ', response);
+    this.logger.debug('res = ', response);
     if (response.success) {
       this.router.navigate(['/scheme-main', this.resourceName]);
       swal({
@@ -188,7 +189,7 @@ export class SchemeCreateComponent {
   }
 
   private error(error) {
-    console.log(error);
+    this.logger.debug(error);
 
     swal({
       position: 'center',

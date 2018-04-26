@@ -10,6 +10,7 @@ import {UserService} from "../../../services/user.service";
 
 import * as myGlobals from '../../../../environments/config';
 import {Device} from "../../../model/Device";
+import {NGXLogger} from "ngx-logger";
 
 declare const jQuery: any;
 
@@ -41,7 +42,7 @@ export class SchemeModifyComponent {
 
 
   constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService, private router: Router,
-              private userService: UserService) {
+              private userService: UserService, private logger: NGXLogger) {
 
     if (!userService.user) {
       this.router.navigate(['/sign-in']);
@@ -96,7 +97,7 @@ export class SchemeModifyComponent {
         }
       })
       .catch(error => {
-        console.log(error);
+        this.logger.debug(error);
       });
 
     this.fileSelectList.push(0);
@@ -104,7 +105,7 @@ export class SchemeModifyComponent {
 
 
   private submitForm() {
-    console.log('submitForm()');
+    this.logger.debug('submitForm()');
     const options = {
       url: this.url + "/api/app/updateInfo",           // 默认是form的action，如果声明，则会覆盖
       type: 'POST',                                          // 默认是form的method，如果声明，则会覆盖
@@ -118,8 +119,8 @@ export class SchemeModifyComponent {
 
   private beforeSubmit(formData, form, options) {
 
-    console.log('form = ', form);
-    console.log('options = ', options);
+    this.logger.debug('form = ', form);
+    this.logger.debug('options = ', options);
 
     const regionArr = [];
 
@@ -159,7 +160,7 @@ export class SchemeModifyComponent {
       regionArr.push('RU');
     }
 
-    console.log('regionArr = ', regionArr);
+    this.logger.debug('regionArr = ', regionArr);
 
     const origin = {
       name: "openRegion",
@@ -212,14 +213,14 @@ export class SchemeModifyComponent {
     formData.splice(0, 0, beta);
 
 
-    console.log(formData);
+    this.logger.debug(formData);
     // 可以校验输入参数
     return true;
 
   }
 
   private success(response) {
-    console.log(response);
+    this.logger.debug(response);
     if (response.success) {
       this.router.navigate(['/scheme-main', this.selectedScheme.resourceName]);
       swal({
@@ -243,7 +244,7 @@ export class SchemeModifyComponent {
   }
 
   private error(error) {
-    console.log(error);
+    this.logger.debug(error);
 
     swal({
       position: 'center',

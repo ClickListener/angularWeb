@@ -9,6 +9,7 @@ import {ErrorService} from "./error.service";
 import {toPromise} from "rxjs/operator/toPromise";
 import {UserService} from "./user.service";
 import swal from "sweetalert2";
+import {NGXLogger} from "ngx-logger";
 
 @Injectable()
 export class CompanyService {
@@ -266,11 +267,11 @@ export class CompanyService {
 
   url = myGlobals.url;
 
-  constructor(private http: HttpClient, private errorService: ErrorService, private userService: UserService) {
+  constructor(private http: HttpClient, private errorService: ErrorService,
+              private userService: UserService, private logger: NGXLogger) {
   }
 
   private static handleError(error: any): Promise<any> {
-    console.log(error); // for demo purposes only
     if (error.status === 0) {
       swal({
         position: 'center',
@@ -311,7 +312,7 @@ export class CompanyService {
 
   reviewCompany(companyInfo: any): Promise<any> {
 
-    console.log("companyInfo = " + JSON.stringify(companyInfo));
+    this.logger.debug("companyInfo = " + JSON.stringify(companyInfo));
 
     const url = this.url + "/api/company/reviewCompany";
 
@@ -322,7 +323,7 @@ export class CompanyService {
       })
     }).toPromise()
       .then(async res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res['success']) {
 
         } else {
@@ -361,7 +362,7 @@ export class CompanyService {
    * @returns {Promise<any>}
    */
   findCompany(companyInfo: any): Promise<any> {
-    console.log("companyInfo = " + JSON.stringify(companyInfo));
+    this.logger.debug("companyInfo = " + JSON.stringify(companyInfo));
 
     const url = this.url + "/api/company/findCompany";
 
@@ -377,7 +378,7 @@ export class CompanyService {
       }
     }).toPromise()
       .then(async res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res['success']) {
 
         } else {
@@ -414,7 +415,7 @@ export class CompanyService {
    */
   deleteCompany(companyInfo: any): Promise<any> {
 
-    console.log("companyInfo = " + JSON.stringify(companyInfo));
+    this.logger.debug("companyInfo = " + JSON.stringify(companyInfo));
 
     const url = this.url + "/api/company/deleteCompany";
 
@@ -442,7 +443,7 @@ export class CompanyService {
    * @returns {Promise<any>}
    */
   inviteUserToGroup(invitedUser: any): Promise<any> {
-    console.log("invitedUser = " + JSON.stringify(invitedUser));
+    this.logger.debug("invitedUser = " + JSON.stringify(invitedUser));
 
     const url = this.url + "/api/company/invite";
 
@@ -454,7 +455,7 @@ export class CompanyService {
       params: invitedUser
     }).toPromise()
       .then(async res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res['success']) {
 
         } else {
@@ -489,7 +490,7 @@ export class CompanyService {
 
   getCompanyList(userInfo: any): Promise<any> {
 
-    console.log(userInfo);
+    this.logger.debug(userInfo);
 
     const url = this.url + "/api/company/getCompanyList";
 
@@ -504,7 +505,7 @@ export class CompanyService {
       }
     }).toPromise()
       .then(async res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res['success']) {
 
         } else {
@@ -539,7 +540,7 @@ export class CompanyService {
 
   removeCompanyId(userInfo: any): Promise<any> {
 
-    console.log('userInfo = ', userInfo);
+    this.logger.debug('userInfo = ', userInfo);
 
     const url = this.url + "/api/compnay/removeCompanyId";
 
@@ -551,7 +552,7 @@ export class CompanyService {
       params: userInfo
     }).toPromise()
       .then(async res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res['success']) {
 
         } else {
@@ -588,7 +589,7 @@ export class CompanyService {
 
   checkCompanyName(companyInfo: any): Promise<any> {
 
-    console.log('companyInfo = ', companyInfo);
+    this.logger.debug('companyInfo = ', companyInfo);
 
     const url = this.url + "/api/company/compareCompany";
 
@@ -600,7 +601,7 @@ export class CompanyService {
       params: companyInfo
     }).toPromise()
       .then(async res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res['success']) {
 
         } else {
@@ -635,7 +636,7 @@ export class CompanyService {
   searchCompany(companyInfo: any): Promise<any> {
 
 
-    console.log('companyInfo = ', companyInfo);
+    this.logger.debug('companyInfo = ', companyInfo);
 
     const url = this.url + "/api/company/find";
 
@@ -646,7 +647,7 @@ export class CompanyService {
       }
     }).toPromise()
       .then(async res => {
-        console.log(res);
+        this.logger.debug(res);
 
         if (res['success']) {
 

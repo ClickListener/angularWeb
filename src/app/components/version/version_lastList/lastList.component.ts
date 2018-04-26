@@ -6,6 +6,7 @@ import {SchemeService} from "../../../services/scheme.service";
 import {UserService} from "../../../services/user.service";
 import {NavigationEnd, Router} from "@angular/router";
 import {version} from "punycode";
+import {NGXLogger} from "ngx-logger";
 
 @Component({
   templateUrl: './lastList.component.html',
@@ -59,7 +60,7 @@ export class LastListComponent {
 
   loading = true;
   constructor(private schemeService: SchemeService, private userService: UserService,
-              private router: Router) {
+              private router: Router, private logger: NGXLogger) {
 
 
     router.events.filter(event => event instanceof NavigationEnd)
@@ -81,10 +82,10 @@ export class LastListComponent {
 
       schemeService.queryScheme(fileInfo)
         .then(res => {
-          console.log(res);
+          this.logger.debug(res);
           if (res.success) {
             const lastVersion = this.findLastVersionScheme(res.data);
-            console.log('lastVersion = ', lastVersion);
+            this.logger.debug('lastVersion = ', lastVersion);
             if (lastVersion) {
               if (lastVersion.resourceName === 'NativeSDK') {
                 if(lastVersion.platform === 'android') {
@@ -122,7 +123,7 @@ export class LastListComponent {
 
         })
         .catch(error => {
-          console.log('error', error);
+          this.logger.debug('error', error);
         });
     });
 
@@ -133,7 +134,7 @@ export class LastListComponent {
   findLastVersionScheme(schemeList: any) {
 
     if (schemeList.length !== 0) {
-      console.log(schemeList);
+      this.logger.debug(schemeList);
 
       schemeList.sort( (m, n) => {
 
@@ -145,7 +146,7 @@ export class LastListComponent {
 
       });
 
-      console.log(schemeList);
+      this.logger.debug(schemeList);
 
       return schemeList[0];
     }

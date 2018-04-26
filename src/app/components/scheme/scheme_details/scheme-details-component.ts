@@ -9,6 +9,7 @@ import {UserService} from "../../../services/user.service";
 import {User} from "../../../model/User";
 
 import * as myGlobals from '../../../../environments/config';
+import {NGXLogger} from "ngx-logger";
 
 declare const jQuery: any;
 
@@ -30,7 +31,7 @@ export class SchemeDetailsComponent {
 
 
   constructor(private activatedRoute: ActivatedRoute, private schemeService: SchemeService,
-              private userService: UserService, private router: Router) {
+              private userService: UserService, private router: Router, private logger: NGXLogger) {
 
     this.user = userService.user;
     this.token = userService.token.token;
@@ -50,13 +51,13 @@ export class SchemeDetailsComponent {
     };
     schemeService.findFileInfo(fileInfo)
       .then(res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res.success) {
           this.schemeSelected = res.data;
         }
       })
       .catch(error => {
-        console.log(error);
+        this.logger.debug(error);
       });
 
 
@@ -98,7 +99,7 @@ export class SchemeDetailsComponent {
           }
         })
         .catch(error => {
-          console.log('error = ' + error.toString());
+          this.logger.debug('error = ' + error.toString());
         });
     }).catch(swal.noop);
   }

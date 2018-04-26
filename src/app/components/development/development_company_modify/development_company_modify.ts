@@ -9,6 +9,7 @@ import {UserService} from "../../../services/user.service";
 import * as myGlobals from '../../../../environments/config';
 import {Location} from "@angular/common";
 import swal from "sweetalert2";
+import {NGXLogger} from "ngx-logger";
 
 declare const jQuery: any;
 
@@ -32,7 +33,7 @@ export class DevelopmentCompanyModifyComponent {
   buttonDisable = false;  // 提交按钮状态
 
   constructor(private activateRoute: ActivatedRoute, private companyService: CompanyService, private userService: UserService,
-              private _location: Location, private router: Router) {
+              private _location: Location, private router: Router, private logger: NGXLogger) {
 
 
     if (!userService.user) {
@@ -43,7 +44,7 @@ export class DevelopmentCompanyModifyComponent {
     activateRoute.paramMap.subscribe(paramMap => {
       this.companyId = paramMap['params'].param;
 
-      console.log('companyId = ', this.companyId);
+      this.logger.debug('companyId = ', this.companyId);
     });
 
 
@@ -58,13 +59,13 @@ export class DevelopmentCompanyModifyComponent {
 
     companyService.findCompany(companyInfo)
       .then(res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res.success) {
           this.companyInfo = res.data;
         }
       })
       .catch(error => {
-        console.log(error);
+        this.logger.debug(error);
       });
 
   }
@@ -134,7 +135,7 @@ export class DevelopmentCompanyModifyComponent {
 
     formData.splice(0, 0, userId);
 
-    console.log(formData);
+    this.logger.debug(formData);
 
     // 可以校验输入参数
   }
@@ -184,22 +185,22 @@ export class DevelopmentCompanyModifyComponent {
 
     const reader = new FileReader();
 
-    reader.onloadstart = function (e) {
-      console.log("开始读取....");
+    reader.onloadstart =  (e) => {
+      this.logger.debug("开始读取....");
     };
 
-    reader.onprogress = function (e) {
-      console.log("正在读取中....");
+    reader.onprogress =  (e) => {
+      this.logger.debug("正在读取中....");
     };
 
-    reader.onabort = function (e) {
-      console.log("中断读取....");
+    reader.onabort =  (e) => {
+      this.logger.debug("中断读取....");
     };
-    reader.onerror = function (e) {
-      console.log("读取异常....");
+    reader.onerror =  (e) => {
+      this.logger.debug("读取异常....");
     };
-    reader.onload = function (e) {
-      console.log("成功读取....");
+    reader.onload =  (e) => {
+      this.logger.debug("成功读取....");
 
       const img = document.getElementById("preview");
       img['src'] = e.target['result'];

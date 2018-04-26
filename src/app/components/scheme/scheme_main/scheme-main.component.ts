@@ -7,6 +7,7 @@ import {Location} from "@angular/common";
 import {SchemeService} from "../../../services/scheme.service";
 import swal from "sweetalert2";
 import {UserService} from "../../../services/user.service";
+import {NGXLogger} from "ngx-logger";
 
 
 
@@ -27,11 +28,12 @@ export class SchemeMainComponent {
 
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
-              private _location: Location, private schemeService: SchemeService, private userService: UserService) {
+              private _location: Location, private schemeService: SchemeService,
+              private userService: UserService, private logger: NGXLogger) {
 
 
     activatedRoute.paramMap.subscribe( paramMap => {
-      console.log('this.param = ' + paramMap['params'].param);
+      this.logger.debug('this.param = ' + paramMap['params'].param);
 
       this.param = paramMap['params'].param;
     })
@@ -44,7 +46,7 @@ export class SchemeMainComponent {
           route = route.firstChild;
         }
         this.schemeID = route.snapshot.params.schemeID;
-        console.log('schemeID = ', this.schemeID);
+        this.logger.debug('schemeID = ', this.schemeID);
 
         return route;
       })
@@ -92,7 +94,7 @@ export class SchemeMainComponent {
       this.schemeService.findFileInfo(fileInfo)
         .then(async res => {
 
-          console.log(res);
+          this.logger.debug(res);
           if (res.success) {
             const schemeSelected = res.data;
             const schemeInfo = {
@@ -115,14 +117,14 @@ export class SchemeMainComponent {
                 }
               })
               .catch(error => {
-                console.log('ManagerComponent--error = ' + JSON.stringify(error));
+                this.logger.debug('ManagerComponent--error = ' + JSON.stringify(error));
               });
           }
 
 
         })
         .catch(error => {
-          console.log(error);
+          this.logger.debug(error);
         });
 
 

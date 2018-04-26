@@ -20,6 +20,7 @@ import swal from "sweetalert2";
 import {NavigationEnd, Router} from "@angular/router";
 
 import * as CryptoJS from 'crypto-js';
+import {NGXLogger} from "ngx-logger";
 
 @Injectable()
 export class UserService {
@@ -28,20 +29,21 @@ export class UserService {
   url = myGlobals.url;
 
 
-  constructor(private http: HttpClient, private _cookieService: CookieService, private router: Router) {
-    console.log('UserService--------constructor');
+  constructor(private http: HttpClient, private _cookieService: CookieService,
+              private router: Router, private logger: NGXLogger) {
+    this.logger.debug('UserService--------constructor');
     // this.user = JSON.parse(sessionStorage.getItem('user'));
     // this.token = JSON.parse(sessionStorage.getItem('token'));
 
-    console.log('cookie-user = ', this._cookieService.get('user'));
-    console.log('cookie-token = ', this._cookieService.get('token'));
+    this.logger.debug('cookie-user = ', this._cookieService.get('user'));
+    this.logger.debug('cookie-token = ', this._cookieService.get('token'));
 
     if (this._cookieService.get('user') && this._cookieService.get('token')) {
       this.user = JSON.parse(this._cookieService.get('user'));
       this.token = JSON.parse(this._cookieService.get('token'));
     }
 
-    console.log('UserService--------user = ', this.user);
+    this.logger.debug('UserService--------user = ', this.user);
 
 
     // 判断标签页是否激活
@@ -53,7 +55,7 @@ export class UserService {
     const onVisibilityChange = () => {
       if (!document[hiddenProperty]) {
 
-        console.log('页面激活');
+        this.logger.debug('页面激活');
 
         // 当本地用户不存在，但是cookie中有User时
         if (!this.user && this._cookieService.get('user')) {
@@ -108,7 +110,7 @@ export class UserService {
         }
 
       } else {
-        console.log('页面非激活');
+        this.logger.debug('页面非激活');
       }
     };
     document.addEventListener(visibilityChangeEvent, onVisibilityChange);
@@ -116,7 +118,7 @@ export class UserService {
     this.router.events
       .filter(event => event instanceof NavigationEnd)
       .subscribe(e => {
-        console.log('prev:', e['url']);
+        this.logger.debug('prev:', e['url']);
         this.preUrl = e['url'];
       });
 
@@ -137,8 +139,6 @@ export class UserService {
 
 
   private static handleError(error: any): Promise<any> {
-    console.log(error);// for demo purposes only
-
     if (error.status === 0) {
       swal({
         position: 'center',
@@ -159,7 +159,7 @@ export class UserService {
 
   getUserInfo(userInfo: any): Promise<any> {
 
-    console.log('userInfo = ', userInfo);
+    this.logger.debug('userInfo = ', userInfo);
 
     const url = this.url + "/api/user/userInfo";
     return this.http.get(url, {
@@ -204,7 +204,7 @@ export class UserService {
 
         }
 
-        console.log('user = ' + JSON.stringify(this.user));
+        this.logger.debug('user = ' + JSON.stringify(this.user));
 
         return res;
 
@@ -224,7 +224,7 @@ export class UserService {
       })
     }).toPromise()
       .then(res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res['success']) {
           this.resourceList = res['data'];
         } else {
@@ -242,7 +242,7 @@ export class UserService {
 
   changeValid(userInfo: any): Promise<any> {
 
-    console.log('userInfo = ' + JSON.stringify(userInfo));
+    this.logger.debug('userInfo = ' + JSON.stringify(userInfo));
 
     const url = this.url + "/api/user/changeValid";
 
@@ -253,7 +253,7 @@ export class UserService {
       })
     }).toPromise()
       .then(res => {
-        console.log(res);
+        this.logger.debug(res);
       })
       .catch(UserService.handleError);
   }
@@ -265,7 +265,7 @@ export class UserService {
 
   getUserAuth(userInfo: any):Promise<any> {
 
-    console.log('userInfo = ' + JSON.stringify(userInfo));
+    this.logger.debug('userInfo = ' + JSON.stringify(userInfo));
 
     const url =  this.url + "/api/auth/getUserAuth";
 
@@ -277,7 +277,7 @@ export class UserService {
       params: userInfo
     }).toPromise()
       .then(async res => {
-        console.log(res);
+        this.logger.debug(res);
 
         if (res['success']) {
 
@@ -318,7 +318,7 @@ export class UserService {
    */
   addUserAuth(perssionInfo: any): Promise<any> {
 
-    console.log("perssionInfo = " + JSON.stringify(perssionInfo));
+    this.logger.debug("perssionInfo = " + JSON.stringify(perssionInfo));
 
     const url = this.url + "/api/user/userAuth";
 
@@ -329,7 +329,7 @@ export class UserService {
       })
     }).toPromise()
       .then(async res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res['success']) {
 
         } else {
@@ -364,7 +364,7 @@ export class UserService {
 
   updateUser(userInfo: any): Promise<any> {
 
-    console.log('userInfo = ' + JSON.stringify(userInfo));
+    this.logger.debug('userInfo = ' + JSON.stringify(userInfo));
 
     if (userInfo.user.password) {
 
@@ -372,7 +372,7 @@ export class UserService {
     }
 
 
-    console.log('userInfo = ' + JSON.stringify(userInfo));
+    this.logger.debug('userInfo = ' + JSON.stringify(userInfo));
 
     const url = this.url + "/api/user/update";
 
@@ -383,7 +383,7 @@ export class UserService {
       })
     }).toPromise()
       .then(res => {
-        console.log(res);
+        this.logger.debug(res);
 
         if (res['success']) {
 
@@ -402,7 +402,7 @@ export class UserService {
    */
 
   getUserList(queryInfo): Promise<any> {
-    console.log(JSON.stringify(queryInfo));
+    this.logger.debug(JSON.stringify(queryInfo));
 
     const url = this.url + '/api/user/getUserList';
 
@@ -414,7 +414,7 @@ export class UserService {
       params: queryInfo
     }).toPromise()
       .then(async res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res['success']) {
 
         } else {
@@ -456,7 +456,7 @@ export class UserService {
    */
   getAdminList(queryInfo): Promise<any> {
 
-    console.log(JSON.stringify(queryInfo));
+    this.logger.debug(JSON.stringify(queryInfo));
 
     const url = this.url + '/api/user/getAdminList';
 
@@ -469,9 +469,9 @@ export class UserService {
     }).toPromise()
       .then(async res => {
 
-        console.log(res);
+        this.logger.debug(res);
 
-        console.log(res);
+        this.logger.debug(res);
         if (res['success']) {
 
         } else {
@@ -513,17 +513,17 @@ export class UserService {
    */
   signIn(userInfo: any): Promise<User> {
     const url = this.url + '/api/user/login';
-    console.log(JSON.stringify(userInfo));
+    this.logger.debug(JSON.stringify(userInfo));
 
     userInfo.password = this.md5Encrypt(userInfo.password);
 
-    console.log(JSON.stringify(userInfo));
+    this.logger.debug(JSON.stringify(userInfo));
 
     return this.http.post(url, JSON.stringify(userInfo), this.options)
       .toPromise()
       .then(async res => {
 
-        console.log(res);
+        this.logger.debug(res);
 
         if (res['success']) {
           this.user = res['data'];
@@ -549,21 +549,21 @@ export class UserService {
   signUp(userInfo: any): Promise<any> {
     const url = this.url + '/api/user/add';
 
-    console.log(JSON.stringify(userInfo));
+    this.logger.debug(JSON.stringify(userInfo));
 
 
     userInfo.addUser.password = this.md5Encrypt(userInfo.addUser.password);
 
-    console.log(JSON.stringify(userInfo));
+    this.logger.debug(JSON.stringify(userInfo));
 
     return this.http.post(url, JSON.stringify(userInfo), this.options)
       .toPromise()
       .then(async res => {
-        console.log(res);
+        this.logger.debug(res);
 
         if (res['success']) {
 
-          console.log(res);
+          this.logger.debug(res);
 
           return res;
 
@@ -580,7 +580,7 @@ export class UserService {
 
   forgotPassword(userInfo: any): Promise<any> {
 
-    console.log('userInfo = ', userInfo);
+    this.logger.debug('userInfo = ', userInfo);
 
 
     const url = myGlobals.url + '/api/user/forgotPassword';
@@ -592,7 +592,7 @@ export class UserService {
       params: userInfo
     }).toPromise()
       .then(res => {
-        console.log(res);
+        this.logger.debug(res);
 
         if (res['success']) {
 
@@ -610,7 +610,7 @@ export class UserService {
    */
   signOut() {
 
-    console.log("signOut()");
+    this.logger.debug("signOut()");
     //
     // sessionStorage.removeItem('user');
     // sessionStorage.removeItem('token');
@@ -630,7 +630,7 @@ export class UserService {
    */
   signOutWithoutNavigate() {
 
-    console.log("signOut()");
+    this.logger.debug("signOut()");
     //
     // sessionStorage.removeItem('user');
     // sessionStorage.removeItem('token');
@@ -650,7 +650,7 @@ export class UserService {
    */
   private getAccessToken(password: string): Promise<any> {
 
-    console.log('user = ', this.user);
+    this.logger.debug('user = ', this.user);
 
     const timeStamp = new Date().getTime().toString().substr(0, 10);
 
@@ -670,12 +670,12 @@ export class UserService {
 
     const url = this.url + '/api/token/getAccessToken';
 
-    console.log(tokenInfo);
+    this.logger.debug(tokenInfo);
 
     return this.http.post(url, JSON.stringify(tokenInfo), this.options)
       .toPromise()
       .then(res => {
-        console.log(res);
+        this.logger.debug(res);
 
         if (res['success']) {
           this.token = res as Token;
@@ -726,7 +726,7 @@ export class UserService {
           expires: new Date(expires)
         });
 
-        console.log(this.token);
+        this.logger.debug(this.token);
         return res;
       })
       .catch(UserService.handleError);
@@ -735,7 +735,7 @@ export class UserService {
 
   deleteAdmin(adminInfo: any): Promise<any> {
 
-    console.log("adminInfo = ", adminInfo);
+    this.logger.debug("adminInfo = ", adminInfo);
 
     const url = myGlobals.url + '/api/user/deleteAdmin';
 
@@ -747,7 +747,7 @@ export class UserService {
       params: adminInfo
     }).toPromise()
       .then(async res => {
-        console.log(res);
+        this.logger.debug(res);
 
         if (res['success']) {
 
@@ -809,7 +809,7 @@ export class UserService {
 
   private hintError(res: any) {
 
-    let message = ''
+    let message = '';
 
     switch(res['code']) {
 

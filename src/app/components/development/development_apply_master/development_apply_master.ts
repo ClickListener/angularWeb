@@ -8,6 +8,7 @@ import swal from "sweetalert2";
 import {Router} from "@angular/router";
 
 import * as myGlobals from '../../../../environments/config';
+import {NGXLogger} from "ngx-logger";
 
 
 declare const jQuery: any;
@@ -38,7 +39,8 @@ export class DevelopmentApplyMasterComponent {
 
 
 
-  constructor(private userService: UserService, private companyService: CompanyService, private router: Router) {
+  constructor(private userService: UserService, private companyService: CompanyService,
+              private router: Router, private logger: NGXLogger) {
 
     if (!userService.user) {
       this.router.navigate(['/sign-in']);
@@ -48,7 +50,7 @@ export class DevelopmentApplyMasterComponent {
 
     this.countryList = companyService.countryList;
 
-    console.log('------- = ', this.userService.user);
+    this.logger.debug('------- = ', this.userService.user);
 
   }
 
@@ -113,7 +115,7 @@ export class DevelopmentApplyMasterComponent {
     };
 
     formData.splice(0, 0, userId);
-    console.log(formData);
+    this.logger.debug(formData);
 
     // 可以校验输入参数
   }
@@ -161,22 +163,22 @@ export class DevelopmentApplyMasterComponent {
 
     const reader = new FileReader();
 
-    reader.onloadstart = function (e) {
-      console.log("开始读取....");
+    reader.onloadstart =  (e) => {
+      this.logger.debug("开始读取....");
     };
 
-    reader.onprogress = function (e) {
-      console.log("正在读取中....");
+    reader.onprogress =  (e) => {
+      this.logger.debug("正在读取中....");
     };
 
-    reader.onabort = function (e) {
-      console.log("中断读取....");
+    reader.onabort =  (e) => {
+      this.logger.debug("中断读取....");
     };
-    reader.onerror = function (e) {
-      console.log("读取异常....");
+    reader.onerror =  (e) => {
+      this.logger.debug("读取异常....");
     };
-    reader.onload = function (e) {
-      console.log("成功读取....");
+    reader.onload =  (e) => {
+      this.logger.debug("成功读取....");
 
       const img = document.getElementById("preview");
       img['src'] = e.target['result'];

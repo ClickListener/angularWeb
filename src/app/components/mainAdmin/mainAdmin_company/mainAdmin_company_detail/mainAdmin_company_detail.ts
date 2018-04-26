@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {CompanyService} from "../../../../services/company.service";
 import {UserService} from "../../../../services/user.service";
 import swal from "sweetalert2";
+import {NGXLogger} from "ngx-logger";
 
 @Component({
   templateUrl: './mainAdmin_company_detail.html',
@@ -21,7 +22,7 @@ export class MainAdminCompanyDetailComponent {
   companyInfo: any;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
-              private companyService: CompanyService, private userService: UserService) {
+              private companyService: CompanyService, private userService: UserService, private logger: NGXLogger) {
 
 
     if (userService.user && userService.user.type > 2) {
@@ -37,7 +38,7 @@ export class MainAdminCompanyDetailComponent {
 
     activatedRoute.parent.paramMap.subscribe(paramMap => {
       this.cid = paramMap['params'].param;
-      console.log('param = ', this.cid);
+      this.logger.debug('param = ', this.cid);
 
       this.countryList = companyService.countryList;
 
@@ -49,7 +50,7 @@ export class MainAdminCompanyDetailComponent {
 
       companyService.findCompany(companyInfo)
         .then(res => {
-          console.log(res);
+          this.logger.debug(res);
 
           this.companyInfo = res.data;
 
@@ -75,11 +76,11 @@ export class MainAdminCompanyDetailComponent {
               this.companyInfo.mDeveloper = mDeveloper;
             })
             .catch(error => {
-              console.log(error);
+              this.logger.debug(error);
             });
         })
         .catch(error => {
-          console.log('error = ', error);
+          this.logger.debug('error = ', error);
         });
     });
   }
@@ -95,7 +96,7 @@ export class MainAdminCompanyDetailComponent {
     };
     this.companyService.reviewCompany(companyInfo)
       .then(res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res.success) {
           swal({
             position: 'center',
@@ -109,7 +110,7 @@ export class MainAdminCompanyDetailComponent {
         }
       })
       .catch(error => {
-        console.log(error);
+        this.logger.debug(error);
       });
   }
 }

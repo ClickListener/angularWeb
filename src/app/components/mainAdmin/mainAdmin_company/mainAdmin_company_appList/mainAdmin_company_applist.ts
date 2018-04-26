@@ -7,6 +7,7 @@ import {UserService} from "../../../../services/user.service";
 import {AppService} from "../../../../services/app.service";
 
 import * as myGlobals from '../../../../../environments/config';
+import {NGXLogger} from "ngx-logger";
 @Component({
   templateUrl: './mainAdmin_company_applist.html',
   styleUrls: ['./mainAdmin_company_applist.css']
@@ -19,7 +20,7 @@ export class MainAdminCompanyApplistComponent {
   url = myGlobals.url;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
-              private userService: UserService, private appService: AppService) {
+              private userService: UserService, private appService: AppService, private logger: NGXLogger) {
 
     if (userService.user && userService.user.type > 2) {
       router.navigate(['/']);
@@ -42,7 +43,7 @@ export class MainAdminCompanyApplistComponent {
 
       appService.findAllAppInfo(appInfo)
         .then(res => {
-          console.log(res);
+          this.logger.debug(res);
           if (res.success) {
             this.appList = res.data;
             this.appList = this.appList.reverse();
@@ -51,7 +52,7 @@ export class MainAdminCompanyApplistComponent {
 
         })
         .catch(error => {
-          console.log(error);
+          this.logger.debug(error);
         });
     });
 

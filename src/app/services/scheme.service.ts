@@ -8,6 +8,7 @@ import * as myGlobals from '../../environments/config';
 import {ErrorService} from "./error.service";
 import {UserService} from "./user.service";
 import swal from "sweetalert2";
+import {NGXLogger} from "ngx-logger";
 
 @Injectable()
 export class SchemeService {
@@ -19,7 +20,8 @@ export class SchemeService {
 
   url = myGlobals.url;
 
-  constructor(private http: HttpClient, private errorService: ErrorService, private userService: UserService) {
+  constructor(private http: HttpClient, private errorService: ErrorService,
+              private userService: UserService, private logger: NGXLogger) {
   }
 
   get schemeID(): string {
@@ -31,7 +33,7 @@ export class SchemeService {
   }
 
   private static handleError(error: any): Promise<any> {
-    console.log(error); // for demo purposes only
+    this.logger.debug(error); // for demo purposes only
     if (error.status === 0) {
       swal({
         position: 'center',
@@ -54,7 +56,7 @@ export class SchemeService {
    */
   queryScheme(fileInfo: any): Promise<any> {
 
-    console.log('fileInfo = ', fileInfo);
+    this.logger.debug('fileInfo = ', fileInfo);
 
     const url = this.url + '/api/app/findFileList';
 
@@ -67,7 +69,7 @@ export class SchemeService {
     })
       .toPromise()
       .then(async res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res['success']) {
 
         } else {
@@ -112,7 +114,7 @@ export class SchemeService {
    */
   findFileInfo(fileInfo: any): Promise<any> {
 
-    console.log('fileInfo = ', fileInfo);
+    this.logger.debug('fileInfo = ', fileInfo);
 
     const url = this.url + "/api/app/findFileInfo";
 
@@ -124,7 +126,7 @@ export class SchemeService {
       params: fileInfo
     }).toPromise()
       .then(async res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res['success']) {
 
         } else {
@@ -165,7 +167,7 @@ export class SchemeService {
    */
   deleteScheme(schemeInfo: any): Promise<any> {
 
-    console.log('schemeInfo', schemeInfo);
+    this.logger.debug('schemeInfo', schemeInfo);
 
     const url = this.url + '/api/app/delete';
 
@@ -177,7 +179,7 @@ export class SchemeService {
       params: schemeInfo
     }).toPromise()
       .then(async res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res['success']) {
 
         } else {
@@ -212,7 +214,7 @@ export class SchemeService {
 
   deleteFile(body: any): Promise<any> {
 
-    console.log('body = ', body);
+    this.logger.debug('body = ', body);
 
     const url = this.url + '/api/app/deleteFile';
 
@@ -223,7 +225,7 @@ export class SchemeService {
       })
     }).toPromise()
       .then(async res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res['success']) {
 
         } else {

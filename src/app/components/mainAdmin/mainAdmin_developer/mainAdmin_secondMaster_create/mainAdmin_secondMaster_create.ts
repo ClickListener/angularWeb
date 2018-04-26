@@ -6,6 +6,7 @@ import {UserService} from "../../../../services/user.service";
 import {LowerCasePipe} from "@angular/common";
 import swal from "sweetalert2";
 import {Router} from "@angular/router";
+import {NGXLogger} from "ngx-logger";
 
 @Component({
   templateUrl: 'mainAdmin_secondMaster_create.html',
@@ -33,10 +34,11 @@ export class MainAdminSecondMasterCreateComponent {
   EU = true;
   RU = true;
 
-  constructor(private userService: UserService, private lowerCasePipe: LowerCasePipe, private router: Router) {}
+  constructor(private userService: UserService, private lowerCasePipe: LowerCasePipe,
+              private router: Router, private logger: NGXLogger) {}
 
   createNewSecondMaster() {
-    console.log('createNewSecondMaster()');
+    this.logger.debug('createNewSecondMaster()');
 
     const regionArr = [];
 
@@ -90,7 +92,7 @@ export class MainAdminSecondMasterCreateComponent {
 
     this.userService.signUp(signUp_info)
       .then(res => {
-        console.log(res);
+        this.logger.debug(res);
 
         if (res.success) {
           this.router.navigate(['/secondMaster/secondMaster-manager']);
@@ -116,7 +118,7 @@ export class MainAdminSecondMasterCreateComponent {
         }
       })
       .catch(error => {
-        console.log(error);
+        this.logger.debug(error);
       });
   }
 }

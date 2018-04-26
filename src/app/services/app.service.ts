@@ -9,6 +9,7 @@ import * as myGlobals from '../../environments/config';
 import {ErrorService} from "./error.service";
 import {UserService} from "./user.service";
 import swal from "sweetalert2";
+import {NGXLogger} from "ngx-logger";
 
 @Injectable()
 export class AppService {
@@ -18,11 +19,11 @@ export class AppService {
 
 
   constructor(private http: HttpClient, private errorService: ErrorService,
-              private userService: UserService) {
+              private userService: UserService, private logger: NGXLogger) {
   }
 
   private static handleError(error: any): Promise<any> {
-    console.log(error); // for demo purposes only
+
 
     if (error.status === 0) {
       swal({
@@ -43,7 +44,7 @@ export class AppService {
 
   findUerApp(appInfo: any): Promise<any> {
 
-    console.log("appInfo: " + JSON.stringify(appInfo));
+    this.logger.debug("appInfo: " + JSON.stringify(appInfo));
 
     const url = this.url + "/api/useApp/findUserApp";
 
@@ -55,7 +56,7 @@ export class AppService {
       params: appInfo
     }).toPromise()
       .then(async res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res['success']) {
 
         } else {
@@ -95,7 +96,7 @@ export class AppService {
    */
 
   deleteUserApp(appInfo: any): Promise<any> {
-    console.log("appInfo = " + JSON.stringify(appInfo));
+    this.logger.debug("appInfo = " + JSON.stringify(appInfo));
 
     const url = this.url + "/api/useApp/deleteUserApp";
 
@@ -111,7 +112,7 @@ export class AppService {
       }
     }).toPromise()
       .then(async res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res['success']) {
 
         } else {
@@ -148,7 +149,7 @@ export class AppService {
 
 
   findAllAppInfo(appInfo: any): Promise<any> {
-    console.log('appInfo = ' + JSON.stringify(appInfo));
+    this.logger.debug('appInfo = ' + JSON.stringify(appInfo));
 
     const url = this.url + "/api/useApp/getAllAppList";
 
@@ -164,7 +165,7 @@ export class AppService {
       }
     }).toPromise()
       .then(async res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res['success']) {
 
         } else {
@@ -204,7 +205,7 @@ export class AppService {
 
   downloadLicense(appInfo: any): Promise<any> {
 
-    console.log('appInfo = ', appInfo);
+    this.logger.debug('appInfo = ', appInfo);
 
 
     const url = this.url + "/api/license/" + appInfo.appId;
@@ -220,8 +221,8 @@ export class AppService {
 
     }).toPromise()
       .then(res => {
-        console.log('res = ' + res.headers.get('Date'));
-        console.log('res = ' + JSON.stringify(res));
+        this.logger.debug('res = ' + res.headers.get('Date'));
+        this.logger.debug('res = ' + JSON.stringify(res));
 
         if (res.headers.get('success') === '0') {
           return JSON.parse(res.body);

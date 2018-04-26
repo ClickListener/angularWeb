@@ -4,6 +4,7 @@
 import {Component} from "@angular/core";
 import {UserService} from "../../../../services/user.service";
 import swal from "sweetalert2";
+import {NGXLogger} from "ngx-logger";
 
 @Component({
   templateUrl: './mainAdmin_developer_manager.html',
@@ -17,7 +18,7 @@ export class MainAdminDeveloperManagerComponent {
 
   user: any;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private logger: NGXLogger) {
 
     this.user = userService.user;
 
@@ -29,7 +30,7 @@ export class MainAdminDeveloperManagerComponent {
 
     userService.getUserList(queryDeveloperList)
       .then(res => {
-        console.log(res);
+        this.logger.debug(res);
 
         if (res.success) {
           this.developerList = res.data;
@@ -55,11 +56,11 @@ export class MainAdminDeveloperManagerComponent {
 
               userService.getUserAuth(user_Info)
                 .then(response => {
-                  console.log('res = ', response);
+                  this.logger.debug('res = ', response);
                   this.parsePermission(response.data, developer);
                 })
                 .catch(error => {
-                  console.log('error = ', error);
+                  this.logger.debug('error = ', error);
                 });
             }
 
@@ -68,7 +69,7 @@ export class MainAdminDeveloperManagerComponent {
 
       })
       .catch(error => {
-        console.log(error);
+        this.logger.debug(error);
       });
 
 
@@ -78,28 +79,28 @@ export class MainAdminDeveloperManagerComponent {
 
   private parsePermission(permission: any, developer: any) {
 
-    console.log('permission = ', permission);
+    this.logger.debug('permission = ', permission);
     developer.beta = false;
 
 
     permission.forEach((item, index) => {
       if (item.resourceId === '5a6580ca5e149e1dfdf27962') {
         developer.beta = (item.action.indexOf('R') !== -1);
-        console.log('beta = ', developer.beta);
+        this.logger.debug('beta = ', developer.beta);
         return;
       }
 
     });
 
     developer.originalState = developer.beta;
-    console.log('beta = ', developer.beta);
-    console.log('originalState = ', developer.originalState);
+    this.logger.debug('beta = ', developer.beta);
+    this.logger.debug('originalState = ', developer.originalState);
   }
 
 
   updateBetaPermission(developer: any) {
 
-    console.log('developer=', developer);
+    this.logger.debug('developer=', developer);
 
     const permissionArr = [];
 
@@ -126,7 +127,7 @@ export class MainAdminDeveloperManagerComponent {
 
     this.userService.addUserAuth(permissionInfo)
       .then(res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res.success) {
 
           developer.originalState = developer.beta;
@@ -154,7 +155,7 @@ export class MainAdminDeveloperManagerComponent {
 
       })
       .catch(error => {
-        console.log(error);
+        this.logger.debug(error);
       });
   }
 }

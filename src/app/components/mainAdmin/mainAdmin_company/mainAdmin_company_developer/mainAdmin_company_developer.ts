@@ -5,6 +5,7 @@ import {Component} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../../../services/user.service";
 import swal from "sweetalert2";
+import {NGXLogger} from "ngx-logger";
 
 @Component({
   templateUrl: './mainAdmin_company_developer.html',
@@ -19,7 +20,8 @@ export class MainAdminCompanyDeveloperComponent {
   user: any;
 
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private userService: UserService) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute,
+              private userService: UserService, private logger: NGXLogger) {
 
 
     if (userService.user && userService.user.type > 2) {
@@ -61,11 +63,11 @@ export class MainAdminCompanyDeveloperComponent {
 
                 userService.getUserAuth(user_Info)
                   .then(response => {
-                    console.log('res = ', response);
+                    this.logger.debug('res = ', response);
                     this.parsePermission(response.data, developer);
                   })
                   .catch(error => {
-                    console.log('error = ', error);
+                    this.logger.debug('error = ', error);
                   });
               }
 
@@ -80,7 +82,7 @@ export class MainAdminCompanyDeveloperComponent {
 
   private parsePermission(permission: any, developer: any) {
 
-    console.log('permission = ', permission);
+    this.logger.debug('permission = ', permission);
     developer.beta = false;
 
 
@@ -94,8 +96,8 @@ export class MainAdminCompanyDeveloperComponent {
 
     developer.originalState = developer.beta;
 
-    console.log('beta = ', developer.beta);
-    console.log('originalState = ', developer.originalState);
+    this.logger.debug('beta = ', developer.beta);
+    this.logger.debug('originalState = ', developer.originalState);
 
 
   }
@@ -103,7 +105,7 @@ export class MainAdminCompanyDeveloperComponent {
 
   updateBetaPermission(developer: any) {
 
-    console.log('developer=', developer);
+    this.logger.debug('developer=', developer);
 
     const permissionArr = [];
 
@@ -130,7 +132,7 @@ export class MainAdminCompanyDeveloperComponent {
 
     this.userService.addUserAuth(permissionInfo)
       .then(res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res.success) {
 
           developer.originState = developer.beta;
@@ -158,7 +160,7 @@ export class MainAdminCompanyDeveloperComponent {
         }
       })
       .catch(error => {
-        console.log(error);
+        this.logger.debug(error);
       });
   }
 }

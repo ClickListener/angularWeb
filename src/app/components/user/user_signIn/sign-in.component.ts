@@ -8,6 +8,7 @@ import {User} from "../../../model/User";
 import {License} from "../../../model/License";
 import swal from "sweetalert2";
 import {LowerCasePipe} from "@angular/common";
+import {NGXLogger} from "ngx-logger";
 
 
 @Component({
@@ -19,7 +20,8 @@ import {LowerCasePipe} from "@angular/common";
 export class SignInComponent {
 
 
-  constructor(private userService: UserService, private router: Router, private lowerCasePipe: LowerCasePipe) {
+  constructor(private userService: UserService, private router: Router,
+              private lowerCasePipe: LowerCasePipe, private logger: NGXLogger) {
 
     this.user = userService.user;
 
@@ -50,7 +52,7 @@ export class SignInComponent {
       "password": this.password
     };
 
-    console.log('userInfo: ', userInfo);
+    this.logger.debug('userInfo: ', userInfo);
 
     this.userService.signIn(userInfo)
       .then((res) => {
@@ -69,7 +71,7 @@ export class SignInComponent {
           }).catch(swal.noop);
 
 
-          console.log('this.preUrl', this.preUrl);
+          this.logger.debug('this.preUrl', this.preUrl);
 
           if (this.preUrl && this.preUrl !== '/sign-up-confirm' && this.preUrl.indexOf('/reset-password') === -1) {
             this.router.navigate([this.preUrl]);
@@ -85,7 +87,7 @@ export class SignInComponent {
       .catch(error => {
 
         this.buttonDisable = false;
-        console.log("error = " + error.toString());
+        this.logger.debug("error = " + error.toString());
       });
   }
 }

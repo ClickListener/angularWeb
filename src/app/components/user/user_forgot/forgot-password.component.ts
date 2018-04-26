@@ -6,6 +6,7 @@ import {UserService} from "../../../services/user.service";
 import swal from "sweetalert2";
 import {LowerCasePipe} from "@angular/common";
 import {Router} from "@angular/router";
+import {NGXLogger} from "ngx-logger";
 
 @Component({
   templateUrl: './forgot-password.component.html',
@@ -16,7 +17,8 @@ export class ForgotPasswordComponent {
 
   email: string;
 
-  constructor(private userService: UserService, private lowerCasePipe: LowerCasePipe, private router: Router) {
+  constructor(private userService: UserService, private lowerCasePipe: LowerCasePipe,
+              private router: Router, private logger: NGXLogger) {
 
     if (userService.user) {
       userService.signOutWithoutNavigate();
@@ -59,7 +61,7 @@ export class ForgotPasswordComponent {
       })
       .catch(error => {
         this.buttonDisable = false;
-        console.log(error);
+        this.logger.debug(error);
       });
   }
 

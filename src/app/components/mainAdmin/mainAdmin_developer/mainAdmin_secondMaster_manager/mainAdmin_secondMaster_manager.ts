@@ -3,6 +3,7 @@
  */
 import {Component} from "@angular/core";
 import {UserService} from "../../../../services/user.service";
+import {NGXLogger} from "ngx-logger";
 
 @Component({
   templateUrl: './mainAdmin_secondMaster_manager.html',
@@ -15,7 +16,7 @@ export class MainAdminSecondMasterManagerComponent {
   adminList: any;
 
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private logger: NGXLogger) {
 
     const queryInfo = {
       userId: userService.user._id,
@@ -24,7 +25,7 @@ export class MainAdminSecondMasterManagerComponent {
 
     userService.getAdminList(queryInfo)
       .then(res => {
-        console.log(res);
+        this.logger.debug(res);
 
         if (res.success) {
           this.adminList = res.data;
@@ -32,7 +33,7 @@ export class MainAdminSecondMasterManagerComponent {
         }
       })
       .catch(error => {
-        console.log(error);
+        this.logger.debug(error);
       });
   }
 
@@ -46,7 +47,7 @@ export class MainAdminSecondMasterManagerComponent {
 
     this.userService.deleteAdmin(adminInfo)
       .then(async res => {
-        console.log(res);
+        this.logger.debug(res);
 
         if (res.success) {
           const queryInfo = {
@@ -59,12 +60,12 @@ export class MainAdminSecondMasterManagerComponent {
           if (response.success) {
             this.adminList = response.data;
             this.adminList = this.adminList.reverse();
-            console.log('adminList = ', this.adminList);
+            this.logger.debug('adminList = ', this.adminList);
           }
         }
       })
       .catch(error => {
-        console.log('error = ', error);
+        this.logger.debug('error = ', error);
       });
 
   }

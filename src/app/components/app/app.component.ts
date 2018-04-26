@@ -9,6 +9,7 @@ import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {isUndefined} from "util";
 import swal from "sweetalert2";
 import {Location} from "@angular/common";
+import {NGXLogger} from "ngx-logger";
 
 declare const jQuery: any;
 
@@ -26,11 +27,11 @@ export class AppComponent implements OnInit, DoCheck {
   private sideNav: any;
 
   constructor(private userService: UserService, private router: Router,
-              private _location: Location) {
+              private _location: Location, private logger: NGXLogger) {
 
     userService.getResourceList();
 
-    console.log('url ========', _location.path());
+    this.logger.debug('url ========', _location.path())
 
 
     if (userService.user && _location.path() !== '/sign-up-confirm'
@@ -52,6 +53,7 @@ export class AppComponent implements OnInit, DoCheck {
 
   ngDoCheck(): void {
     this.user = this.userService.user;
+
 
     if (this.user && this.user.companyId) {
       jQuery('#development_primary').attr('data-target', '#development_collapse');
@@ -80,14 +82,14 @@ export class AppComponent implements OnInit, DoCheck {
     this.user = this.userService.user;
 
 
-    console.log(this.user);
+    this.logger.debug(this.user);
 
     if (this.user) {
       jQuery('#development_primary').attr('data-target', '#development_collapse');
     }
 
 
-    console.log(jQuery('#development_primary').data('target'));
+    this.logger.debug(jQuery('#development_primary').data('target'));
 
   }
 
@@ -123,7 +125,8 @@ export class AppComponent implements OnInit, DoCheck {
   }
 
   signOut(): void {
-    console.log('signOut');
+
+    this.logger.debug('signOut');
     this.userService.signOut();
 
     this.router.navigate(['/']);

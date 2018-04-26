@@ -9,6 +9,7 @@ import swal from "sweetalert2";
 import * as myGlobals from '../../../../environments/config';
 import {CompanyService} from "../../../services/company.service";
 import {Router} from "@angular/router";
+import {NGXLogger} from "ngx-logger";
 @Component({
   templateUrl: './development_app_manager.html',
   styleUrls: ['./development_app_manager.css']
@@ -35,10 +36,10 @@ export class DevelopmentAppManagerComponent {
   connectionTimeout = false;
 
   constructor(private appService: AppService, private userService: UserService, private companyService: CompanyService,
-              private router: Router) {
+              private router: Router, private logger: NGXLogger) {
 
 
-    console.log('`.routerState = ', router.routerState);
+    logger.debug('`.routerState = ', router.routerState);
 
     if (!userService.user) {
       this.router.navigate(['/sign-in']);
@@ -119,7 +120,7 @@ export class DevelopmentAppManagerComponent {
         }
       })
       .catch(error => {
-        console.log(error);
+        this.logger.error(error);
         this.connectionTimeout = true;
       });
 
@@ -147,11 +148,6 @@ export class DevelopmentAppManagerComponent {
         this.edit_App = (item.action.indexOf('U') !== -1);
         this.delete_App = (item.action.indexOf('D') !== -1);
         this.checkLicenseData = (item.action.indexOf('R') !== -1);
-
-        console.log('create_App = ', this.create_App);
-        console.log('edit_App = ', this.edit_App);
-        console.log('delete_App = ', this.delete_App);
-        console.log('checkLicenseData = ', this.checkLicenseData);
 
         return;
       }
@@ -181,9 +177,8 @@ export class DevelopmentAppManagerComponent {
 
     this.appService.deleteUserApp(appInfo)
       .then(async res => {
-        console.log(res);
 
-        console.log(this.userService.user);
+        this.logger.debug(res);
 
         if (res.success) {
           const appAll = {
@@ -201,7 +196,7 @@ export class DevelopmentAppManagerComponent {
 
       })
       .catch(error => {
-        console.log(error);
+        this.logger.error(error);
       });
   }
 
@@ -216,7 +211,7 @@ export class DevelopmentAppManagerComponent {
     };
     this.appService.downloadLicense(userInfo)
       .then(res => {
-        console.log(res);
+        this.logger.debug(res);
 
         if (res.success) {
           swal({
@@ -245,7 +240,7 @@ export class DevelopmentAppManagerComponent {
         }
       })
       .catch(error => {
-        console.log(error);
+        this.logger.error(error);
       });
   }
 }

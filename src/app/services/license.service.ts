@@ -4,15 +4,20 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {UserService} from "./user.service";
 
 import * as myGlobals from '../../environments/config';
+import {NGXLogger} from "ngx-logger";
 
 @Injectable()
 export class LicenseService {
 
 
-  constructor(private http: HttpClient, private userService: UserService) {
-    console.log('LicenseService--------constructor');
+  constructor(private http: HttpClient, private userService: UserService, private logger: NGXLogger) {
+    this.logger.debug('LicenseService--------constructor');
     this.licenses = JSON.parse(sessionStorage.getItem('licenses'));
-    console.log('LicenseService--------licenses = ' + this.licenses);
+    this.logger.debug('LicenseService--------licenses = ' + this.licenses);
+  }
+
+  private static handleError(error: any): Promise<any> {
+    return Promise.reject(error);
   }
 
   private header = {
@@ -44,7 +49,7 @@ export class LicenseService {
       .toPromise()
       .then((res) => {
 
-        console.log(res);
+        this.logger.debug(res);
         if (res['success']) {
 
           this.licenses = this.sortLicenses(res['data'] as License[]);
@@ -78,7 +83,7 @@ export class LicenseService {
    * @returns {Promise<License[]>}
    */
   updateLicense(message: any): Promise<any> {
-    console.log('message = ' + JSON.stringify(message));
+    this.logger.debug('message = ' + JSON.stringify(message));
 
     const url = this.url + '/' + message.licenseId;
 
@@ -96,7 +101,7 @@ export class LicenseService {
    * @returns {Promise<License[]>}
    */
   deleteLicense(licenseID: string): Promise<any> {
-    console.log('licenseID = ' + licenseID);
+    this.logger.debug('licenseID = ' + licenseID);
 
     const url = this.url + '/del/' + licenseID;
 
@@ -111,7 +116,7 @@ export class LicenseService {
     })
       .toPromise()
       .then(res => {
-        console.log('res = ' + JSON.stringify(res));
+        this.logger.debug('res = ' + JSON.stringify(res));
         return res;
       })
       .catch(LicenseService.handleError);
@@ -131,8 +136,8 @@ export class LicenseService {
 
       .toPromise()
       .then(res => {
-        console.log('res = ' + res.headers.get('success'));
-        console.log('res = ' + JSON.stringify(res));
+        this.logger.debug('res = ' + res.headers.get('success'));
+        this.logger.debug('res = ' + JSON.stringify(res));
 
         if (res.headers.get('success') === '0') {
           return JSON.parse(res.body);
@@ -146,10 +151,7 @@ export class LicenseService {
   }
 
 
-  private static handleError(error: any): Promise<any> {
-    console.log('An error occurred', JSON.stringify(error)); // for demo purposes only
-    return Promise.reject(error);
-  }
+
 
 
   // 写文件

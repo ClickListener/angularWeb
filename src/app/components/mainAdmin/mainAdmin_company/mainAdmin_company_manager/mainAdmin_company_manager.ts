@@ -6,6 +6,7 @@ import {CompanyService} from "../../../../services/company.service";
 import {UserService} from "../../../../services/user.service";
 import swal from "sweetalert2";
 import {Router} from "@angular/router";
+import {NGXLogger} from "ngx-logger";
 
 @Component({
   templateUrl: './mainAdmin_company_manager.html',
@@ -18,7 +19,8 @@ export class MainAdminCompanyManagerComponent {
 
   searchCompanyName: string;
 
-  constructor(private companyService: CompanyService, private userService: UserService, private router: Router) {
+  constructor(private companyService: CompanyService, private userService: UserService,
+              private router: Router, private logger: NGXLogger) {
 
 
     if (!userService.user) {
@@ -32,7 +34,7 @@ export class MainAdminCompanyManagerComponent {
 
     companyService.getCompanyList(userInfo)
       .then( res => {
-        console.log(res);
+        this.logger.debug(res);
 
         if (res.success) {
           this.companyList = res.data;
@@ -54,19 +56,19 @@ export class MainAdminCompanyManagerComponent {
                   };
 
                   company.mDeveloper = mDeveloper;
-                  console.log( this.companyList);
+                  this.logger.debug( this.companyList);
                 }
 
               })
               .catch(error => {
-                console.log(error);
+                this.logger.debug(error);
               });
           });
         }
 
       })
       .catch(error => {
-        console.log(error);
+        this.logger.debug(error);
       });
   }
 
@@ -91,7 +93,7 @@ export class MainAdminCompanyManagerComponent {
 
     this.companyService.searchCompany(companyInfo)
       .then(res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res.success) {
           this.companyList = res.data;
           if (this.companyList.length !== 0) {
@@ -111,19 +113,19 @@ export class MainAdminCompanyManagerComponent {
                     };
 
                     company.mDeveloper = mDeveloper;
-                    console.log( this.companyList);
+                    this.logger.debug( this.companyList);
                   }
 
                 })
                 .catch(error => {
-                  console.log(error);
+                  this.logger.debug(error);
                 });
             });
           }
         }
       })
       .catch(error => {
-        console.log('error = ', error);
+        this.logger.debug('error = ', error);
       });
 
 
@@ -132,10 +134,10 @@ export class MainAdminCompanyManagerComponent {
   checkCompanyName(companyName) {
     const companyInfo = {
       "companyName": companyName
-    }
+    };
     this.companyService.checkCompanyName(companyInfo)
       .then(res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res.success) {
           swal({
             position: 'center',
@@ -147,7 +149,7 @@ export class MainAdminCompanyManagerComponent {
         }
       })
       .catch(error => {
-        console.log('error', error);
+        this.logger.debug('error', error);
       });
   }
 

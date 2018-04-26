@@ -72,6 +72,7 @@ import { TermEuComponent } from './components/terms/term-eu/term-eu.component';
 import { PoliciesEuComponent } from './components/policies/policies-eu/policies-eu.component';
 import { StartNativeSdkComponent } from './components/start/start-native-sdk/start-native-sdk.component';
 import { StartLayeredAppComponent } from './components/start/start-layered-app/start-layered-app.component';
+import {LoggerModule, NGXLogger, NgxLoggerLevel} from "ngx-logger";
 
 @NgModule({
 
@@ -84,7 +85,8 @@ import { StartLayeredAppComponent } from './components/start/start-layered-app/s
     CustomFormsModule,
     CookieModule.forRoot(),
     FileUploadModule,
-    MarkdownModule.forRoot()
+    MarkdownModule.forRoot(),
+    LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG})
   ],
   declarations: [
     AppComponent,
@@ -174,7 +176,8 @@ import { StartLayeredAppComponent } from './components/start/start-layered-app/s
     AppService,
     LowerCasePipe,
     ErrorService,
-    AuthGuard
+    AuthGuard,
+    NGXLogger
   ]
 })
 

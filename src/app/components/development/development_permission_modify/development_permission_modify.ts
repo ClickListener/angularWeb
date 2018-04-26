@@ -5,6 +5,7 @@ import {Component} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../../services/user.service";
 import {Location} from "@angular/common";
+import {NGXLogger} from "ngx-logger";
 
 @Component({
   templateUrl: './development_permission_modify.html',
@@ -26,7 +27,7 @@ export class DevelopmentPermissionModifyComponent {
   sdkDownload: boolean;
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService,
-              private router: Router, private _location: Location) {
+              private router: Router, private _location: Location, private logger: NGXLogger) {
 
 
     if (!userService.user) {
@@ -46,14 +47,14 @@ export class DevelopmentPermissionModifyComponent {
 
     userService.getUserInfo(developerInfo)
       .then(res => {
-        console.log(res);
+        this.logger.debug(res);
 
         if (res.success) {
           this.userInfo = res.user;
         }
       })
       .catch(error => {
-        console.log(error);
+        this.logger.debug(error);
       });
 
     // 获得当前用户的权限
@@ -70,7 +71,7 @@ export class DevelopmentPermissionModifyComponent {
         }
       })
       .catch(error => {
-        console.log(error);
+        this.logger.debug(error);
       });
 
 
@@ -84,7 +85,7 @@ export class DevelopmentPermissionModifyComponent {
 
   private parsePermission(permission: any) {
 
-    console.log('permission = ', permission);
+    this.logger.debug('permission = ', permission);
 
 
     permission.forEach((item, index) => {
@@ -156,11 +157,11 @@ export class DevelopmentPermissionModifyComponent {
 
     this.userService.addUserAuth(permissionInfo)
       .then(res => {
-        console.log(res);
+        this.logger.debug(res);
         this.router.navigate(['/development-main/development-group', this.userService.user._id]);
       })
       .catch(error => {
-        console.log(error);
+        this.logger.debug(error);
       });
 
 

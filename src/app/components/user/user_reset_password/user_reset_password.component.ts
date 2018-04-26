@@ -5,6 +5,7 @@ import {Component} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../../services/user.service";
 import swal from "sweetalert2";
+import {NGXLogger} from "ngx-logger";
 
 @Component({
   templateUrl: './user_reset_password.component.html',
@@ -25,7 +26,8 @@ export class UserResetPasswordComponent {
   buttonDisable = false;  // 提交按钮状态
 
 
-  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService,
+              private router: Router, private logger: NGXLogger) {
 
 
     activatedRoute.paramMap.subscribe(paramMap => {
@@ -42,8 +44,8 @@ export class UserResetPasswordComponent {
 
       }
 
-      console.log('userId = ', this.userId);
-      console.log('random = ', this.random);
+      this.logger.debug('userId = ', this.userId);
+      this.logger.debug('random = ', this.random);
     });
   }
 
@@ -86,7 +88,7 @@ export class UserResetPasswordComponent {
       })
       .catch(error => {
         // this.buttonDisable = false;
-        console.log(error);
+        this.logger.debug(error);
       });
 
   }

@@ -9,6 +9,7 @@ import {User} from "../../../model/User";
 import {Token} from "../../../model/Token";
 
 import * as myGlobals from '../../../../environments/config';
+import {NGXLogger} from "ngx-logger";
 
 @Component({
   templateUrl: './detail.component.html',
@@ -30,12 +31,13 @@ export class DetailComponent {
 
   title: string;
 
-  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private schemeService: SchemeService) {
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService,
+              private schemeService: SchemeService, private logger: NGXLogger) {
 
     activatedRoute.paramMap.subscribe(paramMap => {
       this.schemeId = paramMap['params'].param;
 
-      console.log('schemeId = ', this.schemeId);
+      this.logger.debug('schemeId = ', this.schemeId);
     });
 
 
@@ -51,7 +53,7 @@ export class DetailComponent {
 
     this.schemeService.findFileInfo(fileInfo)
       .then(res => {
-        console.log(res);
+        this.logger.debug(res);
         if (res.success) {
           this.schemeSelected = res.data;
 
@@ -77,7 +79,7 @@ export class DetailComponent {
         }
       })
       .catch(error => {
-        console.log(error);
+        this.logger.debug(error);
       });
   }
 }

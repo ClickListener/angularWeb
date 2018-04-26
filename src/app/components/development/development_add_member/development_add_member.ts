@@ -6,6 +6,7 @@ import {CompanyService} from "../../../services/company.service";
 import {UserService} from "../../../services/user.service";
 import {Router} from "@angular/router";
 import {Location, LowerCasePipe} from "@angular/common";
+import {NGXLogger} from "ngx-logger";
 
 @Component({
   templateUrl: './development_add_member.html',
@@ -28,7 +29,7 @@ export class DevelopmentAddMemberComponent {
 
 
   constructor(private companyService: CompanyService, private userService: UserService, private router: Router
-    , private lowerCasePipe: LowerCasePipe, private _location: Location) {
+    , private lowerCasePipe: LowerCasePipe, private _location: Location, private logger: NGXLogger) {
 
 
     if (!userService.user) {
@@ -45,7 +46,7 @@ export class DevelopmentAddMemberComponent {
     if (userService.resourceList.length === 0) {
       userService.getResourceList();
     }
-    console.log(userService.resourceList);
+    this.logger.debug(userService.resourceList);
   }
 
 
@@ -131,7 +132,7 @@ export class DevelopmentAddMemberComponent {
       })
       .catch(error => {
         this.buttonDisable = false;
-        console.log(error);
+        this.logger.error(error);
       });
 
   }

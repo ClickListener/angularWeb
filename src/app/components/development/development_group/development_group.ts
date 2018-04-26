@@ -6,6 +6,7 @@ import {CompanyService} from "../../../services/company.service";
 import {UserService} from "../../../services/user.service";
 import {User} from "../../../model/User";
 import {ActivatedRoute, Router} from "@angular/router";
+import {NGXLogger} from "ngx-logger";
 
 @Component({
   templateUrl: './development_group.html',
@@ -40,13 +41,13 @@ export class DevelopmentGroupComponent {
   connectionTimeout = false;
 
   constructor(private companyService: CompanyService, private userService: UserService,
-              private router: Router, private activatedRoute: ActivatedRoute) {
+              private router: Router, private activatedRoute: ActivatedRoute, private logger: NGXLogger) {
 
     activatedRoute.paramMap.subscribe( paramMap => {
       const userId = paramMap['params'].userId;
-      console.log('--------------userID = ', userId);
+      this.logger.debug('--------------userID = ', userId);
       if (userId !== userService.user._id) {
-        console.log('213213123213213213213213');
+        this.logger.debug('213213123213213213213213');
         this.userService.signOut();
         return;
       }
@@ -132,7 +133,7 @@ export class DevelopmentGroupComponent {
               }
             }
 
-            console.log('developer', developer);
+            this.logger.debug('developer', developer);
           });
 
           // 获得当前用户的权限
@@ -144,7 +145,7 @@ export class DevelopmentGroupComponent {
 
       })
       .catch(error => {
-        console.log(error);
+        this.logger.debug(error);
         this.connectionTimeout = true;
       });
 
@@ -154,7 +155,7 @@ export class DevelopmentGroupComponent {
 
   private parsePermission(permission: any): string {
 
-    console.log('permission = ', permission);
+    this.logger.debug('permission = ', permission);
 
     let permissionString = '';
 
@@ -203,7 +204,7 @@ export class DevelopmentGroupComponent {
       }
     }
 
-    console.log('permissionString', permissionString);
+    this.logger.debug('permissionString', permissionString);
 
     return permissionString;
 
@@ -222,7 +223,7 @@ export class DevelopmentGroupComponent {
     };
     this.companyService.removeCompanyId(userInfo)
       .then(async res => {
-        console.log(res);
+        this.logger.debug(res);
 
         if (res.success) {
           // 获得该公司下的所有开发者
@@ -262,7 +263,7 @@ export class DevelopmentGroupComponent {
                 }
               }
 
-              console.log('_developer', _developer);
+              this.logger.debug('_developer', _developer);
             });
 
 
@@ -270,7 +271,7 @@ export class DevelopmentGroupComponent {
         }
       })
       .catch(error => {
-        console.log(error);
+        this.logger.debug(error);
       });
   }
 }
