@@ -25,8 +25,7 @@
 
         <div class="md-form">
           <input required="required" class="form-control" id="name" name="name" type="text" [(ngModel)]="nameValue"
-                 #name="ngModel" maxlength="100" [regex-name]='{"BeginRegex": "^[a-zA-Z_]{1}[\u4e00-\u9fa5\\w\\s]{0,}$",
-                  "NoChinese": "^[a-zA-Z_]{1}[\\w]{0,}$"}'>
+                 #name="ngModel" maxlength="100" regex-chinese regex-begin regex-space>
           <label for="name">Name</label>
           <!--<span *ngIf="!name.pristine&&name.invalid" style="color: #ee2200">Please input name that begin with a letter or an underscore.</span>-->
 
@@ -37,16 +36,16 @@
               Name is required
             </div>
 
-            <div *ngIf="name.errors.BeginRegex">
-              You must begin with letter or underline.
+            <div *ngIf="name.errors.begin">
+              Begin with letter or underline
             </div>
 
-            <div *ngIf="name.errors.NoSpace">
-              Name can't contain space.
+            <div *ngIf="name.errors.space">
+              No space
             </div>
 
-            <div *ngIf="name.errors.NoChinese">
-              Name can't contain chinese.
+            <div *ngIf="name.errors.chinese">
+              No chinese
             </div>
 
           </div>
@@ -54,7 +53,7 @@
         </div>
         <div class="md-form">
           <input required="required" class="form-control" id="email" name="email" type="text" [(ngModel)]="emailValue"
-                 #email="ngModel" pattern="^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" [maxlength]="40">
+                 #email="ngModel" pattern="^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" [maxlength]="40" >
           <label for="email">Email</label>
 
 
@@ -87,15 +86,15 @@
             </div>
 
             <div *ngIf="password.errors.number">
-              At least one number.
+              At least one number
             </div>
 
             <div *ngIf="password.errors.upper">
-              At least one upper letter.
+              At least one upper letter
             </div>
 
             <div *ngIf="password.errors.lower">
-              At least one lower letter.
+              At least one lower letter
             </div>
           </div>
 
@@ -105,12 +104,12 @@
           <input required class="form-control" id="confirmPassword" name="confirmPassword" type="password"
                  [(ngModel)]="confirmPasswordValue"
                  #confirmPassword="ngModel" [equalTo]="password">
-          <label for="confirmPassword">Retype password</label>
+          <label for="confirmPassword">Confirm password</label>
 
 
           <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"
                class="alert alert-danger">
-            <span>Retype password must equal with password.</span>
+            <span>Confirm your password</span>
           </div>
         </div>
 
@@ -118,7 +117,7 @@
         <div class="justify-content-between" style="display: flex">
           <div style="font-size: 15px">
             <input required type="checkbox" #agree="ngModel" [(ngModel)]="agreeValue" id="agree" name="agree">
-            <p style="display: inline">I accept the </p>
+            <p style="display: inline">I agree to the</p>
             <ng-container [ngSwitch]="country.origin">
               <ng-container *ngSwitchCase="'EU'">
                 <a href="https://ihealthlabs.eu/en/content/175-personal-data-confidentiality-policy" target="_blank">Terms</a>

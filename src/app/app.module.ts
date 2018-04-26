@@ -76,6 +76,9 @@ import {LoggerModule, NGXLogger, NgxLoggerLevel} from "ngx-logger";
 import {RegexUpperLetterDirective} from "./directive/regex-UpperLetter.directive";
 import {RegexLowerLetterDirective} from "./directive/regex-lowerLetter.directive";
 import {RegexNumberDirective} from "./directive/regex-number.directive";
+import {RegexChineseDirective} from "./directive/regex-chinese.directive";
+import {RegexBeginDirective} from "./directive/regex-begin.directive";
+import {RegexSpaceDirective} from "./directive/regex-space.directive";
 
 @NgModule({
 
@@ -156,6 +159,9 @@ import {RegexNumberDirective} from "./directive/regex-number.directive";
     RegexUpperLetterDirective,
     RegexLowerLetterDirective,
     RegexNumberDirective,
+    RegexChineseDirective,
+    RegexBeginDirective,
+    RegexSpaceDirective,
 
     TermEuComponent,
 
