@@ -21,7 +21,8 @@ export class ForgotPasswordComponent {
               private router: Router, private logger: NGXLogger) {
 
     if (userService.user) {
-      userService.signOutWithoutNavigate();
+      // userService.signOutWithoutNavigate();
+      this.router.navigate(['/']);
       return;
     }
   }

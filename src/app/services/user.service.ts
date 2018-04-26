@@ -471,7 +471,6 @@ export class UserService {
 
         this.logger.debug(res);
 
-        this.logger.debug(res);
         if (res['success']) {
 
         } else {
@@ -727,6 +726,27 @@ export class UserService {
         });
 
         this.logger.debug(this.token);
+        return res;
+      })
+      .catch(UserService.handleError);
+  }
+
+
+  checkUserIsValid(userInfo: any): Promise<any> {
+
+    this.logger.debug("userInfo = ", userInfo);
+
+    const url = this.url + '/api/user/checkStatus';
+
+    return this.http.get(url, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      params: userInfo
+    }).toPromise()
+      .then(res => {
+        this.logger.debug(res);
         return res;
       })
       .catch(UserService.handleError);

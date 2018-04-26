@@ -34,15 +34,32 @@ export class UserResetPasswordComponent {
       this.userId = paramMap['params'].userId;
       this.random = paramMap['params'].random;
 
-      if (userService.user) {
-        if (userService.user._id === this.userId ) {
-          this.router.navigate(['/']);
-          return;
-        } else {
-          userService.signOutWithoutNavigate();
-        }
+      const userInfo = {
+        'userId': this.userId,
+        'random': this.random
+      };
 
-      }
+      this.userService.checkUserIsValid(userInfo)
+        .then(res => {
+          this.logger.debug(res);
+          if (!res.success) {
+            swal({
+              position: 'center',
+              type: 'error',
+              title: res.message,
+              text: 'Please resend a new password reset link ',
+              showConfirmButton: true,
+              // timer: 2000
+            }).then(() => {
+              this.router.navigate(['forgot-password']);
+            })
+              .catch(swal.noop);
+
+          }
+        })
+        .catch(error => {
+          this.logger.debug(error);
+        });
 
       this.logger.debug('userId = ', this.userId);
       this.logger.debug('random = ', this.random);
