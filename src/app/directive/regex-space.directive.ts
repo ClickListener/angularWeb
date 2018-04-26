@@ -34,11 +34,10 @@ export class RegexSpaceDirective implements Validator {
     return (control: AbstractControl): { [key: string]: any } => {
 
 
-      if (control.value === undefined || control.value === '') {
+      if (!control.value || control.value === undefined || control.value === '' ) {
         return null;
       }
 
-      console.log(control.value.indexOf(" ") !== -1);
       if (control.value.indexOf(" ") !== -1) {
         return {
           'space': {value: control.value}
