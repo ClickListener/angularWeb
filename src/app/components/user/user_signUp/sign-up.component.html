@@ -26,7 +26,7 @@
         <div class="md-form">
           <input required="required" class="form-control" id="name" name="name" type="text" [(ngModel)]="nameValue"
                  #name="ngModel" maxlength="100" [regex-name]='{"BeginRegex": "^[a-zA-Z_]{1}[\u4e00-\u9fa5\\w\\s]{0,}$",
-                 "NoSpace": "^[a-zA-Z_]{1}[\u4e00-\u9fa5\\w]{0,}$", "NoChinese": "^[a-zA-Z_]{1}[\\w]{0,}$"}'>
+                  "NoChinese": "^[a-zA-Z_]{1}[\\w]{0,}$"}'>
           <label for="name">Name</label>
           <!--<span *ngIf="!name.pristine&&name.invalid" style="color: #ee2200">Please input name that begin with a letter or an underscore.</span>-->
 
@@ -57,6 +57,8 @@
                  #email="ngModel" pattern="^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" [maxlength]="40">
           <label for="email">Email</label>
 
+
+
           <div *ngIf="email.invalid && (email.dirty || email.touched)"
                class="alert alert-danger">
             <span>Please input valid email.</span>
@@ -69,7 +71,7 @@
           <input required="required" class="form-control" id="password" name="password" type="password"
                  [(ngModel)]="passwordValue"
                  #password="ngModel" minlength="6" maxlength="16"
-                 [regex-name]='{"upperRegex": "[A-Z]", "lowerRegex": "[a-z]", "numberRegex": "[0-9]"}'>
+                 regex-lower regex-number regex-upper >
           <label for="password">Password</label>
 
 
@@ -84,15 +86,15 @@
               6 or more characters
             </div>
 
-            <div *ngIf="password.errors.numberRegex">
+            <div *ngIf="password.errors.number">
               At least one number.
             </div>
 
-            <div *ngIf="password.errors.upperRegex">
+            <div *ngIf="password.errors.upper">
               At least one upper letter.
             </div>
 
-            <div *ngIf="password.errors.lowerRegex">
+            <div *ngIf="password.errors.lower">
               At least one lower letter.
             </div>
           </div>

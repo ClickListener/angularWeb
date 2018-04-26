@@ -73,6 +73,9 @@ import { PoliciesEuComponent } from './components/policies/policies-eu/policies-
 import { StartNativeSdkComponent } from './components/start/start-native-sdk/start-native-sdk.component';
 import { StartLayeredAppComponent } from './components/start/start-layered-app/start-layered-app.component';
 import {LoggerModule, NGXLogger, NgxLoggerLevel} from "ngx-logger";
+import {RegexUpperLetterDirective} from "./directive/regex-UpperLetter.directive";
+import {RegexLowerLetterDirective} from "./directive/regex-lowerLetter.directive";
+import {RegexNumberDirective} from "./directive/regex-number.directive";
 
 @NgModule({
 
@@ -150,6 +153,9 @@ import {LoggerModule, NGXLogger, NgxLoggerLevel} from "ngx-logger";
     MainAdminSecondMasterModifyComponent,
 
     RegexNameDirective,
+    RegexUpperLetterDirective,
+    RegexLowerLetterDirective,
+    RegexNumberDirective,
 
     TermEuComponent,
 
