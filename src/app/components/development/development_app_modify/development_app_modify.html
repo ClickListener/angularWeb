@@ -29,7 +29,7 @@
 
     <div *ngIf="appNameValid.invalid && (appNameValid.dirty || appNameValid.touched)"
          class="alert alert-danger">
-      Please input valid App name.
+      Please input valid App name
     </div>
 
   </div>
@@ -49,13 +49,13 @@
     <div *ngIf="package.invalid && (package.dirty || package.touched)"
          class="alert alert-danger">
       <div *ngIf="package.errors.pattern">
-        Please input valid package name.
+        Please input valid package name
       </div>
       <div *ngIf="package.errors.minlength">
-        Min length is 3.
+        Min length is 3
       </div>
       <div *ngIf="package.errors.required">
-        Package name is required.
+        Package name is required
       </div>
 
     </div>
@@ -76,13 +76,13 @@
     <div *ngIf="bundleId.invalid && (bundleId.dirty || bundleId.touched)"
          class="alert alert-danger">
       <div *ngIf="bundleId.errors.pattern">
-        Please input valid bundleId.
+        Please input valid bundleId
       </div>
       <div *ngIf="bundleId.errors.minlength">
-        Min length is 3.
+        Min length is 3
       </div>
       <div *ngIf="bundleId.errors.required">
-        BundleId is required.
+        BundleId is required
       </div>
 
     </div>
@@ -105,15 +105,15 @@
          class="alert alert-danger">
 
       <div *ngIf="descriptionValid.errors.required">
-        Description is required.
+        Description is required
       </div>
 
       <div *ngIf="descriptionValid.errors.minlength">
-        You must input at least 20 characters.
+        You must input at least 20 characters
       </div>
 
       <div *ngIf="descriptionValid.errors.maxlength">
-        You must input no more than 100 characters.
+        You must input no more than 100 characters
       </div>
     </div>
   </div>
@@ -132,7 +132,7 @@
       <input type="file" name="icon" style="width: 80px;height: 80px;opacity: 0;" (change)="previewImg($event)"
              accept="image/*">
 
-      <p *ngIf="!appIcon" style="color: #ee2200">You must input app icon.</p>
+      <p *ngIf="!appIcon" style="color: #ee2200">You must input app icon</p>
     </div>
   </div>
 
@@ -164,19 +164,19 @@
            class="alert alert-danger">
 
         <div *ngIf="_layered_url.errors.required">
-          Description is required.
+          Description is required
         </div>
 
         <div *ngIf="_layered_url.errors.minlength">
-          You must input at least 3 characters.
+          You must input at least 3 characters
         </div>
 
         <div *ngIf="_layered_url.errors.maxlength">
-          You must input no more than 100 characters.
+          You must input no more than 100 characters
         </div>
 
         <div *ngIf="_layered_url.errors.pattern">
-          Please input valid url.
+          Please input valid url
         </div>
       </div>
     </div>

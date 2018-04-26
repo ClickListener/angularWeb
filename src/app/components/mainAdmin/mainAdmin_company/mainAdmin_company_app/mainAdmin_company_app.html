@@ -37,7 +37,7 @@
            #appNameValid="ngModel" pattern="^[a-zA-Z_]{1}(?:(?=.*\s*))[\w\s]{0,99}$" required>
 
 
-    <p *ngIf="!appNameValid.pristine&&appNameValid.invalid" style="color: #ee2200">Please input valid App name.</p>
+    <p *ngIf="!appNameValid.pristine&&appNameValid.invalid" style="color: #ee2200">Please input valid App name</p>
   </div>
 
 
@@ -46,7 +46,7 @@
     <input id="id_package" type="text" name="id_bundle" [(ngModel)]="appInfo.bundleIdOrPackageName"
            #package="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s\.]{1,100}$" required>
 
-    <p *ngIf="!package.pristine&&package.invalid" style="color: #ee2200">Please input valid package name.</p>
+    <p *ngIf="!package.pristine&&package.invalid" style="color: #ee2200">Please input valid package name</p>
   </div>
 
   <div class="input-block" *ngIf="appInfo.platform === 'ios'">
@@ -54,7 +54,7 @@
     <input id="id_bundle" type="text" name="id_bundle" [(ngModel)]="appInfo.bundleIdOrPackageName"
            #bundleId="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s\.]{1,100}$" required>
 
-    <p *ngIf="!bundleId.pristine&&bundleId.invalid" style="color: #ee2200">Please input valid bundleId.</p>
+    <p *ngIf="!bundleId.pristine&&bundleId.invalid" style="color: #ee2200">Please input valid bundleId</p>
   </div>
 
 
@@ -64,7 +64,7 @@
               #descriptionValid="ngModel" [rangeLength]="[20,100]" required></textarea>
 
     <p *ngIf="!descriptionValid.pristine&&descriptionValid.invalid" style="color: #ee2200">Please input valid
-      description.</p>
+      description</p>
   </div>
 
 
@@ -77,7 +77,7 @@
       <input type="file" name="icon" style="width: 80px;height: 80px;opacity: 0;" (change)="previewImg($event)"
              accept="image/*">
 
-      <p *ngIf="!appIcon" style="color: #ee2200">You must input app icon.</p>
+      <p *ngIf="!appIcon" style="color: #ee2200">You must input app icon</p>
     </div>
   </div>
 
@@ -119,19 +119,19 @@
          class="alert alert-danger">
 
       <div *ngIf="_layered_url.errors.required">
-        Description is required.
+        Description is required
       </div>
 
       <div *ngIf="_layered_url.errors.minlength">
-        You must input at least 3 characters.
+        You must input at least 3 characters
       </div>
 
       <div *ngIf="_layered_url.errors.maxlength">
-        You must input no more than 100 characters.
+        You must input no more than 100 characters
       </div>
 
       <div *ngIf="_layered_url.errors.pattern">
-        Please input valid url.
+        Please input valid url
       </div>
     </div>
 
@@ -151,7 +151,7 @@
              class="datapicker" readonly name="expiredDate" [(ngModel)]="expiredDate">
     </div>
 
-    <p *ngIf="!appInfo.expireTime" style="color: #ee2200">Please input valid expired date.</p>
+    <p *ngIf="!appInfo.expireTime" style="color: #ee2200">Please input valid expired date</p>
 
   </div>
 

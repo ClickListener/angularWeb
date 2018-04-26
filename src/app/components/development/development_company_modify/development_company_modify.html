@@ -24,7 +24,7 @@
     <div *ngIf="corporate.invalid && (corporate.dirty || corporate.touched)"
          class="alert alert-danger" style="width: 70%">
 
-      Please input valid Company name.
+      Please input valid Company name
     </div>
   </div>
 
@@ -40,15 +40,15 @@
          class="alert alert-danger" style="width: 70%">
 
       <div *ngIf="descriptionValid.errors.required">
-        Description is required.
+        Description is required
       </div>
 
       <div *ngIf="descriptionValid.errors.minlength">
-        You must input at least 20 characters.
+        You must input at least 20 characters
       </div>
 
       <div *ngIf="descriptionValid.errors.maxlength">
-        You must input no more than 500 characters.
+        You must input no more than 500 characters
       </div>
 
     </div>
