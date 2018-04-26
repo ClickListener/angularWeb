@@ -15,6 +15,8 @@ export class MainAdminSecondMasterManagerComponent {
 
   adminList: any;
 
+  loading = true;
+
 
   constructor(private userService: UserService, private logger: NGXLogger) {
 
@@ -33,6 +35,7 @@ export class MainAdminSecondMasterManagerComponent {
         }
       })
       .catch(error => {
+        this.loading = false;
         this.logger.debug(error);
       });
   }
@@ -65,6 +68,7 @@ export class MainAdminSecondMasterManagerComponent {
         }
       })
       .catch(error => {
+        this.loading = false;
         this.logger.debug('error = ', error);
       });
 

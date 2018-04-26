@@ -18,6 +18,8 @@ export class MainAdminDeveloperManagerComponent {
 
   user: any;
 
+  loading = true;
+
   constructor(private userService: UserService, private logger: NGXLogger) {
 
     this.user = userService.user;
@@ -70,6 +72,7 @@ export class MainAdminDeveloperManagerComponent {
       })
       .catch(error => {
         this.logger.debug(error);
+        this.loading = false;
       });
 
 

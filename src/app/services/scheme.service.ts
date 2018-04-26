@@ -38,8 +38,7 @@ export class SchemeService {
         position: 'center',
         type: 'error',
         titleText: "Connection Refused",
-        showConfirmButton: false,
-        timer: 2000
+        showConfirmButton: true,
       }).catch(swal.noop);
     }
     return Promise.reject(error);

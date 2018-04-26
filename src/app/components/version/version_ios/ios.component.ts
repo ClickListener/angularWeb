@@ -71,6 +71,7 @@ export class IOSComponent {
             }
           })
           .catch(error => {
+            this.loading = false;
             this.logger.debug('error = ', error);
           });
       }
@@ -127,6 +128,7 @@ export class IOSComponent {
         }
       })
       .catch(error => {
+        this.loading = false;
         this.logger.debug(error);
       });
   }

@@ -74,6 +74,7 @@ export class AndroidComponent {
             }
           })
           .catch(error => {
+            this.loading = false;
             this.logger.debug('error = ', error);
           });
       }
@@ -129,6 +130,7 @@ export class AndroidComponent {
         }
       })
       .catch(error => {
+        this.loading = false;
         this.logger.debug(error);
       });
   }

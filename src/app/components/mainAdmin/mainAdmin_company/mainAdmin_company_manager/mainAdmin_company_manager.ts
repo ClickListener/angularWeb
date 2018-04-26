@@ -19,6 +19,8 @@ export class MainAdminCompanyManagerComponent {
 
   searchCompanyName: string;
 
+  loading = true;
+
   constructor(private companyService: CompanyService, private userService: UserService,
               private router: Router, private logger: NGXLogger) {
 
@@ -69,6 +71,7 @@ export class MainAdminCompanyManagerComponent {
       })
       .catch(error => {
         this.logger.debug(error);
+        this.loading = false;
       });
   }
 
