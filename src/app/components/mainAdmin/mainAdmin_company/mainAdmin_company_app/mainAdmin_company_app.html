@@ -43,7 +43,7 @@
 
   <div class="input-block" *ngIf="appInfo.platform === 'android'">
     <label for="id_package">Package Name</label>
-    <input id="id_package" type="text" name="id_bundle" [(ngModel)]="appInfo.bundleIdOrPackageName"
+    <input id="id_package" type="text" name="id_package" [(ngModel)]="appInfo.bundleIdOrPackageName"
            #package="ngModel" pattern="^(?:(?=.*\w.*)(?=.*\s*))[\w\s\.]{1,100}$" required>
 
     <p *ngIf="!package.pristine&&package.invalid" style="color: #ee2200">Please input valid package name</p>
