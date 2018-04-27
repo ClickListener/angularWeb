@@ -109,11 +109,11 @@
   </div>
 
   <div class="input-block" *ngIf="appInfo.sdkType === 'LayeredApp'">
-    <label for="id_layeredUrl">Url</label>
+    <label for="id_layeredUrl">Type</label>
 
     <input name="id_layeredUrl" id="id_layeredUrl" type="text" [(ngModel)]="appInfo.scheme"
            #_layered_url="ngModel"minlength="3" maxlength="100" required
-           placeholder="layered url" [regex-name]='{"pattern": "^(?:(?=.*\\w.*)(?=.*\\s*))[\\w\\s\\.]{1,}$"}'>
+           placeholder="layered url" regex-begin pattern="[a-zA-Z0-9/_/.]{3,}">
 
     <div *ngIf="_layered_url.invalid && (_layered_url.dirty || _layered_url.touched)"
          class="alert alert-danger">
@@ -132,6 +132,10 @@
 
       <div *ngIf="_layered_url.errors.pattern">
         Please input valid url
+      </div>
+
+      <div *ngIf="_layered_url.errors.begin">
+        Begin with letter or underline
       </div>
     </div>
 

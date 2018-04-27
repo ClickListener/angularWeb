@@ -141,7 +141,7 @@
     <div>
       <div>
 
-        <label style="display: inline-block">SDK Scheme</label>
+        <label style="display: inline-block">SDK Type</label>
         <a style="display: inline-block"><img src="../../../../assets/images/star.png"></a>
       </div>
       <select class="mdb-select" name="SDK_Scheme" [(ngModel)]="appInfo.sdkType">
@@ -154,11 +154,11 @@
 
 
     <div class="url-block" *ngIf="appInfo.sdkType === 'LayeredApp'">
-      <label>Url</label>
+      <label>Scheme</label>
 
       <input style="padding: 0 10px 0 10px;" name="name_url" id="id_layeredUrl" type="text" [(ngModel)]="appInfo.scheme"
              #_layered_url="ngModel" minlength="3" maxlength="100"
-             required placeholder="layered url" [regex-name]='{"pattern": "^(?:(?=.*\\w.*)(?=.*\\s*))[\\w\\s\\.]{1,}$"}'>
+             required placeholder="layered url" regex-begin pattern="[a-zA-Z0-9/_/.]{3,}">
 
       <div *ngIf="_layered_url.invalid && (_layered_url.dirty || _layered_url.touched)"
            class="alert alert-danger">
@@ -177,6 +177,9 @@
 
         <div *ngIf="_layered_url.errors.pattern">
           Please input valid url
+        </div>
+        <div *ngIf="_layered_url.errors.begin">
+          Begin with letter or underline
         </div>
       </div>
     </div>
