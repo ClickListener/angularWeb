@@ -153,7 +153,7 @@ export class MainAdminSecondMasterModifyComponent {
           swal({
             position: 'center',
             type: 'success',
-            titleText: 'Create successfully',
+            titleText: 'Update successfully',
             showConfirmButton: false,
             timer: 2000,
             padding: 0,
