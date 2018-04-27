@@ -234,6 +234,30 @@ li ul li > a.active {
 }
 
 
+/*start样式*/
+.getting-start {
+  display: inline-block;
+  align-items: flex-end;
+  font-size: 20px;
+  margin-right: 1rem;
+  /*margin: .5rem 1rem .5rem 0;*/
+  font-weight: 400;
+  outline: none;
+  color: #fefefe;
+}
+
+.getting-start:hover {
+  color: #45cafc!important;
+  cursor: pointer;
+  outline: none;
+}
+
+.getting-start a.active {
+  outline: none;
+  color: #45cafc;
+}
+
+
 /*当屏幕小于992时，显示显示样式*/
 @media screen and (max-width: 992px) {
 
@@ -257,3 +281,5 @@ li ul li > a.active {
     padding-right: 32%;
   }
 }
+
+

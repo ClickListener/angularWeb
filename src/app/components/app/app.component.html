@@ -171,7 +171,7 @@
     <div class="menu-logo waves-effect" routerLink="/">
       <a><img src="../../../assets/images/ihealth-logo.png"></a>
     </div>
-    <div style="align-self: flex-end; font-size: 20px; margin-left: 5px; padding-top: 10px">
+    <div style="align-self: flex-end; font-size: 20px; margin-left: 5px; padding-top: 10px; font-weight: 400">
       Developer
     </div>
 
@@ -179,22 +179,26 @@
 
   <div class="user">
 
+
     <div *ngIf="!user">
+      <a class="getting-start">Getting Started</a>
       <a class="waves-effect" routerLink="/sign-in" routerLinkActive="active">
         <img src="../../../assets/images/login.png">
-        <a>Sign In</a>
+        <a style="font-weight: 400; font-size: 20px;">Sign In</a>
       </a>
     </div>
 
     <div *ngIf="user">
-      <a class="waves-effect" routerLink="/" routerLinkActive="active">
-        <img src="../../../assets/images/notice.png">
-      </a>
+      <a class="getting-start" routerLink="/development-app-reg" routerLinkActive="active">Getting Started</a>
+
+      <!--<a class="waves-effect" routerLink="/" routerLinkActive="active">-->
+        <!--<img src="../../../assets/images/notice.png">-->
+      <!--</a>-->
 
       <a class="collapsed" style="position: relative" data-toggle="collapse" data-target="#signOut"
          aria-expanded="false" aria-controls="devices-detail" id="userImg">
 
-        <div id="img" style="display: inline">
+        <div id="img" style="display: inline-block">
           <img src="../../../assets/images/user.png">
         </div>
         <div class="triangle-big" style="left: 10px" id="triangle-big"></div>
