@@ -1,23 +1,11 @@
-# Attention：
-
-**Before you use SDK, please get permission from iHealth team, otherwise you will not be able to use SDK (connect failed)**      
-**Contact for more information:**
-
-1. <enterprise@ihealthlabs.com>(US)  
-2. <contact_b2B@ihealthlabs.eu>(Europe)  
-3. <sdk@ihealthlabs.com.cn>(Other)
-
-**After received a invitation, you will be able to register your application for iOS and Android platform. **
-
-
-# iHealth Device Developer Documentation
+# iHealth Device Developer Documentation for Android
 
 
 This document describes how to use the iHealth Device SDK to accomplish the major operation: Connection Device, Online Measurement, Offline Measurement and iHealth Device Management.
 
 ### Latest version
 
-2.3.5
+2.4.2
 
 ### Support iHealth Device for Android
 ```java
@@ -69,12 +57,11 @@ Specific configuration as shown below:
 
 [Click this link](https://github.com/iHealthDeviceLabs/iHealthDeviceLabs-Android/blob/master/doc/Developer_Registration_Application_Instruction.md)   
 
-Contact for more information:  
-1. <enterprise@ihealthlabs.com>(US)  
-2. <contact_b2B@ihealthlabs.eu>(Europe)  
-3. <sdk@ihealthlabs.com.cn>(Other)
 
 ### How to use the iHealth SDK
+ Example：
+
+   Operation procedure for BP5.
 
 ##### 1. Initialization iHealth SDK.
 
@@ -98,14 +85,34 @@ int callbackId = iHealthDevicesManager.getInstance().registerClientCallback(iHea
 iHealthDevicesManager.getInstance().addCallbackFilterForAddress(clientCallbackId, ...);	iHealthDevicesManager.getInstance().addCallbackFilterForDeviceType(clientCallbackId, ...);
 ```
 
-##### 4. Verify iHealth device user permission.
+##### 4. Authentication.
 
 ```java
-iHealthDevicesManager.getInstance().sdkUserInAuthor(MainActivity.this, userName, clientId, clientSecret, callbackId);
-If verify success, all the api avaliable, else 10 trial days you will get.
+If you want to use the iHealth Device, you must first call authentication method before connect a device.
+Authentication method:
+iHealthDevicesManager.getInstance().sdkAuthWithLicense(byte[] licenseDataBuffer);
+
+Where to get the licenseDataBuffer?
+1)download the license file form the website after register your app.
+2)integrate the license file into your app.
+3)read the binary data.
+
+Example:
+    try {
+        InputStream is = getAssets().open("license.pem");
+        int size = is.available();
+        byte[] buffer = new byte[size];
+        is.read(buffer);
+        is.close();
+        boolean isPass = iHealthDevicesManager.getInstance().sdkAuthWithLicense(buffer);
+        Log.i("info", "isPass:    " + isPass);
+    } catch (IOException e) {
+        e.printStackTrace();
+    } 
+If authenticate success(isPass), all the api avaliable, else please check you license on website.
 ```
 
-##### 5. Discovery a iHealth device or multi devices.
+##### 5. Discovery an iHealth device or multi devices.
 
 ```java
 long type = iHealthDevicesManager.DISCOVERY_BP5 | iHealthDevicesManager.DISCOVERY_AM3S;
@@ -120,7 +127,7 @@ private iHealthDevicesCallback iHealthDevicesCallback = new iHealthDevicesCallba
 };
 ```
 
-##### 6. Connection a iHealth device.
+##### 6. Connection an iHealth device.
 
 ```java
 iHealthDevicesManager.getInstance().connectDevice(userName, mac, type);
@@ -138,110 +145,29 @@ private iHealthDevicesCallback iHealthDevicesCallback = new iHealthDevicesCallba
 ```java
 
 /*
-* Get Am3 device controller
-*/
-Am3Control am3Control = iHealthDevicesManager.getInstance().getAm3Control(mac);
-
-/*
-* Get Am3s device controller
-*/
-Am3sControl am3sControl = iHealthDevicesManager.getInstance().getAm3sControl(mac);
-
-/*
-* Get Bg1 device controller
-*/
-Bg1Control bg1Control = Bg1Control.getInstance();
-
-/*
-* Get Bg5 device controller
-*/
-Bg5Control bg5Control = iHealthDevicesManager.getInstance().getBg5Control(mac);
-
-/*
-* Get Bp3m device controller
-*/
-Bp3mControl bp3mControl = iHealthDevicesManager.getInstance().getBp3mControl(mac);
-
-/*
-* Get Bp3l device controller
-*/
-Bp3lControl bp3lControl = iHealthDevicesManager.getInstance().getBp3lControl(mac);
-
-/*
 * Get Bp5 device controller
 */
 Bp5Control bp5Control = iHealthDevicesManager.getInstance().getBp5Control(mac);
+   
+```
+##### 8. Invoke some api function.
+```java
 
 /*
-* Get Bp7 device controller
+* Get the Bp5 device battery level
 */
-Bp7Control bp7Control = iHealthDevicesManager.getInstance().getBp7Control(mac);
+bp5Control.getBattery();
 
-/*
-* Get Bp7s device controller
-*/
-Bp7sControl bp7sControl = iHealthDevicesManager.getInstance().getBp7sControl(mac);
-
-/*
-* Get Bp550BT device controller
-*/
-Bp550BTControl bp550BTControl = iHealthDevicesManager.getInstance().getBp550BTControl(mac);
-
-/*
-* Get Bp926 device controller
-*/
-Bp926Control bp926Control = iHealthDevicesManager.getInstance().getBp926Control(mac);
-
-/*
-* Get Hs3 device controller
-*/
-Hs3Control hs3Control = iHealthDevicesManager.getInstance().getHs3Control(mac);
-
-/*
-* Get Hs4 device controller
-*/
-Hs4Control hs4Control = iHealthDevicesManager.getInstance().getHs4Control(mac);
-
-/*
-* Get Hs4s device controller
-*/
-Hs4sControl hs4sControl = iHealthDevicesManager.getInstance().getHs4sControl(mac);
-
-/*
-* Get Hs5 device controller
-*/
-Hs5Control hs5Control = iHealthDevicesManager.getInstance().getHs5Control(mac);
-
-/*
-* Get Hs6 device controller
-*/
-HS6Control hs6Control = new HS6Control(userName, this, iHealthDevicesManager.TYPE_HS6, mIHealthDeviceHs6Callback);
-
-/*
-* Get Po3 device controller
-*/
-Po3Control po3Control = iHealthDevicesManager.getInstance().getPo3Control(mac);
-
-/*
-* Get FDTH device controller
-*/
-BtmControl btmControl = iHealthDevicesManager.getInstance().getBtmControl(mac);   
+After BP5 response, your can get the battery level value with callback onDeviceNotify and specific action {@link BpProfile#ACTION_BATTERY_BP}
+private iHealthDevicesCallback iHealthDevicesCallback = new iHealthDevicesCallback() {  
+	@Override
+    public void onDeviceNotify(String mac, String deviceType, String action, String message) {
+    }
+};
+   
 ```
 
+## Download
 
+[Click this link](https://dev.ihealthlabs.com/last-version)
 
-## API Guide
-
-[Click this link](https://github.com/iHealthDeviceLabs/iHealthDeviceLabs-Android/tree/master/api-docs)
-
-## Examples
-
-[Click this link](https://github.com/iHealthDeviceLabs/iHealthDeviceLabs-Android/tree/master/examples)
-
-## Release Note
-
-[Click this link](https://github.com/iHealthDeviceLabs/iHealthDeviceLabs-Android/blob/master/doc/ReleaseNote.md)
-
-## FAQ
-
-[Click this link](https://github.com/iHealthDeviceLabs/iHealthDeviceLabs-Android/blob/master/doc/FAQ.md)

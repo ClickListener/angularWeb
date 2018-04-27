@@ -1,29 +1,30 @@
-# iHealth Device Developer 
+# iHealth Device Developer Documentation for iOS
 
-
-### Latest version: 2.1.5
-
-
-### Documnentation
   This document describes how to use the iHealth Device SDK to accomplish the major operation: Connection Device, Online Measurement, Offline Measurement and iHealth Device Management.
+
+### Latest version
+2.2.0
+
 
 ### Authentication
 
 ```objectivec
+
   If you want to use the iHealth Device, you must first call authentication method, can call after certification by iHealth relevant methods of the device.
 
   Authentication method：
 
-   -(void)commandSDKUserValidation:(HealthUser *)tempUser UserDeviceAccess:(DisposeSDKUserDeviceAccess)userDeviceAccess UserValidationSuccess:(DisposeSDKUserValidationSuccess)userValidationSuccess UserValidationReturn:(DisposeSDKUserValidationReturn)userValidationReturn DisposeErrorBlock:(DisposeSDKUserValidationErrorBlock)disposeValidationErrorBlock
+  -(void)commandSDKUserValidationWithLicense:(NSData *)licenseData UserDeviceAccess:(DisposeSDKUserDeviceAccess)userDeviceAccess UserValidationSuccess:(DisposeSDKUserValidationSuccess)userValidationSuccess DisposeErrorBlock:(DisposeSDKUserValidationErrorBlock)disposeValidationErrorBlock
+  
 ```
 ### Support iHealth Device for iOS
 
 ```javascript
     BP: 
-    iHealth BP3    iHealth BP3L  iHealth BP5  iHealth BP7   iHealth BP7S   iHealth Continua BP iHealth KN550BT     iHealth ABI    iHealth ABPM   
+    iHealth BP3    iHealth BP3L  iHealth BP5  iHealth BP7   iHealth BP7S   iHealth Continua BP iHealth KN550BT     iHealth ABI    iHealth ABP100   iHealth BPM1
     
     HS: 
-    iHealth HS2  iHealth HS3    iHealth HS4   iHealth HS4S(Same with HS4)   iHealth HS5  iHealth HS6
+    iHealth HS2  iHealth HS3    iHealth HS4   iHealth HS4S(Same with HS4)   iHealth HS5 iHealth HS5S  iHealth HS6
     
     AM: 
     iHealth AM3    iHealth AM3S   iHealth AM4  
@@ -42,7 +43,9 @@
 ### Support Update iHealth Device for iOS
 
 ```javascript
-    AM3 AM3S AM4 HS4 HS4S ABPM HS2 BG5S
+
+    AM3 AM3S AM4 HS4 HS4S ABPM HS2 BG5S PO3M ABP100
+    
 ```
 
 ### Relevant files and frameworks
@@ -80,7 +83,8 @@
     IHSDKCloudUser.h
 	
     Library: 
-    iHealthSDK2.1.3.a
+    
+    iHealthSDK2.2.0.a
 	
     supports iOS 8.0 and above.
 ```
@@ -92,10 +96,19 @@
 3、Configuration
 
 
-Add 2 new Item in ‘Supported external accessory protocols’: com.jiuan.BPV20, com.jiuan.P930, com.jiuan.BPV21,com.jiuan.BGV30,com.jiuan.BGV31,com.ihealth.sc221
-￼
+Add 2 new Item in ‘Supported external accessory protocols’,Different products need to add different protocols.
 
+If you're using BG5, you need to add protocol：com.jiuan.BGV31
 
+If you're using BP3, you need to add protocol：com.jiuan.P930
+
+If you're using BP5 or BP7, you need to add protocol：com.jiuan.BPV20、com.jiuan.BPV23
+
+If you're using ABI, you need to add protocol：com.jiuan.BPV21
+
+If you're using HS3, you need to add protocol：￼com.ihealth.sc221
+
+If you're using BG1，you need to add  Item NSMicrophoneUsageDescription
 
 ￼￼￼Add 1 new Item in ‘Required background modes’: App communicates with an accessory、 App communicates using CoreBluetooth
 
@@ -108,12 +121,9 @@ Add 2 new Item in ‘Supported external accessory protocols’: com.jiuan.BPV20,
 ### How to use the iHealth SDK
 
 
- 1. Operation procedure for BP3.
-    ```objectivec
-    Reference BP5
-    ```
+ Example：
 
- 2. Operation procedure for BP5.
+   Operation procedure for BP5.
 
 	a) Register plug-in device info: `BP5ConnectNoti`;
 
@@ -134,241 +144,11 @@ Add 2 new Item in ‘Supported external accessory protocols’: com.jiuan.BPV20,
 
 	d) Using ‘bpInstance’ call communication module of the device
 
- 3. Operation procedure for BP7.
 
-	```objectivec
-	Reference BP5
-	```
+## Download
 
- 4. Operation procedure for ABI.
+[Click this link](https://dev.ihealthlabs.com/last-version)
 
-	For ABI Mesure(both arm and leg)
-
-	a) Register plug-in device info: `ABIConnectNoti`;
-	b) Initializedcontrollerclass:
-
-	```objectivec
-	ABIController *controller = [ABIController shareABIController];
-    ```
-
-	c) Access controller class instance after receive `ABIConnectNoti`:
-
-	```objectivec
-	ABI *bpInstance = [controller getCurrentABIInstace];
-	```
-
-	d) Using ‘bpInstance’ call communication module of the device.
-
-	For Arm Mesure(arm only)
-
-	a) Register plug-in device info: `ArmConnectNoti`; 
-
-	b) Initializedcontrollerclass:
-
-    ```objectivec
-	ABIController *controller = [ABIController shareABIController];
-    ```
-
-	c) Access controller class instance after receive ArmConnectNoti:
-
-	```objectivec
-	ABI *bpInstance = [controller getCurrentArmInstance];
-	```
-
-	d) Using ‘bpInstance’ call communication module of the device.
-
- 5. Operation procedure for BP3L.
-
-	a) Register plug-in device info: `BP3LDiscover`;
-
-	b) Start scan BP3L
-
-	``` objectivec
-	[[ScanDeviceController commandGetInstance]commandScanDeviceType:HealthDeviceType_BP3L] 
-	```
-
-	c) Register plug-in device info: `BP3LConnectFailed`、`BP3LConnectNoti`、	`BP3LDisConnectNoti`;
-
-	d) Connect BP3L after receive `BP3LDiscover`
-
-	```objectivec
-	 [[ScanDeviceController commandGetInstance]commandStopScanDeviceType:HealthDeviceType_BP3L]
-	```
-
-	```objectivec 
-	[[ConnectDeviceController commandGetInstance]commandContectDeviceWithDeviceType:HealthDeviceType_BP3L andSerialNub:serialNub] 
-	```
-
-	e) Access control class instance after receive `BP3LConnectNoti`: 
-
-	```objectivec
-	BP3LController *controller = [BP3LController
-shareBP3LController];
-	```
-	
-	```objectivec  
-	NSArray *bpDeviceArray = [controller
-getAllCurrentBP3LInstace]; 
-	```
-
-	```objectivec
-	BP3L *bpInstance = [bpDeviceArray objectAtIndex: i];
-	```
-
-	f) Using ‘bpInstance’ call communication module of the device
-
- 6. Operation procedure for BP7S、KN550BT、KD926、
-
-	```objectivec
-	Reference BP3L
-	```
-
- 7. Operation procedure for HS3.
-
-	```objectivec
-	Reference BP5
-	```
- 8. Operation procedure for HS4.
-
-	```objectivec
-	Reference BP3L
-	```
-
- 9. Operation procedure for HS5.
-
-	```objectivec
-	Reference BP5
-	```
- 10. Operation procedure for AM3.
-
-	```objectivec
-	Reference BP3L
-	```
- 11. Operation procedure for AM3S.
-
-	```objectivec
-	Reference BP3L
-	```
-
- 12. Operation procedure for AM4.
-
-	```objectivec
-	Reference BP3L
-	```
-
- 13. Operation procedure for PO3.
-
-	```objectivec
-	Reference BP3L
-	```
-
- 14. Operation procedure for BG1.
-
-   a) Initialization for BG1 (connected BG via sound
-      jack)
-
-       ```objectivec
-       [[BG1Controller shareBG1Controller]initBGAudioModule];
-       ```
-   b) Access control class instance after receive `BG1ConnectNoti`: 
-    ```objectivec
-    BG1 *bgInstance = [[BG1Controller shareBG1Controller] getCurrentBG1Instance];
-    ```
-
-   c) Using ‘bgInstance’ to call the connection and BG test module of the device. BG test function must be called after the block of connection return.
-
- 15. Operation procedure for BG5.
-
-	```objectivec
-	Reference BP5
-	```
-
-
-
-### BP Device change mothod
-
-
-# Version Migration Guide For BP series API
-
-### 1.Measurment
-
-##### BP3
-
-OLD:
-```objectivec
--(void)commandStartMeasureWithUser:(NSString *)userID clientID:(NSString *)clientID clientSecret:(NSString *)clientSecret Authentication:(BlockUserAuthentication)disposeAuthenticationBlock pressure:(BlockPressure)pressure xiaoboWithHeart:(BlockXioaboWithHeart)xiaobo xiaoboNoHeart:(BlockXioaboNoHeart)xiaoboNoHeart  result:(BlockMesureResult)result errorBlock:(BlockError)error;
-```
-NEW:
-```objectivec
--(void)commandStartMeasureWithZeroingState:(BlockZero)blockZeroState pressure:(BlockPressure)pressure waveletWithHeartbeat:(BlockWavelet)blockWaveletWithHeartbeat waveletWithoutHeartbeat:(BlockWavelet)blockWaveletWithoutHeartbeat result:(BlockMeasureResult)result errorBlock:(BlockError)error;
-``` 
-##### BP3L
-OLD:
-```objectivec
--(void)commandStartMeasureWithUser:(NSString *)userID clientID:(NSString *)clientID clientSecret:(NSString *)clientSecret Authentication:(BlockUserAuthentication)disposeAuthenticationBlock pressure:(BlockPressure)pressure xiaoboWithHeart:(BlockXioaboWithHeart)xiaobo xiaoboNoHeart:(BlockXioaboNoHeart)xiaoboNoHeart  result:(BlockMesureResult)result errorBlock:(BlockError)error;
-```
-NEW:
-```objectivec
--(void)commandStartMeasureWithZeroingState:(BlockZero)blockZeroState pressure:(BlockPressure)pressure waveletWithHeartbeat:(BlockWavelet)blockWaveletWithHeartbeat waveletWithoutHeartbeat:(BlockWavelet)blockWaveletWithoutHeartbeat  result:(BlockMeasureResult)result errorBlock:(BlockError)error;
-```
-
-##### BP5
-OLD:
-```objectivec
--(void)commandStartMeasureWithUser:(NSString *)userID clientID:(NSString *)clientID clientSecret:(NSString *)clientSecret Authentication:(BlockUserAuthentication)disposeAuthenticationBlock pressure:(BlockPressure)pressure xiaoboWithHeart:(BlockXioaboWithHeart)xiaobo xiaoboNoHeart:(BlockXioaboNoHeart)xiaoboNoHeart  result:(BlockMesureResult)result errorBlock:(BlockError)error;
-```
-NEW:
-```objectivec
--(void)commandStartMeasureWithZeroingState:(BlockZero)blockZeroState pressure:(BlockPressure)pressure waveletWithHeartbeat:(BlockWavelet)blockWaveletWithHeartbeat waveletWithoutHeartbeat:(BlockWavelet)blockWaveletWithoutHeartbeat result:(BlockMeasureResult)result errorBlock:(BlockError)error;
-```
-##### BP7
-OLD:
-```objectivec
--(void)commandStartMeasure:(BlockPressure)pressure xiaoboWithHeart:(BlockXioaboWithHeart)xiaobo xiaoboNoHeart:(BlockXioaboNoHeart)xiaoboNoHeart  result:(BlockMesureResult)result errorBlock:(BlockError)error;
-```
-NEW:
-```objectivec
--(void)commandStartMeasureWithZeroingState:(BlockZero)blockZeroState pressure:(BlockPressure)pressure waveletWithHeartbeat:(BlockWavelet)blockWaveletWithHeartbeat waveletWithoutHeartbeat:(BlockWavelet)blockWaveletWithoutHeartbeat result:(BlockMeasureResult)result errorBlock:(BlockError)error;
-```
-
-### NOTE:
-1. add ZeroingState callback, it will continuous send NO when zeroing, and when zeroing ready, it will send YES;
-2. change wavelet name from `xiaobo` to `wavelet`
-3. change `BlockXioaboWithHeart ` and `BlockXioaboNoHeart ` block type to`BlockWavelet ` 
-
-### 2.Block Type
-OLD:
-```
-typedef void(^BlockStopSuccess)();
-typedef void(^BlockSetUnitSuccess)();
-typedef void(^BlockSetAngleSuccess)();
-typedef void(^BlockSetPresureTargetSuccess)();
-```
-NEW:
-```
-typedef void(^BlockSuccess)();
-```
-### NOTE:
-Change all success type blocks into a uniform one
-
-
-
-## API Guide
-
-[Click this link](https://github.com/iHealthDeviceLabs/iHealthDeviceLabs-iOS/tree/master/api-docs)
-
-## Examples
-
-[Click this link](https://github.com/iHealthDeviceLabs/iHealthDeviceLabs-iOS/tree/master/examples)
-
-
-## Release Note
-
-[Click this link](https://github.com/iHealthDeviceLabs/iHealthDeviceLabs-iOS/blob/master/doc/ReleaseNote.md)
-
-## FAQ
-
-[Click this link](https://github.com/iHealthDeviceLabs/iHealthDeviceLabs-iOS/blob/master/doc/FAQ.md)
 
 
 
