@@ -46,7 +46,7 @@ export class DevelopmentGroupComponent {
     activatedRoute.paramMap.subscribe( paramMap => {
       const userId = paramMap['params'].userId;
       this.logger.debug('--------------userID = ', userId);
-      if (userId !== userService.user._id) {
+      if (userService.user && userId !== userService.user._id) {
         this.logger.debug('213213123213213213213213');
         this.userService.signOut();
         return;

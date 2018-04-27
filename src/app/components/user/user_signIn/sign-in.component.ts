@@ -74,6 +74,19 @@ export class SignInComponent {
           this.logger.debug('this.preUrl', this.preUrl);
 
           if (this.preUrl && this.preUrl !== '/sign-up-confirm' && this.preUrl.indexOf('/reset-password') === -1) {
+
+            if (this.preUrl.indexOf('/development-main/development-group') !== -1) {
+              const url = this.preUrl.split('/');
+              this.logger.debug('url = ', url);
+              this.logger.debug('url = ', this.userService.user._id);
+              url[3] = this.userService.user._id;
+
+              this.preUrl = url.join('/');
+
+              this.logger.debug('url-----change = ', this.preUrl);
+
+            }
+
             this.router.navigate([this.preUrl]);
           } else {
             this.router.navigate(['/']);
