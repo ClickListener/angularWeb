@@ -79,6 +79,7 @@ import {RegexNumberDirective} from "./directive/regex-number.directive";
 import {RegexChineseDirective} from "./directive/regex-chinese.directive";
 import {RegexBeginDirective} from "./directive/regex-begin.directive";
 import {RegexSpaceDirective} from "./directive/regex-space.directive";
+import { GettingStartComponent } from './components/start/getting-start/getting-start.component';
 
 @NgModule({
 
@@ -172,7 +173,10 @@ import {RegexSpaceDirective} from "./directive/regex-space.directive";
     StartNativeSdkComponent,
 
 
-    StartLayeredAppComponent
+    StartLayeredAppComponent,
+
+
+    GettingStartComponent
   ],
 
   bootstrap: [AppComponent],

@@ -81,7 +81,7 @@ export class UserService {
           swal({
             position: 'center',
             type: 'error',
-            titleText: 'You signed in timeout or signed out in another tab.',
+            titleText: 'You signed in timeout or signed out in another tab',
             allowOutsideClick: false
             })
             .then(() => {

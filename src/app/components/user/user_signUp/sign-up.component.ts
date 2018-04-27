@@ -362,7 +362,7 @@ export class SignUpComponent {
           swal({
             position: 'center',
             type: 'success',
-            text: 'Please check your email to confirm.',
+            text: 'Please check your email to confirm',
             showConfirmButton: true,
             allowOutsideClick: false
           }).then(() => {

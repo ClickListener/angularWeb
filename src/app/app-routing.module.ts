@@ -54,6 +54,7 @@ import {TermEuComponent} from "./components/terms/term-eu/term-eu.component";
 import {PoliciesEuComponent} from "./components/policies/policies-eu/policies-eu.component";
 import {StartNativeSdkComponent} from "./components/start/start-native-sdk/start-native-sdk.component";
 import {StartLayeredAppComponent} from "./components/start/start-layered-app/start-layered-app.component";
+import {GettingStartComponent} from "./components/start/getting-start/getting-start.component";
 
 /**
  * 路由模块
@@ -72,6 +73,10 @@ const routes: Routes = [
   {
     path: 'start-layeredApp',
     component: StartLayeredAppComponent
+  },
+  {
+    path: 'getting-start',
+    component: GettingStartComponent
   },
   {
     path: 'sign-in',
