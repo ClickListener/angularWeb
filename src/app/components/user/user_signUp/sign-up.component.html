@@ -202,7 +202,7 @@
                   <div>
                     <ul style="display: flex; justify-content: space-between; flex-wrap: wrap">
                       <li *ngFor="let country of EU_countries" (click)="chooseCountry(country.en, country.origin)"
-                          style="display: inline-block; list-style: none; width: 200px; height: 60px; margin-top: 10px">
+                          style="display: inline-block; list-style: none; width: 200px; height: 65px; margin-top: 15px">
                         <img src="../../../../assets/images/countries/{{country.code | lowercase}}.png"/>
                         <a>{{country.en}}</a>
                       </li>
