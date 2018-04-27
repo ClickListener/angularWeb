@@ -545,7 +545,7 @@ export class DevelopmentAppRegComponent implements OnInit {
     const app = {
       "platform": "ios",
       "appName": this.appName,
-      "bundleIdOrPackageName": this.packageName,
+      "bundleIdOrPackageName": this.bundleId,
       "description": this.description,
       "sdkType": this.sdkType,
       "scheme": this.layered_url,
