@@ -247,14 +247,13 @@ li ul li > a.active {
 }
 
 .getting-start:hover {
-  color: #45cafc!important;
+  color: rgb(242, 115, 48)!important;
   cursor: pointer;
   outline: none;
 }
 
-.getting-start a.active {
-  outline: none;
-  color: #45cafc;
+.custom-active {
+  color: rgb(242, 115, 48)!important;
 }
 
 

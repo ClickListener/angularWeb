@@ -1,0 +1,30 @@
+
+
+
+
+.content {
+  margin: 8% 5% 8% 5%;
+  font-family: 'Adobe Caslon Pro', Helvetica, Arial, sans-serif;
+  color: #031a2c;
+}
+.title {
+  font-weight: 400;
+}
+
+
+.sub-title {
+  font-weight: 700;
+  margin-top: 1.8rem;
+}
+
+.sub-sub-title {
+  font-weight: 500;
+  margin: 1.5rem;
+}
+
+.image-style {
+  width: 100%;
+
+  border-radius: 10px;
+  text-align: center;
+}
