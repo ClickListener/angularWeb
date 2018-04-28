@@ -77,6 +77,7 @@ export class UserService {
 
         // 当本地用户存在，但是cookie中没有用户时（其他页面登出，或者登录超时）
         if (this.user && !this._cookieService.get('user')) {
+          console.log('this._cookieService.get(\'user\' = ', this._cookieService.get('user'))
 
           swal({
             position: 'center',
@@ -107,6 +108,8 @@ export class UserService {
               })
               .catch(swal.noop);
           }
+          this.user = JSON.parse(this._cookieService.get('user'));
+          this.token = JSON.parse(this._cookieService.get('token'));
         }
 
       } else {

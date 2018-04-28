@@ -93,7 +93,7 @@ import { GettingStartComponent } from './components/start/getting-start/getting-
     CookieModule.forRoot(),
     FileUploadModule,
     MarkdownModule.forRoot(),
-    LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG})
+    LoggerModule.forRoot({level: NgxLoggerLevel.OFF})
   ],
   declarations: [
     AppComponent,

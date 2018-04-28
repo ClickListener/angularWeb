@@ -84,7 +84,7 @@
   <div class="dropdown-block">
 
     <div>
-      <label>SDK Scheme</label>
+      <label>SDK Type</label>
       <select class="mdb-select" name="SDK_Scheme" [(ngModel)]="appInfo.sdkType">
         <option value="NativeSDK">Native SDK</option>
         <!--<option value="RNSDK">RN SDK</option>-->
@@ -109,7 +109,7 @@
   </div>
 
   <div class="input-block" *ngIf="appInfo.sdkType === 'LayeredApp'">
-    <label for="id_layeredUrl">Type</label>
+    <label for="id_layeredUrl">Scheme</label>
 
     <input name="id_layeredUrl" id="id_layeredUrl" type="text" [(ngModel)]="appInfo.scheme"
            #_layered_url="ngModel"minlength="3" maxlength="100" required
