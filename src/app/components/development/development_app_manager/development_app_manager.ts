@@ -190,6 +190,7 @@ export class DevelopmentAppManagerComponent {
 
           if (response.success) {
             this.appList = response.data;
+            this.appList = this.appList.reverse();
           }
         }
 
