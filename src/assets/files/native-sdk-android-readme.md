@@ -211,7 +211,7 @@ private iHealthDevicesCallback iHealthDevicesCallback = new iHealthDevicesCallba
 
 ### 2.Android 6.0 location permission
 
-```
+```java
 	If targetSdkVersion >= 23, need location permission as follows:
 
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -228,7 +228,7 @@ private iHealthDevicesCallback iHealthDevicesCallback = new iHealthDevicesCallba
 
 ### 3.Android 7.0 connect problem   
 
-```
+```java
 Connect will fail on Android 7.0 with devices as follows:
 1. HS4  Firmware Version < 1.0.5
 2. PO3  (Firmware Version < 1.0.5   ||  (Firmware Version = 1.0.5  && Display Version != 11.0.5))
@@ -243,7 +243,7 @@ Connect will fail on Android 7.0 with devices as follows:
 
 ### 4.Android 8.0 connect problem   
 
-```
+```java
 Connect will fail on Android 8.0 with devices as follows:
 1. HS4  BT Version <= 1.0.8
 2. PO3  BT Version <= 1.0.8
