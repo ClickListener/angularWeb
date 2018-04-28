@@ -27,7 +27,13 @@ iHealth PO3 iHealth PO3M
 Thermometer:
 THV3  TS28B
 ```
+### Support Update iHealth Device for Android
 
+```javascript
+
+    AM3 AM3S AM4 HS4 HS4S HS2 BG5S PO3M ABP100
+    
+```
 
 ## How to use the iHealth SDK
 
