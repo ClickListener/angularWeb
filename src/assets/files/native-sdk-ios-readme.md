@@ -1,6 +1,6 @@
 # iHealth Device Developer Documentation for iOS
 
-  This document describes how to use the iHealth Device SDK to accomplish the major operation: Connection Device, Online Measurement, Offline Measurement and iHealth Device Management.
+  This document describes how to use the iHealth Device SDK to accomplish the major operation: Connect Device, Online Measurement, Offline Measurement and iHealth Device Management.
 
 ### Latest version
 2.2.0
@@ -116,7 +116,7 @@ If you're using BG1，you need to add  Item NSMicrophoneUsageDescription
 
 ### How to apply for SDK permissions
 
-[Click this link](https://github.com/iHealthDeviceLabs/iHealthDeviceLabs-iOS/blob/master/doc/Developer_Registration_Application_Instruction.md)
+#### [Getting start](https://dev.ihealthlabs.com/getting-start)
 
 ### How to use the iHealth SDK
 
@@ -147,7 +147,7 @@ If you're using BG1，you need to add  Item NSMicrophoneUsageDescription
 
 ## Download
 
-[Click this link](https://dev.ihealthlabs.com/last-version)
+#### [Download SDK](https://dev.ihealthlabs.com/last-version)
 
 
 

@@ -1,7 +1,7 @@
 # iHealth Device Developer Documentation for Android
 
 
-This document describes how to use the iHealth Device SDK to accomplish the major operation: Connection Device, Online Measurement, Offline Measurement and iHealth Device Management.
+This document describes how to use the iHealth Device SDK to accomplish the major operation: Connect Device, Online Measurement, Offline Measurement and iHealth Device Management.
 
 ### Latest version
 
@@ -16,7 +16,7 @@ BG:
 iHealth BG1  iHealth BG5	iHealth BG5S
 
 BP:
-iHealth BP3L  iHealth BP3M iHealth BP5  iHealth BP7  iHealth BP7S  iHealth KN-550BT  Continua BP iHealth KD723  iHealth KD926  iHealth BPM1	iHealth ABI  iHealth ABPM
+iHealth BP3L  iHealth BP3M iHealth BP5  iHealth BP7  iHealth BP7S  iHealth KN-550BT  Continua BP iHealth KD723  iHealth KD926  iHealth BPM1	iHealth ABI  iHealth ABP100
 
 HS:
 iHealth HS3  iHealth HS4  iHealth HS4S  iHealth HS5  iHealth HS6  iHealth HS2  
@@ -40,7 +40,7 @@ THV3  TS28B
 iHealth Device SDK communicate with iHealth Device by USB, Bluetooth, BluetoothLe, Wifi or Audio.  
 **USB:** iHealth BP3M  
 **Bluetooth:** iHealth BP5, iHealth BP7, iHealth BP7S, iHealth ABI, iHealth HS3, iHealth HS4S, iHealth BG5  
-**BluetoothLe:** iHealth AM3, iHealth AM3S, iHealth AM4, iHealth BP3L, iHealth KN-550BT, iHealth KD723, iHealth KD926,iHealth ABPM, iHealth HS4, iHealth PO3(PO3M), iHealth HS2,	THV3,	TS28B
+**BluetoothLe:** iHealth AM3, iHealth AM3S, iHealth AM4, iHealth BP3L, iHealth KN-550BT, iHealth KD723, iHealth KD926,iHealth ABP100, iHealth HS4, iHealth PO3(PO3M), iHealth HS2,	THV3,	TS28B
 **Audio:** iHealth BG1  
 **Wifi:** iHealth BPM1,	iHealth HS5, iHealth HS6
 
@@ -49,7 +49,7 @@ iHealth Device SDK communicate with iHealth Device by USB, Bluetooth, BluetoothL
 
 Need to introduce the development kit iHealthLibrary.jar.  
 Support phone os 4.0+: ABI, BP3M, BP5, BP7, BP7S, BPM1,	BG1, BG5, HS3, HS4S, HS5, HS6  
-Support phone os 4.3+: AM3, AM3S, AM4, BP3L, BP550BT, KD723, KD926,	ABPM, HS4, PO3, HS2
+Support phone os 4.3+: AM3, AM3S, AM4, BP3L, BP550BT, KD723, KD926,	ABP100, HS4, PO3, HS2
 
 Specific configuration as shown below:
 
@@ -61,7 +61,7 @@ Specific configuration as shown below:
 
 ### How to apply for SDK permissions
 
-[Click this link](https://github.com/iHealthDeviceLabs/iHealthDeviceLabs-Android/blob/master/doc/Developer_Registration_Application_Instruction.md)   
+#### [Getting start](https://dev.ihealthlabs.com/getting-start)   
 
 
 ### How to use the iHealth SDK
@@ -175,5 +175,79 @@ private iHealthDevicesCallback iHealthDevicesCallback = new iHealthDevicesCallba
 
 ## Download
 
-[Click this link](https://dev.ihealthlabs.com/last-version)
+#### [Download SDK](https://dev.ihealthlabs.com/last-version)
 
+
+
+## FAQ for Android
+
+### 1.Android permission explaination
+
+```java
+    <!-- Internet communication and detect / manage Wi-Fi state -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+
+    <!-- Bluetooth permission for communicating with iHealth devices -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <!-- Permission for writing on device memory -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- Permission for locating user device in order to search beacons -->
+    <!-- https://developer.android.com/reference/android/bluetooth/le/BluetoothLeScanner.html#startScan(android.bluetooth.le.ScanCallback) -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- Permission for iHealth BG1 device (which connect with phone by headphone jack) -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO"
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
+```  
+
+### 2.Android 6.0 location permission
+
+```
+	If targetSdkVersion >= 23, need location permission as follows:
+
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+
+	Turn location function for the phone.
+
+```
+
+[Location Permission](https://github.com/iHealthDeviceLabs/iHealthDeviceLabs-Android/blob/master/public/Location_Permission.png?raw=true)  
+[Location Function](https://github.com/iHealthDeviceLabs/iHealthDeviceLabs-Android/blob/master/public/LocationFunction.jpg?raw=true)
+
+
+### 3.Android 7.0 connect problem   
+
+```
+Connect will fail on Android 7.0 with devices as follows:
+1. HS4  Firmware Version < 1.0.5
+2. PO3  (Firmware Version < 1.0.5   ||  (Firmware Version = 1.0.5  && Display Version != 11.0.5))
+3. PO3M Firmware Version < 2.1.4
+4. BP3L  （Firmware Version =1.0.0 && BT Version < 1.2.4）
+5. KN-550BT  (Firmware Version =1.0.0 && BT Version < 1.2.4）
+6. AM3   All the version
+7. AM3S   Firmware Version < 1.1.8
+8. AM4   Firmware Version < 1.4.4
+
+```
+
+### 4.Android 8.0 connect problem   
+
+```
+Connect will fail on Android 8.0 with devices as follows:
+1. HS4  BT Version <= 1.0.8
+2. PO3  BT Version <= 1.0.8
+3. PO3M BT Version <= 1.0.8
+4. BP3L BT Version <= 1.2.4
+5. KN-550 BT Version <= 1.2.4
+```
