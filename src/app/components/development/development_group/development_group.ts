@@ -58,6 +58,11 @@ export class DevelopmentGroupComponent {
       return;
     }
 
+    if (!userService.user.companyId) {
+      this.router.navigate(['/']);
+      return;
+    }
+
 
     const userInfo = {
       "userId": userService.user._id,
