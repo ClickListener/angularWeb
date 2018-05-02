@@ -120,9 +120,11 @@
             <p style="display: inline">I agree to the</p>
             <ng-container [ngSwitch]="country.origin">
               <ng-container *ngSwitchCase="'EU'">
-                <a href="https://ihealthlabs.eu/en/content/175-personal-data-confidentiality-policy" target="_blank">Terms</a>
+                <!--<a href="https://ihealthlabs.eu/en/content/173-GTCU" target="_blank">Terms</a>-->
+                <a routerLink="/term_eu">Terms</a>
                 <p style="display: inline">&</p>
-                <a href="https://ihealthlabs.eu/en/content/173-GTCU" target="_blank">Policies</a>
+                <!--<a href="https://ihealthlabs.eu/en/content/175-personal-data-confidentiality-policy" target="_blank">Policies</a>-->
+                <a routerLink="/policies_eu">Policies</a>
               </ng-container>
               <ng-container *ngSwitchDefault>
                 <a href="https://es.ihealthlabs.com/about-us/terms-and-conditions/" target="_blank">Terms</a>
