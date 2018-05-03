@@ -179,7 +179,8 @@ export class UserService {
           if (!('uid' in userInfo)) {
 
             this.user = res['user'];
-
+            const expires = new Date().getTime() + 24 * 60 * 60 * 1000;
+            this._cookieService.put('user', JSON.stringify(this.user), {expires: new Date(expires)});
           }
         } else {
           if (res['code'] === '1034') {
