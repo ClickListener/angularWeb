@@ -53,13 +53,9 @@ export class DevelopmentGroupComponent {
       }
     });
 
+
     if (!userService.user) {
       this.router.navigate(['/sign-in']);
-      return;
-    }
-
-    if (!userService.user.companyId) {
-      this.router.navigate(['/']);
       return;
     }
 
@@ -74,6 +70,10 @@ export class DevelopmentGroupComponent {
       .then(async res => {
 
         if (res.success) {
+          if (!userService.user.companyId) {
+            this.router.navigate(['/']);
+            return;
+          }
 
 
           this.user = userService.user;
