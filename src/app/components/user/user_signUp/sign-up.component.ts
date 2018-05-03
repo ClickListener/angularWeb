@@ -1,10 +1,10 @@
 /**
  * Created by zhangxu on 2017/7/13.
  */
-import {Component} from "@angular/core";
+import {AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, OnInit} from "@angular/core";
 import {UserService} from "../../../services/user.service";
 
-import {Router} from '@angular/router';
+import {NavigationEnd, Router} from '@angular/router';
 import swal from "sweetalert2";
 import {LowerCasePipe} from "@angular/common";
 import {NGXLogger} from "ngx-logger";
@@ -311,17 +311,22 @@ export class SignUpComponent {
 
   constructor(private userService: UserService, private router: Router,
               private lowerCasePipe: LowerCasePipe, private logger: NGXLogger) {
-    if (this.userService.user) {
-      this.router.navigate(['/']);
-    }
 
-    this.sort(this.AS_countries);
-    this.sort(this.NA_countries);
-    this.sort(this.LA_countries);
-    this.sort(this.OA_countries);
-    this.sort(this.ME_countries);
-    this.sort(this.AF_countries);
-    this.sort(this.EU_countries);
+
+    router.events.filter(event => event instanceof NavigationEnd)
+      .subscribe((event: NavigationEnd) => {
+        if (this.userService.user) {
+          this.router.navigate(['/']);
+        }
+
+        this.sort(this.AS_countries);
+        this.sort(this.NA_countries);
+        this.sort(this.LA_countries);
+        this.sort(this.OA_countries);
+        this.sort(this.ME_countries);
+        this.sort(this.AF_countries);
+        this.sort(this.EU_countries);
+      });
 
 
   }
