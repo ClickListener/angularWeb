@@ -97,7 +97,7 @@ import { PoliciesUsComponent } from './components/policies/policies-us/policies-
     CookieModule.forRoot(),
     FileUploadModule,
     MarkdownModule.forRoot(),
-    LoggerModule.forRoot({level: NgxLoggerLevel.OFF})
+    LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG})
   ],
   declarations: [
     AppComponent,
