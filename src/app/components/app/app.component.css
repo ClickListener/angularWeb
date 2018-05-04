@@ -161,13 +161,13 @@
 .slide-out li > a:hover {
   text-decoration: none;
   color: #fff;
-  background: darkgray;
+  background: rgb(242, 115, 48);
 }
 
 .slide-out li > a.active {
   text-decoration: none;
   color: #FFFFFF;
-  background: rgba(72,198,255,.8);
+  background: rgb(242, 115, 48);
 }
 
 
@@ -224,13 +224,13 @@ li ul li > a {
 li ul li > a:hover {
   text-decoration: none;
   color: #fff;
-  background: darkgray;
+  background: rgb(242, 115, 48);
 }
 
 li ul li > a.active {
   text-decoration: none;
   color: #FFFFFF;
-  background: rgba(72,198,255,.8);
+  background: rgb(242, 115, 48);
 }
 
 
