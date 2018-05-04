@@ -82,6 +82,8 @@ import {RegexSpaceDirective} from "./directive/regex-space.directive";
 import { GettingStartComponent } from './components/start/getting-start/getting-start.component';
 import {RouteReuseStrategy} from "@angular/router";
 import {SimpleReuseStrategy} from "./components/tools/simple-reuse-strategy";
+import { TermUsComponent } from './components/terms/term-us/term-us.component';
+import { PoliciesUsComponent } from './components/policies/policies-us/policies-us.component';
 
 @NgModule({
 
@@ -178,7 +180,13 @@ import {SimpleReuseStrategy} from "./components/tools/simple-reuse-strategy";
     StartLayeredAppComponent,
 
 
-    GettingStartComponent
+    GettingStartComponent,
+
+
+    TermUsComponent,
+
+
+    PoliciesUsComponent
   ],
 
   bootstrap: [AppComponent],
