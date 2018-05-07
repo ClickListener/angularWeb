@@ -65,7 +65,11 @@ export class IOSComponent {
             this.logger.debug('res = ', res);
             if (res.success) {
               this.parsePermission(res.data);
-              this.getSchemeList(0);
+              if (this.param !== 'LayeredApp') {
+                this.getSchemeList(0);
+              } else {
+                this.loading = false;
+              }
             } else {
               this.loading = false;
             }

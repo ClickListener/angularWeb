@@ -1,4 +1,4 @@
-<div style="margin-left: 5rem; margin-right: 5rem" *ngIf="permissionOfCheck">
+<div style="margin-left: 5rem; margin-right: 5rem" *ngIf="permissionOfCheck && param !== 'LayeredApp'">
 
   <div *ngIf="schemeList">
     <p style="margin-top: 3rem;font-size: 2rem">{{title}}</p>
@@ -45,3 +45,13 @@
 </div>
 
 <div id="loading" class="loading" *ngIf="loading"></div>
+
+<div *ngIf="permissionOfCheck && param === 'LayeredApp'" style="margin-left: 5rem">
+  <p style="margin-top: 3rem;font-size: 2rem; ">{{title}}</p>
+
+  <p style="font-size: 1.2rem">
+    You must go to Google Play for downloading last version of
+    <a href="https://play.google.com/store/apps/details?id=com.ihealth.layer" target="_blank">Layered App</a>.
+  </p>
+
+</div>

@@ -1,4 +1,4 @@
-<div style="margin-left: 5rem; margin-right: 5rem" *ngIf="permissionOfCheck">
+<div style="margin-left: 5rem; margin-right: 5rem" *ngIf="permissionOfCheck && param !== 'LayeredApp'">
 
 
   <div *ngIf="schemeList">
@@ -48,3 +48,13 @@
 
 
 <div id="loading" class="loading" *ngIf="loading"></div>
+
+<div *ngIf="permissionOfCheck && param === 'LayeredApp'" style="margin-left: 5rem">
+  <p style="margin-top: 3rem;font-size: 2rem; ">{{title}}</p>
+
+  <p style="font-size: 1.2rem">
+    You must go to Apple Store for downloading last version of
+    <a href="https://itunes.apple.com/cn/app/connect-app-for-ihealth-next/id1156796825?mt=8" target="_blank">Layered App</a>.
+  </p>
+
+</div>
