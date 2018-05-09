@@ -156,6 +156,30 @@ export class UserService {
 
 
 
+  contactUs(formData: FormData): Promise<any> {
+
+    this.logger.debug('formData = ', formData);
+
+    const url = 'https://ihealthsdk-support.freshdesk.com/api/v2/tickets';
+
+    return this.http.post(url, formData, {
+      headers: new HttpHeaders({
+        'Authorization': 'Basic SjFBQWRTcVBQRUkwMEFaWHJHcFQ6WA==',
+        'Access-Control-Allow-Origin': '*',
+      }),
+      observe: 'response'
+    }).toPromise()
+      .then(res => {
+        console.log(res);
+        if (res['status'] === 201) {
+          return res;
+        }
+      })
+      .catch(UserService.handleError);
+  }
+
+
+
   /**
    * 获取单个用户信息
    */

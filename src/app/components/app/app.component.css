@@ -109,6 +109,9 @@
   width: 250px;
   bottom: 0;
   top: 62px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   overflow-y: auto;
   background: #fff;
   transform: translateX(-100%);

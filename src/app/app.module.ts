@@ -84,6 +84,7 @@ import {RouteReuseStrategy} from "@angular/router";
 import {SimpleReuseStrategy} from "./components/tools/simple-reuse-strategy";
 import { TermUsComponent } from './components/terms/term-us/term-us.component';
 import { PoliciesUsComponent } from './components/policies/policies-us/policies-us.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
 
@@ -186,7 +187,10 @@ import { PoliciesUsComponent } from './components/policies/policies-us/policies-
     TermUsComponent,
 
 
-    PoliciesUsComponent
+    PoliciesUsComponent,
+
+
+    ContactComponent
   ],
 
   bootstrap: [AppComponent],

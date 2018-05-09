@@ -57,6 +57,7 @@ import {StartLayeredAppComponent} from "./components/start/start-layered-app/sta
 import {GettingStartComponent} from "./components/start/getting-start/getting-start.component";
 import {TermUsComponent} from "./components/terms/term-us/term-us.component";
 import {PoliciesUsComponent} from "./components/policies/policies-us/policies-us.component";
+import {ContactComponent} from "./components/contact/contact.component";
 
 /**
  * 路由模块
@@ -79,6 +80,10 @@ const routes: Routes = [
   {
     path: 'getting-start',
     component: GettingStartComponent
+  },
+  {
+    path: 'contact-us',
+    component: ContactComponent
   },
   {
     path: 'sign-in',

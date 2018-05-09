@@ -1,0 +1,93 @@
+<form id="contactForm" style="margin: 3rem 15% 3rem 15%">
+
+  <div>
+    <p style="font-size: 1.5rem; font-weight: 500">Submit a ticket</p>
+
+  </div>
+
+  <div style="display: flex; justify-content: space-between; height: 40px; margin-bottom: 2rem">
+    <label style="font-size: 1.2rem; font-weight: 400; margin: 0; line-height: 40px">
+      Requester
+      <img src="../../../assets/images/star.png">
+    </label>
+    <input class="input-box" name="requester" [(ngModel)]="requester" required pattern="^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" #requesterModel="ngModel">
+
+
+  </div>
+  <div *ngIf="requesterModel.invalid && (requesterModel.dirty || requesterModel.touched)"
+       class="alert alert-danger">
+
+    <div *ngIf="requesterModel.errors.required">
+      Requester is required
+    </div>
+
+    <div *ngIf="requesterModel.errors.pattern">
+      Please input valid email
+    </div>
+
+
+  </div>
+
+
+  <div style="display: flex; justify-content: space-between; height: 40px; margin-bottom: 2rem">
+    <label style="font-size: 1.2rem; font-weight: 400; margin: 0; line-height: 40px">
+      Subject
+      <img src="../../../assets/images/star.png">
+    </label>
+    <input class="input-box" name="subject" [(ngModel)]="subject" #subjectModel="ngModel" required>
+  </div>
+
+  <div *ngIf="subjectModel.invalid && (subjectModel.dirty || subjectModel.touched)"
+       class="alert alert-danger">
+
+    <div *ngIf="subjectModel.errors.required">
+      Subject is required
+    </div>
+
+  </div>
+
+  <div style="display: flex; justify-content: space-between; margin-bottom: 2rem">
+    <label style="font-size: 1.2rem; font-weight: 400; margin: 0;">
+      Description
+      <img src="../../../assets/images/star.png">
+    </label>
+    <textarea name="description" class="input-box" style="height: 10rem!important;"
+              [(ngModel)]="description" #descriptionModel="ngModel" required></textarea>
+  </div>
+
+  <div *ngIf="descriptionModel.invalid && (descriptionModel.dirty || descriptionModel.touched)"
+       class="alert alert-danger">
+
+    <div *ngIf="descriptionModel.errors.required">
+      Description is required
+    </div>
+
+  </div>
+
+
+  <div style="display: flex; justify-content: space-between; height: 40px; margin-bottom: 1rem">
+    <label style="visibility: hidden">
+      Description
+    </label>
+
+    <input name="file" type="file" style="width: 70%;" (change)="previewImg($event)">
+  </div>
+
+
+  <div class="divider">
+
+  </div>
+
+
+  <div style="display: flex; justify-content: space-between; height: 40px; margin-bottom: 1rem">
+    <label style="visibility: hidden">
+      Description
+    </label>
+
+    <div style="width: 70%;">
+      <a class="btn btn-primary btn-sm submit-button" (click)="submit()">Submit</a>
+      <a class="btn btn-primary btn-sm cancel-button">Cancel</a>
+    </div>
+  </div>
+
+</form>
