@@ -121,17 +121,17 @@
             <ng-container [ngSwitch]="country.origin">
               <ng-container *ngSwitchCase="'EU'">
                 <!--<a href="https://ihealthlabs.eu/en/content/173-GTCU" target="_blank">Terms</a>-->
-                <a routerLink="/term_eu">Terms</a>
+                <a style="color: #007afa" data-target="#term-eu" data-toggle="modal">Terms</a>
                 <p style="display: inline">&</p>
                 <!--<a href="https://ihealthlabs.eu/en/content/175-personal-data-confidentiality-policy" target="_blank">Policies</a>-->
-                <a routerLink="/policies_eu">Policies</a>
+                <a style="color: #007afa" data-target="#policies-eu" data-toggle="modal">Policies</a>
               </ng-container>
               <ng-container *ngSwitchDefault>
                 <!--<a href="https://es.ihealthlabs.com/about-us/terms-and-conditions/" target="_blank">Terms</a>-->
-                <a routerLink="/term_us">Terms</a>
+                <a style="color: #007afa" data-target="#term-us" data-toggle="modal">Terms</a>
                 <p style="display: inline">&</p>
                 <!--<a href="https://es.ihealthlabs.com/about-us/privacy-policy/" target="_blank">Policies</a>-->
-                <a routerLink="/policies_us">Policies</a>
+                <a style="color: #007afa" data-target="#policies-us" data-toggle="modal">Policies</a>
               </ng-container>
 
             </ng-container>
@@ -139,6 +139,44 @@
 
           </div>
         </div>
+
+        <div class="modal fade" id="term-us" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <app-term-us></app-term-us>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="policies-us" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <app-policies-us></app-policies-us>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="term-eu" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <app-term-eu></app-term-eu>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="policies-eu" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <app-policies-eu></app-policies-eu>
+              </div>
+            </div>
+          </div>
+        </div>
+
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
