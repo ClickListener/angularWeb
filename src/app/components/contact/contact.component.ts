@@ -7,6 +7,7 @@ import {UserService} from "../../services/user.service";
 import swal from "sweetalert2";
 import {NGXLogger} from "ngx-logger";
 import {Router} from "@angular/router";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-contact',
@@ -24,7 +25,7 @@ export class ContactComponent implements OnInit {
 
   fileList: Array<File>;
 
-  constructor(private userService: UserService, private logger: NGXLogger, private router: Router) {
+  constructor(private userService: UserService, private logger: NGXLogger, private router: Router, private location: Location) {
     this.fileList = new Array();
   }
 
@@ -87,6 +88,10 @@ export class ContactComponent implements OnInit {
 
   removeFile(index: number) {
     this.fileList.splice(index, 1);
+  }
+
+  cancel() {
+    this.location.back();
   }
 
 
