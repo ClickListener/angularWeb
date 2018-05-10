@@ -27,3 +27,27 @@
   background-color: rgb(241, 241, 241);
   color: black!important;
 }
+
+
+.add_attachment {
+  color: #1272de;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 120px;
+  z-index: 2;
+}
+
+.original_input {
+  cursor: pointer;
+  height: 22px;
+  opacity: 0;
+  position: relative;
+  right: 0;
+  top: -15px;
+  width: 120px;
+  z-index: 10;
+}
+

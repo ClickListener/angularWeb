@@ -18,13 +18,14 @@ import {Router} from "@angular/router";
 export class ContactComponent implements OnInit {
 
 
-  file: File;
-
   requester: string;
   subject: string;
   description: string;
 
+  fileList: Array<File>;
+
   constructor(private userService: UserService, private logger: NGXLogger, private router: Router) {
+    this.fileList = new Array();
   }
 
   ngOnInit() {
@@ -40,8 +41,12 @@ export class ContactComponent implements OnInit {
     formData.append('priority', '1');
     formData.append('status', '2');
 
-    if (this.file) {
-      formData.append('attachments[]', this.file, this.file.name);
+
+    if (this.fileList.length !== 0) {
+
+      for (let i = 0; i < this.fileList.length; i++) {
+        formData.append('attachments[]', this.fileList[i], this.fileList[i].name);
+      }
     }
 
 
@@ -73,8 +78,15 @@ export class ContactComponent implements OnInit {
 
   previewImg(event) {
 
-    this.file = event.target.files[0];
-    console.log('file = ', this.file);
+    const file = event.target.files[0];
+    if (file) {
+      this.fileList.push(file);
+    }
+  }
+
+
+  removeFile(index: number) {
+    this.fileList.splice(index, 1);
   }
 
 
