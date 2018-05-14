@@ -1,0 +1,123 @@
+<form id="contactForm" style="margin: 3rem 15% 3rem 15%" #myForm="ngForm">
+
+  <div>
+    <p style="font-size: 1.5rem; font-weight: 500">Submit a ticket</p>
+
+  </div>
+
+  <div style="display: flex; justify-content: space-between; height: 40px; margin-bottom: 2rem">
+    <label style="font-size: 1.2rem; font-weight: 400; margin: 0; line-height: 40px">
+      Requester
+      <img src="../../../assets/images/star.png">
+    </label>
+    <input class="input-box" name="requester" [(ngModel)]="requester" required pattern="^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" #requesterModel="ngModel">
+
+
+  </div>
+
+  <div style="display: flex; justify-content: space-between;" *ngIf="requesterModel.invalid && (requesterModel.dirty || requesterModel.touched)">
+    <label style="visibility: hidden">
+      Description
+    </label>
+    <div class="alert alert-danger" style="width: 70%">
+
+      <div *ngIf="requesterModel.errors.required">
+        Requester is required
+      </div>
+
+      <div *ngIf="requesterModel.errors.pattern">
+        Please input valid email
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <div style="display: flex; justify-content: space-between; height: 40px; margin-bottom: 2rem">
+    <label style="font-size: 1.2rem; font-weight: 400; margin: 0; line-height: 40px">
+      Subject
+      <img src="../../../assets/images/star.png">
+    </label>
+    <input class="input-box" name="subject" [(ngModel)]="subject" #subjectModel="ngModel" required>
+  </div>
+
+
+  <div style="display: flex; justify-content: space-between;" *ngIf="subjectModel.invalid && (subjectModel.dirty || subjectModel.touched)">
+    <label style="visibility: hidden">
+      Description
+    </label>
+    <div class="alert alert-danger" style="width: 70%">
+      <div *ngIf="subjectModel.errors.required">
+        Subject is required
+      </div>
+
+    </div>
+  </div>
+
+  <div style="display: flex; justify-content: space-between; margin-bottom: 2rem">
+    <label style="font-size: 1.2rem; font-weight: 400; margin: 0;">
+      Description
+      <img src="../../../assets/images/star.png">
+    </label>
+    <textarea name="description" class="input-box" style="height: 10rem!important;"
+              [(ngModel)]="description" #descriptionModel="ngModel" required></textarea>
+  </div>
+
+
+  <div style="display: flex; justify-content: space-between;" *ngIf="descriptionModel.invalid && (descriptionModel.dirty || descriptionModel.touched)">
+    <label style="visibility: hidden">
+      Description
+    </label>
+    <div class="alert alert-danger" style="width: 70%">
+      <div *ngIf="descriptionModel.errors.required">
+        Description is required
+      </div>
+
+    </div>
+  </div>
+
+  <div style="display: flex; justify-content: space-between; height: 40px; margin-bottom: 1rem" *ngFor="let file of fileList, let i = index">
+    <label style="visibility: hidden">
+      Description
+    </label>
+
+    <p style="width: 70%;">
+      {{file.name}}
+      <a (click)="removeFile(i)"><i class="fa fa-times-circle"></i></a>
+    </p>
+
+  </div>
+
+
+  <div style="display: flex; justify-content: space-between; height: 40px; margin-bottom: 1rem">
+    <label style="visibility: hidden">
+      Description
+    </label>
+
+    <!--<input name="file" type="file" style="width: 70%;" (change)="previewImg($event)">-->
+    <div style="width: 70%">
+      <div class="add_attachment"><span>+</span> Attach a file</div>
+      <input type="file" (change)="previewImg($event)" class="original_input">
+    </div>
+
+  </div>
+
+
+  <div class="divider">
+
+  </div>
+
+
+  <div style="display: flex; justify-content: space-between; height: 40px; margin-bottom: 1rem">
+    <label style="visibility: hidden">
+      Description
+    </label>
+
+    <div style="width: 70%;">
+      <button class="btn btn-primary btn-sm submit-button" (click)="submit()" [disabled]="!myForm.form.valid">Submit</button>
+      <button class="btn btn-primary btn-sm cancel-button" (click)="cancel()">Cancel</button>
+    </div>
+  </div>
+
+</form>

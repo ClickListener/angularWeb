@@ -50,7 +50,7 @@
   left: -15rem;
   width: 30rem;
   top: 10px;
-  border: 1px solid #e9ecef;
+  border: 1px solid rgba(27,31,35,0.15);
   background: #FFFFFF;
 }
 
@@ -109,6 +109,9 @@
   width: 250px;
   bottom: 0;
   top: 62px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   overflow-y: auto;
   background: #fff;
   transform: translateX(-100%);
@@ -161,13 +164,13 @@
 .slide-out li > a:hover {
   text-decoration: none;
   color: #fff;
-  background: darkgray;
+  background: rgb(242, 115, 48);
 }
 
 .slide-out li > a.active {
   text-decoration: none;
   color: #FFFFFF;
-  background: rgba(72,198,255,.8);
+  background: rgb(242, 115, 48);
 }
 
 
@@ -224,13 +227,13 @@ li ul li > a {
 li ul li > a:hover {
   text-decoration: none;
   color: #fff;
-  background: darkgray;
+  background: rgb(242, 115, 48);
 }
 
 li ul li > a.active {
   text-decoration: none;
   color: #FFFFFF;
-  background: rgba(72,198,255,.8);
+  background: rgb(242, 115, 48);
 }
 
 

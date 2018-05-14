@@ -2,6 +2,7 @@
  * Created by zhangxu on 2018/1/29.
  */
 import {Component} from "@angular/core";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   templateUrl: './document_main.component.html',
@@ -9,5 +10,14 @@ import {Component} from "@angular/core";
 })
 
 export class DocumentMainComponent {
-  constructor() {}
+
+
+  param: string;
+  constructor(private activatedRoute: ActivatedRoute) {
+
+    activatedRoute.paramMap.subscribe(paramMap => {
+      this.param = paramMap['params'].param;
+
+    });
+  }
 }

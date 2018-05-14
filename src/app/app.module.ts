@@ -82,6 +82,9 @@ import {RegexSpaceDirective} from "./directive/regex-space.directive";
 import { GettingStartComponent } from './components/start/getting-start/getting-start.component';
 import {RouteReuseStrategy} from "@angular/router";
 import {SimpleReuseStrategy} from "./components/tools/simple-reuse-strategy";
+import { TermUsComponent } from './components/terms/term-us/term-us.component';
+import { PoliciesUsComponent } from './components/policies/policies-us/policies-us.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
 
@@ -95,7 +98,7 @@ import {SimpleReuseStrategy} from "./components/tools/simple-reuse-strategy";
     CookieModule.forRoot(),
     FileUploadModule,
     MarkdownModule.forRoot(),
-    LoggerModule.forRoot({level: NgxLoggerLevel.OFF})
+    LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG})
   ],
   declarations: [
     AppComponent,
@@ -178,7 +181,16 @@ import {SimpleReuseStrategy} from "./components/tools/simple-reuse-strategy";
     StartLayeredAppComponent,
 
 
-    GettingStartComponent
+    GettingStartComponent,
+
+
+    TermUsComponent,
+
+
+    PoliciesUsComponent,
+
+
+    ContactComponent
   ],
 
   bootstrap: [AppComponent],
@@ -195,8 +207,8 @@ import {SimpleReuseStrategy} from "./components/tools/simple-reuse-strategy";
     LowerCasePipe,
     ErrorService,
     AuthGuard,
-    NGXLogger,
-    { provide: RouteReuseStrategy, useClass: SimpleReuseStrategy}
+    NGXLogger
+    // { provide: RouteReuseStrategy, useClass: SimpleReuseStrategy}
   ]
 })
 

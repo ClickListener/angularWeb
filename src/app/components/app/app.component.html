@@ -208,8 +208,8 @@
 
 
             <div style="padding-left: 1rem; border-bottom: 1px solid #e9ecef">
-              <p style="margin: .5rem 0 0 0; font-size: 1.2rem">{{user.username}}</p>
-              <p style="margin: 0 0 .5rem 0">{{user.email}}</p>
+              <p style="margin: .5rem 0 0 0; font-size: 1.2rem; font-weight: 400">{{user.username}}</p>
+              <p style="margin: 0 0 .5rem 0; font-weight: 400">{{user.email}}</p>
             </div>
 
 
@@ -261,8 +261,8 @@
 
         <ul id="document_collapse" style="font-size: 14px">
           <li><a routerLinkActive="active" routerLink="document-main/NativeSDK" (click)="navigateDocument('NativeSDK')">Native SDK Document</a></li>
-          <!--<li><a routerLinkActive="active" routerLink="document-main/LibrarySDK" (click)="navigateDocument('LibrarySDK')">Library SDK Document</a></li>-->
-          <!--<li><a routerLinkActive="active" routerLink="document-main/RNSDK" (click)="navigateDocument('RNSDK')">RN SDK Document</a></li>-->
+          <li><a routerLinkActive="active" routerLink="document-main/LibrarySDK" (click)="navigateDocument('LibrarySDK')">Library SDK Document</a></li>
+          <li><a routerLinkActive="active" routerLink="document-main/RNSDK" (click)="navigateDocument('RNSDK')">RN SDK Document</a></li>
           <li><a routerLinkActive="active" routerLink="document-main/LayerApp" (click)="navigateDocument('LayerApp')">Layered App Document</a></li>
         </ul>
       </li>
@@ -275,7 +275,7 @@
         <ul style="font-size: 14px">
           <li><a routerLinkActive="active" [routerLink]="['/manager-main', 'NativeSDK']">Native SDK Download</a></li>
           <!--<li><a routerLinkActive="active" [routerLink]="['/manager-main', 'RN']">RN SDK Download</a></li>-->
-          <!--<li><a routerLinkActive="active" [routerLink]="['/manager-main', 'LibrarySDK']">Library SDK Download</a></li>-->
+          <li><a routerLinkActive="active" [routerLink]="['/manager-main', 'LibrarySDK']">Library SDK Download</a></li>
           <li><a routerLinkActive="active" [routerLink]="['/manager-main', 'LayeredApp']">Layered App Download</a></li>
         </ul>
       </li>
@@ -292,8 +292,8 @@
 
         <ul id="scheme_collapse" style="font-size: 14px">
           <li><a routerLinkActive="active" routerLink='/scheme-main/NativeSDK'>Native SDK Scheme</a></li>
-          <li><a routerLinkActive="active" routerLink='/scheme-main/LayeredApp'>Layered App Scheme</a></li>
-          <!--<li><a routerLinkActive="active" routerLink='/scheme-main/LibrarySDK'>Library SDK Scheme</a></li>-->
+          <!--<li><a routerLinkActive="active" routerLink='/scheme-main/LayeredApp'>Layered App Scheme</a></li>-->
+          <li><a routerLinkActive="active" routerLink='/scheme-main/LibrarySDK'>Library SDK Scheme</a></li>
         </ul>
       </li>
 
@@ -312,6 +312,11 @@
 
 
     </ul>
+
+    <div style="  display: flex; justify-content: center; margin-bottom: 10px">
+
+      <a routerLink="/contact-us">Contact us</a>
+    </div>
 
 
   </div>

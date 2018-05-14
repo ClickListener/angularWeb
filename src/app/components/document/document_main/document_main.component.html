@@ -1,4 +1,4 @@
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs" *ngIf="param === 'NativeSDK' || param === 'LibrarySDK'" >
   <li role="presentation"><a routerLink="./android-document" routerLinkActive="active">Android</a></li>
   <li role="presentation"><a routerLink="./ios-document" routerLinkActive="active">iOS</a></li>
 </ul>

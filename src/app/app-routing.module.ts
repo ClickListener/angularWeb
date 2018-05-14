@@ -55,6 +55,9 @@ import {PoliciesEuComponent} from "./components/policies/policies-eu/policies-eu
 import {StartNativeSdkComponent} from "./components/start/start-native-sdk/start-native-sdk.component";
 import {StartLayeredAppComponent} from "./components/start/start-layered-app/start-layered-app.component";
 import {GettingStartComponent} from "./components/start/getting-start/getting-start.component";
+import {TermUsComponent} from "./components/terms/term-us/term-us.component";
+import {PoliciesUsComponent} from "./components/policies/policies-us/policies-us.component";
+import {ContactComponent} from "./components/contact/contact.component";
 
 /**
  * 路由模块
@@ -77,6 +80,10 @@ const routes: Routes = [
   {
     path: 'getting-start',
     component: GettingStartComponent
+  },
+  {
+    path: 'contact-us',
+    component: ContactComponent
   },
   {
     path: 'sign-in',
@@ -329,6 +336,14 @@ const routes: Routes = [
   {
     path: 'policies_eu',
     component: PoliciesEuComponent
+  },
+  {
+    path: 'term_us',
+    component: TermUsComponent
+  },
+  {
+    path: 'policies_us',
+    component: PoliciesUsComponent
   }
 
 
