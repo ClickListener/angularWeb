@@ -207,8 +207,8 @@ import { ContactComponent } from './components/contact/contact.component';
     LowerCasePipe,
     ErrorService,
     AuthGuard,
-    NGXLogger,
-    { provide: RouteReuseStrategy, useClass: SimpleReuseStrategy}
+    NGXLogger
+    // { provide: RouteReuseStrategy, useClass: SimpleReuseStrategy}
   ]
 })
 
