@@ -6,9 +6,6 @@ import {NgModule} from "@angular/core";
 import {SignInComponent} from "./components/user/user_signIn/sign-in.component";
 import {SignUpComponent} from "./components/user/user_signUp/sign-up.component";
 import {HomeComponent} from "./components/home/home.component";
-import {ManagerComponent} from "./components/license/license_manager/manager.component";
-import {CreateNewComponent} from "./components/license/license_createNew/createNew.component";
-import {ModifyComponent} from "./components/license/license_modify/modify.component";
 import {SchemeCreateComponent} from "./components/scheme/scheme_create/scheme-create.component";
 import {SchemeManagerComponent} from "./components/scheme/scheme_manager/scheme-manager.component";
 import {SchemeModifyComponent} from "./components/scheme/scheme_modify/scheme-modify.component";
@@ -108,18 +105,6 @@ const routes: Routes = [
   {
     path: 'reset-password/:userId/:random',
     component: UserResetPasswordComponent
-  },
-  {
-    path: 'manager-license',
-    component: ManagerComponent
-  },
-  {
-    path: 'create-newLicense',
-    component: CreateNewComponent
-  },
-  {
-    path: 'modify-license/:licenseId',
-    component: ModifyComponent
   },
   {
     path: 'scheme-main/:param',

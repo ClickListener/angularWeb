@@ -10,12 +10,7 @@ import {SignUpComponent} from './components/user/user_signUp/sign-up.component';
 import {HomeComponent} from './components/home/home.component';
 import {UserService} from './services/user.service';
 import {FormsModule} from '@angular/forms';
-import {CreateNewComponent} from './components/license/license_createNew/createNew.component';
-import {ManagerComponent} from './components/license/license_manager/manager.component';
-import {ModifyComponent} from './components/license/license_modify/modify.component';
-import {LicenseService} from './services/license.service';
 import {DatePipe, LowerCasePipe} from '@angular/common';
-import {DevicesService} from './services/devices.service';
 import {CookieModule} from 'ngx-cookie';
 import {HttpClientJsonpModule, HttpClientModule} from "@angular/common/http";
 import {SchemeCreateComponent} from "./components/scheme/scheme_create/scheme-create.component";
@@ -110,10 +105,6 @@ import { ContactComponent } from './components/contact/contact.component';
     UserResetPasswordComponent,
 
     HomeComponent,
-    CreateNewComponent,
-    ManagerComponent,
-    ModifyComponent,
-
     ForgotPasswordComponent,
 
     SchemeMainComponent,
@@ -197,8 +188,6 @@ import { ContactComponent } from './components/contact/contact.component';
 
   providers: [
     UserService,
-    LicenseService,
-    DevicesService,
     DatePipe,
     SchemeService,
     Location,

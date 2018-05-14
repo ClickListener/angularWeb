@@ -5,7 +5,6 @@ import {Component, DoCheck, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FileUploader} from "ng2-file-upload";
 import swal from "sweetalert2";
-import {FileUploaderCustom} from "../../../services/FileUploaderCustom";
 import {HttpClient} from "@angular/common/http";
 import {UserService} from "../../../services/user.service";
 

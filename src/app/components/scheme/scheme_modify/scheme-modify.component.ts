@@ -4,7 +4,6 @@
 import {Component, DoCheck} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SchemeService} from "../../../services/scheme.service";
-import {FileUploaderCustom} from "../../../services/FileUploaderCustom";
 import swal from "sweetalert2";
 import {UserService} from "../../../services/user.service";
 

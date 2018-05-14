@@ -7,7 +7,6 @@ import {Injectable} from "@angular/core";
 // import {Http, Headers} from "@angular/http";
 import {User} from "../model/User";
 import {License} from "../model/License";
-import {LicenseService} from "./license.service";
 import {CookieService} from "ngx-cookie";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Token} from "../model/Token";
