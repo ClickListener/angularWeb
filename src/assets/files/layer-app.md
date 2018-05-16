@@ -15,16 +15,6 @@ Sync Offline Results
 ```markdown
 The layered app can read offline records from a measurement device, such as BG5, BG Track, and send back to result list. 
 ```    
-Customization
-
-```markdown
-When needed, show a splash screen with caller app's brand.
-```
-Server Stats
-
-```markdown
-Record number of unique users and number of tests per device type, on server side.
-```
 
 # Parameter Type Introduction
 
@@ -38,12 +28,15 @@ devicemodel
     HealthDeviceType_BP3L = 101,
     HealthDeviceType_BPTRACK = 102，
     HealthDeviceType_BP7S = 103, 
+    HealthDeviceType_BP7 = 104, 
     HealthDeviceType_AM3S = 200,
     HealthDeviceType_AM4 = 201,
     HealthDeviceType_PO3 = 300,
     HealthDeviceType_BG5 = 400,
+    HealthDeviceType_BG1 = 402,
     HealthDeviceType_HS4 = 500, 
     HealthDeviceType_HS4S = 501,
+    HealthDeviceType_HS2 = 502,
     HealthDeviceType_THV3 = 600,
     } HealthDeviceType;
 ```
@@ -173,6 +166,12 @@ appid
 The package name that represents the app on the android system,the Bundle identifier that represents the app in the ios system
 ```
 
+scheme
+
+```markdown
+The CALLER_APP_SCHEME value when callback data.
+```
+
 popflag
 
 ```markdown
@@ -226,7 +225,7 @@ User weight，Assignment is a numeric type，The units are kg，ranging from 1-2
   In general, the URL scheme to invoke the layered app is:
 
 ```markdown
-    LAYERED_APP_SCHEME://?appid=AppID&cmd=LayeredAction&devicemodel=HealthDeviceType&mac=MAC_ADDR&unit=VitalUnit&ver=100
+    LAYERED_APP_SCHEME://?appid=AppID&cmd=LayeredAction&devicemodel=HealthDeviceType&mac=MAC_ADDR&unit=VitalUnit&ver=100&scheme=CALLER_APP_SCHEME
    
     Please note that:
 
@@ -262,7 +261,7 @@ In this way, when layered app receives a call from a white listed app with dynam
 Support Device
 
 ```markdown
-    BP3L、 BP5、BPTRACK、BP7S、 PO3、 BG5、 HS4 、HS4S 、THV3、AM3S、AM4
+    BP3L  BP5  BPTRACK  BP7S  BP7  AM3S  AM4  PO3  BG5  HS4  HS4S  HS2  THV3
 ```
 
 URL scheme
@@ -270,25 +269,25 @@ URL scheme
 ```markdown
     Android
 
-    LAYERED_APP_SCHEME://?appid=AppID&cmd=1&addtype=LayeredAddType&devicemodel=HealthDeviceType&ver=100&popflag=[0|1]
+    LAYERED_APP_SCHEME://?appid=AppID&cmd=1&addtype=LayeredAddType&devicemodel=HealthDeviceType&ver=100&popflag=[0|1]&scheme=CALLER_APP_SCHEME
 
     Example: 
     a bluetooth scan for the MAC address of BP5
-    LAYERED_APP_SCHEME://?appid=AppID&cmd=1&addtype=0&devicemodel=100&ver=100&popflag=0
+    LAYERED_APP_SCHEME://?appid=AppID&cmd=1&addtype=0&devicemodel=100&ver=100&popflag=0&scheme=CALLER_APP_SCHEME
  
     iOS
 
-    LAYERED_APP_SCHEME://?cmd=1&addtype=LayeredAddType&devicemodel=HealthDeviceType&ver=100&popflag=[0|1]
+    LAYERED_APP_SCHEME://?cmd=1&addtype=LayeredAddType&devicemodel=HealthDeviceType&ver=100&popflag=[0|1]&scheme=CALLER_APP_SCHEME
    
     Example: 
     a bluetooth scan for the MAC address of BP5
-    LAYERED_APP_SCHEME://?cmd=1&addtype=0&devicemodel=100&ver=100&popflag=0
+    LAYERED_APP_SCHEME://?cmd=1&addtype=0&devicemodel=100&ver=100&popflag=0&scheme=CALLER_APP_SCHEME
 
     where, devicemodel is defined above in Parameter Type Introduction.popflag this parameter when adding the device, 0: no pop-up prompt 1: pop-up prompt
 
-    If the device you want to add is AM3 or AM4.Url：
+    If the device you want to add is AM3 or AM4. Url：
 
-    ihealth-layer://?cmd=LayeredAction&devicemodel=200|201&addtype=[0|1]&userid=1111&age=1&sex=UserSex&height=11&weight=11&swim=SwimSwitch&unit=[9|10]&ver=100
+    ihealth-layer://?cmd=LayeredAction&devicemodel=200|201&addtype=[0|1]&userid=1111&age=1&sex=UserSex&height=11&weight=11&swim=SwimSwitch&unit=[9|10]&ver=100&scheme=CALLER_APP_SCHEME
 ```
 
 Logic
@@ -300,7 +299,7 @@ The Layered App should support two ways to add a new device:
     Add a new device by scanning the QR code (mac address) on the device or box.
     If the barcode just represents the MAC ID, or in format "ID:MAC", just use the mac ID;
     If the barcode is in format "DEVICE_MODEL_STRING:MAC":
-    Verify the DEVICE_MODEL_STRING against the requested devicemodel, if failed, return error. The DEVICE_MODEL_STRING is actually device model,such as BP3L、BP5、BP7S、KN550BT、PO3、BG5、HS4、HS4S、FDIR-V3、AM3S、AM4.
+    Verify the DEVICE_MODEL_STRING against the requested devicemodel, if failed, return error. The DEVICE_MODEL_STRING is actually device model, such as BP3L、BP5、BP7S、KN550BT、PO3、BG5、HS4、HS4S、HS2、FDIR-V3、AM3S、AM4.
     Otherwise return the MAC ID.
 ```
 
@@ -334,7 +333,7 @@ Errors
 Support Device
 
 ```markdown
-    BP3L、 BP5、 PO3、 BG5、 HS4 、HS4S 、THV3
+    BP3L  BP5  BP7  PO3  BG5  BG1  HS4  HS4S  HS2  THV3
 ```
 
 URL scheme
@@ -342,19 +341,19 @@ URL scheme
 ```markdown
     Android
 
-    LAYERED_APP_SCHEME://?appid=AppID&cmd=0&devicemodel=HealthDeviceType&mac=MAC&unit=VitalUnit&ver=100
+    LAYERED_APP_SCHEME://?appid=AppID&cmd=0&devicemodel=HealthDeviceType&mac=MAC&unit=VitalUnit&ver=100&scheme=CALLER_APP_SCHEME
    
     Example: 
     BP5 for measurement
-    LAYERED_APP_SCHEME://?appid=AppID&cmd=0&devicemodel=100&mac=004D3208D2F4&unit=0&ver=100
+    LAYERED_APP_SCHEME://?appid=AppID&cmd=0&devicemodel=100&mac=004D3208D2F4&unit=0&ver=100&scheme=CALLER_APP_SCHEME
 
     iOS
 
-    LAYERED_APP_SCHEME://?cmd=0&devicemodel=HealthDeviceType&mac=MAC&unit=VitalUnit&ver=100
+    LAYERED_APP_SCHEME://?cmd=0&devicemodel=HealthDeviceType&mac=MAC&unit=VitalUnit&ver=100&scheme=CALLER_APP_SCHEME
 
     Example: 
     BP5 for measurement
-    LAYERED_APP_SCHEME://?appid=AppID&cmd=0&devicemodel=100&mac=004D3208D2F4&unit=0&ver=100
+    LAYERED_APP_SCHEME://?appid=AppID&cmd=0&devicemodel=100&mac=004D3208D2F4&unit=0&ver=100&scheme=CALLER_APP_SCHEME
 
     where, devicemodel and unit are defined in Parameter Type Introduction.
 
@@ -363,6 +362,7 @@ URL scheme
 ```
 
 Callback
+
 ```markdown    
     sucess：
 
@@ -385,7 +385,7 @@ The values of the returned results should be in the unit specified in the caller
 Support Device
 
 ```markdown
-    BP5、BPTRACK、BP7S、 PO3、 BG5、 HS4 、HS4S 、THV3、AM3S、AM4
+    BP5  BPTRACK  BP7S  BP7  AM3S  AM4  PO3  BG5  HS4  HS4S  HS2  THV3
 ```
 
 URL scheme
@@ -393,16 +393,16 @@ URL scheme
 ```markdown
     Android
 
-    LAYERED_APP_SCHEME://?appid=AppID&cmd=2&devicemodel=HealthDeviceType&mac=MAC&unit=VitalUnit&ver=100
+    LAYERED_APP_SCHEME://?appid=AppID&cmd=2&devicemodel=HealthDeviceType&mac=MAC&unit=VitalUnit&ver=100&scheme=CALLER_APP_SCHEME
  
     iOS
 
-    LAYERED_APP_SCHEME://?cmd=1&devicemodel=HealthDeviceType&mac=MAC&unit=VitalUnit&ver=100
+    LAYERED_APP_SCHEME://?cmd=1&devicemodel=HealthDeviceType&mac=MAC&unit=VitalUnit&ver=100&scheme=CALLER_APP_SCHEME
 
 
     If the device you want to add is AM3 or AM4.Url：
 
-    ihealth-layer://?cmd=2&devicemodel=200|201&mac=MAC&userid=1111&age=1&sex=UserSex&height=11&weight=11&swim=[0|1]&unit=[9|10]&ver=100
+    ihealth-layer://?cmd=2&devicemodel=200|201&mac=MAC&userid=1111&age=1&sex=UserSex&height=11&weight=11&swim=[0|1]&unit=[9|10]&ver=100&scheme=CALLER_APP_SCHEME
 
     where, devicemodel and unit are defined in Parameter Type Introduction. 
 ```
@@ -444,6 +444,7 @@ Where key and val are defined same as previous section Measurement, with an addi
 If the product is  AM3S AM4 Sync Offline Results，Increase the incoming parameters：userid、weight、height、sex、swim、age
 
 AM3S、AM4 callback RESULT_JSON：
+
 ```markdown   
       [
         {  
@@ -469,11 +470,11 @@ Support Device
 ```markdown
     Add a Device  and  Measurement
 
-    BP3L、 BP5、 PO3、 BG5、 HS4 、HS4S 、THV3
+    BP3L  BP5  BP7  PO3  BG5  HS4  HS4S  HS2  THV3
 
     Add a Device  and  Sync Offline Results 
    
-    BP5、BPTRACK、BP7S、 PO3、 BG5、 HS4 、HS4S 、THV3、AM3S、AM4
+    BP5  BPTRACK  BP7S  BP7  AM3S  AM4  PO3  BG5  HS4  HS4S  HS2  THV3
 ```
 
 URL scheme
@@ -481,11 +482,11 @@ URL scheme
 ```markdown
     Android
 
-    LAYERED_APP_SCHEME://?appid=AppID&cmd=LayeredAction&devicemodel=HealthDeviceType&unit=VitalUnit&addtype=LayeredAddType&ver=100
+    LAYERED_APP_SCHEME://?appid=AppID&cmd=LayeredAction&devicemodel=HealthDeviceType&unit=VitalUnit&addtype=LayeredAddType&ver=100&scheme=CALLER_APP_SCHEME
  
     iOS
 
-    LAYERED_APP_SCHEME://?cmd=LayeredAction&devicemodel=HealthDeviceType&unit=VitalUnit&addtype=LayeredAddType&ver=100
+    LAYERED_APP_SCHEME://?cmd=LayeredAction&devicemodel=HealthDeviceType&unit=VitalUnit&addtype=LayeredAddType&ver=100&scheme=CALLER_APP_SCHEME
 
 
     where, cmd、addtype、devicemodel and unit are defined in "Parameter Type Introduction" section.
@@ -514,7 +515,7 @@ Callback
 Support Device
 
 ```markdown
-    BP5、PO3、 BG5、 HS4 、HS4S 、THV3
+    BP5  BP7  PO3  BG5  HS4  HS4S  HS2  THV3
 ```
 
 URL scheme
@@ -522,11 +523,11 @@ URL scheme
 ```markdown
     Android
 
-    LAYERED_APP_SCHEME://?appid=AppID&cmd=ActionAddSyncMeasure&devicemodel=HealthDeviceType&unit=VitalUnit&addtype=LayeredAddType&ver=100
+    LAYERED_APP_SCHEME://?appid=AppID&cmd=ActionAddSyncMeasure&devicemodel=HealthDeviceType&unit=VitalUnit&addtype=LayeredAddType&ver=100&scheme=CALLER_APP_SCHEME
  
     iOS
 
-    LAYERED_APP_SCHEME://?cmd=ActionAddSyncMeasure&devicemodel=HealthDeviceType&unit=VitalUnit&addtype=LayeredAddType&ver=100
+    LAYERED_APP_SCHEME://?cmd=ActionAddSyncMeasure&devicemodel=HealthDeviceType&unit=VitalUnit&addtype=LayeredAddType&ver=100&scheme=CALLER_APP_SCHEME
 
     where, cmd、addtype、devicemodel and unit are defined in "Parameter Type Introduction" section.
 ```
@@ -562,7 +563,7 @@ When it's successful, the the callback returns all values in one encoded, flatte
 Support Device
 
 ```markdown
-    BP5、PO3、 BG5、 HS4 、HS4S 、THV3
+    BP5  BP7  PO3  BG5  HS4  HS4S  HS2  THV3
 ```
 
 URL scheme
@@ -570,11 +571,11 @@ URL scheme
 ```markdown
     Android
 
-    LAYERED_APP_SCHEME://?appid=AppID&cmd=ActionAddSyncMeasure&devicemodel=HealthDeviceType&unit=VitalUnit&mac=MAC&ver=100
+    LAYERED_APP_SCHEME://?appid=AppID&cmd=ActionAddSyncMeasure&devicemodel=HealthDeviceType&unit=VitalUnit&mac=MAC&ver=100&scheme=CALLER_APP_SCHEME
  
     iOS
 
-    LAYERED_APP_SCHEME://?cmd=LayeredAction&devicemodel=HealthDeviceType&unit=VitalUnit&mac=MAC&ver=100
+    LAYERED_APP_SCHEME://?cmd=LayeredAction&devicemodel=HealthDeviceType&unit=VitalUnit&mac=MAC&ver=100&scheme=CALLER_APP_SCHEME
 
 
     where, cmd、addtype、devicemodel and unit are defined in "Parameter Type Introduction" section.
