@@ -45,7 +45,6 @@
         "../node_modules/prismjs/components/prism-csharp.min.js",
         "../node_modules/prismjs/components/prism-javascript.min.js",
         "../node_modules/prismjs/components/prism-java.min.js",
-        "../node_modules/prismjs/components/prism-objectivec.js",
         "../node_modules/prismjs/components/prism-markdown.js"
       ],
       "environmentSource": "environments/environment.ts",

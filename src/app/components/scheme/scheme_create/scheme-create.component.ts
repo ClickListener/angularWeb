@@ -143,6 +143,13 @@ export class SchemeCreateComponent {
 
     formData.splice(0, 0, userId);
 
+    const platform = {
+      name: "platform",
+      value: 'all'
+    };
+
+    formData.splice(0, 0, platform);
+
 
     const action = {
       name: 'action',

@@ -80,6 +80,7 @@ import {SimpleReuseStrategy} from "./components/tools/simple-reuse-strategy";
 import { TermUsComponent } from './components/terms/term-us/term-us.component';
 import { PoliciesUsComponent } from './components/policies/policies-us/policies-us.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { VersionRnsdkComponent } from './components/version/version-rnsdk/version-rnsdk.component';
 
 @NgModule({
 
@@ -181,7 +182,10 @@ import { ContactComponent } from './components/contact/contact.component';
     PoliciesUsComponent,
 
 
-    ContactComponent
+    ContactComponent,
+
+
+    VersionRnsdkComponent
   ],
 
   bootstrap: [AppComponent],

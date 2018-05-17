@@ -8,7 +8,7 @@
 
 ### Authentication
 
-```objectivec
+```markdown
 
   If you want to use the iHealth Device, you must first call authentication method, can call after certification by iHealth relevant methods of the device.
 
@@ -51,7 +51,7 @@
 ### Relevant files and frameworks
 1、Import the following iHealthSDK files：   
 
-```objectivec
+```markdown
     BP: 
     BPHeader.h、 BPMacroFile.h、BPCommandCache.h、BPController.h、BPDevice.h、 BP3.h、 BP3Controller.h、BP3L.h、 BP3LController.h、 BP5.h、BP5Controller.h、BP7.h、 BP7Controller.h、BP7S.h、BP7SController.h、 ABI.h, ABIController.h、BPContinua.h、BPContinuaController.h、ABPM.h、ABPMController.h、KN550BT.h、KN550BTController.h、BP5SRW.h、BP5SRWController.h、BPAlertSettingModel.h、BPAV10Device.h、BPBTLEDevice.h、BPBV10Device.h、BPLoopMeasureSettingModel.h
      、BPV24Device.h
@@ -128,17 +128,17 @@ If you're using BG1，you need to add  Item NSMicrophoneUsageDescription
 	a) Register plug-in device info: `BP5ConnectNoti`;
 
 	b) Initialize controller classes:
-   ```objectivec
+   ```markdown
      BP5Controller *controller = [BP5Controller shareBP5Controller];
    ```
 
    c) Access control class instance after receive `BP5ConnectNoti`: 
 
-	```objectivec
+	```markdown
 	NSArray *bpDeviceArray = [controller getAllCurrentBP5Instace];
 	```
 
-	``` objectivec
+	``` markdown
 	BP5 *bpInstance = [bpDeviceArray objectAtIndex: i];
 	```
 

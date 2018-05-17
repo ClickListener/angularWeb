@@ -75,6 +75,8 @@ export class DetailComponent {
             } else {
               this.title = 'Layered App_IOS';
             }
+          } else if (this.schemeSelected.resourceName === 'RNSDK') {
+              this.title = 'RN SDK';
           }
         }
       })

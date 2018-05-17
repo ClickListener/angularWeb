@@ -2,7 +2,7 @@
  * Created by zhangxu on 2018/1/23.
  */
 import {Component} from "@angular/core";
-import {NavigationEnd, Router} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {NGXLogger} from "ngx-logger";
 
 @Component({
@@ -13,12 +13,18 @@ import {NGXLogger} from "ngx-logger";
 export class ManagerMainComponent {
 
   url: string;
-  constructor(private router: Router, private logger: NGXLogger) {
+  param: string;
+  constructor(private router: Router, private logger: NGXLogger, private activatedRoute: ActivatedRoute) {
 
     router.events.filter(event => event instanceof NavigationEnd)
       .subscribe(e => {
         this.logger.debug('prev:', e['url']);
         this.url = e['url'];
       });
+
+
+    activatedRoute.paramMap.subscribe(params => {
+      this.param = params['params'].param;
+    });
   }
 }

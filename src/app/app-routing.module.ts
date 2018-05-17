@@ -55,6 +55,7 @@ import {GettingStartComponent} from "./components/start/getting-start/getting-st
 import {TermUsComponent} from "./components/terms/term-us/term-us.component";
 import {PoliciesUsComponent} from "./components/policies/policies-us/policies-us.component";
 import {ContactComponent} from "./components/contact/contact.component";
+import {VersionRnsdkComponent} from "./components/version/version-rnsdk/version-rnsdk.component";
 
 /**
  * 路由模块
@@ -205,6 +206,10 @@ const routes: Routes = [
       {
         path: 'detail/:param',
         component: DetailComponent
+      },
+      {
+        path: 'rn-version',
+        component: VersionRnsdkComponent
       }
     ]
   },
