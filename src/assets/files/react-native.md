@@ -1,18 +1,14 @@
-# iHealthLibrary_ReactNative
+# iHealth Device Developer Documentation for ReactNative
 
-## Changelog
 
-###BG1
-
-1. (iOS)Removed Event_Device_Connected erroneous event immediately after Event_Scan_Device
-1. (iOS)Added volume to max on Event_Scan_Device (BG1 inserted) 
-1. Removed Examples and Documents from npm published package to cut down bundle size
 
 
 ## Install  
 
 ```markdown
  npm install @ihealth/ihealthlibrary-react-native  
+ 
+ If you cannot access the npm repository, you can download the entire package on this site.
 ```
 
 
@@ -119,7 +115,3 @@ import {
 	 BP5Module.startMeasure(mac)  
 	 BP5Module.stopMeasure(mac)
 ```
-
-## Example
-
-[Click this link](https://github.com/iHealthDeviceLabs/iHealthLibrary_ReactNative/tree/master/Example)
