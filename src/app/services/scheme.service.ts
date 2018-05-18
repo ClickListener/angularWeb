@@ -254,4 +254,25 @@ export class SchemeService {
       })
       .catch(SchemeService.handleError);
   }
+
+  uploadPublicFile(formData: FormData): Promise<any> {
+
+    this.logger.debug('formData = ', formData);
+
+    const url = this.url + '/api/app/uploadPublicFiles';
+
+    return this.http.post(url, formData, {
+      headers: new HttpHeaders({
+        'Accept': 'application/json',
+      }),
+      observe: 'response'
+    }).toPromise()
+      .then(res => {
+        console.log(res);
+        if (res['status'] === 201) {
+          return res;
+        }
+      })
+      .catch(SchemeService.handleError);
+  }
 }

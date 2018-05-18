@@ -67,8 +67,14 @@ export class SchemeCreateComponent {
   }
 
   private submitForm() {
+    let url = '';
+    if (this.resourceName !== 'PublicFile') {
+      url = this.url + "/api/app/upload";
+    } else {
+      url = this.url + "/api/app/uploadPublicFiles";
+    }
     const options = {
-      url: this.url + "/api/app/upload",           // 默认是form的action，如果声明，则会覆盖
+      url: url,           // 默认是form的action，如果声明，则会覆盖
       type: 'POST',                                          // 默认是form的method，如果声明，则会覆盖
       beforeSubmit: this.beforeSubmit.bind(this),            // 提交前的回调函数
       success: this.success.bind(this),                       // 提交后的回调函数
@@ -143,12 +149,16 @@ export class SchemeCreateComponent {
 
     formData.splice(0, 0, userId);
 
-    const platform = {
-      name: "platform",
-      value: 'all'
-    };
 
-    formData.splice(0, 0, platform);
+    if (this.resourceName === 'RNSDK') {
+      const platform = {
+        name: "platform",
+        value: 'all'
+      };
+
+      formData.splice(0, 0, platform);
+    }
+
 
 
     const action = {
