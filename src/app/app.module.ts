@@ -81,6 +81,7 @@ import { TermUsComponent } from './components/terms/term-us/term-us.component';
 import { PoliciesUsComponent } from './components/policies/policies-us/policies-us.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { VersionRnsdkComponent } from './components/version/version-rnsdk/version-rnsdk.component';
+import { VersionLayeredAppComponent } from './components/version/version-layered-app/version-layered-app.component';
 
 @NgModule({
 
@@ -185,7 +186,10 @@ import { VersionRnsdkComponent } from './components/version/version-rnsdk/versio
     ContactComponent,
 
 
-    VersionRnsdkComponent
+    VersionRnsdkComponent,
+
+
+    VersionLayeredAppComponent
   ],
 
   bootstrap: [AppComponent],

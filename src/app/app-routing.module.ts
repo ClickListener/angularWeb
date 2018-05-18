@@ -56,6 +56,7 @@ import {TermUsComponent} from "./components/terms/term-us/term-us.component";
 import {PoliciesUsComponent} from "./components/policies/policies-us/policies-us.component";
 import {ContactComponent} from "./components/contact/contact.component";
 import {VersionRnsdkComponent} from "./components/version/version-rnsdk/version-rnsdk.component";
+import {VersionLayeredAppComponent} from "./components/version/version-layered-app/version-layered-app.component";
 
 /**
  * 路由模块
@@ -210,6 +211,10 @@ const routes: Routes = [
       {
         path: 'rn-version',
         component: VersionRnsdkComponent
+      },
+      {
+        path: 'layeredApp-version',
+        component: VersionLayeredAppComponent
       }
     ]
   },
